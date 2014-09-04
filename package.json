@@ -1,0 +1,39 @@
+{
+    "name": "lodash-joins",
+    "version": "0.0.1",
+    "description": "SQL-like joins using LoDash",
+    "keywords": [
+        "joins"
+    ],
+    "author": {
+        "name": "Matt Traynham"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mtraynham/lodash-joins.git"
+    },
+    "main": "lodash-joins.js",
+    "dependencies": {
+        "lodash": "~2.4.1"
+    },
+    "devDependencies": {
+        "browserify": "~5.9.1",
+        "gulp": "~3.8.7",
+        "gulp-bump": "~0.1.11",
+        "gulp-jscs": "~1.1.2",
+        "gulp-jshint": "~1.8.4",
+        "gulp-rename": "~1.2.0",
+        "gulp-streamify": "0.0.5",
+        "gulp-uglify": "~0.3.1",
+        "jshint-stylish": "~0.4.0",
+        "vinyl-source-stream": "~0.1.1",
+        "vinyl-fs": "~0.3.1",
+        "watchify": "~1.0.1"
+    },
+    "licenses": [
+        {
+            "type": "Apache v2",
+            "url": "https://github.com/mtraynham/lodash-joins/blob/master/LICENSE"
+        }
+    ]
+}
