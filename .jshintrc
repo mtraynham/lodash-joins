@@ -19,8 +19,10 @@
     "undef": true,
     "unused": true,
     "globals": {
+        "_": false,
         "__dirname": false,
         "global": false,
+        "module": false,
         "require": false
     }
 }
