@@ -54,6 +54,19 @@ describe('Hash Joins', function () {
             assert.equal(JSON.stringify(expected), JSON.stringify(result));
         });
     });
+    describe('#hashLeftAntiJoin()', function () {
+        var hashLeftAntiJoin = require('../lib/hash/hashLeftAntiJoin'),
+            expected = [
+                {id: 'b', left: 3}
+            ],
+            result = hashLeftAntiJoin(left, accessor, right, accessor);
+        it('should return 1 rows', function () {
+            assert.equal(1, result.length);
+        });
+        it('should match the expected output', function () {
+            assert.equal(JSON.stringify(expected), JSON.stringify(result));
+        });
+    });
     describe('#hashLeftOuterJoin()', function () {
         var hashLeftOuterJoin = require('../lib/hash/hashLeftOuterJoin'),
             expected = [
@@ -82,6 +95,20 @@ describe('Hash Joins', function () {
             result = hashLeftSemiJoin(left, accessor, right, accessor);
         it('should return 3 rows', function () {
             assert.equal(3, result.length);
+        });
+        it('should match the expected output', function () {
+            assert.equal(JSON.stringify(expected), JSON.stringify(result));
+        });
+    });
+    describe('#hashRightAntiJoin()', function () {
+        var hashRightAntiJoin = require('../lib/hash/hashRightAntiJoin'),
+            expected = [
+                {id: 'd', right: 4},
+                {id: 'e', right: 5}
+            ],
+            result = hashRightAntiJoin(left, accessor, right, accessor);
+        it('should return 2 rows', function () {
+            assert.equal(2, result.length);
         });
         it('should match the expected output', function () {
             assert.equal(JSON.stringify(expected), JSON.stringify(result));
