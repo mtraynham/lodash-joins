@@ -20,14 +20,14 @@ describe('Hash Joins', function () {
     describe('#hashFullOuterJoin()', function () {
         var hashFullOuterJoin = require('../lib/hash/hashFullOuterJoin'),
             expected = [
-                {id: 'a', left: 2, right: 2},
+                {id: 'a', left: 1, right: 1},
                 {id: 'a', left: 2, right: 1},
                 {id: 'a', left: 1, right: 2},
-                {id: 'a', left: 1, right: 1},
-                {id: 'b', left: 3},
+                {id: 'a', left: 2, right: 2},
                 {id: 'c', left: 4, right: 3},
                 {id: 'd', right: 4},
-                {id: 'e', right: 5}
+                {id: 'e', right: 5},
+                {id: 'b', left: 3}
             ],
             result = hashFullOuterJoin(left, accessor, right, accessor);
         it('should return 8 rows', function () {
@@ -58,11 +58,11 @@ describe('Hash Joins', function () {
         var hashLeftOuterJoin = require('../lib/hash/hashLeftOuterJoin'),
             expected = [
                 {id: 'a', left: 1, right: 1},
-                {id: 'a', left: 1, right: 2},
                 {id: 'a', left: 2, right: 1},
+                {id: 'a', left: 1, right: 2},
                 {id: 'a', left: 2, right: 2},
-                {id: 'b', left: 3},
-                {id: 'c', left: 4, right: 3}
+                {id: 'c', left: 4, right: 3},
+                {id: 'b', left: 3}
             ],
             result = hashLeftOuterJoin(left, accessor, right, accessor);
         it('should return 6 rows', function () {
