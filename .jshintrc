@@ -21,7 +21,9 @@
     "globals": {
         "_": false,
         "__dirname": false,
+        "describe": false,
         "global": false,
+        "it": false,
         "module": false,
         "require": false
     }

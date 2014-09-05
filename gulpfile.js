@@ -1,11 +1,10 @@
 var gulp = require('gulp'),
     browserify = require('browserify'),
     bump = require('gulp-bump'),
-    fs = require('vinyl-fs'),
     jscs = require('gulp-jscs'),
     jshint = require('gulp-jshint'),
     jshintStylish = require('jshint-stylish'),
-    // karma = require('gulp-karma'),
+    mocha = require('gulp-mocha'),
     rename = require('gulp-rename'),
     source = require('vinyl-source-stream'),
     streamify = require('gulp-streamify'),
@@ -13,7 +12,7 @@ var gulp = require('gulp'),
     watchify = require('watchify');
 
 gulp.task('lint', function () {
-    return fs
+    return gulp
         .src(['gulpfile.js', 'index.js', 'lib/*.js', 'test/*.js'])
         .pipe(jscs())
         .pipe(jshint())
@@ -49,7 +48,8 @@ gulp.task('build', function () {
 });
 
 gulp.task('test', function () {
-
+    return gulp.src('test/*.js', {read: false})
+        .pipe(mocha({reporter: 'nyan'}));
 });
 
 gulp.task('setWatch', function () {
