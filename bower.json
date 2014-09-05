@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "main": "lodash-joins.js",
     "scripts": [
-        "lodash-joins.js"
+        "dist/lodash-joins.js"
     ],
     "ignore": [
         ".DS_Store",
@@ -12,7 +12,8 @@
         ".npmignore",
         "node_modules",
         "package.json",
-        "src"
+        "lib",
+        "test"
     ],
     "dependencies": {
         "lodash": "2.4.1"

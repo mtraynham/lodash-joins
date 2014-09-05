@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     jscs = require('gulp-jscs'),
     jshint = require('gulp-jshint'),
     jshintStylish = require('jshint-stylish'),
+    // karma = require('gulp-karma'),
     rename = require('gulp-rename'),
     source = require('vinyl-source-stream'),
     streamify = require('gulp-streamify'),
@@ -13,7 +14,7 @@ var gulp = require('gulp'),
 
 gulp.task('lint', function () {
     return fs
-        .src(['src/*.js', 'gulpfile.js'])
+        .src(['gulpfile.js', 'index.js', 'lib/*.js', 'test/*.js'])
         .pipe(jscs())
         .pipe(jshint())
         .pipe(jshint.reporter(jshintStylish));
@@ -22,9 +23,9 @@ gulp.task('lint', function () {
 gulp.task('build', function () {
     var bundler = browserify({
         basedir: __dirname,
-        entries: ['./src/index.js'], // TODO SHOULD BE index.jsx
+        entries: ['./index.js'],
         extensions: ['.js'],
-        debug: global.isDevelopment ? true : false,
+        debug: global.isDevelopment ? false : true,
         cache: {},
         packageCache: {},
         fullPaths: false
@@ -33,10 +34,10 @@ gulp.task('build', function () {
     var bundle = function () {
         return bundler
             .bundle()
-            .pipe(source('lodash-joins.js'))
+            .pipe(source('dist/lodash-joins.js'))
             .pipe(gulp.dest('./'))
             .pipe(streamify(uglify()))
-            .pipe(rename('lodash-joins.min.js'))
+            .pipe(rename('dist/lodash-joins.min.js'))
             .pipe(gulp.dest('./'));
     };
 
@@ -45,6 +46,10 @@ gulp.task('build', function () {
         bundler.on('update', bundle);
     }
     return bundle();
+});
+
+gulp.task('test', function () {
+
 });
 
 gulp.task('setWatch', function () {

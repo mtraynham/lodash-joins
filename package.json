@@ -22,6 +22,7 @@
         "gulp-bump": "~0.1.11",
         "gulp-jscs": "~1.1.2",
         "gulp-jshint": "~1.8.4",
+        "gulp-karma": "~0.0.4",
         "gulp-rename": "~1.2.0",
         "gulp-streamify": "0.0.5",
         "gulp-uglify": "~0.3.1",
