@@ -19,7 +19,6 @@
     "undef": true,
     "unused": true,
     "globals": {
-        "_": false,
         "__dirname": false,
         "describe": false,
         "global": false,
