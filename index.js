@@ -1,27 +1,26 @@
+var _ = require('lodash');
 
-var joins = {};
+_.cartesianProduct = require('./lib/cartesianProduct');
 
-joins.cartesianProduct = require('./lib/cartesianProduct');
+_.hashFullOuterJoin = require('./lib/hash/hashFullOuterJoin');
+_.hashInnerJoin = require('./lib/hash/hashInnerJoin');
+_.hashLeftOuterJoin = require('./lib/hash/hashLeftOuterJoin');
+_.hashLeftSemiJoin = require('./lib/hash/hashLeftSemiJoin');
+_.hashRightOuterJoin = require('./lib/hash/hashRightOuterJoin');
+_.hashRightSemiJoin = require('./lib/hash/hashRightSemiJoin');
 
-joins.hashFullOuterJoin = require('./lib/hash/hashFullOuterJoin');
-joins.hashInnerJoin = require('./lib/hash/hashInnerJoin');
-joins.hashLeftOuterJoin = require('./lib/hash/hashLeftOuterJoin');
-joins.hashLeftSemiJoin = require('./lib/hash/hashLeftSemiJoin');
-joins.hashRightOuterJoin = require('./lib/hash/hashRightOuterJoin');
-joins.hashRightSemiJoin = require('./lib/hash/hashRightSemiJoin');
+_.sortedMergeFullOuterJoin = require('./lib/sortedMerge/sortedMergeFullOuterJoin');
+_.sortedMergeInnerJoin = require('./lib/sortedMerge/sortedMergeInnerJoin');
+_.sortedMergeLeftOuterJoin = require('./lib/sortedMerge/sortedMergeLeftOuterJoin');
+_.sortedMergeLeftSemiJoin = require('./lib/sortedMerge/sortedMergeLeftSemiJoin');
+_.sortedMergeRightOuterJoin = require('./lib/sortedMerge/sortedMergeRightOuterJoin');
+_.sortedMergeRightSemiJoin = require('./lib/sortedMerge/sortedMergeRightSemiJoin');
 
-joins.sortedMergeFullOuterJoin = require('./lib/sortedMerge/sortedMergeFullOuterJoin');
-joins.sortedMergeInnerJoin = require('./lib/sortedMerge/sortedMergeInnerJoin');
-joins.sortedMergeLeftOuterJoin = require('./lib/sortedMerge/sortedMergeLeftOuterJoin');
-joins.sortedMergeLeftSemiJoin = require('./lib/sortedMerge/sortedMergeLeftSemiJoin');
-joins.sortedMergeRightOuterJoin = require('./lib/sortedMerge/sortedMergeRightOuterJoin');
-joins.sortedMergeRightSemiJoin = require('./lib/sortedMerge/sortedMergeRightSemiJoin');
+_.nestedLoopFullOuterJoin = require('./lib/nestedLoop/nestedLoopFullOuterJoin');
+_.nestedLoopInnerJoin = require('./lib/nestedLoop/nestedLoopInnerJoin');
+_.nestedLoopLeftOuterJoin = require('./lib/nestedLoop/nestedLoopLeftOuterJoin');
+_.nestedLoopLeftSemiJoin = require('./lib/nestedLoop/nestedLoopLeftSemiJoin');
+_.nestedLoopRightOuterJoin = require('./lib/nestedLoop/nestedLoopRightOuterJoin');
+_.nestedLoopRightSemiJoin = require('./lib/nestedLoop/nestedLoopRightSemiJoin');
 
-joins.nestedLoopFullOuterJoin = require('./lib/nestedLoop/nestedLoopFullOuterJoin');
-joins.nestedLoopInnerJoin = require('./lib/nestedLoop/nestedLoopInnerJoin');
-joins.nestedLoopLeftOuterJoin = require('./lib/nestedLoop/nestedLoopLeftOuterJoin');
-joins.nestedLoopLeftSemiJoin = require('./lib/nestedLoop/nestedLoopLeftSemiJoin');
-joins.nestedLoopRightOuterJoin = require('./lib/nestedLoop/nestedLoopRightOuterJoin');
-joins.nestedLoopRightSemiJoin = require('./lib/nestedLoop/nestedLoopRightSemiJoin');
-
-global.joins = joins;
+module.exports = _;
