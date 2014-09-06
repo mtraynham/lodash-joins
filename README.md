@@ -26,7 +26,7 @@ Order of the output is indeterminate.
 Implementations
 ---------------
 * [Nested Loop](http://en.wikipedia.org/wiki/Nested_loop_join)
-* [Hash](http://en.wikipedia.org/wiki/Hash_join)
+* [Hash](http://en.wikipedia.org/wiki/Hash_join) (Uses LoDash _.groupBy to hash, thus key comparisons are String based)
 * [Sorted Merge](http://en.wikipedia.org/wiki/Sort-merge_join)
 
 Supported Join Types
