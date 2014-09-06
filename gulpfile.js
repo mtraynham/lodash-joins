@@ -49,7 +49,7 @@ gulp.task('build', function () {
 
 gulp.task('test', function () {
     return gulp.src('test/*.js', {read: false})
-        .pipe(mocha({reporter: 'nyan'}));
+        .pipe(mocha({reporter: 'spec'}));
 });
 
 gulp.task('setWatch', function () {
