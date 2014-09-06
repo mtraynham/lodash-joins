@@ -150,7 +150,8 @@ describe('Nested Loop Joins', function () {
         });
         it('should match the left anti join with right as the parent', function () {
             var nestedLoopLeftAntiJoin = require('../lib/nestedLoop/nestedLoopLeftAntiJoin');
-            assert.equal(JSON.stringify(result), JSON.stringify(nestedLoopLeftAntiJoin(right, accessor, left, accessor)));
+            assert.equal(JSON.stringify(result),
+                JSON.stringify(nestedLoopLeftAntiJoin(right, accessor, left, accessor)));
         });
     });
     describe('#nestedLoopRightOuterJoin()', function () {
@@ -175,7 +176,8 @@ describe('Nested Loop Joins', function () {
         });
         it('should match the left outer join with right as the parent', function () {
             var nestedLoopLeftOuterJoin = require('../lib/nestedLoop/nestedLoopLeftOuterJoin');
-            assert.equal(JSON.stringify(result), JSON.stringify(nestedLoopLeftOuterJoin(right, accessor, left, accessor)));
+            assert.equal(JSON.stringify(result),
+                JSON.stringify(nestedLoopLeftOuterJoin(right, accessor, left, accessor)));
         });
     });
     describe('#nestedLoopRightSemiJoin()', function () {
@@ -193,7 +195,8 @@ describe('Nested Loop Joins', function () {
         });
         it('should match the left semi join with right as the parent', function () {
             var nestedLoopLeftSemiJoin = require('../lib/nestedLoop/nestedLoopLeftSemiJoin');
-            assert.equal(JSON.stringify(result), JSON.stringify(nestedLoopLeftSemiJoin(right, accessor, left, accessor)));
+            assert.equal(JSON.stringify(result),
+                JSON.stringify(nestedLoopLeftSemiJoin(right, accessor, left, accessor)));
         });
     });
 });

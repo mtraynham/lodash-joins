@@ -21,14 +21,14 @@ describe('Sorted Merge Joins', function () {
     describe('#sortedMergeFullOuterJoin()', function () {
         var sortedMergeFullOuterJoin = require('../lib/sortedMerge/sortedMergeFullOuterJoin'),
             expectedA = [
+                {id: 'a', right: 0},
+                {id: 'b', right: 1},
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
                 {id: 'c', left: 1, right: 2},
                 {id: 'c', left: 1, right: 3},
-                {id: 'e', left: 2},
-                {id: 'a', right: 0},
-                {id: 'b', right: 1},
                 {id: 'd', right: 4},
+                {id: 'e', left: 2},
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
@@ -40,9 +40,9 @@ describe('Sorted Merge Joins', function () {
                 {id: 'c', right: 3, left: 0},
                 {id: 'c', right: 3, left: 1},
                 {id: 'd', right: 4},
+                {id: 'e', left: 2},
                 {id: 'f', right: 5},
-                {id: 'g', right: 6},
-                {id: 'e', left: 2}
+                {id: 'g', right: 6}
             ],
             resultA = sortedMergeFullOuterJoin(left, accessor, right, accessor),
             resultB = sortedMergeFullOuterJoin(right, accessor, left, accessor);
@@ -150,7 +150,8 @@ describe('Sorted Merge Joins', function () {
         });
         it('should match the left anti join with right as the parent', function () {
             var sortedMergeLeftAntiJoin = require('../lib/sortedMerge/sortedMergeLeftAntiJoin');
-            assert.equal(JSON.stringify(result), JSON.stringify(sortedMergeLeftAntiJoin(right, accessor, left, accessor)));
+            assert.equal(JSON.stringify(result),
+                JSON.stringify(sortedMergeLeftAntiJoin(right, accessor, left, accessor)));
         });
     });
     describe('#sortedMergeRightOuterJoin()', function () {
@@ -175,7 +176,8 @@ describe('Sorted Merge Joins', function () {
         });
         it('should match the left outer join with right as the parent', function () {
             var sortedMergeLeftOuterJoin = require('../lib/sortedMerge/sortedMergeLeftOuterJoin');
-            assert.equal(JSON.stringify(result), JSON.stringify(sortedMergeLeftOuterJoin(right, accessor, left, accessor)));
+            assert.equal(JSON.stringify(result),
+                JSON.stringify(sortedMergeLeftOuterJoin(right, accessor, left, accessor)));
         });
     });
     describe('#sortedMergeRightSemiJoin()', function () {
@@ -193,7 +195,8 @@ describe('Sorted Merge Joins', function () {
         });
         it('should match the left semi join with right as the parent', function () {
             var sortedMergeLeftSemiJoin = require('../lib/sortedMerge/sortedMergeLeftSemiJoin');
-            assert.equal(JSON.stringify(result), JSON.stringify(sortedMergeLeftSemiJoin(right, accessor, left, accessor)));
+            assert.equal(JSON.stringify(result),
+                JSON.stringify(sortedMergeLeftSemiJoin(right, accessor, left, accessor)));
         });
     });
 });
