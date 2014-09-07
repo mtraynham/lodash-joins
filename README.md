@@ -13,7 +13,7 @@ Limit and offset can be accomplished using [```Array.slice```](https://developer
 
 Description
 -----------
-These functions only act on arrays of objects (comparable to database rows).  Key comparisons are coercive, so Dates should work as well.
+These functions only work on arrays of objects (comparable to database rows).  Key comparisons are coercive, so Dates should work as well.
 
 All joined rows are generated from LoDash's [```assign```](http://lodash.com/docs#assign) function, to avoid changing the original object reference:
 
@@ -42,7 +42,7 @@ Supported Join Types
 
 Usage
 -----
-Each join function expects two arrays and an acccessor function for each array that will act as the key-comparator.
+Each join function accepts two arrays and two acccessor functions for each array that will act as the pluck function for key comparison.
 
     _.joinFunction(leftArray, leftKeyAccessor, rightArray, rightKeyAccessor);
 
