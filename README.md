@@ -1,6 +1,6 @@
 lodash-joins
 ============
-A library providing SQL-like joins for JavaScript Arrays.  LoDash is the only dependency and this library appends itself as an extension to that library.
+A library providing join algorithms for JavaScript Arrays.  LoDash is the only dependency and this library appends itself as an extension to that library.
 
 Lodash already supports some standard SQL-like features:
 
@@ -128,4 +128,6 @@ Future
 * Support for smart picking join implementations
 * Better support for parent/child array selection
 * Support LoDash chaining
+* Rework Hash join object comparisons
+* Performance tests
 * More tests!
