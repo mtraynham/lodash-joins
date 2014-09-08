@@ -25,6 +25,7 @@ _.nestedLoopLeftSemiJoin = require('./lib/nestedLoop/nestedLoopLeftSemiJoin');
 _.nestedLoopRightOuterJoin = require('./lib/nestedLoop/nestedLoopRightOuterJoin');
 _.nestedLoopRightSemiJoin = require('./lib/nestedLoop/nestedLoopRightSemiJoin');
 
+global._ = _;
 module.exports = _;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./lib/cartesianProduct":2,"./lib/hash/hashFullOuterJoin":3,"./lib/hash/hashInnerJoin":4,"./lib/hash/hashLeftOuterJoin":5,"./lib/hash/hashLeftSemiJoin":6,"./lib/hash/hashRightOuterJoin":7,"./lib/hash/hashRightSemiJoin":8,"./lib/nestedLoop/nestedLoopFullOuterJoin":9,"./lib/nestedLoop/nestedLoopInnerJoin":10,"./lib/nestedLoop/nestedLoopLeftOuterJoin":11,"./lib/nestedLoop/nestedLoopLeftSemiJoin":12,"./lib/nestedLoop/nestedLoopRightOuterJoin":13,"./lib/nestedLoop/nestedLoopRightSemiJoin":14,"./lib/sortedMerge/sortedMergeFullOuterJoin":15,"./lib/sortedMerge/sortedMergeInnerJoin":16,"./lib/sortedMerge/sortedMergeLeftOuterJoin":17,"./lib/sortedMerge/sortedMergeLeftSemiJoin":18,"./lib/sortedMerge/sortedMergeRightOuterJoin":19,"./lib/sortedMerge/sortedMergeRightSemiJoin":20}],2:[function(require,module,exports){

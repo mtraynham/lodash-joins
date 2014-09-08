@@ -23,4 +23,5 @@ _.nestedLoopLeftSemiJoin = require('./lib/nestedLoop/nestedLoopLeftSemiJoin');
 _.nestedLoopRightOuterJoin = require('./lib/nestedLoop/nestedLoopRightOuterJoin');
 _.nestedLoopRightSemiJoin = require('./lib/nestedLoop/nestedLoopRightSemiJoin');
 
+global._ = _;
 module.exports = _;
