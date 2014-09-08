@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     browserify = require('browserify'),
+    browserifyShim = require('browserify-shim'),
     bump = require('gulp-bump'),
     jscs = require('gulp-jscs'),
     jshint = require('gulp-jshint'),
@@ -28,7 +29,7 @@ gulp.task('build', function () {
         cache: {},
         packageCache: {},
         fullPaths: false
-    });
+    }).transform(browserifyShim);
 
     var bundle = function () {
         return bundler
