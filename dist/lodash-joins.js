@@ -193,7 +193,7 @@ var hashLeftOuterJoin = function (a, aAccessor, b, bAccessor) {
             }
             return previous;
         }, []).concat(flatten(values(filter(idx, function (value, key) {
-            return !(key in markedVals);
+            return !has(markedVals, key);
         }))));
     } else {
         idx = groupBy(b, bAccessor);
@@ -210,6 +210,7 @@ var hashLeftOuterJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = hashLeftOuterJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],6:[function(require,module,exports){
 (function (global){
