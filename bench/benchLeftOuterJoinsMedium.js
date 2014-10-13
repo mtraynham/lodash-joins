@@ -11,8 +11,8 @@ var spec = [
             length: 1
         }
     ],
-    left = random.generateRandomObjectArray(spec, 100),
-    right = random.generateRandomObjectArray(spec, 100),
+    left = random.randString(spec, 100),
+    right = random.randString(spec, 100),
     accessor = function (obj) {
         return obj.id;
     };
