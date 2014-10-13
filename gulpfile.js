@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    benchmark = require('gulp-bench'),
     browserify = require('browserify'),
     browserifyShim = require('browserify-shim'),
     bump = require('gulp-bump'),
@@ -51,6 +52,11 @@ gulp.task('build', function () {
 gulp.task('test', function () {
     return gulp.src('test/*.js', {read: false})
         .pipe(mocha({reporter: 'spec'}));
+});
+
+gulp.task('benchmark', function () {
+    return gulp.src('bench/*.js', {read: false})
+        .pipe(benchmark());
 });
 
 gulp.task('setWatch', function () {

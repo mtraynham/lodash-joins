@@ -20,6 +20,7 @@
         "browserify": "~5.9.1",
         "browserify-shim": "~3.7.0",
         "gulp": "~3.8.7",
+        "gulp-bench": "~1.1.0",
         "gulp-bump": "~0.1.11",
         "gulp-jscs": "~1.1.2",
         "gulp-jshint": "~1.8.4",
