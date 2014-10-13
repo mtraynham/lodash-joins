@@ -23,7 +23,7 @@ module.exports = {
         var i = length || 0,
             out = '';
         while (i--) {
-            out += this.generateRandomString(domain);
+            out += this.generateRandomCharacter(domain);
         }
         return out;
     },
