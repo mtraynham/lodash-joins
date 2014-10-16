@@ -1,4 +1,10 @@
 /**
+ * Random number generator between 0-1.  Uses `Math.random` for now.
+ * @type {Function}
+ */
+var rand = Math.random;
+
+/**
  * Generate a random number
  * @param  {Number} min (optional)
  * @param  {Number} max (optional)
@@ -7,7 +13,7 @@
 var generateRandomNumber = function (min, max) {
     min = min || 0;
     max = max || 0;
-    return (Math.random() * (max - min)) + min;
+    return (rand() * (max - min)) + min;
 };
 
 /**
@@ -37,7 +43,7 @@ var generateRandomDate = function (start, end) {
  * @return {Boolean}
  */
 var generateRandomBoolean = function () {
-    return Math.random() < 0.5;
+    return rand() < 0.5;
 };
 
 /**
@@ -47,7 +53,7 @@ var generateRandomBoolean = function () {
  */
 var generateRandomCharacter = function (domain) {
     domain = domain || [];
-    return domain[Math.floor(Math.random() * domain.length)];
+    return domain[Math.floor(rand() * domain.length)];
 };
 
 /**

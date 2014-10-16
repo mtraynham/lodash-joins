@@ -40,5 +40,8 @@
             "type": "Apache v2",
             "url": "https://github.com/mtraynham/lodash-joins/blob/master/LICENSE"
         }
-    ]
+    ],
+    "scripts": {
+        "test": "gulp test"
+    }
 }
