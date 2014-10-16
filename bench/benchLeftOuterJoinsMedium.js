@@ -1,33 +1,7 @@
 var hashLeftOuterJoin = require('../lib/hash/hashLeftOuterJoin'),
     sortedMergeLeftOuterJoin = require('../lib/sortedMerge/sortedMergeLeftOuterJoin'),
     nestedLoopLeftOuterJoin = require('../lib/nestedLoop/nestedLoopLeftOuterJoin'),
-    random = require('./util/random');
+    joinBench = require('./util/joinBench');
 
-var spec = [
-        {
-            field: 'id',
-            type: 'string',
-            domain: ['a', 'e', 'i', 'o', 'u', 'y'],
-            length: 1
-        }
-    ],
-    left = random.randObjectArray(spec, 100),
-    right = random.randObjectArray(spec, 100),
-    accessor = function (obj) {
-        return obj.id;
-    };
-
-module.exports = {
-    name: 'Left Outer Joins Medium',
-    tests: {
-        'Hash Left Outer Join': function () {
-            return hashLeftOuterJoin(left, accessor, right, accessor);
-        },
-        'Sorted Merge Left Outer Join': function () {
-            return sortedMergeLeftOuterJoin(left, accessor, right, accessor);
-        },
-        'Nested Loop Left Outer Join': function () {
-            return nestedLoopLeftOuterJoin(left, accessor, right, accessor);
-        }
-    }
-};
+module.exports = joinBench('Left Outer Joins Medium', 100, hashLeftOuterJoin,
+    sortedMergeLeftOuterJoin, nestedLoopLeftOuterJoin);
