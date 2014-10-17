@@ -22,7 +22,7 @@
         "gulp": "~3.8.8",
         "gulp-bench": "~1.1.0",
         "gulp-bump": "~0.1.11",
-        "gulp-coverage": "~0.3.31",
+        "gulp-istanbul": "~0.3.1",
         "gulp-jscs": "~1.1.2",
         "gulp-jshint": "~1.8.5",
         "gulp-mocha": "~1.1.1",

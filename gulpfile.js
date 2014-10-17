@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     browserifyShim = require('browserify-shim'),
     bump = require('gulp-bump'),
-    coverage = require('gulp-coverage'),
+    istanbul = require('gulp-istanbul'),
     jscs = require('gulp-jscs'),
     jshint = require('gulp-jshint'),
     jshintStylish = require('jshint-stylish'),
@@ -51,15 +51,13 @@ gulp.task('build', function () {
 });
 
 gulp.task('test', function () {
-    return gulp.src('test/*.js', {read: false})
-        .pipe(coverage.instrument({
-            pattern: ['lib/**/*.js'],
-            debugDirectory: 'debug'
-        }))
-        .pipe(mocha())
-        .pipe(coverage.report({
-            outFile: 'coverage.html'
-        }));
+    return gulp.src('lib/**/*.js')
+        .pipe(istanbul()) // Covering files
+        .on('finish', function () {
+            gulp.src(['test/*.js'])
+            .pipe(mocha())
+            .pipe(istanbul.writeReports());
+        });
 });
 
 gulp.task('benchmark', function () {
