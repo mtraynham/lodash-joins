@@ -53,7 +53,7 @@ gulp.task('build', function () {
 gulp.task('test', function () {
     return gulp.src('test/*.js', {read: false})
         .pipe(coverage.instrument({
-            pattern: ['src/*.js'],
+            pattern: ['lib/**/*.js'],
             debugDirectory: 'debug'
         }))
         .pipe(mocha())
