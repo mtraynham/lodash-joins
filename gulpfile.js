@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     browserifyShim = require('browserify-shim'),
     bump = require('gulp-bump'),
+    coveralls = require('gulp-coveralls'),
     istanbul = require('gulp-istanbul'),
     jscs = require('gulp-jscs'),
     jshint = require('gulp-jshint'),
@@ -51,12 +52,16 @@ gulp.task('build', function () {
 });
 
 gulp.task('test', function () {
-    return gulp.src('lib/**/*.js')
+    gulp.src(['lib/**/*.js', 'main.js'])
         .pipe(istanbul()) // Covering files
         .on('finish', function () {
             gulp.src(['test/*.js'])
-            .pipe(mocha())
-            .pipe(istanbul.writeReports());
+                .pipe(mocha())
+                .pipe(istanbul.writeReports()) // Creating the reports after tests runned
+                .on('end', function () {
+                    gulp.src('coverage/lcov.info')
+                        .pipe(coveralls());
+                });
         });
 });
 
