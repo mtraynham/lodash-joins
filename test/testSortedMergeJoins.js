@@ -59,7 +59,7 @@ describe('Sorted Merge Joins', function () {
         it('should match the expected output if parent is right', function () {
             assert.equal(JSON.stringify(expectedB), JSON.stringify(resultB));
         });
-        if('should return empty results for empty input', function () {
+        it('should return empty results for empty input', function () {
             assert.equal(0, resultC.length);
         });
     });
@@ -92,7 +92,7 @@ describe('Sorted Merge Joins', function () {
         it('should match the expected output if parent is right', function () {
             assert.equal(JSON.stringify(expectedB), JSON.stringify(resultB));
         });
-        if('should return empty results for empty input', function () {
+        it('should return empty results for empty input', function () {
             assert.equal(0, resultC.length);
         });
     });
@@ -109,7 +109,7 @@ describe('Sorted Merge Joins', function () {
         it('should match the expected output', function () {
             assert.equal(JSON.stringify(expected), JSON.stringify(result));
         });
-        if('should return empty results for empty input', function () {
+        it('should return empty results for empty input', function () {
             assert.equal(0, resultB.length);
         });
     });
@@ -130,7 +130,7 @@ describe('Sorted Merge Joins', function () {
         it('should match the expected output', function () {
             assert.equal(JSON.stringify(expected), JSON.stringify(result));
         });
-        if('should return empty results for empty input', function () {
+        it('should return empty results for empty input', function () {
             assert.equal(0, resultB.length);
         });
     });
@@ -148,7 +148,7 @@ describe('Sorted Merge Joins', function () {
         it('should match the expected output', function () {
             assert.equal(JSON.stringify(expected), JSON.stringify(result));
         });
-        if('should return empty results for empty input', function () {
+        it('should return empty results for empty input', function () {
             assert.equal(0, resultB.length);
         });
     });
@@ -174,7 +174,7 @@ describe('Sorted Merge Joins', function () {
             assert.equal(JSON.stringify(result),
                 JSON.stringify(sortedMergeLeftAntiJoin(right, accessor, left, accessor)));
         });
-        if('should return empty results for empty input', function () {
+        it('should return empty results for empty input', function () {
             assert.equal(0, resultB.length);
         });
     });
@@ -204,7 +204,7 @@ describe('Sorted Merge Joins', function () {
             assert.equal(JSON.stringify(result),
                 JSON.stringify(sortedMergeLeftOuterJoin(right, accessor, left, accessor)));
         });
-        if('should return empty results for empty input', function () {
+        it('should return empty results for empty input', function () {
             assert.equal(0, resultB.length);
         });
     });
@@ -227,7 +227,7 @@ describe('Sorted Merge Joins', function () {
             assert.equal(JSON.stringify(result),
                 JSON.stringify(sortedMergeLeftSemiJoin(right, accessor, left, accessor)));
         });
-        if('should return empty results for empty input', function () {
+        it('should return empty results for empty input', function () {
             assert.equal(0, resultB.length);
         });
     });
