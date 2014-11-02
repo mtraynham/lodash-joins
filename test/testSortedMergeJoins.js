@@ -45,7 +45,8 @@ describe('Sorted Merge Joins', function () {
                 {id: 'g', right: 6}
             ],
             resultA = sortedMergeFullOuterJoin(left, accessor, right, accessor),
-            resultB = sortedMergeFullOuterJoin(right, accessor, left, accessor);
+            resultB = sortedMergeFullOuterJoin(right, accessor, left, accessor),
+            resultC = sortedMergeFullOuterJoin([], accessor, right, accessor);
         it('should return 10 rows if parent is left', function () {
             assert.equal(10, resultA.length);
         });
@@ -57,6 +58,9 @@ describe('Sorted Merge Joins', function () {
         });
         it('should match the expected output if parent is right', function () {
             assert.equal(JSON.stringify(expectedB), JSON.stringify(resultB));
+        });
+        if('should return empty results for empty input', function () {
+            assert.equal(0, resultC.length);
         });
     });
     describe('#sortedMergeInnerJoin()', function () {
@@ -74,7 +78,8 @@ describe('Sorted Merge Joins', function () {
                 {id: 'c', right: 3, left: 1}
             ],
             resultA = sortedMergeInnerJoin(left, accessor, right, accessor),
-            resultB = sortedMergeInnerJoin(right, accessor, left, accessor);
+            resultB = sortedMergeInnerJoin(right, accessor, left, accessor),
+            resultC = sortedMergeInnerJoin([], accessor, right, accessor);
         it('should return 5 rows if parent is left', function () {
             assert.equal(4, resultA.length);
         });
@@ -87,18 +92,25 @@ describe('Sorted Merge Joins', function () {
         it('should match the expected output if parent is right', function () {
             assert.equal(JSON.stringify(expectedB), JSON.stringify(resultB));
         });
+        if('should return empty results for empty input', function () {
+            assert.equal(0, resultC.length);
+        });
     });
     describe('#sortedMergeLeftAntiJoin()', function () {
         var sortedMergeLeftAntiJoin = require('../lib/sortedMerge/sortedMergeLeftAntiJoin'),
             expected = [
                 {id: 'e', left: 2}
             ],
-            result = sortedMergeLeftAntiJoin(left, accessor, right, accessor);
+            result = sortedMergeLeftAntiJoin(left, accessor, right, accessor),
+            resultB = sortedMergeLeftAntiJoin([], accessor, right, accessor);
         it('should return 1 rows', function () {
             assert.equal(1, result.length);
         });
         it('should match the expected output', function () {
             assert.equal(JSON.stringify(expected), JSON.stringify(result));
+        });
+        if('should return empty results for empty input', function () {
+            assert.equal(0, resultB.length);
         });
     });
     describe('#sortedMergeLeftOuterJoin()', function () {
@@ -110,12 +122,16 @@ describe('Sorted Merge Joins', function () {
                 {id: 'c', left: 1, right: 3},
                 {id: 'e', left: 2}
             ],
-            result = sortedMergeLeftOuterJoin(left, accessor, right, accessor);
+            result = sortedMergeLeftOuterJoin(left, accessor, right, accessor),
+            resultB = sortedMergeLeftOuterJoin([], accessor, right, accessor);
         it('should return 5 rows', function () {
             assert.equal(5, result.length);
         });
         it('should match the expected output', function () {
             assert.equal(JSON.stringify(expected), JSON.stringify(result));
+        });
+        if('should return empty results for empty input', function () {
+            assert.equal(0, resultB.length);
         });
     });
     describe('#sortedMergeLeftSemiJoin()', function () {
@@ -124,12 +140,16 @@ describe('Sorted Merge Joins', function () {
                 {id: 'c', left: 0},
                 {id: 'c', left: 1}
             ],
-            result = sortedMergeLeftSemiJoin(left, accessor, right, accessor);
+            result = sortedMergeLeftSemiJoin(left, accessor, right, accessor),
+            resultB = sortedMergeLeftSemiJoin([], accessor, right, accessor);
         it('should return 2 rows', function () {
             assert.equal(2, result.length);
         });
         it('should match the expected output', function () {
             assert.equal(JSON.stringify(expected), JSON.stringify(result));
+        });
+        if('should return empty results for empty input', function () {
+            assert.equal(0, resultB.length);
         });
     });
     describe('#sortedMergeRightAntiJoin()', function () {
@@ -141,7 +161,8 @@ describe('Sorted Merge Joins', function () {
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            result = sortedMergeRightAntiJoin(left, accessor, right, accessor);
+            result = sortedMergeRightAntiJoin(left, accessor, right, accessor),
+            resultB = sortedMergeRightAntiJoin(left, accessor, [], accessor);
         it('should return 5 rows', function () {
             assert.equal(5, result.length);
         });
@@ -152,6 +173,9 @@ describe('Sorted Merge Joins', function () {
             var sortedMergeLeftAntiJoin = require('../lib/sortedMerge/sortedMergeLeftAntiJoin');
             assert.equal(JSON.stringify(result),
                 JSON.stringify(sortedMergeLeftAntiJoin(right, accessor, left, accessor)));
+        });
+        if('should return empty results for empty input', function () {
+            assert.equal(0, resultB.length);
         });
     });
     describe('#sortedMergeRightOuterJoin()', function () {
@@ -167,7 +191,8 @@ describe('Sorted Merge Joins', function () {
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            result = sortedMergeRightOuterJoin(left, accessor, right, accessor);
+            result = sortedMergeRightOuterJoin(left, accessor, right, accessor),
+            resultB = sortedMergeRightOuterJoin(left, accessor, [], accessor);
         it('should return 9 rows', function () {
             assert.equal(9, result.length);
         });
@@ -179,6 +204,9 @@ describe('Sorted Merge Joins', function () {
             assert.equal(JSON.stringify(result),
                 JSON.stringify(sortedMergeLeftOuterJoin(right, accessor, left, accessor)));
         });
+        if('should return empty results for empty input', function () {
+            assert.equal(0, resultB.length);
+        });
     });
     describe('#sortedMergeRightSemiJoin()', function () {
         var sortedMergeRightSemiJoin = require('../lib/sortedMerge/sortedMergeRightSemiJoin'),
@@ -186,7 +214,8 @@ describe('Sorted Merge Joins', function () {
                 {id: 'c', right: 2},
                 {id: 'c', right: 3}
             ],
-            result = sortedMergeRightSemiJoin(left, accessor, right, accessor);
+            result = sortedMergeRightSemiJoin(left, accessor, right, accessor),
+            resultB = sortedMergeRightSemiJoin(left, accessor, [], accessor);
         it('should return 2 rows', function () {
             assert.equal(2, result.length);
         });
@@ -197,6 +226,9 @@ describe('Sorted Merge Joins', function () {
             var sortedMergeLeftSemiJoin = require('../lib/sortedMerge/sortedMergeLeftSemiJoin');
             assert.equal(JSON.stringify(result),
                 JSON.stringify(sortedMergeLeftSemiJoin(right, accessor, left, accessor)));
+        });
+        if('should return empty results for empty input', function () {
+            assert.equal(0, resultB.length);
         });
     });
 });
