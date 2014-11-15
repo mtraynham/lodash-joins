@@ -447,7 +447,7 @@ var _ = (typeof window !== "undefined" ? window._ : typeof global !== "undefined
     yieldRightSubList = require('../util/yieldRightSubList');
 
 /**
- * Sorted merge left outer join.  Resturns a new array.
+ * Sorted merge left outer join.  Returns a new array.
  * @param  {*[]} a
  * @param  {Function} aAccessor
  * @param  {*[]} b
@@ -501,7 +501,7 @@ var _ = (typeof window !== "undefined" ? window._ : typeof global !== "undefined
     yieldRightSubList = require('../util/yieldRightSubList');
 
 /**
- * Sorted merge inner join.  Resturns a new array.
+ * Sorted merge inner join.  Returns a new array.
  * @param  {*[]} a
  * @param  {Function} aAccessor
  * @param  {*[]} b
@@ -547,7 +547,7 @@ var _ = (typeof window !== "undefined" ? window._ : typeof global !== "undefined
     yieldRightSubList = require('../util/yieldRightSubList');
 
 /**
- * Sorted merge left outer join.  Resturns a new array.
+ * Sorted merge left outer join.  Returns a new array.
  * @param  {*[]} a
  * @param  {Function} aAccessor
  * @param  {*[]} b
@@ -595,7 +595,7 @@ var _ = (typeof window !== "undefined" ? window._ : typeof global !== "undefined
     undef = require('../util/undefined');
 
 /**
- * Sorted merge left semi join.  Resturns a new array.
+ * Sorted merge left semi join.  Returns a new array.
  * @param  {*[]} a
  * @param  {Function} aAccessor
  * @param  {*[]} b

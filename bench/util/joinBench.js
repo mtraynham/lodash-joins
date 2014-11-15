@@ -18,8 +18,8 @@ var joinBench = function (name, size, hashJoin, sortedMergeJoin, nestedLoopJoin)
                 length: 1
             }
         ],
-        left = random.randObjectArray(spec, 100),
-        right = random.randObjectArray(spec, 100),
+        left = random.randObjectArray(spec, size),
+        right = random.randObjectArray(spec, size),
         accessor = function (obj) {
             return obj.id;
         };
