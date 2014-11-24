@@ -12,6 +12,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     source = require('vinyl-source-stream'),
     streamify = require('gulp-streamify'),
+    tslint = require('gulp-tslint'),
     uglify = require('gulp-uglify'),
     watchify = require('watchify');
 
@@ -68,6 +69,44 @@ gulp.task('test', function () {
 gulp.task('benchmark', function () {
     return gulp.src('bench/*.js', {read: false})
         .pipe(benchmark());
+});
+
+gulp.task('tslint', function () {
+    return gulp
+        .src(['lib/*.ts'])
+        .pipe(tslint({
+            configuration: '.tslintrc'
+        }))
+        .pipe(tslint.report());
+});
+
+gulp.task('tsbuild', function () {
+    var bundler = browserify({
+        basedir: __dirname,
+        entries: ['./lib/join.ts'],
+        extensions: ['.ts'],
+        debug: global.isDevelopment ? false : true,
+        cache: {},
+        packageCache: {},
+        fullPaths: false
+    }).transform(browserifyShim)
+        .plugin('tsify', {noImplicitAny: true});
+
+    var bundle = function () {
+        return bundler
+            .bundle()
+            .pipe(source('dist/lodash-joins.js'))
+            .pipe(gulp.dest('./'))
+            .pipe(streamify(uglify()))
+            .pipe(rename('dist/lodash-joins.min.js'))
+            .pipe(gulp.dest('./'));
+    };
+
+    if (global.isWatching) {
+        bundler = watchify(bundler);
+        bundler.on('update', bundle);
+    }
+    return bundle();
 });
 
 gulp.task('setWatch', function () {
