@@ -55,6 +55,7 @@ gulp.task('build', function () {
 gulp.task('test', function () {
     gulp.src(['lib/**/*.js', 'main.js'])
         .pipe(istanbul()) // Covering files
+        .pipe(istanbul.hookRequire())
         .on('finish', function () {
             gulp.src(['test/*.js'])
                 .pipe(mocha())
