@@ -1,7 +1,7 @@
 {
     "name": "lodash-joins",
     "version": "0.0.2",
-    "main": "lodash-joins.js",
+    "main": "dist/lodash-joins.js",
     "scripts": [
         "dist/lodash-joins.js"
     ],
