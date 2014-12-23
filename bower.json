@@ -6,14 +6,15 @@
         "dist/lodash-joins.js"
     ],
     "ignore": [
-        ".DS_Store",
-        ".git",
-        ".gitignore",
-        ".npmignore",
-        "node_modules",
+        "**/.*",
+        "gulpfile.js",
+        "index.js",
         "package.json",
+        "bench",
         "lib",
-        "test"
+        "test",
+        "typings",
+        "tsd.json"
     ],
     "dependencies": {
         "lodash": "~2.4.1"
