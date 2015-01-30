@@ -20,6 +20,7 @@
     "disallowMultipleLineStrings": true,
     "disallowMixedSpacesAndTabs": true,
     "disallowTrailingWhitespace": true,
+    "disallowSpaceAfterPrefixUnaryOperators": true,
     "requireSpaceAfterKeywords": [
         "if",
         "else",
@@ -70,9 +71,10 @@
     "requireSpaceAfterBinaryOperators": true,
     "requireSpacesInConditionalExpression": true,
     "requireSpaceBeforeBlockStatements": true,
+    "requireLineFeedAtFileEnd": true,
     "requireSpacesInFunctionExpression": {
-       "beforeOpeningRoundBrace": true,
-       "beforeOpeningCurlyBrace": true
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
     },
     "disallowSpacesInsideObjectBrackets": "all",
     "disallowSpacesInsideArrayBrackets": "all",
