@@ -7,7 +7,7 @@
     "immed": true,
     "latedef": true,
     "loopfunc": true,
-    "maxlen": 120,
+    "maxlen": 140,
     "multistr": true,
     "newcap": true,
     "noarg": true,
