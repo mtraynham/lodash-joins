@@ -26,6 +26,7 @@ _.mixin({'nestedLoopRightOuterJoin': require('./lib/nestedLoop/nestedLoopRightOu
 _.mixin({'nestedLoopRightSemiJoin': require('./lib/nestedLoop/nestedLoopRightSemiJoin')});
 
 module.exports = _;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./lib/cartesianProduct":2,"./lib/hash/hashFullOuterJoin":3,"./lib/hash/hashInnerJoin":4,"./lib/hash/hashLeftOuterJoin":5,"./lib/hash/hashLeftSemiJoin":6,"./lib/hash/hashRightOuterJoin":7,"./lib/hash/hashRightSemiJoin":8,"./lib/nestedLoop/nestedLoopFullOuterJoin":9,"./lib/nestedLoop/nestedLoopInnerJoin":10,"./lib/nestedLoop/nestedLoopLeftOuterJoin":11,"./lib/nestedLoop/nestedLoopLeftSemiJoin":12,"./lib/nestedLoop/nestedLoopRightOuterJoin":13,"./lib/nestedLoop/nestedLoopRightSemiJoin":14,"./lib/sortedMerge/sortedMergeFullOuterJoin":15,"./lib/sortedMerge/sortedMergeInnerJoin":16,"./lib/sortedMerge/sortedMergeLeftOuterJoin":17,"./lib/sortedMerge/sortedMergeLeftSemiJoin":18,"./lib/sortedMerge/sortedMergeRightOuterJoin":19,"./lib/sortedMerge/sortedMergeRightSemiJoin":20}],2:[function(require,module,exports){
 (function (global){
@@ -52,6 +53,7 @@ var cartesianProduct = function (array) {
 };
 
 module.exports = cartesianProduct;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],3:[function(require,module,exports){
 (function (global){
@@ -109,6 +111,7 @@ var hashFullOuterJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = hashFullOuterJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],4:[function(require,module,exports){
 (function (global){
@@ -156,6 +159,7 @@ var hashInnerJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = hashInnerJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],5:[function(require,module,exports){
 (function (global){
@@ -234,6 +238,7 @@ var hashLeftSemiJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = hashLeftSemiJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],7:[function(require,module,exports){
 var hashLeftOuterJoin = require('./hashLeftOuterJoin');
@@ -251,6 +256,7 @@ var hashRightOuterJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = hashRightOuterJoin;
+
 },{"./hashLeftOuterJoin":5}],8:[function(require,module,exports){
 var hashLeftSemiJoin = require('./hashLeftSemiJoin');
 
@@ -267,6 +273,7 @@ var hashRightSemiJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = hashRightSemiJoin;
+
 },{"./hashLeftSemiJoin":6}],9:[function(require,module,exports){
 (function (global){
 var _ = (typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null),
@@ -309,6 +316,7 @@ var nestedLoopFullOuterJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = nestedLoopFullOuterJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],10:[function(require,module,exports){
 (function (global){
@@ -340,6 +348,7 @@ var nestedLoopInnerJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = nestedLoopInnerJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],11:[function(require,module,exports){
 (function (global){
@@ -377,6 +386,7 @@ var nestedLoopLeftOuterJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = nestedLoopLeftOuterJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],12:[function(require,module,exports){
 (function (global){
@@ -405,6 +415,7 @@ var nestedLoopLeftSemiJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = nestedLoopLeftSemiJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],13:[function(require,module,exports){
 var nestedLoopLeftOuterJoin = require('./nestedLoopLeftOuterJoin');
@@ -422,6 +433,7 @@ var nestedLoopRightOuterJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = nestedLoopRightOuterJoin;
+
 },{"./nestedLoopLeftOuterJoin":11}],14:[function(require,module,exports){
 var nestedLoopLeftSemiJoin = require('./nestedLoopLeftSemiJoin');
 
@@ -438,6 +450,7 @@ var nestedLoopRightSemiJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = nestedLoopRightSemiJoin;
+
 },{"./nestedLoopLeftSemiJoin":12}],15:[function(require,module,exports){
 (function (global){
 var _ = (typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null),
@@ -491,6 +504,7 @@ var sortedMergeLeftOuterJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = sortedMergeLeftOuterJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../util/yieldRightSubList":22}],16:[function(require,module,exports){
 (function (global){
@@ -537,6 +551,7 @@ var sortedMergeInnerJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = sortedMergeInnerJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../util/yieldRightSubList":22}],17:[function(require,module,exports){
 (function (global){
@@ -587,6 +602,7 @@ var sortedMergeLeftOuterJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = sortedMergeLeftOuterJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../util/yieldRightSubList":22}],18:[function(require,module,exports){
 (function (global){
@@ -627,6 +643,7 @@ var sortedMergeLeftSemiJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = sortedMergeLeftSemiJoin;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../util/undefined":21}],19:[function(require,module,exports){
 var sortedMergeLeftOuterJoin = require('./sortedMergeLeftOuterJoin');
@@ -644,6 +661,7 @@ var sortedMergeRightOuterJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = sortedMergeRightOuterJoin;
+
 },{"./sortedMergeLeftOuterJoin":17}],20:[function(require,module,exports){
 var sortedMergeLeftSemiJoin = require('./sortedMergeLeftSemiJoin');
 
@@ -660,6 +678,7 @@ var sortedMergeRightSemiJoin = function (a, aAccessor, b, bAccessor) {
 };
 
 module.exports = sortedMergeRightSemiJoin;
+
 },{"./sortedMergeLeftSemiJoin":18}],21:[function(require,module,exports){
 (function (global){
 var _ = (typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null),
@@ -670,6 +689,7 @@ var undef = function (obj, fn) {
 };
 
 module.exports = undef;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],22:[function(require,module,exports){
 /**
@@ -701,4 +721,5 @@ var yieldRightSubList = function (sortedList, accessor) {
 };
 
 module.exports = yieldRightSubList;
+
 },{}]},{},[1]);
