@@ -12,9 +12,7 @@
         "package.json",
         "bench",
         "lib",
-        "test",
-        "typings",
-        "tsd.json"
+        "test"
     ],
     "dependencies": {
         "lodash": "~3.2.0"
