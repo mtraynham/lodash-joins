@@ -1,6 +1,6 @@
 {
     "name": "lodash-joins",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "SQL-like joins using Lo-Dash",
     "keywords": [
         "joins"
