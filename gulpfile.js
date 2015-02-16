@@ -17,7 +17,7 @@ var gulp = require('gulp'),
 
 gulp.task('lint', function () {
     return gulp
-        .src(['gulpfile.js', 'index.js', 'lib/*.js', 'lib/**/*.js', 'test/*.js'])
+        .src(['gulpfile.js', 'index.js', 'bench/**/*.js', 'lib/**/*.js', 'test/**/*.js'])
         .pipe(jscs())
         .pipe(jshint())
         .pipe(jshint.reporter(jshintStylish));
