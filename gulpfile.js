@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     browserifyShim = require('browserify-shim'),
     bump = require('gulp-bump'),
     coveralls = require('gulp-coveralls'),
+    exorcist = require('exorcist'),
     istanbul = require('gulp-istanbul'),
     jscs = require('gulp-jscs'),
     jshint = require('gulp-jshint'),
@@ -28,7 +29,7 @@ gulp.task('build', function () {
         basedir: __dirname,
         entries: ['./index.js'],
         extensions: ['.js'],
-        debug: global.isDevelopment ? false : true,
+        debug: true,
         cache: {},
         packageCache: {},
         fullPaths: false
@@ -37,6 +38,7 @@ gulp.task('build', function () {
     var bundle = function () {
         return bundler
             .bundle()
+            .pipe(exorcist('dist/lodash-joins.js.map'))
             .pipe(source('dist/lodash-joins.js'))
             .pipe(gulp.dest('./'))
             .pipe(streamify(uglify()))
@@ -75,10 +77,6 @@ gulp.task('setWatch', function () {
     global.isWatching = true;
 });
 
-gulp.task('setDevelopment', function () {
-    global.isDevelopment = true;
-});
-
 var bumpFn = function (type) {
     gulp.src(['./bower.json', './package.json'])
         .pipe(bump({type: type}))
@@ -86,9 +84,8 @@ var bumpFn = function (type) {
 };
 
 // Default Task
-gulp.task('default', ['setDevelopment', 'lint', 'build']);
-gulp.task('watch', ['setDevelopment', 'setWatch', 'lint', 'build']);
-gulp.task('release', ['lint', 'build']);
+gulp.task('default', ['lint', 'build']);
+gulp.task('watch', ['setWatch', 'lint', 'build']);
 gulp.task('bump:major', function () {
     bumpFn('major');
 });
