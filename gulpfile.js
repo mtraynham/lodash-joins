@@ -1,20 +1,14 @@
 var gulp = require('gulp'),
     benchmark = require('gulp-bench'),
-    browserify = require('browserify'),
-    browserifyShim = require('browserify-shim'),
     bump = require('gulp-bump'),
     coveralls = require('gulp-coveralls'),
-    exorcist = require('exorcist'),
     istanbul = require('gulp-istanbul'),
     jscs = require('gulp-jscs'),
     jshint = require('gulp-jshint'),
     jshintStylish = require('jshint-stylish'),
     mocha = require('gulp-mocha'),
-    rename = require('gulp-rename'),
-    source = require('vinyl-source-stream'),
-    streamify = require('gulp-streamify'),
-    uglify = require('gulp-uglify'),
-    watchify = require('watchify');
+    gulpWebpack = require('gulp-webpack'),
+    webpack = require('webpack');
 
 gulp.task('lint', function () {
     return gulp
@@ -25,32 +19,43 @@ gulp.task('lint', function () {
 });
 
 gulp.task('build', function () {
-    var bundler = browserify({
-        basedir: __dirname,
-        entries: ['./index.js'],
-        extensions: ['.js'],
-        debug: true,
-        cache: {},
-        packageCache: {},
-        fullPaths: false
-    }).transform(browserifyShim);
+    return gulp.src('index.js')
+        .pipe(gulpWebpack({
+            watch: global.isWatching,
+            entry: './index.js',
+            externals: {
+                'lodash': '_'
+            },
+            output: {
+                filename: 'lodash-joins.js',
+                library: '_',
+                libraryTarget: 'umd'
+            },
+            module: {
+                preLoaders: [{test: /\.js$/, loader: 'source-map-loader'}]
+            },
+            devtool: 'source-map'
+        }))
+        .pipe(gulp.dest('dist/'));
+});
 
-    var bundle = function () {
-        return bundler
-            .bundle()
-            .pipe(exorcist('dist/lodash-joins.js.map'))
-            .pipe(source('dist/lodash-joins.js'))
-            .pipe(gulp.dest('./'))
-            .pipe(streamify(uglify()))
-            .pipe(rename('dist/lodash-joins.min.js'))
-            .pipe(gulp.dest('./'));
-    };
-
-    if (global.isWatching) {
-        bundler = watchify(bundler);
-        bundler.on('update', bundle);
-    }
-    return bundle();
+gulp.task('uglify', function () {
+    return gulp.src('index.js')
+        .pipe(gulpWebpack({
+            entry: './index.js',
+            externals: {
+                'lodash': '_',
+            },
+            output: {
+                filename: 'lodash-joins.min.js',
+                library: '_',
+                libraryTarget: 'umd'
+            },
+            plugins: [
+                new webpack.optimize.UglifyJsPlugin()
+            ]
+        }))
+        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('test', function () {
@@ -84,7 +89,7 @@ var bumpFn = function (type) {
 };
 
 // Default Task
-gulp.task('default', ['lint', 'build']);
+gulp.task('default', ['lint', 'build', 'uglify']);
 gulp.task('watch', ['setWatch', 'lint', 'build']);
 gulp.task('bump:major', function () {
     bumpFn('major');
