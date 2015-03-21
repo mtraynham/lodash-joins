@@ -1,4 +1,4 @@
-var _ = require('lodash');
+var _ = require('lodash').runInContext();
 
 var joinWrapper = require('./lib/joinWrapper');
 

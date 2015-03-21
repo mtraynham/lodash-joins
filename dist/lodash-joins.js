@@ -54,7 +54,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(1);
+	var _ = __webpack_require__(1).runInContext();
 	
 	var joinWrapper = __webpack_require__(2);
 	
