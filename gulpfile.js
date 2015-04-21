@@ -29,7 +29,8 @@ gulp.task('build', function () {
             output: {
                 filename: 'lodash-joins.js',
                 library: '_',
-                libraryTarget: 'umd'
+                libraryTarget: 'umd',
+                devtoolModuleFilenameTemplate: 'webpack:///lodash-joins/[resource-path]'
             },
             module: {
                 preLoaders: [{test: /\.js$/, loader: 'source-map-loader'}]
