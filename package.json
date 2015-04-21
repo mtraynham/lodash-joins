@@ -14,21 +14,21 @@
     },
     "main": "index.js",
     "dependencies": {
-        "lodash": "^3.5.0"
+        "lodash": "^3.7.0"
     },
     "devDependencies": {
         "gulp": "~3.8.11",
         "gulp-bench": "~1.1.0",
         "gulp-bump": "~0.3.0",
         "gulp-coveralls": "~0.1.3",
-        "gulp-istanbul": "~0.6.0",
-        "gulp-jscs": "~1.4.0",
-        "gulp-jshint": "~1.9.4",
-        "gulp-mocha": "~2.0.0",
-        "gulp-webpack": "~1.3.0",
+        "gulp-istanbul": "~0.8.1",
+        "gulp-jscs": "~1.5.2",
+        "gulp-jshint": "~1.10.0",
+        "gulp-mocha": "~2.0.1",
+        "gulp-webpack": "~1.3.2",
         "jshint-stylish": "~1.0.1",
         "source-map-loader": "0.1.3",
-        "webpack": "~1.7.3"
+        "webpack": "~1.8.8"
     },
     "browserify-shim": {
         "lodash": "global:_"
