@@ -43,7 +43,7 @@ These functions only work on arrays of objects (comparable to database rows).  K
 
 All joined rows are generated from LoDash's [```assign```](http://lodash.com/docs#assign) function, to avoid changing the original object reference:
 
-    _.assign({}. leftRow, rightRow);
+    _.assign({}, leftRow, rightRow);
 
 Otherwise the row is the same reference from the initial array.
 
@@ -65,7 +65,7 @@ Order of the output is indeterminate.
 * [Right Semi-Joins](http://en.wikipedia.org/wiki/Relational_algebra#Semijoin_.28.E2.8B.89.29.28.E2.8B.8A.29)
 
 ### Usage
-Each join function accepts two arrays and two acccessor functions for each array that will act as the pluck function for key comparison.
+Each join function accepts two arrays and two accessor functions for each array that will act as the pluck function for key comparison.
 
     _.joinFunction(leftArray, leftKeyAccessor, rightArray, rightKeyAccessor);
 
@@ -278,6 +278,6 @@ Fastest test is Hash Join at 1.31x faster than Nested Loop Join
 ------
 * Support for smart picking join implementations
 * Better support for parent/child array selection
-* Support LoDash chaining
+* ~~Support LoDash chaining~~
 * Rework Hash join object comparisons
 * More tests!
