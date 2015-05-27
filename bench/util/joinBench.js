@@ -10,7 +10,7 @@ import {generateRandomObjectArray} from './random';
  * @return {BenchmarkSuite}
  */
 export default function joinBench (name, size, hashJoin, sortedMergeJoin, nestedLoopJoin) {
-    var spec = [
+    let spec = [
             {
                 field: 'id',
                 type: 'string',
