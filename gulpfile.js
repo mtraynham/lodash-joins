@@ -33,7 +33,8 @@ gulp.task('build', function () {
                 devtoolModuleFilenameTemplate: 'webpack:///lodash-joins/[resource-path]'
             },
             module: {
-                preLoaders: [{test: /\.js$/, loader: 'source-map-loader'}]
+                preLoaders: [{test: /\.js$/, loader: 'source-map-loader'}],
+                loaders: [{test: /\.js$/, loader: 'babel-loader'}]
             },
             devtool: 'source-map'
         }))
@@ -54,7 +55,10 @@ gulp.task('uglify', function () {
             },
             plugins: [
                 new webpack.optimize.UglifyJsPlugin()
-            ]
+            ],
+            module: {
+                loaders: [{test: /\.js$/, loader: 'babel-loader'}]
+            }
         }))
         .pipe(gulp.dest('dist/'));
 });

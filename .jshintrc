@@ -4,6 +4,7 @@
     "curly": true,
     "eqeqeq": true,
     "evil": false,
+    "esnext": true,
     "immed": true,
     "latedef": true,
     "loopfunc": true,
