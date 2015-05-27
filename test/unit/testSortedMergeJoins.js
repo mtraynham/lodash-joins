@@ -1,12 +1,12 @@
 import assert from 'assert';
-import sortedMergeFullOuterJoin from '../lib/sortedMerge/sortedMergeFullOuterJoin';
-import sortedMergeInnerJoin from '../lib/sortedMerge/sortedMergeInnerJoin';
-import sortedMergeLeftAntiJoin from '../lib/sortedMerge/sortedMergeLeftAntiJoin';
-import sortedMergeLeftOuterJoin from '../lib/sortedMerge/sortedMergeLeftOuterJoin';
-import sortedMergeLeftSemiJoin from '../lib/sortedMerge/sortedMergeLeftSemiJoin';
-import sortedMergeRightAntiJoin from '../lib/sortedMerge/sortedMergeRightAntiJoin';
-import sortedMergeRightOuterJoin from '../lib/sortedMerge/sortedMergeRightOuterJoin';
-import sortedMergeRightSemiJoin from '../lib/sortedMerge/sortedMergeRightSemiJoin';
+import sortedMergeFullOuterJoin from '../../lib/sortedMerge/sortedMergeFullOuterJoin';
+import sortedMergeInnerJoin from '../../lib/sortedMerge/sortedMergeInnerJoin';
+import sortedMergeLeftAntiJoin from '../../lib/sortedMerge/sortedMergeLeftAntiJoin';
+import sortedMergeLeftOuterJoin from '../../lib/sortedMerge/sortedMergeLeftOuterJoin';
+import sortedMergeLeftSemiJoin from '../../lib/sortedMerge/sortedMergeLeftSemiJoin';
+import sortedMergeRightAntiJoin from '../../lib/sortedMerge/sortedMergeRightAntiJoin';
+import sortedMergeRightOuterJoin from '../../lib/sortedMerge/sortedMergeRightOuterJoin';
+import sortedMergeRightSemiJoin from '../../lib/sortedMerge/sortedMergeRightSemiJoin';
 
 describe('Sorted Merge Joins', () => {
     let left = [

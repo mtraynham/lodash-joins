@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     jshintStylish = require('jshint-stylish'),
     webpack = require('webpack');
 
+// Lint Task
 gulp.task('lint', function () {
     return gulp
         .src(['gulpfile.js', 'index.js', 'bench/**/*.js', 'lib/**/*.js', 'test/**/*.js'])
@@ -12,10 +13,10 @@ gulp.task('lint', function () {
         .pipe($.jshint.reporter(jshintStylish));
 });
 
-gulp.task('build', function () {
+// Build Task
+gulp.task('build', ['lint'], function () {
     return gulp.src('index.js')
         .pipe($.webpack({
-            watch: global.isWatching,
             entry: './index.js',
             externals: {
                 'lodash': '_'
@@ -35,7 +36,8 @@ gulp.task('build', function () {
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('uglify', function () {
+// Uglify Task
+gulp.task('uglify', ['lint'], function () {
     return gulp.src('index.js')
         .pipe($.webpack({
             entry: './index.js',
@@ -57,14 +59,25 @@ gulp.task('uglify', function () {
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('test', function () {
+// Test Tasks
+function test() {
+    return gulp.src(['test/unit/*.js'], {read: false})
+        .pipe($.mocha());
+}
+
+gulp.task('test', ['lint'], function () {
+    require('babel/register');
+    return test();
+});
+
+// Coverage Task
+gulp.task('coverage', ['lint'], function () {
     require('babel/register');
     return gulp.src(['lib/**/*.js', 'main.js'])
         .pipe($.istanbul({instrumenter: isparta.Instrumenter}))
         .pipe($.istanbul.hookRequire())
         .on('finish', function () {
-            gulp.src(['test/*.js'], {read: false})
-                .pipe($.mocha())
+            return test()
                 .pipe($.istanbul.writeReports()) // Creating the reports after tests runned
                 .on('end', function () {
                     gulp.src('coverage/lcov.info')
@@ -73,25 +86,47 @@ gulp.task('test', function () {
         });
 });
 
+// Browser Test Tasks
+gulp.task('test-browser-build', ['lint'], function () {
+    return gulp.src(['test/**/*.js'])
+        .pipe($.webpack({
+            externals: {
+                'assert': 'chai.assert',
+                'lodash': '_',
+            },
+            output: {
+                filename: 'test.js'
+            },
+            module: {
+                loaders: [{test: /\.js$/, loader: 'babel-loader'}]
+            }
+        }))
+        .pipe(gulp.dest('.tmp/'))
+        .pipe($.livereload());
+});
+
+gulp.task('test-browser', ['test-browser-build'], function () {
+    $.livereload.listen({port: 35729, host: 'localhost', start: true});
+    gulp.watch(['lib/**/*.js', 'test/**/*.js'], ['test-browser-build']);
+});
+
+// Benchmark Task
 gulp.task('benchmark', function () {
     require('babel/register');
     return gulp.src('bench/*.js', {read: false})
         .pipe($.bench());
 });
 
-gulp.task('setWatch', function () {
-    global.isWatching = true;
-});
-
+// Bump Tasks
 function bumpFn (type) {
     return gulp.src(['./bower.json', './package.json'])
         .pipe($.bump({type: type}))
         .pipe(gulp.dest('./'));
 }
-
-// Default Task
-gulp.task('default', ['lint', 'build', 'uglify']);
-gulp.task('watch', ['setWatch', 'lint', 'build']);
 gulp.task('bump:major', bumpFn.bind(this, 'major'));
 gulp.task('bump:minor', bumpFn.bind(this, 'minor'));
 gulp.task('bump:patch', bumpFn.bind(this, 'patch'));
+
+// Default Task
+gulp.task('default', ['build', 'uglify']);
+
