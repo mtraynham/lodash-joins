@@ -1,4 +1,4 @@
-import assert from 'assert';
+import {assert} from 'chai';
 import sortedMergeFullOuterJoin from '../../lib/sortedMerge/sortedMergeFullOuterJoin';
 import sortedMergeInnerJoin from '../../lib/sortedMerge/sortedMergeInnerJoin';
 import sortedMergeLeftAntiJoin from '../../lib/sortedMerge/sortedMergeLeftAntiJoin';

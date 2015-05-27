@@ -1,4 +1,4 @@
-import assert from 'assert';
+import {assert} from 'chai';
 import hashFullOuterJoin from '../../lib/hash/hashFullOuterJoin';
 import hashInnerJoin from '../../lib/hash/hashInnerJoin';
 import hashLeftAntiJoin from '../../lib/hash/hashLeftAntiJoin';

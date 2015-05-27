@@ -91,7 +91,7 @@ gulp.task('test-browser-build', ['lint'], function () {
     return gulp.src(['test/**/*.js'])
         .pipe($.webpack({
             externals: {
-                'assert': 'chai.assert',
+                'chai': 'chai',
                 'lodash': '_',
             },
             output: {

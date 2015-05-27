@@ -1,4 +1,4 @@
-import assert from 'assert';
+import {assert} from 'chai';
 import nestedLoopFullOuterJoin from '../../lib/nestedLoop/nestedLoopFullOuterJoin';
 import nestedLoopInnerJoin from '../../lib/nestedLoop/nestedLoopInnerJoin';
 import nestedLoopLeftAntiJoin from '../../lib/nestedLoop/nestedLoopLeftAntiJoin';
