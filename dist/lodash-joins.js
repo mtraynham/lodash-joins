@@ -100,47 +100,47 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _libSortedMergeSortedMergeFullOuterJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeFullOuterJoin);
 	
-	var _libSortedMergeSortedMergeInnerJoin = __webpack_require__(12);
+	var _libSortedMergeSortedMergeInnerJoin = __webpack_require__(11);
 	
 	var _libSortedMergeSortedMergeInnerJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeInnerJoin);
 	
-	var _libSortedMergeSortedMergeLeftOuterJoin = __webpack_require__(13);
+	var _libSortedMergeSortedMergeLeftOuterJoin = __webpack_require__(12);
 	
 	var _libSortedMergeSortedMergeLeftOuterJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeLeftOuterJoin);
 	
-	var _libSortedMergeSortedMergeLeftSemiJoin = __webpack_require__(14);
+	var _libSortedMergeSortedMergeLeftSemiJoin = __webpack_require__(13);
 	
 	var _libSortedMergeSortedMergeLeftSemiJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeLeftSemiJoin);
 	
-	var _libSortedMergeSortedMergeRightOuterJoin = __webpack_require__(16);
+	var _libSortedMergeSortedMergeRightOuterJoin = __webpack_require__(14);
 	
 	var _libSortedMergeSortedMergeRightOuterJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeRightOuterJoin);
 	
-	var _libSortedMergeSortedMergeRightSemiJoin = __webpack_require__(17);
+	var _libSortedMergeSortedMergeRightSemiJoin = __webpack_require__(15);
 	
 	var _libSortedMergeSortedMergeRightSemiJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeRightSemiJoin);
 	
-	var _libNestedLoopNestedLoopFullOuterJoin = __webpack_require__(18);
+	var _libNestedLoopNestedLoopFullOuterJoin = __webpack_require__(16);
 	
 	var _libNestedLoopNestedLoopFullOuterJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopFullOuterJoin);
 	
-	var _libNestedLoopNestedLoopInnerJoin = __webpack_require__(19);
+	var _libNestedLoopNestedLoopInnerJoin = __webpack_require__(17);
 	
 	var _libNestedLoopNestedLoopInnerJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopInnerJoin);
 	
-	var _libNestedLoopNestedLoopLeftOuterJoin = __webpack_require__(20);
+	var _libNestedLoopNestedLoopLeftOuterJoin = __webpack_require__(18);
 	
 	var _libNestedLoopNestedLoopLeftOuterJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopLeftOuterJoin);
 	
-	var _libNestedLoopNestedLoopLeftSemiJoin = __webpack_require__(21);
+	var _libNestedLoopNestedLoopLeftSemiJoin = __webpack_require__(19);
 	
 	var _libNestedLoopNestedLoopLeftSemiJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopLeftSemiJoin);
 	
-	var _libNestedLoopNestedLoopRightOuterJoin = __webpack_require__(22);
+	var _libNestedLoopNestedLoopRightOuterJoin = __webpack_require__(20);
 	
 	var _libNestedLoopNestedLoopRightOuterJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopRightOuterJoin);
 	
-	var _libNestedLoopNestedLoopRightSemiJoin = __webpack_require__(23);
+	var _libNestedLoopNestedLoopRightSemiJoin = __webpack_require__(21);
 	
 	var _libNestedLoopNestedLoopRightSemiJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopRightSemiJoin);
 	
@@ -539,7 +539,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodash = __webpack_require__(1);
 	
-	var _utilYieldRightSubList = __webpack_require__(11);
+	var _utilYieldRightSubList = __webpack_require__(22);
 	
 	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
 	
@@ -582,90 +582,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }
 	    if (bDatums) {
-	        r = bDatums.r.concat(r);
+	        do {
+	            r = bDatums.r.concat(r);
+	        } while (bDatums = bGenerator.next().value);
 	    }
 	    if (aDatums) {
-	        r = aDatums.r.concat(r);
+	        do {
+	            r = aDatums.r.concat(r);
+	        } while (aDatums = aGenerator.next().value);
 	    }
-	    return a.concat(b, r);
+	    return r;
 	}
 	
 	module.exports = exports['default'];
 
 /***/ },
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * From a sorted list, yield a subList where the accessor values are the same
-	 * @param  {*[]} sortedList
-	 * @param  {Function} accessor
-	 * @return {{}}
-	 */
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports["default"] = yieldRightSubList;
-	var marked0$0 = [yieldRightSubList].map(regeneratorRuntime.mark);
-	
-	function yieldRightSubList(sortedList, accessor) {
-	    var r, datum, val, tmpVal, i;
-	    return regeneratorRuntime.wrap(function yieldRightSubList$(context$1$0) {
-	        while (1) switch (context$1$0.prev = context$1$0.next) {
-	            case 0:
-	                r = undefined, datum = undefined, val = undefined, tmpVal = undefined, i = undefined;
-	
-	                if (!(sortedList.length > 0)) {
-	                    context$1$0.next = 17;
-	                    break;
-	                }
-	
-	                val = accessor(datum = sortedList.pop());
-	                r = [datum];
-	                i = sortedList.length;
-	
-	            case 5:
-	                if (! i--) {
-	                    context$1$0.next = 17;
-	                    break;
-	                }
-	
-	                tmpVal = accessor(sortedList[i]);
-	
-	                if (!(val <= tmpVal && val >= tmpVal)) {
-	                    context$1$0.next = 11;
-	                    break;
-	                }
-	
-	                r.unshift(sortedList.pop());
-	                context$1$0.next = 15;
-	                break;
-	
-	            case 11:
-	                context$1$0.next = 13;
-	                return { r: r, val: val };
-	
-	            case 13:
-	                val = accessor(datum = sortedList.pop());
-	                r = [datum];
-	
-	            case 15:
-	                context$1$0.next = 5;
-	                break;
-	
-	            case 17:
-	            case "end":
-	                return context$1$0.stop();
-	        }
-	    }, marked0$0[0], this);
-	}
-	
-	module.exports = exports["default"];
-
-/***/ },
-/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -679,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodash = __webpack_require__(1);
 	
-	var _utilYieldRightSubList = __webpack_require__(11);
+	var _utilYieldRightSubList = __webpack_require__(22);
 	
 	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
 	
@@ -725,7 +657,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -739,7 +671,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodash = __webpack_require__(1);
 	
-	var _utilYieldRightSubList = __webpack_require__(11);
+	var _utilYieldRightSubList = __webpack_require__(22);
 	
 	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
 	
@@ -781,15 +713,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }
 	    if (aDatums) {
-	        r = aDatums.r.concat(r);
+	        do {
+	            r = aDatums.r.concat(r);
+	        } while (aDatums = aGenerator.next().value);
 	    }
-	    return a.concat(r);
+	    return r;
 	}
 	
 	module.exports = exports['default'];
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -803,7 +737,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodash = __webpack_require__(1);
 	
-	var _utilUndefined = __webpack_require__(15);
+	var _utilUndefined = __webpack_require__(23);
 	
 	var _utilUndefined2 = _interopRequireDefault(_utilUndefined);
 	
@@ -843,33 +777,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = undef;
-	
-	var _lodash = __webpack_require__(1);
-	
-	/**
-	 * Given an object, execute a function if that object is defined.
-	 * @param {*} obj
-	 * @param {Function} fn
-	 * @returns {*}
-	 */
-	
-	function undef(obj, fn) {
-	  return (0, _lodash.isUndefined)(obj) ? obj : fn(obj);
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 16 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -881,7 +789,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _sortedMergeLeftOuterJoin = __webpack_require__(13);
+	var _sortedMergeLeftOuterJoin = __webpack_require__(12);
 	
 	var _sortedMergeLeftOuterJoin2 = _interopRequireDefault(_sortedMergeLeftOuterJoin);
 	
@@ -901,7 +809,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 17 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -913,7 +821,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _sortedMergeLeftSemiJoin = __webpack_require__(14);
+	var _sortedMergeLeftSemiJoin = __webpack_require__(13);
 	
 	var _sortedMergeLeftSemiJoin2 = _interopRequireDefault(_sortedMergeLeftSemiJoin);
 	
@@ -933,7 +841,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 18 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -982,7 +890,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 19 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1021,7 +929,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 20 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1066,7 +974,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 21 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1102,7 +1010,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 22 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1114,7 +1022,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _nestedLoopLeftOuterJoin = __webpack_require__(20);
+	var _nestedLoopLeftOuterJoin = __webpack_require__(18);
 	
 	var _nestedLoopLeftOuterJoin2 = _interopRequireDefault(_nestedLoopLeftOuterJoin);
 	
@@ -1134,7 +1042,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 23 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1146,7 +1054,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _nestedLoopLeftSemiJoin = __webpack_require__(21);
+	var _nestedLoopLeftSemiJoin = __webpack_require__(19);
 	
 	var _nestedLoopLeftSemiJoin2 = _interopRequireDefault(_nestedLoopLeftSemiJoin);
 	
@@ -1161,6 +1069,121 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function nestedLoopRightSemiJoin(a, aAccessor, b, bAccessor) {
 	  return (0, _nestedLoopLeftSemiJoin2['default'])(b, bAccessor, a, aAccessor);
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * From a sorted list, yield a subList where the accessor values are the same
+	 * @param  {*[]} sortedList
+	 * @param  {Function} accessor
+	 * @return {{}}
+	 */
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports["default"] = yieldRightSubList;
+	var marked0$0 = [yieldRightSubList].map(regeneratorRuntime.mark);
+	
+	function yieldRightSubList(sortedList, accessor) {
+	    var datum, tmpVal, i, val, r;
+	    return regeneratorRuntime.wrap(function yieldRightSubList$(context$1$0) {
+	        while (1) switch (context$1$0.prev = context$1$0.next) {
+	            case 0:
+	                if (!(sortedList.length === 1)) {
+	                    context$1$0.next = 5;
+	                    break;
+	                }
+	
+	                context$1$0.next = 3;
+	                return { r: sortedList, val: accessor(sortedList[sortedList.length - 1]) };
+	
+	            case 3:
+	                context$1$0.next = 21;
+	                break;
+	
+	            case 5:
+	                if (!(sortedList.length > 1)) {
+	                    context$1$0.next = 21;
+	                    break;
+	                }
+	
+	                datum = undefined, tmpVal = undefined, i = sortedList.length, val = accessor(datum = sortedList[--i]), r = [datum];
+	
+	            case 7:
+	                if (! i--) {
+	                    context$1$0.next = 19;
+	                    break;
+	                }
+	
+	                tmpVal = accessor(sortedList[i]);
+	
+	                if (!(val <= tmpVal && val >= tmpVal)) {
+	                    context$1$0.next = 13;
+	                    break;
+	                }
+	
+	                r.unshift(sortedList[i]);
+	                context$1$0.next = 17;
+	                break;
+	
+	            case 13:
+	                context$1$0.next = 15;
+	                return { r: r, val: val };
+	
+	            case 15:
+	                r = [sortedList[i]];
+	                val = tmpVal;
+	
+	            case 17:
+	                context$1$0.next = 7;
+	                break;
+	
+	            case 19:
+	                context$1$0.next = 21;
+	                return { r: r, val: val };
+	
+	            case 21:
+	            case "end":
+	                return context$1$0.stop();
+	        }
+	    }, marked0$0[0], this);
+	}
+	
+	module.exports = exports["default"];
+	// pull the first value
+
+	// for each subsequent value, we'll yield when there is a
+	// new tmpVal that is not equal the current val
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = undef;
+	
+	var _lodash = __webpack_require__(1);
+	
+	/**
+	 * Given an object, execute a function if that object is defined.
+	 * @param {*} obj
+	 * @param {Function} fn
+	 * @returns {*}
+	 */
+	
+	function undef(obj, fn) {
+	  return (0, _lodash.isUndefined)(obj) ? obj : fn(obj);
 	}
 	
 	module.exports = exports['default'];
