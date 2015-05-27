@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     jshintStylish = require('jshint-stylish'),
     mocha = require('gulp-mocha'),
     gulpWebpack = require('gulp-webpack'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    babelCore = require('babel-core/register');
 
 gulp.task('lint', function () {
     return gulp
