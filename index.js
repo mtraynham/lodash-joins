@@ -14,10 +14,14 @@ import hashLeftOuterJoin from './lib/hash/hashLeftOuterJoin';
 _.mixin({'hashLeftOuterJoin': joinWrapper(hashLeftOuterJoin)});
 import hashLeftSemiJoin from './lib/hash/hashLeftSemiJoin';
 _.mixin({'hashLeftSemiJoin': joinWrapper(hashLeftSemiJoin)});
+import hashLeftAntiJoin from './lib/hash/hashLeftAntiJoin';
+_.mixin({'hashLeftAntiJoin': joinWrapper(hashLeftAntiJoin)});
 import hashRightOuterJoin from './lib/hash/hashRightOuterJoin';
 _.mixin({'hashRightOuterJoin': joinWrapper(hashRightOuterJoin)});
 import hashRightSemiJoin from './lib/hash/hashRightSemiJoin';
 _.mixin({'hashRightSemiJoin': joinWrapper(hashRightSemiJoin)});
+import hashRightAntiJoin from './lib/hash/hashRightAntiJoin';
+_.mixin({'hashRightAntiJoin': joinWrapper(hashRightAntiJoin)});
 
 import sortedMergeFullOuterJoin from './lib/sortedMerge/sortedMergeFullOuterJoin';
 _.mixin({'sortedMergeFullOuterJoin': joinWrapper(sortedMergeFullOuterJoin)});
@@ -27,10 +31,14 @@ import sortedMergeLeftOuterJoin from './lib/sortedMerge/sortedMergeLeftOuterJoin
 _.mixin({'sortedMergeLeftOuterJoin': joinWrapper(sortedMergeLeftOuterJoin)});
 import sortedMergeLeftSemiJoin from './lib/sortedMerge/sortedMergeLeftSemiJoin';
 _.mixin({'sortedMergeLeftSemiJoin': joinWrapper(sortedMergeLeftSemiJoin)});
+import sortedMergeLeftAntiJoin from './lib/sortedMerge/sortedMergeLeftAntiJoin';
+_.mixin({'sortedMergeLeftAntiJoin': joinWrapper(sortedMergeLeftAntiJoin)});
 import sortedMergeRightOuterJoin from './lib/sortedMerge/sortedMergeRightOuterJoin';
 _.mixin({'sortedMergeRightOuterJoin': joinWrapper(sortedMergeRightOuterJoin)});
 import sortedMergeRightSemiJoin from './lib/sortedMerge/sortedMergeRightSemiJoin';
 _.mixin({'sortedMergeRightSemiJoin': joinWrapper(sortedMergeRightSemiJoin)});
+import sortedMergeRightAntiJoin from './lib/sortedMerge/sortedMergeRightAntiJoin';
+_.mixin({'sortedMergeRightAntiJoin': joinWrapper(sortedMergeRightAntiJoin)});
 
 import nestedLoopFullOuterJoin from './lib/nestedLoop/nestedLoopFullOuterJoin';
 _.mixin({'nestedLoopFullOuterJoin': joinWrapper(nestedLoopFullOuterJoin)});
@@ -40,9 +48,13 @@ import nestedLoopLeftOuterJoin from './lib/nestedLoop/nestedLoopLeftOuterJoin';
 _.mixin({'nestedLoopLeftOuterJoin': joinWrapper(nestedLoopLeftOuterJoin)});
 import nestedLoopLeftSemiJoin from './lib/nestedLoop/nestedLoopLeftSemiJoin';
 _.mixin({'nestedLoopLeftSemiJoin': joinWrapper(nestedLoopLeftSemiJoin)});
+import nestedLoopLeftAntiJoin from './lib/nestedLoop/nestedLoopLeftAntiJoin';
+_.mixin({'nestedLoopLeftAntiJoin': joinWrapper(nestedLoopLeftAntiJoin)});
 import nestedLoopRightOuterJoin from './lib/nestedLoop/nestedLoopRightOuterJoin';
 _.mixin({'nestedLoopRightOuterJoin': joinWrapper(nestedLoopRightOuterJoin)});
 import nestedLoopRightSemiJoin from './lib/nestedLoop/nestedLoopRightSemiJoin';
 _.mixin({'nestedLoopRightSemiJoin': joinWrapper(nestedLoopRightSemiJoin)});
+import nestedLoopRightAntiJoin from './lib/nestedLoop/nestedLoopRightAntiJoin';
+_.mixin({'nestedLoopRightAntiJoin': joinWrapper(nestedLoopRightAntiJoin)});
 
 export default _;
