@@ -1,4 +1,4 @@
-var random = require('./random');
+import {generateRandomObjectArray} from './random';
 
 /**
  * Generate a join bench test
@@ -9,7 +9,7 @@ var random = require('./random');
  * @param  {NestedLoopJoin} nestedLoopJoin
  * @return {BenchmarkSuite}
  */
-var joinBench = function (name, size, hashJoin, sortedMergeJoin, nestedLoopJoin) {
+export default function joinBench (name, size, hashJoin, sortedMergeJoin, nestedLoopJoin) {
     var spec = [
             {
                 field: 'id',
@@ -18,25 +18,15 @@ var joinBench = function (name, size, hashJoin, sortedMergeJoin, nestedLoopJoin)
                 length: 1
             }
         ],
-        left = random.randObjectArray(spec, size),
-        right = random.randObjectArray(spec, size),
-        accessor = function (obj) {
-            return obj.id;
-        };
+        left = generateRandomObjectArray(spec, size),
+        right = generateRandomObjectArray(spec, size),
+        accessor = (obj) => obj.id;
     return {
         name: name,
         tests: {
-            'Hash Join': function () {
-                return hashJoin(left, accessor, right, accessor);
-            },
-            'Sorted Merge Join': function () {
-                return sortedMergeJoin(left, accessor, right, accessor);
-            },
-            'Nested Loop Join': function () {
-                return nestedLoopJoin(left, accessor, right, accessor);
-            }
+            'Hash Join': () => hashJoin(left, accessor, right, accessor),
+            'Sorted Merge Join': () => sortedMergeJoin(left, accessor, right, accessor),
+            'Nested Loop Join': () => nestedLoopJoin(left, accessor, right, accessor)
         }
     };
-};
-
-module.exports = joinBench;
+}

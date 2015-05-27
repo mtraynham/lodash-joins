@@ -1,7 +1,7 @@
-var hashLeftOuterJoin = require('../lib/hash/hashLeftOuterJoin'),
-    sortedMergeLeftOuterJoin = require('../lib/sortedMerge/sortedMergeLeftOuterJoin'),
-    nestedLoopLeftOuterJoin = require('../lib/nestedLoop/nestedLoopLeftOuterJoin'),
-    joinBench = require('./util/joinBench');
+import hashLeftOuterJoin from '../lib/hash/hashLeftOuterJoin';
+import sortedMergeLeftOuterJoin from '../lib/sortedMerge/sortedMergeLeftOuterJoin';
+import nestedLoopLeftOuterJoin from '../lib/nestedLoop/nestedLoopLeftOuterJoin';
+import joinBench from './util/joinBench';
 
-module.exports = joinBench('Left Outer Joins Large', 1000, hashLeftOuterJoin,
+export default joinBench('Left Outer Joins Large', 1000, hashLeftOuterJoin,
     sortedMergeLeftOuterJoin, nestedLoopLeftOuterJoin);

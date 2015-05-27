@@ -615,7 +615,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return regeneratorRuntime.wrap(function yieldRightSubList$(context$1$0) {
 	        while (1) switch (context$1$0.prev = context$1$0.next) {
 	            case 0:
-	                r = void 0, datum = undefined, val = undefined, tmpVal = undefined, i = undefined;
+	                r = undefined, datum = undefined, val = undefined, tmpVal = undefined, i = undefined;
 	
 	                if (!(sortedList.length > 0)) {
 	                    context$1$0.next = 17;
@@ -628,7 +628,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            case 5:
 	                if (! i--) {
-	                    context$1$0.next = 15;
+	                    context$1$0.next = 17;
 	                    break;
 	                }
 	
@@ -640,7 +640,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	
 	                r.unshift(sortedList.pop());
-	                context$1$0.next = 13;
+	                context$1$0.next = 15;
 	                break;
 	
 	            case 11:
@@ -648,18 +648,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return { r: r, val: val };
 	
 	            case 13:
+	                val = accessor(datum = sortedList.pop());
+	                r = [datum];
+	
+	            case 15:
 	                context$1$0.next = 5;
 	                break;
 	
-	            case 15:
-	                context$1$0.next = 19;
-	                break;
-	
 	            case 17:
-	                context$1$0.next = 19;
-	                return r;
-	
-	            case 19:
 	            case "end":
 	                return context$1$0.stop();
 	        }

@@ -74,6 +74,7 @@ gulp.task('test', function () {
 });
 
 gulp.task('benchmark', function () {
+    require('babel/register');
     return gulp.src('bench/*.js', {read: false})
         .pipe($.bench());
 });
