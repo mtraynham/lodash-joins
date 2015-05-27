@@ -1,4 +1,12 @@
 import assert from 'assert';
+import sortedMergeFullOuterJoin from '../lib/sortedMerge/sortedMergeFullOuterJoin';
+import sortedMergeInnerJoin from '../lib/sortedMerge/sortedMergeInnerJoin';
+import sortedMergeLeftAntiJoin from '../lib/sortedMerge/sortedMergeLeftAntiJoin';
+import sortedMergeLeftOuterJoin from '../lib/sortedMerge/sortedMergeLeftOuterJoin';
+import sortedMergeLeftSemiJoin from '../lib/sortedMerge/sortedMergeLeftSemiJoin';
+import sortedMergeRightAntiJoin from '../lib/sortedMerge/sortedMergeRightAntiJoin';
+import sortedMergeRightOuterJoin from '../lib/sortedMerge/sortedMergeRightOuterJoin';
+import sortedMergeRightSemiJoin from '../lib/sortedMerge/sortedMergeRightSemiJoin';
 
 describe('Sorted Merge Joins', () => {
     let left = [
@@ -17,7 +25,6 @@ describe('Sorted Merge Joins', () => {
         ],
         accessor = (obj) => obj['id'];
     describe('#sortedMergeFullOuterJoin()', () => {
-        import sortedMergeFullOuterJoin from '../lib/sortedMerge/sortedMergeFullOuterJoin';
         let expectedA = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
@@ -57,7 +64,6 @@ describe('Sorted Merge Joins', () => {
             assert.equal(0, resultC.length));
     });
     describe('#sortedMergeInnerJoin()', () => {
-        import sortedMergeInnerJoin from '../lib/sortedMerge/sortedMergeInnerJoin';
         let expectedA = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
@@ -85,7 +91,6 @@ describe('Sorted Merge Joins', () => {
             assert.equal(0, resultC.length));
     });
     describe('#sortedMergeLeftAntiJoin()', () => {
-        import sortedMergeLeftAntiJoin from '../lib/sortedMerge/sortedMergeLeftAntiJoin';
         let expected = [
                 {id: 'e', left: 2}
             ],
@@ -99,7 +104,6 @@ describe('Sorted Merge Joins', () => {
             assert.equal(0, resultB.length));
     });
     describe('#sortedMergeLeftOuterJoin()', () => {
-        import sortedMergeLeftOuterJoin from '../lib/sortedMerge/sortedMergeLeftOuterJoin';
         let expected = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
@@ -117,7 +121,6 @@ describe('Sorted Merge Joins', () => {
             assert.equal(0, resultB.length));
     });
     describe('#sortedMergeLeftSemiJoin()', () => {
-        import sortedMergeLeftSemiJoin from '../lib/sortedMerge/sortedMergeLeftSemiJoin';
         let expected = [
                 {id: 'c', left: 0},
                 {id: 'c', left: 1}
@@ -132,7 +135,6 @@ describe('Sorted Merge Joins', () => {
             assert.equal(0, resultB.length));
     });
     describe('#sortedMergeRightAntiJoin()', () => {
-        import sortedMergeRightAntiJoin from '../lib/sortedMerge/sortedMergeRightAntiJoin';
         let expected = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
@@ -146,16 +148,13 @@ describe('Sorted Merge Joins', () => {
             assert.equal(5, result.length));
         it('should match the expected output', () =>
             assert.equal(JSON.stringify(expected), JSON.stringify(result)));
-        it('should match the left anti join with right as the parent', () => {
-            import sortedMergeLeftAntiJoin from '../lib/sortedMerge/sortedMergeLeftAntiJoin';
+        it('should match the left anti join with right as the parent', () =>
             assert.equal(JSON.stringify(result),
-                JSON.stringify(sortedMergeLeftAntiJoin(right, accessor, left, accessor)));
-        });
+                JSON.stringify(sortedMergeLeftAntiJoin(right, accessor, left, accessor))));
         it('should return empty results for empty input', () =>
             assert.equal(0, resultB.length));
     });
     describe('#sortedMergeRightOuterJoin()', () => {
-        import sortedMergeRightOuterJoin from '../lib/sortedMerge/sortedMergeRightOuterJoin';
         let expected = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
@@ -173,16 +172,12 @@ describe('Sorted Merge Joins', () => {
             assert.equal(9, result.length));
         it('should match the expected output', () =>
             assert.equal(JSON.stringify(expected), JSON.stringify(result)));
-        it('should match the left outer join with right as the parent', () => {
-            import sortedMergeLeftOuterJoin from '../lib/sortedMerge/sortedMergeLeftOuterJoin';
-            assert.equal(JSON.stringify(result),
-                JSON.stringify(sortedMergeLeftOuterJoin(right, accessor, left, accessor)));
-        });
+        it('should match the left outer join with right as the parent', () =>
+            assert.equal(JSON.stringify(result), JSON.stringify(sortedMergeLeftOuterJoin(right, accessor, left, accessor))));
         it('should return empty results for empty input', () =>
             assert.equal(0, resultB.length));
     });
     describe('#sortedMergeRightSemiJoin()', () => {
-        import sortedMergeRightSemiJoin from '../lib/sortedMerge/sortedMergeRightSemiJoin';
         let expected = [
                 {id: 'c', right: 2},
                 {id: 'c', right: 3}
@@ -193,11 +188,9 @@ describe('Sorted Merge Joins', () => {
             assert.equal(2, result.length));
         it('should match the expected output', () =>
             assert.equal(JSON.stringify(expected), JSON.stringify(result)));
-        it('should match the left semi join with right as the parent', () => {
-            import sortedMergeLeftSemiJoin from '../lib/sortedMerge/sortedMergeLeftSemiJoin';
+        it('should match the left semi join with right as the parent', () =>
             assert.equal(JSON.stringify(result),
-                JSON.stringify(sortedMergeLeftSemiJoin(right, accessor, left, accessor)));
-        });
+                JSON.stringify(sortedMergeLeftSemiJoin(right, accessor, left, accessor))));
         it('should return empty results for empty input', () =>
             assert.equal(0, resultB.length));
     });

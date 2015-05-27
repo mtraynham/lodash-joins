@@ -100,47 +100,47 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _libSortedMergeSortedMergeFullOuterJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeFullOuterJoin);
 	
-	var _libSortedMergeSortedMergeInnerJoin = __webpack_require__(11);
+	var _libSortedMergeSortedMergeInnerJoin = __webpack_require__(12);
 	
 	var _libSortedMergeSortedMergeInnerJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeInnerJoin);
 	
-	var _libSortedMergeSortedMergeLeftOuterJoin = __webpack_require__(12);
+	var _libSortedMergeSortedMergeLeftOuterJoin = __webpack_require__(13);
 	
 	var _libSortedMergeSortedMergeLeftOuterJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeLeftOuterJoin);
 	
-	var _libSortedMergeSortedMergeLeftSemiJoin = __webpack_require__(13);
+	var _libSortedMergeSortedMergeLeftSemiJoin = __webpack_require__(14);
 	
 	var _libSortedMergeSortedMergeLeftSemiJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeLeftSemiJoin);
 	
-	var _libSortedMergeSortedMergeRightOuterJoin = __webpack_require__(14);
+	var _libSortedMergeSortedMergeRightOuterJoin = __webpack_require__(16);
 	
 	var _libSortedMergeSortedMergeRightOuterJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeRightOuterJoin);
 	
-	var _libSortedMergeSortedMergeRightSemiJoin = __webpack_require__(15);
+	var _libSortedMergeSortedMergeRightSemiJoin = __webpack_require__(17);
 	
 	var _libSortedMergeSortedMergeRightSemiJoin2 = _interopRequireDefault(_libSortedMergeSortedMergeRightSemiJoin);
 	
-	var _libNestedLoopNestedLoopFullOuterJoin = __webpack_require__(16);
+	var _libNestedLoopNestedLoopFullOuterJoin = __webpack_require__(18);
 	
 	var _libNestedLoopNestedLoopFullOuterJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopFullOuterJoin);
 	
-	var _libNestedLoopNestedLoopInnerJoin = __webpack_require__(17);
+	var _libNestedLoopNestedLoopInnerJoin = __webpack_require__(19);
 	
 	var _libNestedLoopNestedLoopInnerJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopInnerJoin);
 	
-	var _libNestedLoopNestedLoopLeftOuterJoin = __webpack_require__(18);
+	var _libNestedLoopNestedLoopLeftOuterJoin = __webpack_require__(20);
 	
 	var _libNestedLoopNestedLoopLeftOuterJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopLeftOuterJoin);
 	
-	var _libNestedLoopNestedLoopLeftSemiJoin = __webpack_require__(19);
+	var _libNestedLoopNestedLoopLeftSemiJoin = __webpack_require__(21);
 	
 	var _libNestedLoopNestedLoopLeftSemiJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopLeftSemiJoin);
 	
-	var _libNestedLoopNestedLoopRightOuterJoin = __webpack_require__(20);
+	var _libNestedLoopNestedLoopRightOuterJoin = __webpack_require__(22);
 	
 	var _libNestedLoopNestedLoopRightOuterJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopRightOuterJoin);
 	
-	var _libNestedLoopNestedLoopRightSemiJoin = __webpack_require__(21);
+	var _libNestedLoopNestedLoopRightSemiJoin = __webpack_require__(23);
 	
 	var _libNestedLoopNestedLoopRightSemiJoin2 = _interopRequireDefault(_libNestedLoopNestedLoopRightSemiJoin);
 	
@@ -539,7 +539,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodash = __webpack_require__(1);
 	
-	var _utilYieldRightSubList = __webpack_require__(22);
+	var _utilYieldRightSubList = __webpack_require__(11);
 	
 	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
 	
@@ -594,480 +594,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports['default'] = sortedMergeInnerJoin;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _lodash = __webpack_require__(1);
-	
-	var _utilYieldRightSubList = __webpack_require__(22);
-	
-	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
-	
-	/**
-	 * Sorted merge inner join.  Returns a new array.
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function sortedMergeInnerJoin(a, aAccessor, b, bAccessor) {
-	    if (a.length < 1 || b.length < 1) {
-	        return [];
-	    }
-	    a = (0, _lodash.sortBy)(a, aAccessor);
-	    b = (0, _lodash.sortBy)(b, bAccessor);
-	    var r = [],
-	        aGenerator = (0, _utilYieldRightSubList2['default'])(a, aAccessor),
-	        aDatums = aGenerator.next().value,
-	        bGenerator = (0, _utilYieldRightSubList2['default'])(b, bAccessor),
-	        bDatums = bGenerator.next().value;
-	    while (aDatums && bDatums) {
-	        if (aDatums.val > bDatums.val) {
-	            aDatums = aGenerator.next().value;
-	        } else if (aDatums.val < bDatums.val) {
-	            bDatums = bGenerator.next().value;
-	        } else {
-	            r = (0, _lodash.reduceRight)(aDatums.r, function (orevious, datum) {
-	                return (0, _lodash.reduceRight)(bDatums.r, function (prev, cDatum) {
-	                    prev.unshift((0, _lodash.assign)({}, datum, cDatum));
-	                    return prev;
-	                }, []).concat(orevious);
-	            }, []).concat(r);
-	            aDatums = aGenerator.next().value;
-	            bDatums = bGenerator.next().value;
-	        }
-	    }
-	    return r;
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports['default'] = sortedMergeLeftOuterJoin;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _lodash = __webpack_require__(1);
-	
-	var _utilYieldRightSubList = __webpack_require__(22);
-	
-	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
-	
-	/**
-	 * Sorted merge left outer join.  Returns a new array.
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function sortedMergeLeftOuterJoin(a, aAccessor, b, bAccessor) {
-	    if (a.length < 1 || b.length < 1) {
-	        return [];
-	    }
-	    a = (0, _lodash.sortBy)(a, aAccessor);
-	    b = (0, _lodash.sortBy)(b, bAccessor);
-	    var r = [],
-	        aGenerator = (0, _utilYieldRightSubList2['default'])(a, aAccessor),
-	        aDatums = aGenerator.next().value,
-	        bGenerator = (0, _utilYieldRightSubList2['default'])(b, bAccessor),
-	        bDatums = bGenerator.next().value;
-	    while (aDatums && bDatums) {
-	        if (aDatums.val > bDatums.val) {
-	            r = aDatums.r.concat(r);
-	            aDatums = aGenerator.next().value;
-	        } else if (aDatums.val < bDatums.val) {
-	            bDatums = bGenerator.next().value;
-	        } else {
-	            r = (0, _lodash.reduceRight)(aDatums.r, function (orevious, datum) {
-	                return (0, _lodash.reduceRight)(bDatums.r, function (prev, cDatum) {
-	                    prev.unshift((0, _lodash.assign)({}, datum, cDatum));
-	                    return prev;
-	                }, []).concat(orevious);
-	            }, []).concat(r);
-	            aDatums = aGenerator.next().value;
-	            bDatums = bGenerator.next().value;
-	        }
-	    }
-	    if (aDatums) {
-	        r = aDatums.r.concat(r);
-	    }
-	    return a.concat(r);
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports['default'] = sortedMergeLeftSemiJoin;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _lodash = __webpack_require__(1);
-	
-	var _utilUndefined = __webpack_require__(23);
-	
-	var _utilUndefined2 = _interopRequireDefault(_utilUndefined);
-	
-	/**
-	 * Sorted merge left semi join.  Returns a new array.
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function sortedMergeLeftSemiJoin(a, aAccessor, b, bAccessor) {
-	    if (a.length < 1 || b.length < 1) {
-	        return [];
-	    }
-	    a = (0, _lodash.sortBy)(a, aAccessor);
-	    b = (0, _lodash.sortBy)(b, bAccessor);
-	    var r = [],
-	        aDatum = a.pop(),
-	        bDatum = b.pop(),
-	        aVal = aAccessor(aDatum),
-	        bVal = bAccessor(bDatum);
-	    while (aDatum && bDatum) {
-	        if (aVal > bVal) {
-	            aVal = (0, _utilUndefined2['default'])(aDatum = a.pop(), aAccessor);
-	        } else if (aVal < bVal) {
-	            bVal = (0, _utilUndefined2['default'])(bDatum = b.pop(), bAccessor);
-	        } else {
-	            r.unshift(aDatum);
-	            aVal = (0, _utilUndefined2['default'])(aDatum = a.pop(), aAccessor);
-	        }
-	    }
-	    return r;
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = sortedMergeRightOuterJoin;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _sortedMergeLeftOuterJoin = __webpack_require__(12);
-	
-	var _sortedMergeLeftOuterJoin2 = _interopRequireDefault(_sortedMergeLeftOuterJoin);
-	
-	/**
-	 * Sorted merge right outer join.  Returns the b-array reference.
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function sortedMergeRightOuterJoin(a, aAccessor, b, bAccessor) {
-	  return (0, _sortedMergeLeftOuterJoin2['default'])(b, bAccessor, a, aAccessor);
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = sortedMergeRightSemiJoin;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _sortedMergeLeftSemiJoin = __webpack_require__(13);
-	
-	var _sortedMergeLeftSemiJoin2 = _interopRequireDefault(_sortedMergeLeftSemiJoin);
-	
-	/**
-	 * Sorted merge right semi join.  Returns the b-array reference.
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function sortedMergeRightSemiJoin(a, aAccessor, b, bAccessor) {
-	  return (0, _sortedMergeLeftSemiJoin2['default'])(b, bAccessor, a, aAccessor);
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports['default'] = nestedLoopFullOuterJoin;
-	
-	var _lodash = __webpack_require__(1);
-	
-	/**
-	 * Nested loop left semi join
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function nestedLoopFullOuterJoin(a, aAccessor, b, bAccessor) {
-	    var val,
-	        cval,
-	        found = {},
-	        tmpLength;
-	    return (0, _lodash.reduceRight)(a, function (previous, datum) {
-	        val = aAccessor(datum);
-	        tmpLength = previous.length;
-	        previous = (0, _lodash.reduceRight)(b, function (oPrevious, oDatum, index) {
-	            cval = bAccessor(oDatum);
-	            if (val <= cval && val >= cval) {
-	                found[index] = true;
-	                oPrevious.unshift((0, _lodash.assign)({}, datum, oDatum));
-	            }
-	            return oPrevious;
-	        }, []).concat(previous);
-	        if (tmpLength === previous.length) {
-	            previous.unshift(datum);
-	        }
-	        return previous;
-	    }, []).concat((0, _lodash.filter)(b, function (datum, index) {
-	        return !(0, _lodash.has)(found, index);
-	    }));
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports['default'] = nestedLoopInnerJoin;
-	
-	var _lodash = __webpack_require__(1);
-	
-	/**
-	 * Nested loop inner join
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function nestedLoopInnerJoin(a, aAccessor, b, bAccessor) {
-	    var val, cval;
-	    return (0, _lodash.reduceRight)(a, function (previous, datum) {
-	        val = aAccessor(datum);
-	        return (0, _lodash.reduceRight)(b, function (oPrevious, oDatum) {
-	            cval = bAccessor(oDatum);
-	            if (val <= cval && val >= cval) {
-	                oPrevious.unshift((0, _lodash.assign)({}, datum, oDatum));
-	            }
-	            return oPrevious;
-	        }, []).concat(previous);
-	    }, []);
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports['default'] = nestedLoopLeftOuterJoin;
-	
-	var _lodash = __webpack_require__(1);
-	
-	/**
-	 * Nested loop left outer join
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function nestedLoopLeftOuterJoin(a, aAccessor, b, bAccessor) {
-	    var val = undefined,
-	        cval = undefined,
-	        tmpLength = undefined;
-	    return (0, _lodash.reduceRight)(a, function (previous, datum) {
-	        val = aAccessor(datum);
-	        tmpLength = previous.length;
-	        previous = (0, _lodash.reduceRight)(b, function (oPrevious, oDatum) {
-	            cval = bAccessor(oDatum);
-	            if (val <= cval && val >= cval) {
-	                oPrevious.unshift((0, _lodash.assign)({}, datum, oDatum));
-	            }
-	            return oPrevious;
-	        }, []).concat(previous);
-	        if (tmpLength === previous.length) {
-	            previous.unshift(datum);
-	        }
-	        return previous;
-	    }, []);
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports['default'] = nestedLoopLeftSemiJoin;
-	
-	var _lodash = __webpack_require__(1);
-	
-	/**
-	 * Nested loop left semi join
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function nestedLoopLeftSemiJoin(a, aAccessor, b, bAccessor) {
-	    var val = undefined,
-	        cval = undefined;
-	    return (0, _lodash.filter)(a, function (datum) {
-	        val = aAccessor(datum);
-	        return (0, _lodash.some)(b, function (oDatum) {
-	            cval = bAccessor(oDatum);
-	            return val <= cval && val >= cval;
-	        });
-	    });
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = nestedLoopRightOuterJoin;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _nestedLoopLeftOuterJoin = __webpack_require__(18);
-	
-	var _nestedLoopLeftOuterJoin2 = _interopRequireDefault(_nestedLoopLeftOuterJoin);
-	
-	/**
-	 * Nested loop right outer join
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function nestedLoopRightOuterJoin(a, aAccessor, b, bAccessor) {
-	  return (0, _nestedLoopLeftOuterJoin2['default'])(b, bAccessor, a, aAccessor);
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = nestedLoopRightSemiJoin;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _nestedLoopLeftSemiJoin = __webpack_require__(19);
-	
-	var _nestedLoopLeftSemiJoin2 = _interopRequireDefault(_nestedLoopLeftSemiJoin);
-	
-	/**
-	 * Nested loop right semi join
-	 * @param  {*[]} a
-	 * @param  {Function} aAccessor
-	 * @param  {*[]} b
-	 * @param  {Function} bAccessor
-	 * @return {*[]}
-	 */
-	
-	function nestedLoopRightSemiJoin(a, aAccessor, b, bAccessor) {
-	  return (0, _nestedLoopLeftSemiJoin2['default'])(b, bAccessor, a, aAccessor);
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1143,7 +669,185 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 23 */
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports['default'] = sortedMergeInnerJoin;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _lodash = __webpack_require__(1);
+	
+	var _utilYieldRightSubList = __webpack_require__(11);
+	
+	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
+	
+	/**
+	 * Sorted merge inner join.  Returns a new array.
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function sortedMergeInnerJoin(a, aAccessor, b, bAccessor) {
+	    if (a.length < 1 || b.length < 1) {
+	        return [];
+	    }
+	    a = (0, _lodash.sortBy)(a, aAccessor);
+	    b = (0, _lodash.sortBy)(b, bAccessor);
+	    var r = [],
+	        aGenerator = (0, _utilYieldRightSubList2['default'])(a, aAccessor),
+	        aDatums = aGenerator.next().value,
+	        bGenerator = (0, _utilYieldRightSubList2['default'])(b, bAccessor),
+	        bDatums = bGenerator.next().value;
+	    while (aDatums && bDatums) {
+	        if (aDatums.val > bDatums.val) {
+	            aDatums = aGenerator.next().value;
+	        } else if (aDatums.val < bDatums.val) {
+	            bDatums = bGenerator.next().value;
+	        } else {
+	            r = (0, _lodash.reduceRight)(aDatums.r, function (orevious, datum) {
+	                return (0, _lodash.reduceRight)(bDatums.r, function (prev, cDatum) {
+	                    prev.unshift((0, _lodash.assign)({}, datum, cDatum));
+	                    return prev;
+	                }, []).concat(orevious);
+	            }, []).concat(r);
+	            aDatums = aGenerator.next().value;
+	            bDatums = bGenerator.next().value;
+	        }
+	    }
+	    return r;
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports['default'] = sortedMergeLeftOuterJoin;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _lodash = __webpack_require__(1);
+	
+	var _utilYieldRightSubList = __webpack_require__(11);
+	
+	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
+	
+	/**
+	 * Sorted merge left outer join.  Returns a new array.
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function sortedMergeLeftOuterJoin(a, aAccessor, b, bAccessor) {
+	    if (a.length < 1 || b.length < 1) {
+	        return [];
+	    }
+	    a = (0, _lodash.sortBy)(a, aAccessor);
+	    b = (0, _lodash.sortBy)(b, bAccessor);
+	    var r = [],
+	        aGenerator = (0, _utilYieldRightSubList2['default'])(a, aAccessor),
+	        aDatums = aGenerator.next().value,
+	        bGenerator = (0, _utilYieldRightSubList2['default'])(b, bAccessor),
+	        bDatums = bGenerator.next().value;
+	    while (aDatums && bDatums) {
+	        if (aDatums.val > bDatums.val) {
+	            r = aDatums.r.concat(r);
+	            aDatums = aGenerator.next().value;
+	        } else if (aDatums.val < bDatums.val) {
+	            bDatums = bGenerator.next().value;
+	        } else {
+	            r = (0, _lodash.reduceRight)(aDatums.r, function (orevious, datum) {
+	                return (0, _lodash.reduceRight)(bDatums.r, function (prev, cDatum) {
+	                    prev.unshift((0, _lodash.assign)({}, datum, cDatum));
+	                    return prev;
+	                }, []).concat(orevious);
+	            }, []).concat(r);
+	            aDatums = aGenerator.next().value;
+	            bDatums = bGenerator.next().value;
+	        }
+	    }
+	    if (aDatums) {
+	        r = aDatums.r.concat(r);
+	    }
+	    return a.concat(r);
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports['default'] = sortedMergeLeftSemiJoin;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _lodash = __webpack_require__(1);
+	
+	var _utilUndefined = __webpack_require__(15);
+	
+	var _utilUndefined2 = _interopRequireDefault(_utilUndefined);
+	
+	/**
+	 * Sorted merge left semi join.  Returns a new array.
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function sortedMergeLeftSemiJoin(a, aAccessor, b, bAccessor) {
+	    if (a.length < 1 || b.length < 1) {
+	        return [];
+	    }
+	    a = (0, _lodash.sortBy)(a, aAccessor);
+	    b = (0, _lodash.sortBy)(b, bAccessor);
+	    var r = [],
+	        aDatum = a.pop(),
+	        bDatum = b.pop(),
+	        aVal = aAccessor(aDatum),
+	        bVal = bAccessor(bDatum);
+	    while (aDatum && bDatum) {
+	        if (aVal > bVal) {
+	            aVal = (0, _utilUndefined2['default'])(aDatum = a.pop(), aAccessor);
+	        } else if (aVal < bVal) {
+	            bVal = (0, _utilUndefined2['default'])(bDatum = b.pop(), bAccessor);
+	        } else {
+	            r.unshift(aDatum);
+	            aVal = (0, _utilUndefined2['default'])(aDatum = a.pop(), aAccessor);
+	        }
+	    }
+	    return r;
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1164,6 +868,303 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function undef(obj, fn) {
 	  return (0, _lodash.isUndefined)(obj) ? obj : fn(obj);
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = sortedMergeRightOuterJoin;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _sortedMergeLeftOuterJoin = __webpack_require__(13);
+	
+	var _sortedMergeLeftOuterJoin2 = _interopRequireDefault(_sortedMergeLeftOuterJoin);
+	
+	/**
+	 * Sorted merge right outer join.  Returns the b-array reference.
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function sortedMergeRightOuterJoin(a, aAccessor, b, bAccessor) {
+	  return (0, _sortedMergeLeftOuterJoin2['default'])(b, bAccessor, a, aAccessor);
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = sortedMergeRightSemiJoin;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _sortedMergeLeftSemiJoin = __webpack_require__(14);
+	
+	var _sortedMergeLeftSemiJoin2 = _interopRequireDefault(_sortedMergeLeftSemiJoin);
+	
+	/**
+	 * Sorted merge right semi join.  Returns the b-array reference.
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function sortedMergeRightSemiJoin(a, aAccessor, b, bAccessor) {
+	  return (0, _sortedMergeLeftSemiJoin2['default'])(b, bAccessor, a, aAccessor);
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports['default'] = nestedLoopFullOuterJoin;
+	
+	var _lodash = __webpack_require__(1);
+	
+	/**
+	 * Nested loop left semi join
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function nestedLoopFullOuterJoin(a, aAccessor, b, bAccessor) {
+	    var val = undefined,
+	        cval = undefined,
+	        found = {},
+	        tmpLength = undefined;
+	    return (0, _lodash.reduceRight)(a, function (previous, datum) {
+	        val = aAccessor(datum);
+	        tmpLength = previous.length;
+	        previous = (0, _lodash.reduceRight)(b, function (oPrevious, oDatum, index) {
+	            cval = bAccessor(oDatum);
+	            if (val <= cval && val >= cval) {
+	                found[index] = true;
+	                oPrevious.unshift((0, _lodash.assign)({}, datum, oDatum));
+	            }
+	            return oPrevious;
+	        }, []).concat(previous);
+	        if (tmpLength === previous.length) {
+	            previous.unshift(datum);
+	        }
+	        return previous;
+	    }, []).concat((0, _lodash.filter)(b, function (datum, index) {
+	        return !(0, _lodash.has)(found, index);
+	    }));
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports['default'] = nestedLoopInnerJoin;
+	
+	var _lodash = __webpack_require__(1);
+	
+	/**
+	 * Nested loop inner join
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function nestedLoopInnerJoin(a, aAccessor, b, bAccessor) {
+	    var val = undefined,
+	        cval = undefined;
+	    return (0, _lodash.reduceRight)(a, function (previous, datum) {
+	        val = aAccessor(datum);
+	        return (0, _lodash.reduceRight)(b, function (oPrevious, oDatum) {
+	            cval = bAccessor(oDatum);
+	            if (val <= cval && val >= cval) {
+	                oPrevious.unshift((0, _lodash.assign)({}, datum, oDatum));
+	            }
+	            return oPrevious;
+	        }, []).concat(previous);
+	    }, []);
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports['default'] = nestedLoopLeftOuterJoin;
+	
+	var _lodash = __webpack_require__(1);
+	
+	/**
+	 * Nested loop left outer join
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function nestedLoopLeftOuterJoin(a, aAccessor, b, bAccessor) {
+	    var val = undefined,
+	        cval = undefined,
+	        tmpLength = undefined;
+	    return (0, _lodash.reduceRight)(a, function (previous, datum) {
+	        val = aAccessor(datum);
+	        tmpLength = previous.length;
+	        previous = (0, _lodash.reduceRight)(b, function (oPrevious, oDatum) {
+	            cval = bAccessor(oDatum);
+	            if (val <= cval && val >= cval) {
+	                oPrevious.unshift((0, _lodash.assign)({}, datum, oDatum));
+	            }
+	            return oPrevious;
+	        }, []).concat(previous);
+	        if (tmpLength === previous.length) {
+	            previous.unshift(datum);
+	        }
+	        return previous;
+	    }, []);
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports['default'] = nestedLoopLeftSemiJoin;
+	
+	var _lodash = __webpack_require__(1);
+	
+	/**
+	 * Nested loop left semi join
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function nestedLoopLeftSemiJoin(a, aAccessor, b, bAccessor) {
+	    var val = undefined,
+	        cval = undefined;
+	    return (0, _lodash.filter)(a, function (datum) {
+	        val = aAccessor(datum);
+	        return (0, _lodash.some)(b, function (oDatum) {
+	            cval = bAccessor(oDatum);
+	            return val <= cval && val >= cval;
+	        });
+	    });
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = nestedLoopRightOuterJoin;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _nestedLoopLeftOuterJoin = __webpack_require__(20);
+	
+	var _nestedLoopLeftOuterJoin2 = _interopRequireDefault(_nestedLoopLeftOuterJoin);
+	
+	/**
+	 * Nested loop right outer join
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function nestedLoopRightOuterJoin(a, aAccessor, b, bAccessor) {
+	  return (0, _nestedLoopLeftOuterJoin2['default'])(b, bAccessor, a, aAccessor);
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = nestedLoopRightSemiJoin;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _nestedLoopLeftSemiJoin = __webpack_require__(21);
+	
+	var _nestedLoopLeftSemiJoin2 = _interopRequireDefault(_nestedLoopLeftSemiJoin);
+	
+	/**
+	 * Nested loop right semi join
+	 * @param  {*[]} a
+	 * @param  {Function} aAccessor
+	 * @param  {*[]} b
+	 * @param  {Function} bAccessor
+	 * @return {*[]}
+	 */
+	
+	function nestedLoopRightSemiJoin(a, aAccessor, b, bAccessor) {
+	  return (0, _nestedLoopLeftSemiJoin2['default'])(b, bAccessor, a, aAccessor);
 	}
 	
 	module.exports = exports['default'];
