@@ -59,7 +59,7 @@ gulp.task('uglify', function () {
 
 gulp.task('test', function () {
     require('babel/register');
-    gulp.src(['lib/**/*.js', 'main.js'])
+    return gulp.src(['lib/**/*.js', 'main.js'])
         .pipe($.istanbul({instrumenter: isparta.Instrumenter}))
         .pipe($.istanbul.hookRequire())
         .on('finish', function () {
@@ -83,21 +83,15 @@ gulp.task('setWatch', function () {
     global.isWatching = true;
 });
 
-var bumpFn = function (type) {
-    gulp.src(['./bower.json', './package.json'])
+function bumpFn (type) {
+    return gulp.src(['./bower.json', './package.json'])
         .pipe($.bump({type: type}))
         .pipe(gulp.dest('./'));
-};
+}
 
 // Default Task
 gulp.task('default', ['lint', 'build', 'uglify']);
 gulp.task('watch', ['setWatch', 'lint', 'build']);
-gulp.task('bump:major', function () {
-    bumpFn('major');
-});
-gulp.task('bump:minor', function () {
-    bumpFn('minor');
-});
-gulp.task('bump:patch', function () {
-    bumpFn('patch');
-});
+gulp.task('bump:major', bumpFn.bind(this, 'major'));
+gulp.task('bump:minor', bumpFn.bind(this, 'minor'));
+gulp.task('bump:patch', bumpFn.bind(this, 'patch'));

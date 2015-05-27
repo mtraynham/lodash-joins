@@ -1,19 +1,31 @@
 {
     "name": "lodash-joins",
+    "description": "SQL-like joins using Lo-Dash",
     "version": "0.0.7",
-    "main": "dist/lodash-joins.js",
-    "scripts": [
-        "dist/lodash-joins.js"
+    "authors": [
+        "Matt Traynham <skitch920@gmail.com>"
+    ],
+    "keywords": [
+        "joins"
+    ],
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/mtraynham/lodash-joins.git"
+    },
+    "module": [
+        "globals",
+        "amd",
+        "node",
+        "es6"
     ],
     "ignore": [
-        "**/.*",
-        "gulpfile.js",
-        "index.js",
-        "package.json",
-        "bench",
-        "lib",
-        "test"
+        "*",
+        "!dist/*",
+        "!LICENSE",
+        "!README.md"
     ],
+    "main": "dist/lodash-joins.js",
     "dependencies": {
         "lodash": "^3.8.0"
     }
