@@ -41,8 +41,5 @@
         "jshint-stylish": "~2.0.0",
         "source-map-loader": "0.1.5",
         "webpack": "~1.9.10"
-    },
-    "browserify-shim": {
-        "lodash": "global:_"
     }
 }
