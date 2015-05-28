@@ -10,7 +10,7 @@ function webpack (src, opts, dest) {
 }
 
 function test () {
-    require('babel/register');
+    require('babel-core/register');
     return gulp.src(['test/unit/*.js'], {read: false})
         .pipe($.mocha());
 }
@@ -35,7 +35,7 @@ gulp.task('test', ['lint'], test.bind(this));
 
 // Coverage Task
 gulp.task('coverage', ['lint'], function () {
-    require('babel/register');
+    require('babel-core/register');
     return gulp.src(['lib/**/*.js', 'main.js'])
         .pipe($.istanbul({instrumenter: isparta.Instrumenter}))
         .pipe($.istanbul.hookRequire())
@@ -64,7 +64,7 @@ gulp.task('test-browser', ['test-browser-build'], function () {
 
 // Benchmark Task
 gulp.task('benchmark', function () {
-    require('babel/register');
+    require('babel-core/register');
     return gulp.src('bench/*.js', {read: false})
         .pipe($.bench());
 });

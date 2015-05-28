@@ -15,6 +15,10 @@ module.exports = {
         new webpack.BannerPlugin(require('./banner'), {raw: true})
     ],
     module: {
-        loaders: [{test: /\.js$/, loader: 'babel-loader'}]
+        loaders: [{
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
+            loader: 'babel-loader?optional[]=runtime'
+        }]
     }
 };
