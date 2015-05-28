@@ -8,17 +8,20 @@ module.exports = {
     output: {
         filename: 'lodash-joins.min.js',
         library: '_',
-        libraryTarget: 'umd'
+        libraryTarget: 'umd',
+        devtoolModuleFilenameTemplate: 'webpack:///lodash-joins/[resource-path]'
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
-        new webpack.BannerPlugin(require('./banner'), {raw: true})
-    ],
     module: {
+        preLoaders: [{test: /\.js$/, loader: 'source-map-loader'}],
         loaders: [{
             test: /\.js$/,
             exclude: /(node_modules|bower_components)/,
             loader: 'babel-loader?optional[]=runtime'
         }]
-    }
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.BannerPlugin(require('./banner'), {raw: true})
+    ],
+    devtool: 'source-map'
 };

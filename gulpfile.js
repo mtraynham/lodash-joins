@@ -18,7 +18,7 @@ function test () {
 // Lint Task
 gulp.task('lint', function () {
     return gulp
-        .src(['gulpfile.js', 'index.js', 'bench/**/*.js', 'lib/**/*.js', 'test/**/*.js'])
+        .src(['gulpfile.js', 'index.js', 'bench/**/*.js', 'lib/**/*.js', 'test/**/*.js', 'webpack/**/*.js'])
         .pipe($.jscs())
         .pipe($.jshint())
         .pipe($.jshint.reporter(jshintStylish));
