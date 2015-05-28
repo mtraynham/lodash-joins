@@ -1,7 +1,7 @@
-var hashInnerJoin = require('../lib/hash/hashInnerJoin'),
-    sortedMergeInnerJoin = require('../lib/sortedMerge/sortedMergeInnerJoin'),
-    nestedLoopInnerJoin = require('../lib/nestedLoop/nestedLoopInnerJoin'),
-    joinBench = require('./util/joinBench');
+import hashInnerJoin from '../lib/hash/hashInnerJoin';
+import sortedMergeInnerJoin from '../lib/sortedMerge/sortedMergeInnerJoin';
+import nestedLoopInnerJoin from '../lib/nestedLoop/nestedLoopInnerJoin';
+import joinBench from './util/joinBench';
 
-module.exports = joinBench('Inner Joins Large', 1000, hashInnerJoin,
+export default joinBench('Inner Joins Large', 1000, hashInnerJoin,
     sortedMergeInnerJoin, nestedLoopInnerJoin);

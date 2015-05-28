@@ -1,7 +1,7 @@
-var hashLeftAntiJoin = require('../lib/hash/hashLeftAntiJoin'),
-    sortedMergeLeftAntiJoin = require('../lib/sortedMerge/sortedMergeLeftAntiJoin'),
-    nestedLoopLeftAntiJoin = require('../lib/nestedLoop/nestedLoopLeftAntiJoin'),
-    joinBench = require('./util/joinBench');
+import hashLeftAntiJoin from '../lib/hash/hashLeftAntiJoin';
+import sortedMergeLeftAntiJoin from '../lib/sortedMerge/sortedMergeLeftAntiJoin';
+import nestedLoopLeftAntiJoin from '../lib/nestedLoop/nestedLoopLeftAntiJoin';
+import joinBench from './util/joinBench';
 
-module.exports = joinBench('Left Anti Joins Large', 1000, hashLeftAntiJoin,
+export default joinBench('Left Anti Joins Large', 1000, hashLeftAntiJoin,
     sortedMergeLeftAntiJoin, nestedLoopLeftAntiJoin);

@@ -1,103 +1,84 @@
 var gulp = require('gulp'),
-    benchmark = require('gulp-bench'),
-    bump = require('gulp-bump'),
-    coveralls = require('gulp-coveralls'),
-    istanbul = require('gulp-istanbul'),
-    jscs = require('gulp-jscs'),
-    jshint = require('gulp-jshint'),
-    jshintStylish = require('jshint-stylish'),
-    mocha = require('gulp-mocha'),
-    gulpWebpack = require('gulp-webpack'),
-    webpack = require('webpack');
+    $ = require('gulp-load-plugins')(),
+    isparta = require('isparta'),
+    jshintStylish = require('jshint-stylish');
 
+function webpack (src, opts, dest) {
+    return gulp.src(src)
+        .pipe($.webpack(opts))
+        .pipe(gulp.dest(dest));
+}
+
+function test () {
+    require('babel-core/register');
+    return gulp.src(['test/unit/*.js'], {read: false})
+        .pipe($.mocha());
+}
+
+// Lint Task
 gulp.task('lint', function () {
     return gulp
-        .src(['gulpfile.js', 'index.js', 'bench/**/*.js', 'lib/**/*.js', 'test/**/*.js'])
-        .pipe(jscs())
-        .pipe(jshint())
-        .pipe(jshint.reporter(jshintStylish));
+        .src(['gulpfile.js', 'index.js', 'bench/**/*.js', 'lib/**/*.js', 'test/**/*.js', 'webpack/**/*.js'])
+        .pipe($.jscs())
+        .pipe($.jshint())
+        .pipe($.jshint.reporter(jshintStylish));
 });
 
-gulp.task('build', function () {
-    return gulp.src('index.js')
-        .pipe(gulpWebpack({
-            watch: global.isWatching,
-            entry: './index.js',
-            externals: {
-                'lodash': '_'
-            },
-            output: {
-                filename: 'lodash-joins.js',
-                library: '_',
-                libraryTarget: 'umd',
-                devtoolModuleFilenameTemplate: 'webpack:///lodash-joins/[resource-path]'
-            },
-            module: {
-                preLoaders: [{test: /\.js$/, loader: 'source-map-loader'}]
-            },
-            devtool: 'source-map'
-        }))
-        .pipe(gulp.dest('dist/'));
-});
+// Build Task
+gulp.task('build', ['lint'], webpack.bind(this, 'index.js', require('./webpack/build'), 'dist/'));
 
-gulp.task('uglify', function () {
-    return gulp.src('index.js')
-        .pipe(gulpWebpack({
-            entry: './index.js',
-            externals: {
-                'lodash': '_',
-            },
-            output: {
-                filename: 'lodash-joins.min.js',
-                library: '_',
-                libraryTarget: 'umd'
-            },
-            plugins: [
-                new webpack.optimize.UglifyJsPlugin()
-            ]
-        }))
-        .pipe(gulp.dest('dist/'));
-});
+// Uglify Task
+gulp.task('uglify', ['lint'], webpack.bind(this, 'index.js', require('./webpack/uglify'), 'dist/'));
 
-gulp.task('test', function () {
-    gulp.src(['lib/**/*.js', 'main.js'])
-        .pipe(istanbul()) // Covering files
-        .pipe(istanbul.hookRequire())
+// Test Task
+gulp.task('test', ['lint'], test.bind(this));
+
+// Coverage Task
+gulp.task('coverage', ['lint'], function () {
+    require('babel-core/register');
+    return gulp.src(['lib/**/*.js', 'main.js'])
+        .pipe($.istanbul({instrumenter: isparta.Instrumenter}))
+        .pipe($.istanbul.hookRequire())
         .on('finish', function () {
-            gulp.src(['test/*.js'])
-                .pipe(mocha())
-                .pipe(istanbul.writeReports()) // Creating the reports after tests runned
+            return test()
+                .pipe($.istanbul.writeReports()) // Creating the reports after tests runned
                 .on('end', function () {
                     gulp.src('coverage/lcov.info')
-                        .pipe(coveralls());
+                        .pipe($.coveralls());
                 });
         });
 });
 
+// Browser Test Tasks
+gulp.task('test-browser-build', ['lint'], function () {
+    return webpack(['test/**/*.js'], require('./webpack/test'), './.tmp')
+        .pipe($.livereload());
+});
+
+gulp.task('test-browser', ['test-browser-build'], function () {
+    $.livereload.listen({port: 35729, host: 'localhost', start: true});
+    gulp.src('test/runner.html')
+        .pipe($.open('<%file.path%>'));
+    gulp.watch(['lib/**/*.js', 'test/**/*.js'], ['test-browser-build']);
+});
+
+// Benchmark Task
 gulp.task('benchmark', function () {
+    require('babel-core/register');
     return gulp.src('bench/*.js', {read: false})
-        .pipe(benchmark());
+        .pipe($.bench());
 });
 
-gulp.task('setWatch', function () {
-    global.isWatching = true;
-});
-
-var bumpFn = function (type) {
-    gulp.src(['./bower.json', './package.json'])
-        .pipe(bump({type: type}))
+// Bump Tasks
+function bumpFn (type) {
+    return gulp.src(['./bower.json', './package.json'])
+        .pipe($.bump({type: type}))
         .pipe(gulp.dest('./'));
-};
+}
+gulp.task('bump:major', bumpFn.bind(this, 'major'));
+gulp.task('bump:minor', bumpFn.bind(this, 'minor'));
+gulp.task('bump:patch', bumpFn.bind(this, 'patch'));
 
 // Default Task
-gulp.task('default', ['lint', 'build', 'uglify']);
-gulp.task('watch', ['setWatch', 'lint', 'build']);
-gulp.task('bump:major', function () {
-    bumpFn('major');
-});
-gulp.task('bump:minor', function () {
-    bumpFn('minor');
-});
-gulp.task('bump:patch', function () {
-    bumpFn('patch');
-});
+gulp.task('default', ['build', 'uglify']);
+

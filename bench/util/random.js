@@ -2,7 +2,7 @@
  * Random number generator between 0-1.  Uses `Math.random` for now.
  * @type {Function}
  */
-var rand = Math.random;
+let rand = Math.random;
 
 /**
  * Generate a random number
@@ -10,11 +10,9 @@ var rand = Math.random;
  * @param  {Number} max (optional)
  * @return {Number}
  */
-var generateRandomNumber = function (min, max) {
-    min = min || 0;
-    max = max || 0;
+export function generateRandomNumber (min = 0, max = 0) {
     return (rand() * (max - min)) + min;
-};
+}
 
 /**
  * Generate a random integer
@@ -22,9 +20,9 @@ var generateRandomNumber = function (min, max) {
  * @param  {Number} max (optional)
  * @return {Number}
  */
-var generateRandomInteger = function (min, max) {
+export function generateRandomInteger (min, max) {
     return Math.floor(generateRandomNumber(min, max));
-};
+}
 
 /**
  * Generate a random date
@@ -32,29 +30,26 @@ var generateRandomInteger = function (min, max) {
  * @param  {Date} end   (optional)
  * @return {Date}
  */
-var generateRandomDate = function (start, end) {
-    var startTime = start ? start.getTime() : 0,
-        endTime = end ? end.getTime() : 0;
-    return new Date(generateRandomInteger(startTime, endTime));
-};
+export function generateRandomDate (start = new Date(0), end = new Date(0)) {
+    return new Date(generateRandomInteger(start.getTime(), end.getTime()));
+}
 
 /**
  * Generate a random boolean
  * @return {Boolean}
  */
-var generateRandomBoolean = function () {
+export function generateRandomBoolean () {
     return rand() < 0.5;
-};
+}
 
 /**
  * Generate a random character
  * @param  {String[]} domain (optional)
  * @return {String}
  */
-var generateRandomCharacter = function (domain) {
-    domain = domain || [];
+export function generateRandomCharacter (domain = []) {
     return domain[Math.floor(rand() * domain.length)];
-};
+}
 
 /**
  * Generate a random string
@@ -62,21 +57,20 @@ var generateRandomCharacter = function (domain) {
  * @param  {Number} length
  * @return {String}
  */
-var generateRandomString = function (domain, length) {
-    var i = length || 0,
-        out = '';
-    while (i--) {
+export function generateRandomString (domain, length = 0) {
+    let out = '';
+    while (length--) {
         out += generateRandomCharacter(domain);
     }
     return out;
-};
+}
 
 /**
  * Generate a random from spec
  * @param  {{type: String, options...}} spec
  * @return {*}
  */
-var generateRandom = function (spec) {
+export function generateRandom (spec) {
     switch (spec.type) {
         case 'number':
             return generateRandomNumber(spec.min, spec.max);
@@ -91,15 +85,15 @@ var generateRandom = function (spec) {
         default: // boolean or other
             return generateRandomBoolean();
     }
-};
+}
 
 /**
  * Generate a random object from a list of specs
  * @param  {[{field: String, type: String, options...}]} specs
  * @return {Object}
  */
-var generateRandomObject = function (specs) {
-    var i = specs.length,
+export function generateRandomObject (specs) {
+    let i = specs.length,
         out = {},
         spec;
     while (i--) {
@@ -107,7 +101,7 @@ var generateRandomObject = function (specs) {
         out[spec.field] = generateRandom(spec);
     }
     return out;
-};
+}
 
 /**
  * Generate a random array of objects from a list of specs
@@ -115,23 +109,10 @@ var generateRandomObject = function (specs) {
  * @param  {Number} length
  * @return {Object[]}
  */
-var generateRandomObjectArray = function (specs, length) {
-    var i = length,
-        out = [];
-    while (i--) {
-        out[i] = generateRandomObject(specs);
+export function generateRandomObjectArray (specs, length) {
+    let out = [];
+    while (length--) {
+        out[length] = generateRandomObject(specs);
     }
     return out;
-};
-
-module.exports = {
-    rand: generateRandom,
-    randBool: generateRandomBoolean,
-    randChar: generateRandomCharacter,
-    randDate: generateRandomDate,
-    randInt: generateRandomInteger,
-    randNum: generateRandomNumber,
-    randObject: generateRandomObject,
-    randObjectArray: generateRandomObjectArray,
-    randString: generateRandomString
-};
+}
