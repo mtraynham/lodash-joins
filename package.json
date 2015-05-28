@@ -2,7 +2,10 @@
     "name": "lodash-joins",
     "description": "SQL-like joins using Lo-Dash",
     "version": "0.0.7",
-    "author": "Matt Traynham <skitch920@gmail.com>",
+    "author": {
+        "name": "Matt Traynham",
+        "email": "skitch920@gmail.com>"
+    },
     "keywords": [
         "joins"
     ],
@@ -10,7 +13,10 @@
         "url": "https://github.com/mtraynham/lodash-joins/issues"
     },
     "license": "Apache-2.0",
-    "repository": "mtraynham/lodash-joins",
+    "repository": {
+        "type" : "git",
+        "url" : "https://github.com/mtraynham/lodash-joins.git"
+    },
     "files": [
         "index.js",
         "LICENSE",

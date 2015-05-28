@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+
 module.exports = {
     entry: './index.js',
     externals: {
@@ -10,7 +11,8 @@ module.exports = {
         libraryTarget: 'umd'
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.BannerPlugin(require('./banner'), {raw: true})
     ],
     module: {
         loaders: [{test: /\.js$/, loader: 'babel-loader'}]

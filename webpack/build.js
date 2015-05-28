@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
     entry: './index.js',
     externals: {
@@ -13,5 +15,8 @@ module.exports = {
         preLoaders: [{test: /\.js$/, loader: 'source-map-loader'}],
         loaders: [{test: /\.js$/, loader: 'babel-loader'}]
     },
+    plugins: [
+        new webpack.BannerPlugin(require('./banner'), {raw: true})
+    ],
     devtool: 'source-map'
 };

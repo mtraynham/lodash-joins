@@ -3,7 +3,10 @@
     "description": "SQL-like joins using Lo-Dash",
     "version": "0.0.7",
     "authors": [
-        "Matt Traynham <skitch920@gmail.com>"
+        {
+            "name": "Matt Traynham",
+            "email": "skitch920@gmail.com>"
+        }
     ],
     "keywords": [
         "joins"
