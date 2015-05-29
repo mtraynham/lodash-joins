@@ -18,7 +18,7 @@
         "url" : "https://github.com/mtraynham/lodash-joins.git"
     },
     "files": [
-        "index.js"
+        "index.js",
         "LICENSE",
         "README.md",
         "dist/",
