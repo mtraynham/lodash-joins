@@ -23,7 +23,7 @@
         "README.md",
         "lib/"
     ],
-    "main": "index.js",
+    "main": "dist/lodash-joins.js",
     "scripts": {
         "test": "gulp coverage"
     },

@@ -3,7 +3,12 @@ var webpack = require('webpack');
 module.exports = {
     entry: './index.js',
     externals: {
-        'lodash': '_',
+        'lodash': {
+            root: '_',
+            commonJs: 'lodash',
+            commonjs2: 'lodash',
+            amd: 'lodash'
+        }
     },
     output: {
         filename: 'lodash-joins.min.js',

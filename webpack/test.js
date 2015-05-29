@@ -1,9 +1,15 @@
 module.exports = {
     externals: {
         'chai': 'chai',
-        'lodash': '_',
+        'lodash': {
+            root: '_',
+            commonJs: 'lodash',
+            commonjs2: 'lodash',
+            amd: 'lodash'
+        }
     },
     output: {
+        libraryTarget: 'umd',
         filename: 'test.js',
         devtoolModuleFilenameTemplate: 'webpack:///lodash-joins/[resource-path]'
     },
