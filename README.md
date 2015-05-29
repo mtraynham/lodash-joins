@@ -17,6 +17,7 @@
     - [Usage](#usage)
     - [Available Functions](#available-functions)
         - [Example](#example)
+    - [ES6 Note](#es6-note)
 - [Testing](#testing)
     - [Latest Benchmarks](#latest-benchmarks)
         - [Full Outer Joins](#full-outer-joins)
@@ -140,8 +141,26 @@ Each join function accepts two arrays and two accessor functions for each array 
       { id: 'f', right: 5 },
       { id: 'g', right: 6 } ]
 
+### ES6 Note
+In a recent push to get things ready for *tomorrow*, this library is now written using ES6.  The `main` file for both
+bower and npm point to a [Webpack](http://webpack.github.io/) build that includes the necessary
+[babel-runtime](https://babeljs.io/docs/usage/runtime/) functions to properly execute the script.  The npm module still
+includes the `index.js` file and `lib` directory to require the functions independently, but you are on your own to
+install `babel` as well and invoke the runtime beforehand.
+
+A simple way to do this is:
+```
+$ npm install --save babel
+$ node
+> require('babel/runtime');
+> var hashLeftOuterJoin = require('lodash-joins/lib/hash/hashLeftOuterJoin');
+```
+
+It's likely better to just use the library as intended.  :smile:
+
 ## Testing
-Tested using mocha.  See the ```/test``` directory.
+Tested using [Mocha](http://mochajs.org/) with ES6.  See the ```/test``` directory.  There is also a browser test invoked through
+Webpack and Mocha.
 
 ### Latest Benchmarks
 Typically for the Inner & Outer joins, with larger arrays stick with the Sorted Merge, then Hash, then Nested.  With the
