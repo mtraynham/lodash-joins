@@ -1,7 +1,7 @@
 {
     "name": "lodash-joins",
     "description": "SQL-like joins using Lo-Dash",
-    "version": "0.0.7",
+    "version": "1.0.0",
     "author": {
         "name": "Matt Traynham",
         "email": "skitch920@gmail.com>"
@@ -14,8 +14,8 @@
     },
     "license": "Apache-2.0",
     "repository": {
-        "type" : "git",
-        "url" : "https://github.com/mtraynham/lodash-joins.git"
+        "type": "git",
+        "url": "https://github.com/mtraynham/lodash-joins.git"
     },
     "files": [
         "index.js",
