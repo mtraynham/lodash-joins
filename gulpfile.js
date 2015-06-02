@@ -15,6 +15,12 @@ function test () {
         .pipe($.mocha());
 }
 
+function bumpFn (type) {
+    return gulp.src(['./bower.json', './package.json'])
+        .pipe($.bump({type: type}))
+        .pipe(gulp.dest('./'));
+}
+
 // Lint Task
 gulp.task('lint', function () {
     return gulp
@@ -70,11 +76,6 @@ gulp.task('benchmark', function () {
 });
 
 // Bump Tasks
-function bumpFn (type) {
-    return gulp.src(['./bower.json', './package.json'])
-        .pipe($.bump({type: type}))
-        .pipe(gulp.dest('./'));
-}
 gulp.task('bump:major', bumpFn.bind(this, 'major'));
 gulp.task('bump:minor', bumpFn.bind(this, 'minor'));
 gulp.task('bump:patch', bumpFn.bind(this, 'patch'));
