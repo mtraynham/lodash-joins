@@ -1,7 +1,7 @@
 /*!
- *  lodash-joins - v1.0.1 - Sun Jun 07 2015 19:37:15 GMT-0400 (EDT)
+ *  lodash-joins - v1.0.1 - Sun Jun 07 2015 19:45:54 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
- *  Copyright (c) 2015 Matt Traynham
+ *  Copyright (c) 2015 Matt Traynham <skitch920@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
