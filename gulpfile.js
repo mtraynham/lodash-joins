@@ -15,7 +15,7 @@ function test () {
         .pipe($.mocha());
 }
 
-function bumpFn (type) {
+function bump (type) {
     return gulp.src(['./bower.json', './package.json'])
         .pipe($.bump({type: type}))
         .pipe(gulp.dest('./'));
@@ -76,9 +76,9 @@ gulp.task('benchmark', function () {
 });
 
 // Bump Tasks
-gulp.task('bump:major', bumpFn.bind(this, 'major'));
-gulp.task('bump:minor', bumpFn.bind(this, 'minor'));
-gulp.task('bump:patch', bumpFn.bind(this, 'patch'));
+gulp.task('bump:major', bump.bind(this, 'major'));
+gulp.task('bump:minor', bump.bind(this, 'minor'));
+gulp.task('bump:patch', bump.bind(this, 'patch'));
 
 // Default Task
 gulp.task('default', ['build', 'uglify']);
