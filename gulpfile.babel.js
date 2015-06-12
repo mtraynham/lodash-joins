@@ -22,7 +22,7 @@ const bump = (type) =>
 
 // Lint Task
 gulp.task('lint', () =>
-    gulp.src(['gulpfile.js', 'index.js', 'bench/**/*.js', 'lib/**/*.js', 'test/**/*.js', 'webpack/**/*.js'])
+    gulp.src(['gulpfile.babel.js', 'index.js', 'bench/**/*.js', 'lib/**/*.js', 'test/**/*.js', 'webpack/**/*.js'])
         .pipe($.jscs())
         .pipe($.jshint())
         .pipe($.jshint.reporter(jshintStylish)));
