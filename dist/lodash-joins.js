@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v1.0.1 - Sun Jun 07 2015 19:45:54 GMT-0400 (EDT)
+ *  lodash-joins - v1.0.1 - Fri Jun 12 2015 00:11:55 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright (c) 2015 Matt Traynham <skitch920@gmail.com>
  *
@@ -2270,7 +2270,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if($.FW && $.has(proto, FF_ITERATOR))$iter.set(IteratorPrototype, $.that);
 	  }
 	  // Define iterator
-	  if($.FW)$iter.set(proto, _default);
+	  if($.FW || FORCE)$iter.set(proto, _default);
 	  // Plug for library
 	  Iterators[NAME] = _default;
 	  Iterators[TAG]  = $.that;
@@ -2348,13 +2348,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// 22.1.3.31 Array.prototype[@@unscopables]
-	var $           = __webpack_require__(3)
-	  , UNSCOPABLES = __webpack_require__(26)('unscopables');
-	if($.FW && !(UNSCOPABLES in []))$.hide(Array.prototype, UNSCOPABLES, {});
-	module.exports = function(key){
-	  if($.FW)[][UNSCOPABLES][key] = true;
-	};
+	module.exports = function(){ /* empty */ };
 
 /***/ },
 /* 44 */
@@ -2450,6 +2444,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if(!(P2.resolve(5).then(function(){}) instanceof P2)){
 	      works = false;
 	    }
+	    // actual V8 bug, https://code.google.com/p/v8/issues/detail?id=4162
+	    if(works && $.DESC){
+	      var thenableThenGotten = false;
+	      P.resolve($.setDesc({}, 'then', {
+	        get: function(){ thenableThenGotten = true; }
+	      }));
+	      works = thenableThenGotten;
+	    }
 	  } catch(e){ works = false; }
 	  return works;
 	}();
@@ -2535,21 +2537,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	function $resolve(value){
 	  var record = this
-	    , then, wrapper;
+	    , then;
 	  if(record.d)return;
 	  record.d = true;
 	  record = record.r || record; // unwrap
 	  try {
 	    if(then = isThenable(value)){
-	      wrapper = {r: record, d: false}; // wrap
-	      then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));
+	      asap(function(){
+	        var wrapper = {r: record, d: false}; // wrap
+	        try {
+	          then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));
+	        } catch(e){
+	          $reject.call(wrapper, e);
+	        }
+	      });
 	    } else {
 	      record.v = value;
 	      record.s = 1;
 	      notify(record);
 	    }
-	  } catch(err){
-	    $reject.call(wrapper || {r: record, d: false}, err); // wrap
+	  } catch(e){
+	    $reject.call({r: record, d: false}, e); // wrap
 	  }
 	}
 	
