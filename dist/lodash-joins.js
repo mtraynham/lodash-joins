@@ -1,7 +1,7 @@
 /*!
- *  lodash-joins - v1.0.1 - Fri Jun 12 2015 00:11:55 GMT-0400 (EDT)
+ *  lodash-joins - v1.0.1 - Sun Jun 14 2015 17:42:11 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
- *  Copyright (c) 2015 Matt Traynham <skitch920@gmail.com>
+ *  Copyright 2014-2015 Matt Traynham <skitch920@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -360,7 +360,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = function($){
 	  $.FW   = false;
@@ -370,7 +370,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	"use strict";
 	
@@ -384,7 +384,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
 
@@ -1625,7 +1625,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 21 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	// shim for using process in browser
 	
@@ -1964,7 +1964,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var $      = __webpack_require__(3)
 	  , SHARED = '__core-js_shared__'
-	  , store  = $.g[SHARED] || $.hide($.g, SHARED, {})[SHARED];
+	  , store  = $.g[SHARED] || ($.g[SHARED] = {});
 	module.exports = function(key){
 	  return store[key] || (store[key] = {});
 	};
@@ -2346,7 +2346,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 43 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = function(){ /* empty */ };
 
@@ -2415,6 +2415,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , PROMISE  = 'Promise'
 	  , global   = $.g
 	  , process  = global.process
+	  , isNode   = cof(process) == 'process'
 	  , asap     = process && process.nextTick || __webpack_require__(56).set
 	  , P        = global[PROMISE]
 	  , isFunction     = $.isFunction
@@ -2476,7 +2477,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	function notify(record){
 	  var chain = record.c;
-	  if(chain.length)asap(function(){
+	  // strange IE + webpack dev server bug - use .call(global)
+	  if(chain.length)asap.call(global, function(){
 	    var value = record.v
 	      , ok    = record.s == 1
 	      , i     = 0;
@@ -2522,11 +2524,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  record.s = 2;
 	  record.a = record.c.slice();
 	  setTimeout(function(){
-	    asap(function(){
+	    // strange IE + webpack dev server bug - use .call(global)
+	    asap.call(global, function(){
 	      if(isUnhandled(promise = record.p)){
-	        if(cof(process) == 'process'){
+	        if(isNode){
 	          process.emit('unhandledRejection', value, promise);
-	        } else if(global.console && isFunction(console.error)){
+	        } else if(global.console && console.error){
 	          console.error('Unhandled promise rejection', value);
 	        }
 	      }
@@ -2543,7 +2546,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  record = record.r || record; // unwrap
 	  try {
 	    if(then = isThenable(value)){
-	      asap(function(){
+	      // strange IE + webpack dev server bug - use .call(global)
+	      asap.call(global, function(){
 	        var wrapper = {r: record, d: false}; // wrap
 	        try {
 	          then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));
@@ -2660,7 +2664,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 50 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = Object.is || function is(x, y){
 	  return x === y ? x !== 0 || 1 / x === 1 / y : x != x && y != y;
@@ -2787,8 +2791,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , process            = global.process
 	  , setTask            = global.setImmediate
 	  , clearTask          = global.clearImmediate
-	  , postMessage        = global.postMessage
-	  , addEventListener   = global.addEventListener
 	  , MessageChannel     = global.MessageChannel
 	  , counter            = 0
 	  , queue              = {}
@@ -2826,11 +2828,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  // Modern browsers, skip implementation for WebWorkers
 	  // IE8 has postMessage, but it's sync & typeof its postMessage is object
-	  } else if(addEventListener && isFunction(postMessage) && !global.importScripts){
+	  } else if(global.addEventListener && isFunction(global.postMessage) && !global.importScripts){
 	    defer = function(id){
-	      postMessage(id, '*');
+	      global.postMessage(id, '*');
 	    };
-	    addEventListener('message', listner, false);
+	    global.addEventListener('message', listner, false);
 	  // WebWorkers
 	  } else if(isFunction(MessageChannel)){
 	    channel = new MessageChannel;
@@ -2859,7 +2861,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 57 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	// Fast apply
 	// http://jsperf.lnkit.com/fast-apply/5
