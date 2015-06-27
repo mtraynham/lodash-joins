@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v1.0.1 - Sun Jun 14 2015 17:42:11 GMT-0400 (EDT)
+ *  lodash-joins - v1.0.1 - Sat Jun 27 2015 10:10:26 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2015 Matt Traynham <skitch920@gmail.com>
  *
@@ -1156,7 +1156,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function invoke(method, arg) {
 	      var result = generator[method](arg);
 	      var value = result.value;
-	      return value instanceof AwaitArgument ? _Promise.resolve(value.arg).then(invokeNext, invokeThrow) : result;
+	      return value instanceof AwaitArgument ? _Promise.resolve(value.arg).then(invokeNext, invokeThrow) : _Promise.resolve(value).then(function (unwrapped) {
+	        result.value = unwrapped;
+	        return result;
+	      }, invokeThrow);
 	    }
 	
 	    if (typeof process === "object" && process.domain) {
