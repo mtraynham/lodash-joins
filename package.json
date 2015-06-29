@@ -50,7 +50,8 @@
         "isparta": "~3.0.3",
         "jshint-stylish": "~2.0.1",
         "mocha": "~2.2.5",
-        "source-map-loader": "0.1.5",
+        "node-libs-browser": "~0.5.2",
+        "source-map-loader": "~0.1.5",
         "webpack": "~1.10.0",
         "webpack-stream": "~2.0.0"
     }
