@@ -3,6 +3,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import {Instrumenter} from 'isparta';
 import jshintStylish from 'jshint-stylish';
 import webpackStream from 'webpack-stream';
+import {build as webBuild, test as webTest, uglify as webUglify} from './webpack';
 
 const $ = gulpLoadPlugins();
 
@@ -29,11 +30,11 @@ gulp.task('lint', () =>
 
 // Build Task
 gulp.task('build', ['lint'],
-    webpack.bind(this, 'index.js', require('./webpack/build'), 'dist/'));
+    webpack.bind(this, 'index.js', webBuild, 'dist/'));
 
 // Uglify Task
 gulp.task('uglify', ['lint'],
-    webpack.bind(this, 'index.js', require('./webpack/uglify'), 'dist/'));
+    webpack.bind(this, 'index.js', webUglify, 'dist/'));
 
 // Test Task
 gulp.task('test', ['lint'],
@@ -53,7 +54,7 @@ gulp.task('coverage', ['lint'], () =>
 
 // Browser Test Tasks
 gulp.task('test-browser-build', ['lint'], () =>
-    webpack(['test/**/*.js'], require('./webpack/test'), './.tmp')
+    webpack(['test/**/*.js'], webTest, './.tmp')
         .pipe($.livereload()));
 
 gulp.task('test-browser', ['test-browser-build'], () => {
