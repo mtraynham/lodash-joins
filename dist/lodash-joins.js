@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v1.0.1 - Sat Jun 27 2015 10:10:26 GMT-0400 (EDT)
+ *  lodash-joins - v1.0.1 - Sun Jun 28 2015 23:04:56 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2015 Matt Traynham <skitch920@gmail.com>
  *
@@ -484,37 +484,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	function hashFullOuterJoin(a, aAccessor, b, bAccessor) {
-	    var idx = undefined,
-	        markedVals = {},
+	    var seen = {},
+	        index = undefined,
 	        result = undefined,
-	        val = undefined;
+	        value = undefined;
 	    if (a.length < b.length) {
-	        idx = (0, _lodash.groupBy)(a, aAccessor);
-	        result = (0, _lodash.reduceRight)(b, function (previous, datum) {
-	            markedVals[val = bAccessor(datum)] = true;
-	            if ((0, _lodash.has)(idx, val)) {
-	                return (0, _lodash.map)(idx[val], function (oDatum) {
-	                    return (0, _lodash.assign)({}, oDatum, datum);
+	        index = (0, _lodash.groupBy)(a, aAccessor);
+	        result = (0, _lodash.reduceRight)(b, function (previous, bDatum) {
+	            seen[value = bAccessor(bDatum)] = true;
+	            if ((0, _lodash.has)(index, value)) {
+	                return (0, _lodash.map)(index[value], function (aDatum) {
+	                    return (0, _lodash.assign)({}, aDatum, bDatum);
 	                }).concat(previous);
 	            }
-	            previous.unshift(datum);
+	            previous.unshift(bDatum);
 	            return previous;
 	        }, []);
 	    } else {
-	        idx = (0, _lodash.groupBy)(b, bAccessor);
-	        result = (0, _lodash.reduceRight)(a, function (previous, datum) {
-	            markedVals[val = aAccessor(datum)] = true;
-	            if ((0, _lodash.has)(idx, val)) {
-	                return (0, _lodash.map)(idx[val], function (oDatum) {
-	                    return (0, _lodash.assign)({}, datum, oDatum);
+	        index = (0, _lodash.groupBy)(b, bAccessor);
+	        result = (0, _lodash.reduceRight)(a, function (previous, aDatum) {
+	            seen[value = aAccessor(aDatum)] = true;
+	            if ((0, _lodash.has)(index, value)) {
+	                return (0, _lodash.map)(index[value], function (bDatum) {
+	                    return (0, _lodash.assign)({}, aDatum, bDatum);
 	                }).concat(previous);
 	            }
-	            previous.unshift(datum);
+	            previous.unshift(aDatum);
 	            return previous;
 	        }, []);
 	    }
-	    return result.concat((0, _lodash.flatten)((0, _lodash.values)((0, _lodash.filter)(idx, function (value, key) {
-	        return !(0, _lodash.has)(markedVals, key);
+	    return result.concat((0, _lodash.flatten)((0, _lodash.values)((0, _lodash.filter)(index, function (val, key) {
+	        return !(0, _lodash.has)(seen, key);
 	    }))));
 	}
 	
@@ -546,31 +546,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	function hashInnerJoin(a, aAccessor, b, bAccessor) {
-	    var idx = undefined,
-	        result = undefined,
-	        val = undefined;
+	    var index = undefined,
+	        value = undefined;
 	    if (a.length < b.length) {
-	        idx = (0, _lodash.groupBy)(a, aAccessor);
-	        result = (0, _lodash.reduceRight)(b, function (previous, datum) {
-	            if ((0, _lodash.has)(idx, val = bAccessor(datum))) {
-	                return (0, _lodash.map)(idx[val], function (oDatum) {
-	                    return (0, _lodash.assign)({}, oDatum, datum);
+	        index = (0, _lodash.groupBy)(a, aAccessor);
+	        return (0, _lodash.reduceRight)(b, function (previous, bDatum) {
+	            if ((0, _lodash.has)(index, value = bAccessor(bDatum))) {
+	                return (0, _lodash.map)(index[value], function (aDatum) {
+	                    return (0, _lodash.assign)({}, aDatum, bDatum);
 	                }).concat(previous);
 	            }
 	            return previous;
 	        }, []);
 	    } else {
-	        idx = (0, _lodash.groupBy)(b, bAccessor);
-	        result = (0, _lodash.reduceRight)(a, function (previous, datum) {
-	            if ((0, _lodash.has)(idx, val = aAccessor(datum))) {
-	                return (0, _lodash.map)(idx[val], function (oDatum) {
-	                    return (0, _lodash.assign)({}, datum, oDatum);
+	        index = (0, _lodash.groupBy)(b, bAccessor);
+	        return (0, _lodash.reduceRight)(a, function (previous, aDatum) {
+	            if ((0, _lodash.has)(index, value = aAccessor(aDatum))) {
+	                return (0, _lodash.map)(index[value], function (bDatum) {
+	                    return (0, _lodash.assign)({}, aDatum, bDatum);
 	                }).concat(previous);
 	            }
 	            return previous;
 	        }, []);
 	    }
-	    return result;
 	}
 	
 	module.exports = exports['default'];
@@ -601,33 +599,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	function hashLeftOuterJoin(a, aAccessor, b, bAccessor) {
-	    var idx = undefined,
-	        val = undefined;
+	    var index = undefined,
+	        value = undefined;
 	    if (a.length < b.length) {
 	        var _ret = (function () {
-	            var markedVals = {};
-	            idx = (0, _lodash.groupBy)(a, aAccessor);
+	            var seen = {};
+	            index = (0, _lodash.groupBy)(a, aAccessor);
 	            return {
 	                v: (0, _lodash.reduceRight)(b, function (previous, datum) {
-	                    markedVals[val = bAccessor(datum)] = true;
-	                    if ((0, _lodash.has)(idx, val)) {
-	                        return (0, _lodash.map)(idx[val], function (oDatum) {
+	                    seen[value = bAccessor(datum)] = true;
+	                    if ((0, _lodash.has)(index, value)) {
+	                        return (0, _lodash.map)(index[value], function (oDatum) {
 	                            return (0, _lodash.assign)({}, oDatum, datum);
 	                        }).concat(previous);
 	                    }
 	                    return previous;
-	                }, []).concat((0, _lodash.flatten)((0, _lodash.values)((0, _lodash.filter)(idx, function (value, key) {
-	                    return !(0, _lodash.has)(markedVals, key);
+	                }, []).concat((0, _lodash.flatten)((0, _lodash.values)((0, _lodash.filter)(index, function (val, key) {
+	                    return !(0, _lodash.has)(seen, key);
 	                }))))
 	            };
 	        })();
 	
 	        if (typeof _ret === 'object') return _ret.v;
 	    } else {
-	        idx = (0, _lodash.groupBy)(b, bAccessor);
+	        index = (0, _lodash.groupBy)(b, bAccessor);
 	        return (0, _lodash.reduceRight)(a, function (previous, datum) {
-	            if ((0, _lodash.has)(idx, val = aAccessor(datum))) {
-	                return (0, _lodash.map)(idx[val], function (oDatum) {
+	            if ((0, _lodash.has)(index, value = aAccessor(datum))) {
+	                return (0, _lodash.map)(index[value], function (oDatum) {
 	                    return (0, _lodash.assign)({}, datum, oDatum);
 	                }).concat(previous);
 	            }
@@ -665,9 +663,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	function hashLeftSemiJoin(a, aAccessor, b, bAccessor) {
-	  var idx = (0, _lodash.indexBy)(b, bAccessor);
-	  return (0, _lodash.filter)(a, function (datum) {
-	    return (0, _lodash.has)(idx, aAccessor(datum));
+	  var index = (0, _lodash.indexBy)(b, bAccessor);
+	  return (0, _lodash.filter)(a, function (aDatum) {
+	    return (0, _lodash.has)(index, aAccessor(aDatum));
 	  });
 	}
 	
@@ -699,9 +697,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	function hashLeftAntiJoin(a, aAccessor, b, bAccessor) {
-	  var idx = (0, _lodash.indexBy)(b, bAccessor);
-	  return (0, _lodash.filter)(a, function (datum) {
-	    return !(0, _lodash.has)(idx, aAccessor(datum));
+	  var index = (0, _lodash.indexBy)(b, bAccessor);
+	  return (0, _lodash.filter)(a, function (aDatum) {
+	    return !(0, _lodash.has)(index, aAccessor(aDatum));
 	  });
 	}
 	
@@ -3393,18 +3391,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	function nestedLoopInnerJoin(a, aAccessor, b, bAccessor) {
-	    var val = undefined,
-	        cval = undefined;
-	    return (0, _lodash.reduceRight)(a, function (previous, datum) {
-	        val = aAccessor(datum);
-	        return (0, _lodash.reduceRight)(b, function (oPrevious, oDatum) {
-	            cval = bAccessor(oDatum);
-	            if (val <= cval && val >= cval) {
-	                oPrevious.unshift((0, _lodash.assign)({}, datum, oDatum));
-	            }
-	            return oPrevious;
-	        }, []).concat(previous);
-	    }, []);
+	    var value = undefined,
+	        otherValue = undefined;
+	    if (a.length < b.length) {
+	        return (0, _lodash.reduceRight)(a, function (previous, aDatum) {
+	            value = aAccessor(aDatum);
+	            return (0, _lodash.reduceRight)(b, function (oPrevious, bDatum) {
+	                otherValue = bAccessor(bDatum);
+	                if (value <= otherValue && value >= otherValue) {
+	                    oPrevious.unshift((0, _lodash.assign)({}, aDatum, bDatum));
+	                }
+	                return oPrevious;
+	            }, []).concat(previous);
+	        }, []);
+	    } else {
+	        return (0, _lodash.reduceRight)(b, function (previous, bDatum) {
+	            value = bAccessor(bDatum);
+	            return (0, _lodash.reduceRight)(a, function (oPrevious, aDatum) {
+	                otherValue = aAccessor(aDatum);
+	                if (value <= otherValue && value >= otherValue) {
+	                    oPrevious.unshift((0, _lodash.assign)({}, aDatum, bDatum));
+	                }
+	                return oPrevious;
+	            }, []).concat(previous);
+	        }, []);
+	    }
 	}
 	
 	module.exports = exports['default'];
@@ -3483,13 +3494,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	function nestedLoopLeftSemiJoin(a, aAccessor, b, bAccessor) {
-	    var val = undefined,
-	        cval = undefined;
-	    return (0, _lodash.filter)(a, function (datum) {
-	        val = aAccessor(datum);
-	        return (0, _lodash.some)(b, function (oDatum) {
-	            cval = bAccessor(oDatum);
-	            return val <= cval && val >= cval;
+	    var value = undefined,
+	        otherValue = undefined;
+	    return (0, _lodash.filter)(a, function (aDatum) {
+	        value = aAccessor(aDatum);
+	        return (0, _lodash.some)(b, function (bDatum) {
+	            otherValue = bAccessor(bDatum);
+	            return value <= otherValue && value >= otherValue;
 	        });
 	    });
 	}
@@ -3522,13 +3533,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	function nestedLoopLeftAntiJoin(a, aAccessor, b, bAccessor) {
-	    var val = undefined,
-	        cval = undefined;
-	    return (0, _lodash.filter)(a, function (datum) {
-	        val = aAccessor(datum);
-	        return (0, _lodash.every)(b, function (oDatum) {
-	            cval = bAccessor(oDatum);
-	            return !(val <= cval && val >= cval);
+	    var value = undefined,
+	        otherValue = undefined;
+	    return (0, _lodash.filter)(a, function (aDatum) {
+	        value = aAccessor(aDatum);
+	        return (0, _lodash.every)(b, function (bDatum) {
+	            otherValue = bAccessor(bDatum);
+	            return !(value <= otherValue && value >= otherValue);
 	        });
 	    });
 	}
