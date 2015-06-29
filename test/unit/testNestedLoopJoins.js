@@ -69,8 +69,8 @@ describe('Nested Loop Joins', () => {
             ],
             expectedB = [
                 {id: 'c', right: 2, left: 0},
-                {id: 'c', right: 2, left: 1},
                 {id: 'c', right: 3, left: 0},
+                {id: 'c', right: 2, left: 1},
                 {id: 'c', right: 3, left: 1}
             ],
             resultA = nestedLoopInnerJoin(left, accessor, right, accessor),
