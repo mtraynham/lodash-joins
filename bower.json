@@ -30,6 +30,6 @@
     ],
     "main": "dist/lodash-joins.js",
     "dependencies": {
-        "lodash": "^3.9.3"
+        "lodash": "^3.10.0"
     }
 }
