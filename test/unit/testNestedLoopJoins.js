@@ -54,11 +54,11 @@ describe('Nested Loop Joins', () => {
         it('should return 10 rows if parent is left', () =>
             assert.equal(10, resultA.length));
         it('should match the expected output if parent is left', () =>
-            assert.equal(JSON.stringify(expectedA), JSON.stringify(resultA)));
+            assert.deepEqual(expectedA, resultA));
         it('should return 8 rows if parent is right', () =>
             assert.equal(10, resultB.length));
         it('should match the expected output if parent is right', () =>
-            assert.equal(JSON.stringify(expectedB), JSON.stringify(resultB)));
+            assert.deepEqual(expectedB, resultB));
     });
     describe('#nestedLoopInnerJoin()', () => {
         let expectedA = [
@@ -78,11 +78,11 @@ describe('Nested Loop Joins', () => {
         it('should return 5 rows if parent is left', () =>
             assert.equal(4, resultA.length));
         it('should match the expected output if parent is left', () =>
-            assert.equal(JSON.stringify(expectedA), JSON.stringify(resultA)));
+            assert.deepEqual(expectedA, resultA));
         it('should return 5 rows if parent is right', () =>
             assert.equal(4, resultB.length));
         it('should match the expected output if parent is right', () =>
-            assert.equal(JSON.stringify(expectedB), JSON.stringify(resultB)));
+            assert.deepEqual(expectedB, resultB));
     });
     describe('#nestedLoopLeftAntiJoin()', () => {
         let expected = [
@@ -92,7 +92,7 @@ describe('Nested Loop Joins', () => {
         it('should return 1 rows', () =>
             assert.equal(1, result.length));
         it('should match the expected output', () =>
-            assert.equal(JSON.stringify(expected), JSON.stringify(result)));
+            assert.deepEqual(expected, result));
     });
     describe('#nestedLoopLeftOuterJoin()', () => {
         let expected = [
@@ -106,7 +106,7 @@ describe('Nested Loop Joins', () => {
         it('should return 5 rows', () =>
             assert.equal(5, result.length));
         it('should match the expected output', () =>
-            assert.equal(JSON.stringify(expected), JSON.stringify(result)));
+            assert.deepEqual(expected, result));
     });
     describe('#nestedLoopLeftSemiJoin()', () => {
         let expected = [
@@ -117,7 +117,7 @@ describe('Nested Loop Joins', () => {
         it('should return 2 rows', () =>
             assert.equal(2, result.length));
         it('should match the expected output', () =>
-            assert.equal(JSON.stringify(expected), JSON.stringify(result)));
+            assert.deepEqual(expected, result));
     });
     describe('#nestedLoopRightAntiJoin()', () => {
         let expected = [
@@ -131,9 +131,9 @@ describe('Nested Loop Joins', () => {
         it('should return 5 rows', () =>
             assert.equal(5, result.length));
         it('should match the expected output', () =>
-            assert.equal(JSON.stringify(expected), JSON.stringify(result)));
+            assert.deepEqual(expected, result));
         it('should match the left anti join with right as the parent', () =>
-            assert.equal(JSON.stringify(result), JSON.stringify(nestedLoopLeftAntiJoin(right, accessor, left, accessor))));
+            assert.deepEqual(result, nestedLoopLeftAntiJoin(right, accessor, left, accessor)));
     });
     describe('#nestedLoopRightOuterJoin()', () => {
         let expected = [
@@ -151,9 +151,9 @@ describe('Nested Loop Joins', () => {
         it('should return 9 rows', () =>
             assert.equal(9, result.length));
         it('should match the expected output', () =>
-            assert.equal(JSON.stringify(expected), JSON.stringify(result)));
+            assert.deepEqual(expected, result));
         it('should match the left outer join with right as the parent', () =>
-            assert.equal(JSON.stringify(result), JSON.stringify(nestedLoopLeftOuterJoin(right, accessor, left, accessor))));
+            assert.deepEqual(result, nestedLoopLeftOuterJoin(right, accessor, left, accessor)));
     });
     describe('#nestedLoopRightSemiJoin()', () => {
         let expected = [
@@ -164,9 +164,8 @@ describe('Nested Loop Joins', () => {
         it('should return 2 rows', () =>
             assert.equal(2, result.length));
         it('should match the expected output', () =>
-            assert.equal(JSON.stringify(expected), JSON.stringify(result)));
+            assert.deepEqual(expected, result));
         it('should match the left semi join with right as the parent', () =>
-            assert.equal(JSON.stringify(result),
-                JSON.stringify(nestedLoopLeftSemiJoin(right, accessor, left, accessor))));
+            assert.deepEqual(result, nestedLoopLeftSemiJoin(right, accessor, left, accessor)));
     });
 });
