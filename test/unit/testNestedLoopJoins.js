@@ -38,16 +38,16 @@ describe('Nested Loop Joins', () => {
                 {id: 'g', right: 6}
             ],
             expectedB = [
+                {id: 'c', right: 2, left: 0},
+                {id: 'c', right: 3, left: 0},
+                {id: 'c', right: 2, left: 1},
+                {id: 'c', right: 3, left: 1},
+                {id: 'e', left: 2},
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
-                {id: 'c', right: 2, left: 0},
-                {id: 'c', right: 2, left: 1},
-                {id: 'c', right: 3, left: 0},
-                {id: 'c', right: 3, left: 1},
                 {id: 'd', right: 4},
                 {id: 'f', right: 5},
-                {id: 'g', right: 6},
-                {id: 'e', left: 2}
+                {id: 'g', right: 6}
             ],
             resultA = nestedLoopFullOuterJoin(left, accessor, right, accessor),
             resultB = nestedLoopFullOuterJoin(right, accessor, left, accessor);
