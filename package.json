@@ -34,7 +34,7 @@
     "devDependencies": {
         "babel": "~5.6.14",
         "babel-runtime": "~5.6.15",
-        "babel-loader": "~5.2.2",
+        "babel-loader": "~5.3.0",
         "chai": "~3.0.0",
         "gulp": "~3.9.0",
         "gulp-bench": "~1.1.0",
