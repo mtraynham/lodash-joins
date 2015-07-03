@@ -52,11 +52,11 @@ describe('Nested Loop Joins', () => {
             resultA = nestedLoopFullOuterJoin(left, accessor, right, accessor),
             resultB = nestedLoopFullOuterJoin(right, accessor, left, accessor);
         it('should return 10 rows if parent is left', () =>
-            assert.equal(10, resultA.length));
+            assert.lengthOf(resultA, 10));
         it('should match the expected output if parent is left', () =>
             assert.deepEqual(expectedA, resultA));
         it('should return 8 rows if parent is right', () =>
-            assert.equal(10, resultB.length));
+            assert.lengthOf(resultB, 10));
         it('should match the expected output if parent is right', () =>
             assert.deepEqual(expectedB, resultB));
     });
@@ -76,11 +76,11 @@ describe('Nested Loop Joins', () => {
             resultA = nestedLoopInnerJoin(left, accessor, right, accessor),
             resultB = nestedLoopInnerJoin(right, accessor, left, accessor);
         it('should return 5 rows if parent is left', () =>
-            assert.equal(4, resultA.length));
+            assert.lengthOf(resultA, 4));
         it('should match the expected output if parent is left', () =>
             assert.deepEqual(expectedA, resultA));
         it('should return 5 rows if parent is right', () =>
-            assert.equal(4, resultB.length));
+            assert.lengthOf(resultB, 4));
         it('should match the expected output if parent is right', () =>
             assert.deepEqual(expectedB, resultB));
     });
@@ -90,7 +90,7 @@ describe('Nested Loop Joins', () => {
             ],
             result = nestedLoopLeftAntiJoin(left, accessor, right, accessor);
         it('should return 1 rows', () =>
-            assert.equal(1, result.length));
+            assert.lengthOf(result, 1));
         it('should match the expected output', () =>
             assert.deepEqual(expected, result));
     });
@@ -104,7 +104,7 @@ describe('Nested Loop Joins', () => {
             ],
             result = nestedLoopLeftOuterJoin(left, accessor, right, accessor);
         it('should return 5 rows', () =>
-            assert.equal(5, result.length));
+            assert.lengthOf(result, 5));
         it('should match the expected output', () =>
             assert.deepEqual(expected, result));
     });
@@ -115,7 +115,7 @@ describe('Nested Loop Joins', () => {
             ],
             result = nestedLoopLeftSemiJoin(left, accessor, right, accessor);
         it('should return 2 rows', () =>
-            assert.equal(2, result.length));
+            assert.lengthOf(result, 2));
         it('should match the expected output', () =>
             assert.deepEqual(expected, result));
     });
@@ -129,7 +129,7 @@ describe('Nested Loop Joins', () => {
             ],
             result = nestedLoopRightAntiJoin(left, accessor, right, accessor);
         it('should return 5 rows', () =>
-            assert.equal(5, result.length));
+            assert.lengthOf(result, 5));
         it('should match the expected output', () =>
             assert.deepEqual(expected, result));
         it('should match the left anti join with right as the parent', () =>
@@ -149,7 +149,7 @@ describe('Nested Loop Joins', () => {
             ],
             result = nestedLoopRightOuterJoin(left, accessor, right, accessor);
         it('should return 9 rows', () =>
-            assert.equal(9, result.length));
+            assert.lengthOf(result, 9));
         it('should match the expected output', () =>
             assert.deepEqual(expected, result));
         it('should match the left outer join with right as the parent', () =>
@@ -162,7 +162,7 @@ describe('Nested Loop Joins', () => {
             ],
             result = nestedLoopRightSemiJoin(left, accessor, right, accessor);
         it('should return 2 rows', () =>
-            assert.equal(2, result.length));
+            assert.lengthOf(result, 2));
         it('should match the expected output', () =>
             assert.deepEqual(expected, result));
         it('should match the left semi join with right as the parent', () =>
