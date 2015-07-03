@@ -54,11 +54,11 @@ describe('Hash Joins', () => {
         it('should return 10 rows if parent is left', () =>
             assert.lengthOf(resultA, 10));
         it('should match the expected output if parent is left', () =>
-            assert.deepEqual(expectedA, resultA));
+            assert.deepEqual(resultA, expectedA));
         it('should return 8 rows if parent is right', () =>
             assert.lengthOf(resultB, 10));
         it('should match the expected output if parent is right', () =>
-            assert.deepEqual(expectedB, resultB));
+            assert.deepEqual(resultB, expectedB));
     });
     describe('#hashInnerJoin()', () => {
         let expectedA = [
@@ -78,11 +78,11 @@ describe('Hash Joins', () => {
         it('should return 5 rows if parent is left', () =>
             assert.lengthOf(resultA, 4));
         it('should match the expected output if parent is left', () =>
-            assert.deepEqual(expectedA, resultA));
+            assert.deepEqual(resultA, expectedA));
         it('should return 5 rows if parent is right', () =>
             assert.lengthOf(resultB, 4));
         it('should match the expected output if parent is right', () =>
-            assert.deepEqual(expectedB, resultB));
+            assert.deepEqual(resultB, expectedB));
     });
     describe('#hashLeftAntiJoin()', () => {
         let expected = [
@@ -92,7 +92,7 @@ describe('Hash Joins', () => {
         it('should return 1 rows', () =>
             assert.lengthOf(result, 1));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
     });
     describe('#hashLeftOuterJoin()', () => {
         let expected = [
@@ -106,7 +106,7 @@ describe('Hash Joins', () => {
         it('should return 5 rows', () =>
             assert.lengthOf(result, 5));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
     });
     describe('#hashLeftSemiJoin()', () => {
         let expected = [
@@ -117,7 +117,7 @@ describe('Hash Joins', () => {
         it('should return 2 rows', () =>
             assert.lengthOf(result, 2));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
     });
     describe('#hashRightAntiJoin()', () => {
         let expected = [
@@ -131,9 +131,9 @@ describe('Hash Joins', () => {
         it('should return 5 rows', () =>
             assert.lengthOf(result, 5));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
         it('should match the left anti join with right as the parent', () =>
-            assert.deepEqual(result, hashLeftAntiJoin(right, accessor, left, accessor)));
+            assert.deepEqual(hashLeftAntiJoin(right, accessor, left, accessor), result));
     });
     describe('#hashRightOuterJoin()', () => {
         let expected = [
@@ -151,9 +151,9 @@ describe('Hash Joins', () => {
         it('should return 9 rows', () =>
             assert.lengthOf(result, 9));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
         it('should match the left outer join with right as the parent', () =>
-            assert.deepEqual(result, hashLeftOuterJoin(right, accessor, left, accessor)));
+            assert.deepEqual(hashLeftOuterJoin(right, accessor, left, accessor), result));
     });
     describe('#hashRightSemiJoin()', () => {
         let expected = [
@@ -164,8 +164,8 @@ describe('Hash Joins', () => {
         it('should return 2 rows', () =>
             assert.lengthOf(result, 2));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
         it('should match the left semi join with right as the parent', () =>
-            assert.deepEqual(result, hashLeftSemiJoin(right, accessor, left, accessor)));
+            assert.deepEqual(hashLeftSemiJoin(right, accessor, left, accessor), result));
     });
 });

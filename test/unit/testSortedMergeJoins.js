@@ -55,11 +55,11 @@ describe('Sorted Merge Joins', () => {
         it('should return 10 rows if parent is left', () =>
             assert.lengthOf(resultA, 10));
         it('should match the expected output if parent is left', () =>
-            assert.deepEqual(expectedA, resultA));
+            assert.deepEqual(resultA, expectedA));
         it('should return 8 rows if parent is right', () =>
             assert.lengthOf(resultB, 10));
         it('should match the expected output if parent is right', () =>
-            assert.deepEqual(expectedB, resultB));
+            assert.deepEqual(resultB, expectedB));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultC, 0));
     });
@@ -82,11 +82,11 @@ describe('Sorted Merge Joins', () => {
         it('should return 5 rows if parent is left', () =>
             assert.lengthOf(resultA, 4));
         it('should match the expected output if parent is left', () =>
-            assert.deepEqual(expectedA, resultA));
+            assert.deepEqual(resultA, expectedA));
         it('should return 5 rows if parent is right', () =>
             assert.lengthOf(resultB, 4));
         it('should match the expected output if parent is right', () =>
-            assert.deepEqual(expectedB, resultB));
+            assert.deepEqual(resultB, expectedB));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultC, 0));
     });
@@ -99,7 +99,7 @@ describe('Sorted Merge Joins', () => {
         it('should return 1 rows', () =>
             assert.lengthOf(result, 1));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
@@ -116,7 +116,7 @@ describe('Sorted Merge Joins', () => {
         it('should return 5 rows', () =>
             assert.lengthOf(result, 5));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
@@ -130,7 +130,7 @@ describe('Sorted Merge Joins', () => {
         it('should return 2 rows', () =>
             assert.lengthOf(result, 2));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
@@ -147,9 +147,9 @@ describe('Sorted Merge Joins', () => {
         it('should return 5 rows', () =>
             assert.lengthOf(result, 5));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
         it('should match the left anti join with right as the parent', () =>
-            assert.deepEqual(result, sortedMergeLeftAntiJoin(right, accessor, left, accessor)));
+            assert.deepEqual(sortedMergeLeftAntiJoin(right, accessor, left, accessor), result));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
@@ -170,9 +170,9 @@ describe('Sorted Merge Joins', () => {
         it('should return 9 rows', () =>
             assert.lengthOf(result, 9));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
         it('should match the left outer join with right as the parent', () =>
-            assert.deepEqual(result, sortedMergeLeftOuterJoin(right, accessor, left, accessor)));
+            assert.deepEqual(sortedMergeLeftOuterJoin(right, accessor, left, accessor), result));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
@@ -186,9 +186,9 @@ describe('Sorted Merge Joins', () => {
         it('should return 2 rows', () =>
             assert.lengthOf(result, 2));
         it('should match the expected output', () =>
-            assert.deepEqual(expected, result));
+            assert.deepEqual(result, expected));
         it('should match the left semi join with right as the parent', () =>
-            assert.deepEqual(result, sortedMergeLeftSemiJoin(right, accessor, left, accessor)));
+            assert.deepEqual(sortedMergeLeftSemiJoin(right, accessor, left, accessor), result));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
