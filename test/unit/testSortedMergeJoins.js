@@ -51,7 +51,7 @@ describe('Sorted Merge Joins', () => {
             ],
             resultA = sortedMergeFullOuterJoin(left, accessor, right, accessor),
             resultB = sortedMergeFullOuterJoin(right, accessor, left, accessor),
-            resultC = sortedMergeFullOuterJoin([], accessor, right, accessor);
+            resultC = sortedMergeFullOuterJoin([], accessor, [], accessor);
         it('should return 10 rows if parent is left', () =>
             assert.lengthOf(resultA, 10));
         it('should match the expected output if parent is left', () =>
