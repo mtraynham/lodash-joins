@@ -1,6 +1,9 @@
 import pkg from './package';
+import isArray from 'lodash/lang/isArray';
+import merge from 'lodash/object/merge';
+import template from 'lodash/string/template';
 import {readFileSync} from 'fs';
-import {merge, template} from 'lodash';
+import {sep} from 'path';
 import {optimize, BannerPlugin} from 'webpack';
 
 const date = new Date();
@@ -12,14 +15,22 @@ const banner = template(readFileSync(__dirname + '/LICENSE_BANNER', 'utf8'))({
 });
 
 const base = {
-    externals: {
-        'lodash': {
-            root: '_',
-            commonJs: 'lodash',
-            commonjs2: 'lodash',
-            amd: 'lodash'
+    externals: [
+        // handle splitting modern lodash paths:
+        // import merge from 'lodash/object/merge'; -> _.merge
+        (context, request, callback) => {
+            if (/^lodash/.test(request)) {
+                let paths = request.split(sep);
+                return callback(null, {
+                    root: ['_'].concat(paths.length > 1 ? [paths[paths.length - 1]] : []),
+                    commonJs: request,
+                    commonjs2: request,
+                    amd: request
+                });
+            }
+            callback();
         }
-    },
+    ],
     output: {
         libraryTarget: 'umd',
         devtoolModuleFilenameTemplate: 'webpack:///lodash-joins/[resource-path]'
@@ -59,10 +70,10 @@ export const uglify = merge({
 }, base);
 
 export const test = merge({
-    externals: {
-        'chai': 'chai',
-    },
+    externals: [{
+        'chai': 'chai'
+    }],
     output: {
         filename: 'test.js'
     }
-}, base);
+}, base, (a, b) => isArray(a) ? a.concat(b) : void 0);
