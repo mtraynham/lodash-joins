@@ -50,7 +50,8 @@ describe('Hash Joins', () => {
                 {id: 'e', left: 2}
             ],
             resultA = hashFullOuterJoin(left, accessor, right, accessor),
-            resultB = hashFullOuterJoin(right, accessor, left, accessor);
+            resultB = hashFullOuterJoin(right, accessor, left, accessor),
+            resultC = hashFullOuterJoin([], accessor, [], accessor);
         it('should return 10 rows if parent is left', () =>
             assert.lengthOf(resultA, 10));
         it('should match the expected output if parent is left', () =>
@@ -59,6 +60,8 @@ describe('Hash Joins', () => {
             assert.lengthOf(resultB, 10));
         it('should match the expected output if parent is right', () =>
             assert.deepEqual(resultB, expectedB));
+        it('should return empty results for empty input', () =>
+            assert.lengthOf(resultC, 0));
     });
     describe('#hashInnerJoin()', () => {
         let expectedA = [
@@ -74,7 +77,8 @@ describe('Hash Joins', () => {
                 {id: 'c', right: 3, left: 1}
             ],
             resultA = hashInnerJoin(left, accessor, right, accessor),
-            resultB = hashInnerJoin(right, accessor, left, accessor);
+            resultB = hashInnerJoin(right, accessor, left, accessor),
+            resultC = hashInnerJoin([], accessor, right, accessor);
         it('should return 5 rows if parent is left', () =>
             assert.lengthOf(resultA, 4));
         it('should match the expected output if parent is left', () =>
@@ -83,16 +87,21 @@ describe('Hash Joins', () => {
             assert.lengthOf(resultB, 4));
         it('should match the expected output if parent is right', () =>
             assert.deepEqual(resultB, expectedB));
+        it('should return empty results for empty input', () =>
+            assert.lengthOf(resultC, 0));
     });
     describe('#hashLeftAntiJoin()', () => {
         let expected = [
                 {id: 'e', left: 2}
             ],
-            result = hashLeftAntiJoin(left, accessor, right, accessor);
+            result = hashLeftAntiJoin(left, accessor, right, accessor),
+            resultB = hashLeftAntiJoin([], accessor, right, accessor);
         it('should return 1 rows', () =>
             assert.lengthOf(result, 1));
         it('should match the expected output', () =>
             assert.deepEqual(result, expected));
+        it('should return empty results for empty input', () =>
+            assert.lengthOf(resultB, 0));
     });
     describe('#hashLeftOuterJoin()', () => {
         let expected = [
@@ -102,22 +111,28 @@ describe('Hash Joins', () => {
                 {id: 'c', left: 1, right: 3},
                 {id: 'e', left: 2}
             ],
-            result = hashLeftOuterJoin(left, accessor, right, accessor);
+            result = hashLeftOuterJoin(left, accessor, right, accessor),
+            resultB = hashLeftOuterJoin([], accessor, right, accessor);
         it('should return 5 rows', () =>
             assert.lengthOf(result, 5));
         it('should match the expected output', () =>
             assert.deepEqual(result, expected));
+        it('should return empty results for empty input', () =>
+            assert.lengthOf(resultB, 0));
     });
     describe('#hashLeftSemiJoin()', () => {
         let expected = [
                 {id: 'c', left: 0},
                 {id: 'c', left: 1}
             ],
-            result = hashLeftSemiJoin(left, accessor, right, accessor);
+            result = hashLeftSemiJoin(left, accessor, right, accessor),
+            resultB = hashLeftSemiJoin([], accessor, right, accessor);
         it('should return 2 rows', () =>
             assert.lengthOf(result, 2));
         it('should match the expected output', () =>
             assert.deepEqual(result, expected));
+        it('should return empty results for empty input', () =>
+            assert.lengthOf(resultB, 0));
     });
     describe('#hashRightAntiJoin()', () => {
         let expected = [
@@ -127,13 +142,16 @@ describe('Hash Joins', () => {
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            result = hashRightAntiJoin(left, accessor, right, accessor);
+            result = hashRightAntiJoin(left, accessor, right, accessor),
+            resultB = hashRightAntiJoin(left, accessor, [], accessor);
         it('should return 5 rows', () =>
             assert.lengthOf(result, 5));
         it('should match the expected output', () =>
             assert.deepEqual(result, expected));
         it('should match the left anti join with right as the parent', () =>
             assert.deepEqual(hashLeftAntiJoin(right, accessor, left, accessor), result));
+        it('should return empty results for empty input', () =>
+            assert.lengthOf(resultB, 0));
     });
     describe('#hashRightOuterJoin()', () => {
         let expected = [
@@ -147,25 +165,31 @@ describe('Hash Joins', () => {
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            result = hashRightOuterJoin(left, accessor, right, accessor);
+            result = hashRightOuterJoin(left, accessor, right, accessor),
+            resultB = hashRightOuterJoin(left, accessor, [], accessor);
         it('should return 9 rows', () =>
             assert.lengthOf(result, 9));
         it('should match the expected output', () =>
             assert.deepEqual(result, expected));
         it('should match the left outer join with right as the parent', () =>
             assert.deepEqual(hashLeftOuterJoin(right, accessor, left, accessor), result));
+        it('should return empty results for empty input', () =>
+            assert.lengthOf(resultB, 0));
     });
     describe('#hashRightSemiJoin()', () => {
         let expected = [
                 {id: 'c', right: 2},
                 {id: 'c', right: 3}
             ],
-            result = hashRightSemiJoin(left, accessor, right, accessor);
+            result = hashRightSemiJoin(left, accessor, right, accessor),
+            resultB = hashRightSemiJoin(left, accessor, [], accessor);
         it('should return 2 rows', () =>
             assert.lengthOf(result, 2));
         it('should match the expected output', () =>
             assert.deepEqual(result, expected));
         it('should match the left semi join with right as the parent', () =>
             assert.deepEqual(hashLeftSemiJoin(right, accessor, left, accessor), result));
+        it('should return empty results for empty input', () =>
+            assert.lengthOf(resultB, 0));
     });
 });
