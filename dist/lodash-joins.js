@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v1.0.2 - Mon Jul 06 2015 22:17:12 GMT-0400 (EDT)
+ *  lodash-joins - v1.0.2 - Thu Jul 16 2015 21:41:46 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2015 Matt Traynham <skitch920@gmail.com>
  *
@@ -265,9 +265,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodashCollectionSortBy2 = _interopRequireDefault(_lodashCollectionSortBy);
 	
-	var _utilYieldRightSubList = __webpack_require__(6);
+	var _internalYieldRightSubList = __webpack_require__(6);
 	
-	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
+	var _internalYieldRightSubList2 = _interopRequireDefault(_internalYieldRightSubList);
 	
 	/**
 	 * Sorted merge left outer join.  Returns a new array.
@@ -285,9 +285,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    a = (0, _lodashCollectionSortBy2['default'])(a, aAccessor);
 	    b = (0, _lodashCollectionSortBy2['default'])(b, bAccessor);
 	    var r = [],
-	        aGenerator = (0, _utilYieldRightSubList2['default'])(a, aAccessor),
+	        aGenerator = (0, _internalYieldRightSubList2['default'])(a, aAccessor),
 	        aDatums = aGenerator.next().value,
-	        bGenerator = (0, _utilYieldRightSubList2['default'])(b, bAccessor),
+	        bGenerator = (0, _internalYieldRightSubList2['default'])(b, bAccessor),
 	        bDatums = bGenerator.next().value;
 	    while (aDatums && bDatums) {
 	        if (aDatums.val > bDatums.val) {
@@ -616,9 +616,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var result = generator[method](arg);
 	      var value = result.value;
 	      return value instanceof AwaitArgument ? _Promise.resolve(value.arg).then(invokeNext, invokeThrow) : _Promise.resolve(value).then(function (unwrapped) {
+	        // When a yielded Promise is resolved, its final value becomes
+	        // the .value of the Promise<{value,done}> result for the
+	        // current iteration. If the Promise is rejected, however, the
+	        // result for this iteration will be rejected with the same
+	        // reason. Note that rejections of yielded Promises are not
+	        // thrown back into the generator function, as is the case
+	        // when an awaited Promise is rejected. This difference in
+	        // behavior between yield and await is important, because it
+	        // allows the consumer to decide what to do with the yielded
+	        // rejection (swallow it and continue, manually .throw it back
+	        // into the generator, abandon iteration, whatever). With
+	        // await, by contrast, there is no opportunity to examine the
+	        // rejection reason outside the generator function, so the
+	        // only option is to throw it from the await expression, and
+	        // let the generator function handle the exception.
 	        result.value = unwrapped;
 	        return result;
-	      }, invokeThrow);
+	      });
 	    }
 	
 	    if (typeof process === "object" && process.domain) {
@@ -651,9 +666,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	
 	      // Avoid propagating enqueueResult failures to Promises returned by
-	      // later invocations of the iterator, and call generator.return() to
-	      // allow the generator a chance to clean up.
-	      previousPromise = enqueueResult["catch"](invokeReturn);
+	      // later invocations of the iterator.
+	      previousPromise = enqueueResult["catch"](function (ignored) {});
 	
 	      return enqueueResult;
 	    }
@@ -686,6 +700,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	
 	      if (state === GenStateCompleted) {
+	        if (method === "throw") {
+	          throw arg;
+	        }
+	
 	        // Be forgiving, per 25.3.3.3.3 of the spec:
 	        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
 	        return doneResult();
@@ -754,7 +772,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          if (state === GenStateSuspendedYield) {
 	            context.sent = arg;
 	          } else {
-	            delete context.sent;
+	            context.sent = undefined;
 	          }
 	        } else if (method === "throw") {
 	          if (state === GenStateSuspendedStart) {
@@ -845,7 +863,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // locations where there is no enclosing try statement.
 	    this.tryEntries = [{ tryLoc: "root" }];
 	    tryLocsList.forEach(pushTryEntry, this);
-	    this.reset();
+	    this.reset(true);
 	  }
 	
 	  runtime.keys = function (object) {
@@ -919,7 +937,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  Context.prototype = {
 	    constructor: Context,
 	
-	    reset: function reset() {
+	    reset: function reset(skipTempReset) {
 	      this.prev = 0;
 	      this.next = 0;
 	      this.sent = undefined;
@@ -928,10 +946,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      this.tryEntries.forEach(resetTryEntry);
 	
-	      // Pre-initialize at least 20 temporary variables to enable hidden
-	      // class optimizations for simple generators.
-	      for (var tempIndex = 0, tempName; hasOwn.call(this, tempName = "t" + tempIndex) || tempIndex < 20; ++tempIndex) {
-	        this[tempName] = null;
+	      if (!skipTempReset) {
+	        for (var name in this) {
+	          // Not sure about the optimal order of these conditions:
+	          if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) {
+	            this[name] = undefined;
+	          }
+	        }
 	      }
 	    },
 	
@@ -3109,9 +3130,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodashCollectionSortBy2 = _interopRequireDefault(_lodashCollectionSortBy);
 	
-	var _utilYieldRightSubList = __webpack_require__(6);
+	var _internalYieldRightSubList = __webpack_require__(6);
 	
-	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
+	var _internalYieldRightSubList2 = _interopRequireDefault(_internalYieldRightSubList);
 	
 	/**
 	 * Sorted merge left outer join.  Returns a new array.
@@ -3129,9 +3150,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    a = (0, _lodashCollectionSortBy2['default'])(a, aAccessor);
 	    b = (0, _lodashCollectionSortBy2['default'])(b, bAccessor);
 	    var r = [],
-	        aGenerator = (0, _utilYieldRightSubList2['default'])(a, aAccessor),
+	        aGenerator = (0, _internalYieldRightSubList2['default'])(a, aAccessor),
 	        aDatums = aGenerator.next().value,
-	        bGenerator = (0, _utilYieldRightSubList2['default'])(b, bAccessor),
+	        bGenerator = (0, _internalYieldRightSubList2['default'])(b, bAccessor),
 	        bDatums = bGenerator.next().value;
 	    while (aDatums && bDatums) {
 	        if (aDatums.val > bDatums.val) {
@@ -3189,9 +3210,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodashCollectionSortBy2 = _interopRequireDefault(_lodashCollectionSortBy);
 	
-	var _utilYieldRightSubList = __webpack_require__(6);
+	var _internalYieldRightSubList = __webpack_require__(6);
 	
-	var _utilYieldRightSubList2 = _interopRequireDefault(_utilYieldRightSubList);
+	var _internalYieldRightSubList2 = _interopRequireDefault(_internalYieldRightSubList);
 	
 	/**
 	 * Sorted merge inner join.  Returns a new array.
@@ -3209,9 +3230,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    a = (0, _lodashCollectionSortBy2['default'])(a, aAccessor);
 	    b = (0, _lodashCollectionSortBy2['default'])(b, bAccessor);
 	    var r = [],
-	        aGenerator = (0, _utilYieldRightSubList2['default'])(a, aAccessor),
+	        aGenerator = (0, _internalYieldRightSubList2['default'])(a, aAccessor),
 	        aDatums = aGenerator.next().value,
-	        bGenerator = (0, _utilYieldRightSubList2['default'])(b, bAccessor),
+	        bGenerator = (0, _internalYieldRightSubList2['default'])(b, bAccessor),
 	        bDatums = bGenerator.next().value;
 	    while (aDatums && bDatums) {
 	        if (aDatums.val > bDatums.val) {
@@ -3251,9 +3272,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodashCollectionSortBy2 = _interopRequireDefault(_lodashCollectionSortBy);
 	
-	var _utilUndefined = __webpack_require__(73);
+	var _internalUndefined = __webpack_require__(73);
 	
-	var _utilUndefined2 = _interopRequireDefault(_utilUndefined);
+	var _internalUndefined2 = _interopRequireDefault(_internalUndefined);
 	
 	/**
 	 * Sorted merge left semi join.  Returns a new array.
@@ -3277,12 +3298,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bVal = bAccessor(bDatum);
 	    while (aDatum && bDatum) {
 	        if (aVal > bVal) {
-	            aVal = (0, _utilUndefined2['default'])(aDatum = a.pop(), aAccessor);
+	            aVal = (0, _internalUndefined2['default'])(aDatum = a.pop(), aAccessor);
 	        } else if (aVal < bVal) {
-	            bVal = (0, _utilUndefined2['default'])(bDatum = b.pop(), bAccessor);
+	            bVal = (0, _internalUndefined2['default'])(bDatum = b.pop(), bAccessor);
 	        } else {
 	            r.unshift(aDatum);
-	            aVal = (0, _utilUndefined2['default'])(aDatum = a.pop(), aAccessor);
+	            aVal = (0, _internalUndefined2['default'])(aDatum = a.pop(), aAccessor);
 	        }
 	    }
 	    return r;
@@ -3343,9 +3364,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodashCollectionSortBy2 = _interopRequireDefault(_lodashCollectionSortBy);
 	
-	var _utilUndefined = __webpack_require__(73);
+	var _internalUndefined = __webpack_require__(73);
 	
-	var _utilUndefined2 = _interopRequireDefault(_utilUndefined);
+	var _internalUndefined2 = _interopRequireDefault(_internalUndefined);
 	
 	/**
 	 * Sorted merge left semi join.  Returns a new array.
@@ -3370,11 +3391,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    while (aDatum && bDatum) {
 	        if (aVal > bVal) {
 	            r.unshift(aDatum);
-	            aVal = (0, _utilUndefined2['default'])(aDatum = a.pop(), aAccessor);
+	            aVal = (0, _internalUndefined2['default'])(aDatum = a.pop(), aAccessor);
 	        } else if (aVal < bVal) {
-	            bVal = (0, _utilUndefined2['default'])(bDatum = b.pop(), bAccessor);
+	            bVal = (0, _internalUndefined2['default'])(bDatum = b.pop(), bAccessor);
 	        } else {
-	            aVal = (0, _utilUndefined2['default'])(aDatum = a.pop(), aAccessor);
+	            aVal = (0, _internalUndefined2['default'])(aDatum = a.pop(), aAccessor);
 	        }
 	    }
 	    if (aDatum) {

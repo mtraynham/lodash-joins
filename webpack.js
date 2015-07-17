@@ -25,7 +25,8 @@ const base = {
                     root: ['_'].concat(paths.length > 1 ? [paths[paths.length - 1]] : []),
                     commonJs: request,
                     commonjs2: request,
-                    amd: request
+                    amd: request,
+                    toJSON: function () { return request; } // Fixes the source map output (sort of)
                 });
             }
             callback();
@@ -46,7 +47,7 @@ const base = {
     devtool: 'source-map'
 };
 
-export const build = merge({
+export const build = merge({}, base, {
     entry: './index.js',
     output: {
         filename: 'lodash-joins.js',
@@ -55,9 +56,9 @@ export const build = merge({
     plugins: [
         new BannerPlugin(banner, {raw: true})
     ]
-}, base);
+});
 
-export const uglify = merge({
+export const uglify = merge({}, base, {
     entry: './index.js',
     output: {
         filename: 'lodash-joins.min.js',
@@ -67,13 +68,13 @@ export const uglify = merge({
         new optimize.UglifyJsPlugin(),
         new BannerPlugin(banner, {raw: true})
     ]
-}, base);
+});
 
-export const test = merge({
+export const test = merge({}, base, {
     externals: [{
         'chai': 'chai'
     }],
     output: {
         filename: 'test.js'
     }
-}, base, (a, b) => isArray(a) ? a.concat(b) : void 0);
+}, (a, b) => isArray(a) ? a.concat(b) : void 0);

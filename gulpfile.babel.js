@@ -60,7 +60,7 @@ gulp.task('test-browser-build', ['lint'], () =>
 gulp.task('test-browser', ['test-browser-build'], () => {
     $.livereload.listen({port: 35729, host: 'localhost', start: true});
     gulp.src('test/runner.html')
-        .pipe($.open('<%file.path%>'));
+        .pipe($.open());
     gulp.watch(['lib/**/*.js', 'test/**/*.js'], ['test-browser-build']);
 });
 
