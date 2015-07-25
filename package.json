@@ -32,10 +32,10 @@
         "lodash": "^3.10.0"
     },
     "devDependencies": {
-        "babel": "~5.6.23",
-        "babel-runtime": "~5.7.0",
+        "babel": "~5.8.5",
+        "babel-runtime": "~5.8.5",
         "babel-loader": "~5.3.2",
-        "chai": "~3.1.0",
+        "chai": "~3.2.0",
         "gulp": "~3.9.0",
         "gulp-bench": "~1.1.0",
         "gulp-bump": "~0.3.1",
@@ -52,7 +52,7 @@
         "mocha": "~2.2.5",
         "node-libs-browser": "~0.5.2",
         "source-map-loader": "~0.1.5",
-        "webpack": "~1.10.1",
+        "webpack": "~1.10.5",
         "webpack-stream": "~2.0.0"
     }
 }

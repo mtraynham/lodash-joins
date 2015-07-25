@@ -6,12 +6,9 @@ import {readFileSync} from 'fs';
 import {sep} from 'path';
 import {optimize, BannerPlugin} from 'webpack';
 
-const date = new Date();
-
 const banner = template(readFileSync(__dirname + '/LICENSE_BANNER', 'utf8'))({
     pkg: pkg,
-    date: date,
-    year: date.getFullYear()
+    date: new Date()
 });
 
 const base = {
