@@ -12,7 +12,7 @@ describe('Hash Joins', () => {
     let left = [
             {id: 'c', left: 0},
             {id: 'c', left: 1},
-            {id: 'e', left: 2},
+            {id: 'e', left: 2}
         ],
         right = [
             {id: 'a', right: 0},

@@ -6,9 +6,9 @@ let rand = Math.random;
 
 /**
  * Generate a random number
- * @param  {Number} min (optional)
- * @param  {Number} max (optional)
- * @return {Number}
+ * @param  {number} min (optional)
+ * @param  {number} max (optional)
+ * @return {number}
  */
 export function generateRandomNumber (min = 0, max = 0) {
     return (rand() * (max - min)) + min;
@@ -16,9 +16,9 @@ export function generateRandomNumber (min = 0, max = 0) {
 
 /**
  * Generate a random integer
- * @param  {Number} min (optional)
- * @param  {Number} max (optional)
- * @return {Number}
+ * @param  {number} min (optional)
+ * @param  {number} max (optional)
+ * @return {number}
  */
 export function generateRandomInteger (min, max) {
     return Math.floor(generateRandomNumber(min, max));
@@ -36,7 +36,7 @@ export function generateRandomDate (start = new Date(0), end = new Date(0)) {
 
 /**
  * Generate a random boolean
- * @return {Boolean}
+ * @return {boolean}
  */
 export function generateRandomBoolean () {
     return rand() < 0.5;
@@ -44,8 +44,8 @@ export function generateRandomBoolean () {
 
 /**
  * Generate a random character
- * @param  {String[]} domain (optional)
- * @return {String}
+ * @param  {string[]} domain (optional)
+ * @return {string}
  */
 export function generateRandomCharacter (domain = []) {
     return domain[Math.floor(rand() * domain.length)];
@@ -53,9 +53,9 @@ export function generateRandomCharacter (domain = []) {
 
 /**
  * Generate a random string
- * @param  {String[]} domain
- * @param  {Number} length
- * @return {String}
+ * @param  {string[]} domain
+ * @param  {number} length
+ * @return {string}
  */
 export function generateRandomString (domain, length = 0) {
     let out = '';
@@ -89,7 +89,7 @@ export function generateRandom (spec) {
 
 /**
  * Generate a random object from a list of specs
- * @param  {[{field: String, type: String, options...}]} specs
+ * @param  {[{field: string, type: string, options...}]} specs
  * @return {Object}
  */
 export function generateRandomObject (specs) {
@@ -105,8 +105,8 @@ export function generateRandomObject (specs) {
 
 /**
  * Generate a random array of objects from a list of specs
- * @param  {[{field: String, type: String, options...}]} specs
- * @param  {Number} length
+ * @param  {[{field: string, type: string, options...}]} specs
+ * @param  {number} length
  * @return {Object[]}
  */
 export function generateRandomObjectArray (specs, length) {

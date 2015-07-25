@@ -2,11 +2,11 @@ import {generateRandomObjectArray} from './random';
 
 /**
  * Generate a join bench test
- * @param  {String} name
- * @param  {Integer} size
- * @param  {HashJoin} hashJoin
- * @param  {SortedMergeJoin} sortedMergeJoin
- * @param  {NestedLoopJoin} nestedLoopJoin
+ * @param  {string} name
+ * @param  {number} size
+ * @param  {Function} hashJoin
+ * @param  {Function} sortedMergeJoin
+ * @param  {Function} nestedLoopJoin
  * @return {BenchmarkSuite}
  */
 export default function joinBench (name, size, hashJoin, sortedMergeJoin, nestedLoopJoin) {
