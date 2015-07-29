@@ -9,10 +9,23 @@
         "beforeOpeningRoundBrace": true,
         "beforeOpeningCurlyBrace": true
     },
+    "requireSpacesInFunctionDeclaration": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "disallowSpacesInFunctionExpression": null,
     "disallowSpacesInAnonymousFunctionExpression": null,
-    "validateJSDoc": {
+    "disallowSpacesInFunctionDeclaration": null,
+    "jsDoc": {
+        "checkAnnotations": "closurecompiler",
         "checkParamNames": true,
-        "requireParamTypes": true
+        "requireParamTypes": true,
+        "checkRedundantParams": true,
+        "checkReturnTypes": true,
+        "checkRedundantReturns": true,
+        "requireReturnTypes": true,
+        "checkTypes": "capitalizedNativeCase",
+        "checkRedundantAccess": true
     },
     "esnext": true
 }
