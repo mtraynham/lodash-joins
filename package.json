@@ -29,11 +29,11 @@
         "test": "gulp coverage"
     },
     "dependencies": {
-        "lodash": "^3.10.0"
+        "lodash": "^3.10.1"
     },
     "devDependencies": {
-        "babel": "~5.8.19",
-        "babel-runtime": "~5.8.19",
+        "babel": "~5.8.21",
+        "babel-runtime": "~5.8.20",
         "babel-loader": "~5.3.2",
         "chai": "~3.2.0",
         "gulp": "~3.9.0",
@@ -53,6 +53,6 @@
         "node-libs-browser": "~0.5.2",
         "source-map-loader": "~0.1.5",
         "webpack": "~1.10.5",
-        "webpack-stream": "~2.0.0"
+        "webpack-stream": "~2.1.0"
     }
 }
