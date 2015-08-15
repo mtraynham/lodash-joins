@@ -23,7 +23,7 @@ const base = {
                     commonJs: request,
                     commonjs2: request,
                     amd: request,
-                    toJSON: function () { return request; } // Fixes the source map output (sort of)
+                    toJSON: () => request // Fixes the source map output (sort of)
                 });
             }
             callback();
