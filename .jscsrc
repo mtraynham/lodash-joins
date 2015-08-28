@@ -16,16 +16,5 @@
     "disallowSpacesInFunctionExpression": null,
     "disallowSpacesInAnonymousFunctionExpression": null,
     "disallowSpacesInFunctionDeclaration": null,
-    "jsDoc": {
-        "checkAnnotations": "closurecompiler",
-        "checkParamNames": true,
-        "requireParamTypes": true,
-        "checkRedundantParams": true,
-        "checkReturnTypes": true,
-        "checkRedundantReturns": true,
-        "requireReturnTypes": true,
-        "checkTypes": "capitalizedNativeCase",
-        "checkRedundantAccess": true
-    },
     "esnext": true
 }

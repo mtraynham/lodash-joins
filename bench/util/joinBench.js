@@ -1,7 +1,8 @@
 import {generateRandomObjectArray} from './random';
 
 /**
- * Generate a join bench test
+ * Generate a join bench test.
+ *
  * @param  {String} name
  * @param  {Number} size
  * @param  {Function} hashJoin

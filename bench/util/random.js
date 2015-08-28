@@ -1,13 +1,15 @@
 /**
  * Random number generator between 0-1.  Uses `Math.random` for now.
+ *
  * @type {Function}
  */
 let rand = Math.random;
 
 /**
- * Generate a random number
- * @param  {Number} min (optional)
- * @param  {Number} max (optional)
+ * Generate a random number.
+ *
+ * @param  {Number} [min=0]
+ * @param  {Number} [max=0]
  * @return {Number}
  */
 export function generateRandomNumber (min = 0, max = 0) {
@@ -15,19 +17,21 @@ export function generateRandomNumber (min = 0, max = 0) {
 }
 
 /**
- * Generate a random integer
- * @param  {Number} min (optional)
- * @param  {Number} max (optional)
+ * Generate a random integer.
+ *
+ * @param  {Number} [min=0]
+ * @param  {Number} [max=0]
  * @return {Number}
  */
-export function generateRandomInteger (min, max) {
+export function generateRandomInteger (min = 0, max = 0) {
     return Math.floor(generateRandomNumber(min, max));
 }
 
 /**
- * Generate a random date
- * @param  {Date} start (optional)
- * @param  {Date} end   (optional)
+ * Generate a random date.
+ *
+ * @param  {Date} [start=new Date(0)]
+ * @param  {Date} [end=new Date(0)]
  * @return {Date}
  */
 export function generateRandomDate (start = new Date(0), end = new Date(0)) {
@@ -35,7 +39,8 @@ export function generateRandomDate (start = new Date(0), end = new Date(0)) {
 }
 
 /**
- * Generate a random boolean
+ * Generate a random boolean.
+ *
  * @return {Boolean}
  */
 export function generateRandomBoolean () {
@@ -43,8 +48,9 @@ export function generateRandomBoolean () {
 }
 
 /**
- * Generate a random character
- * @param  {String[]} domain (optional)
+ * Generate a random character.
+ *
+ * @param  {String[]} [domain=[]]
  * @return {String}
  */
 export function generateRandomCharacter (domain = []) {
@@ -52,12 +58,13 @@ export function generateRandomCharacter (domain = []) {
 }
 
 /**
- * Generate a random string
- * @param  {String[]} domain
- * @param  {Number} length
+ * Generate a random string.
+ *
+ * @param  {String[]} [domain=[]]
+ * @param  {Number} [length=0]
  * @return {String}
  */
-export function generateRandomString (domain, length = 0) {
+export function generateRandomString (domain = [], length = 0) {
     let out = '';
     while (length--) {
         out += generateRandomCharacter(domain);
@@ -66,11 +73,12 @@ export function generateRandomString (domain, length = 0) {
 }
 
 /**
- * Generate a random from spec
- * @param  {{type: String, options: Object}} spec
+ * Generate a random from spec.
+ *
+ * @param  {{type: String, options: Object}} [spec={type: 'Boolean'}]
  * @return {*}
  */
-export function generateRandom (spec) {
+export function generateRandom (spec = {}) {
     switch (spec.type) {
         case 'number':
             return generateRandomNumber(spec.min, spec.max);
@@ -88,11 +96,12 @@ export function generateRandom (spec) {
 }
 
 /**
- * Generate a random object from a list of specs
- * @param  {{field: String, type: String, options: Object}[]} specs
+ * Generate a random object from a list of specs.
+ *
+ * @param  {{field: String, type: String, options: Object}[]} [specs=[]]
  * @return {Object}
  */
-export function generateRandomObject (specs) {
+export function generateRandomObject (specs = []) {
     let i = specs.length,
         out = {},
         spec;
@@ -104,12 +113,13 @@ export function generateRandomObject (specs) {
 }
 
 /**
- * Generate a random array of objects from a list of specs
- * @param  {{field: String, type: String, options: Object}[]} specs
- * @param  {Number} length
+ * Generate a random array of objects from a list of specs.
+ *
+ * @param  {{field: String, type: String, options: Object}[]} [specs=[]]
+ * @param  {Number} [length=0]
  * @return {Object[]}
  */
-export function generateRandomObjectArray (specs, length) {
+export function generateRandomObjectArray (specs = [], length = 0) {
     let out = [];
     while (length--) {
         out[length] = generateRandomObject(specs);
