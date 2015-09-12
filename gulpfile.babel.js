@@ -17,13 +17,21 @@ const test = () =>
         .pipe($.mocha());
 
 const bump = (type) =>
-    gulp.src(['./bower.json', './package.json'])
+    gulp.src([
+            './bower.json',
+            './package.json'
+        ])
         .pipe($.bump({type: type}))
         .pipe(gulp.dest('./'));
 
 // Lint Task
 gulp.task('lint', () =>
-    gulp.src(['gulpfile.babel.js', 'index.js', 'bench/**/*.js', 'lib/**/*.js', 'test/**/*.js', 'webpack/**/*.js'])
+    gulp.src([
+            'gulpfile.babel.js',
+            'index.js',
+            'webpack.js',
+            '{bench,lib,test}/**/*.js'
+        ])
         .pipe($.jscs())
         .pipe($.jshint())
         .pipe($.jshint.reporter(jshintStylish)));
@@ -42,7 +50,7 @@ gulp.task('test', ['lint'],
 
 // Coverage Task
 gulp.task('coverage', ['lint'], () =>
-    gulp.src(['lib/**/*.js', 'main.js'])
+    gulp.src(['lib/**/*.js'])
         .pipe($.istanbul({instrumenter: Instrumenter}))
         .pipe($.istanbul.hookRequire())
         .on('finish', () =>
@@ -58,10 +66,14 @@ gulp.task('test-browser-build', ['lint'], () =>
         .pipe($.livereload()));
 
 gulp.task('test-browser', ['test-browser-build'], () => {
-    $.livereload.listen({port: 35729, host: 'localhost', start: true});
+    $.livereload.listen({
+        port: 35729,
+        host: 'localhost',
+        start: true
+    });
     gulp.src('test/runner.html')
         .pipe($.open());
-    gulp.watch(['lib/**/*.js', 'test/**/*.js'], ['test-browser-build']);
+    gulp.watch('{lib,test}/**/*.js', ['test-browser-build']);
 });
 
 // Benchmark Task
@@ -76,4 +88,3 @@ gulp.task('bump:patch', bump.bind(this, 'patch'));
 
 // Default Task
 gulp.task('default', ['build', 'uglify']);
-
