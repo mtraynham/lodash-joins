@@ -33,6 +33,7 @@ gulp.task('lint', () =>
             '{bench,lib,test}/**/*.js'
         ])
         .pipe($.jscs())
+        .pipe($.jscs.reporter())
         .pipe($.jshint())
         .pipe($.jshint.reporter(jshintStylish)));
 

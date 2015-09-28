@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v1.0.3 - Sat Sep 12 2015 16:07:28 GMT-0400 (EDT)
+ *  lodash-joins - v1.0.3 - Sun Sep 27 2015 23:33:05 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2015 Matt Traynham <skitch920@gmail.com>
  *
@@ -1788,7 +1788,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        currentQueue = queue;
 	        queue = [];
 	        while (++queueIndex < len) {
-	            currentQueue[queueIndex].run();
+	            if (currentQueue) {
+	                currentQueue[queueIndex].run();
+	            }
 	        }
 	        queueIndex = -1;
 	        len = queue.length;
@@ -1840,7 +1842,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    throw new Error('process.binding is not supported');
 	};
 	
-	// TODO(shtylman)
 	process.cwd = function () { return '/' };
 	process.chdir = function (dir) {
 	    throw new Error('process.chdir is not supported');
@@ -1873,6 +1874,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , SUPPORT_DESC   = __webpack_require__(38)
 	  , $def           = __webpack_require__(40)
 	  , $redef         = __webpack_require__(42)
+	  , $fails         = __webpack_require__(39)
 	  , shared         = __webpack_require__(45)
 	  , setTag         = __webpack_require__(46)
 	  , uid            = __webpack_require__(48)
@@ -1897,22 +1899,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , useNative      = typeof $Symbol == 'function'
 	  , ObjectProto    = Object.prototype;
 	
-	var setSymbolDesc = SUPPORT_DESC ? function(){ // fallback for old Android
-	  try {
-	    return _create(setDesc({}, HIDDEN, {
-	      get: function(){
-	        return setDesc(this, HIDDEN, {value: false})[HIDDEN];
-	      }
-	    }))[HIDDEN] || setDesc;
-	  } catch(e){
-	    return function(it, key, D){
-	      var protoDesc = getDesc(ObjectProto, key);
-	      if(protoDesc)delete ObjectProto[key];
-	      setDesc(it, key, D);
-	      if(protoDesc && it !== ObjectProto)setDesc(ObjectProto, key, protoDesc);
-	    };
-	  }
-	}() : setDesc;
+	// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
+	var setSymbolDesc = SUPPORT_DESC && $fails(function(){
+	  return _create(setDesc({}, 'a', {
+	    get: function(){ return setDesc(this, 'a', {value: 7}).a; }
+	  })).a != 7;
+	}) ? function(it, key, D){
+	  var protoDesc = getDesc(ObjectProto, key);
+	  if(protoDesc)delete ObjectProto[key];
+	  setDesc(it, key, D);
+	  if(protoDesc && it !== ObjectProto)setDesc(ObjectProto, key, protoDesc);
+	} : setDesc;
 	
 	var wrap = function(tag){
 	  var sym = AllSymbols[tag] = _create($Symbol.prototype);
@@ -2001,9 +1998,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	
 	// MS Edge converts symbol values to JSON as {}
-	// WebKit converts symbol values in objects to JSON as null
-	if(!useNative || __webpack_require__(39)(function(){
-	  return JSON.stringify([{a: $Symbol()}, [$Symbol()]]) != '[{},[null]]';
+	if(!useNative || $fails(function(){
+	  return JSON.stringify([$Symbol()]) != '[null]';
 	}))$redef($Symbol.prototype, 'toJSON', function toJSON(){
 	  if(useNative && isObject(this))return this;
 	});
@@ -2184,7 +2180,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 41 */
 /***/ function(module, exports) {
 
-	var core = module.exports = {};
+	var core = module.exports = {version: '1.2.0'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
@@ -2367,9 +2363,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 56 */
 /***/ function(module, exports) {
 
-	// http://jsperf.com/core-js-isobject
 	module.exports = function(it){
-	  return it !== null && (typeof it == 'object' || typeof it == 'function');
+	  return typeof it === 'object' ? it !== null : typeof it === 'function';
 	};
 
 /***/ },
@@ -2740,10 +2735,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    chain.length = 0;
 	    record.n = false;
 	    if(isReject)setTimeout(function(){
-	      if(isUnhandled(record.p)){
+	      var promise = record.p
+	        , handler, console;
+	      if(isUnhandled(promise)){
 	        if(isNode){
-	          process.emit('unhandledRejection', value, record.p);
-	        } else if(global.console && console.error){
+	          process.emit('unhandledRejection', value, promise);
+	        } else if(handler = global.onunhandledrejection){
+	          handler({promise: promise, reason: value});
+	        } else if((console = global.console) && console.error){
 	          console.error('Unhandled promise rejection', value);
 	        }
 	      } record.a = undefined;
@@ -2828,9 +2827,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        fail: typeof onRejected == 'function'  ? onRejected  : false
 	      };
 	      var promise = react.P = new (S != undefined ? S : P)(function(res, rej){
-	        react.res = aFunction(res);
-	        react.rej = aFunction(rej);
+	        react.res = res;
+	        react.rej = rej;
 	      });
+	      aFunction(react.res);
+	      aFunction(react.rej);
 	      var record = this[RECORD];
 	      record.c.push(react);
 	      if(record.a)record.a.push(react);
@@ -2914,9 +2915,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    case 3: return function(a, b, c){
 	      return fn.call(that, a, b, c);
 	    };
-	  } return function(/* ...args */){
-	      return fn.apply(that, arguments);
-	    };
+	  }
+	  return function(/* ...args */){
+	    return fn.apply(that, arguments);
+	  };
 	};
 
 /***/ },
@@ -3046,20 +3048,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if(!isObject(proto) && proto !== null)throw TypeError(proto + ": can't set as prototype!");
 	};
 	module.exports = {
-	  set: Object.setPrototypeOf || ('__proto__' in {} // eslint-disable-line
-	    ? function(buggy, set){
-	        try {
-	          set = __webpack_require__(77)(Function.call, getDesc(Object.prototype, '__proto__').set, 2);
-	          set({}, []);
-	        } catch(e){ buggy = true; }
-	        return function setPrototypeOf(O, proto){
-	          check(O, proto);
-	          if(buggy)O.__proto__ = proto;
-	          else set(O, proto);
-	          return O;
-	        };
-	      }()
-	    : undefined),
+	  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line no-proto
+	    function(test, buggy, set){
+	      try {
+	        set = __webpack_require__(77)(Function.call, getDesc(Object.prototype, '__proto__').set, 2);
+	        set(test, []);
+	        buggy = !(test instanceof Array);
+	      } catch(e){ buggy = true; }
+	      return function setPrototypeOf(O, proto){
+	        check(O, proto);
+	        if(buggy)O.__proto__ = proto;
+	        else set(O, proto);
+	        return O;
+	      };
+	    }({}, false) : undefined),
 	  check: check
 	};
 
