@@ -29,7 +29,7 @@
         "test": "gulp coverage"
     },
     "dependencies": {
-        "lodash": "^3.10.1"
+        "lodash": "^3.10.0"
     },
     "devDependencies": {
         "babel-core": "~6.3.26",
