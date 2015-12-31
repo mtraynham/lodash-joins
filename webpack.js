@@ -42,7 +42,7 @@ const base = {
             query: {
                 cacheDirectory: true,
                 presets: ['es2015'],
-                plugins: []
+                plugins: ['transform-regenerator']
             }
         }]
     },
