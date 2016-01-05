@@ -1,7 +1,7 @@
 /*!
- *  lodash-joins - v1.0.3 - Thu Dec 31 2015 02:04:04 GMT-0500 (EST)
+ *  lodash-joins - v1.0.3 - Tue Jan 05 2016 02:56:29 GMT-0500 (EST)
  *  https://github.com/mtraynham/lodash-joins.git
- *  Copyright 2014-2015 Matt Traynham <skitch920@gmail.com>
+ *  Copyright 2014-2016 Matt Traynham <skitch920@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -237,7 +237,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	_.mixin({ 'nestedLoopRightAntiJoin': (0, _joinWrapper2.default)(_nestedLoopRightAntiJoin2.default) });
 	
+	// Temporary hack?  Don't know why the Babel folks are straying from the ES6 spec.
+	// https://phabricator.babeljs.io/T2212
+	// https://www.npmjs.com/package/babel-plugin-add-module-exports
+	//
+	// This is the only public facing default export, so I'm only making the change here.
+	// All of the other ones should be handled by babel directly and still work.
+	// appropriately.
 	exports.default = _;
+	
+	module.exports = exports['default'];
 
 /***/ },
 /* 1 */
