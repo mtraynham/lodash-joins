@@ -57,12 +57,4 @@ _.mixin({'nestedLoopRightSemiJoin': joinWrapper(nestedLoopRightSemiJoin)});
 import nestedLoopRightAntiJoin from './lib/nestedLoop/nestedLoopRightAntiJoin';
 _.mixin({'nestedLoopRightAntiJoin': joinWrapper(nestedLoopRightAntiJoin)});
 
-// Temporary hack?  Don't know why the Babel folks are straying from the ES6 spec.
-// https://phabricator.babeljs.io/T2212
-// https://www.npmjs.com/package/babel-plugin-add-module-exports
-//
-// This is the only public facing default export, so I'm only making the change here.
-// All of the other ones should be handled by babel directly and still work.
-// appropriately.
 export default _;
-module.exports = exports['default'];

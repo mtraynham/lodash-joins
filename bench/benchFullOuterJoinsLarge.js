@@ -3,5 +3,5 @@ import sortedMergeFullOuterJoin from '../lib/sortedMerge/sortedMergeFullOuterJoi
 import nestedLoopFullOuterJoin from '../lib/nestedLoop/nestedLoopFullOuterJoin';
 import joinBench from './util/joinBench';
 
-module.exports = joinBench('Full Outer Joins Large', 1000, hashFullOuterJoin,
+export default joinBench('Full Outer Joins Large', 1000, hashFullOuterJoin,
     sortedMergeFullOuterJoin, nestedLoopFullOuterJoin);
