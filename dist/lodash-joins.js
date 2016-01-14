@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v1.0.5 - Tue Jan 12 2016 15:55:54 GMT-0500 (EST)
+ *  lodash-joins - v1.1.0 - Wed Jan 13 2016 17:04:01 GMT-0500 (EST)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2016 Matt Traynham <skitch920@gmail.com>
  *
@@ -17,13 +17,13 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("lodash"), require("lodash/lang/isString"), require("lodash/lang/isArray"), require("lodash/utility/property"), require("lodash/array/flatten"), require("lodash/collection/map"), require("lodash/collection/reduce"), require("lodash/object/assign"), require("lodash/collection/filter"), require("lodash/collection/groupBy"), require("lodash/object/has"), require("lodash/collection/reduceRight"), require("lodash/object/values"), require("lodash/collection/indexBy"), require("lodash/collection/sortBy"), require("lodash/lang/isUndefined"), require("lodash/collection/some"), require("lodash/collection/every"));
+		module.exports = factory(require("lodash"), require("lodash/isString"), require("lodash/isArray"), require("lodash/property"), require("lodash/flatten"), require("lodash/map"), require("lodash/reduce"), require("lodash/assign"), require("lodash/filter"), require("lodash/groupBy"), require("lodash/has"), require("lodash/reduceRight"), require("lodash/values"), require("lodash/keyBy"), require("lodash/sortBy"), require("lodash/isUndefined"), require("lodash/some"), require("lodash/every"));
 	else if(typeof define === 'function' && define.amd)
-		define(["lodash", "lodash/lang/isString", "lodash/lang/isArray", "lodash/utility/property", "lodash/array/flatten", "lodash/collection/map", "lodash/collection/reduce", "lodash/object/assign", "lodash/collection/filter", "lodash/collection/groupBy", "lodash/object/has", "lodash/collection/reduceRight", "lodash/object/values", "lodash/collection/indexBy", "lodash/collection/sortBy", "lodash/lang/isUndefined", "lodash/collection/some", "lodash/collection/every"], factory);
+		define(["lodash", "lodash/isString", "lodash/isArray", "lodash/property", "lodash/flatten", "lodash/map", "lodash/reduce", "lodash/assign", "lodash/filter", "lodash/groupBy", "lodash/has", "lodash/reduceRight", "lodash/values", "lodash/keyBy", "lodash/sortBy", "lodash/isUndefined", "lodash/some", "lodash/every"], factory);
 	else if(typeof exports === 'object')
 		exports["_"] = factory(require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined));
 	else
-		root["_"] = factory(root["_"], root["_"]["isString"], root["_"]["isArray"], root["_"]["property"], root["_"]["flatten"], root["_"]["map"], root["_"]["reduce"], root["_"]["assign"], root["_"]["filter"], root["_"]["groupBy"], root["_"]["has"], root["_"]["reduceRight"], root["_"]["values"], root["_"]["indexBy"], root["_"]["sortBy"], root["_"]["isUndefined"], root["_"]["some"], root["_"]["every"]);
+		root["_"] = factory(root["_"], root["_"]["isString"], root["_"]["isArray"], root["_"]["property"], root["_"]["flatten"], root["_"]["map"], root["_"]["reduce"], root["_"]["assign"], root["_"]["filter"], root["_"]["groupBy"], root["_"]["has"], root["_"]["reduceRight"], root["_"]["values"], root["_"]["keyBy"], root["_"]["sortBy"], root["_"]["isUndefined"], root["_"]["some"], root["_"]["every"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_26__, __WEBPACK_EXTERNAL_MODULE_35__, __WEBPACK_EXTERNAL_MODULE_44__, __WEBPACK_EXTERNAL_MODULE_46__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -699,9 +699,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _has2 = _interopRequireDefault(_has);
 	
-	var _indexBy = __webpack_require__(20);
+	var _keyBy = __webpack_require__(20);
 	
-	var _indexBy2 = _interopRequireDefault(_indexBy);
+	var _keyBy2 = _interopRequireDefault(_keyBy);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -718,7 +718,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return [];
 	    }
-	    var index = (0, _indexBy2.default)(b, bAccessor);
+	    var index = (0, _keyBy2.default)(b, bAccessor);
 	    return (0, _filter2.default)(a, function (aDatum) {
 	        return (0, _has2.default)(index, aAccessor(aDatum));
 	    });
@@ -750,9 +750,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _has2 = _interopRequireDefault(_has);
 	
-	var _indexBy = __webpack_require__(20);
+	var _keyBy = __webpack_require__(20);
 	
-	var _indexBy2 = _interopRequireDefault(_indexBy);
+	var _keyBy2 = _interopRequireDefault(_keyBy);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -769,7 +769,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return a;
 	    }
-	    var index = (0, _indexBy2.default)(b, bAccessor);
+	    var index = (0, _keyBy2.default)(b, bAccessor);
 	    return (0, _filter2.default)(a, function (aDatum) {
 	        return !(0, _has2.default)(index, aAccessor(aDatum));
 	    });

@@ -1,7 +1,7 @@
 {
     "name": "lodash-joins",
     "description": "SQL-like joins using Lo-Dash",
-    "version": "1.0.5",
+    "version": "1.1.0",
     "authors": [
         {
             "name": "Matt Traynham",
@@ -30,6 +30,6 @@
     ],
     "main": "dist/lodash-joins.js",
     "dependencies": {
-        "lodash": "^3.10.0"
+        "lodash": "^4.0.0"
     }
 }

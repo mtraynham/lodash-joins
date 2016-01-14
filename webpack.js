@@ -1,7 +1,7 @@
 import pkg from './package';
-import isArray from 'lodash/lang/isArray';
-import merge from 'lodash/object/merge';
-import template from 'lodash/string/template';
+import isArray from 'lodash/isArray';
+import merge from 'lodash/merge';
+import template from 'lodash/template';
 import {readFileSync} from 'fs';
 import {sep} from 'path';
 import {optimize, BannerPlugin} from 'webpack';
@@ -14,7 +14,7 @@ const banner = template(readFileSync(__dirname + '/LICENSE_BANNER', 'utf8'))({
 const base = {
     externals: [
         // handle splitting modern lodash paths:
-        // import merge from 'lodash/object/merge'; -> _.merge
+        // import merge from 'lodash/merge'; -> _.merge
         (context, request, callback) => {
             if (/^lodash/.test(request)) {
                 let paths = request.split(sep);
