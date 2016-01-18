@@ -26,7 +26,7 @@
     ],
     "main": "dist/lodash-joins.js",
     "scripts": {
-        "test": "gulp coverage"
+        "test": "./node_modules/.bin/gulp coverage"
     },
     "dependencies": {
         "lodash": "^4.0.0"

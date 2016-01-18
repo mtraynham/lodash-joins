@@ -3,13 +3,8 @@ language: node_js
 node_js:
   - "4"
   - "5"
-before_install: 
-  - npm install -g gulp
-  - npm install -g bower
 install: 
   - npm install
-  - bower install
-before_script: gulp
 notifications:
   webhooks:
     urls:
