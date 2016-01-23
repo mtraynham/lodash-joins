@@ -1,4 +1,4 @@
 {
     "presets": ["es2015"],
-    "plugins": ["transform-regenerator", "add-module-exports"]
+    "plugins": ["add-module-exports"]
 }

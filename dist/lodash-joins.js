@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v1.1.0 - Wed Jan 13 2016 17:04:01 GMT-0500 (EST)
+ *  lodash-joins - v1.1.0 - Fri Jan 22 2016 09:14:34 GMT-0500 (EST)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2016 Matt Traynham <skitch920@gmail.com>
  *
@@ -1007,66 +1007,68 @@ return /******/ (function(modules) { // webpackBootstrap
 	function yieldRightSubList(sortedList, accessor) {
 	    var datum, tmpVal, i, val, r;
 	    return regeneratorRuntime.wrap(function yieldRightSubList$(_context) {
-	        while (1) switch (_context.prev = _context.next) {
-	            case 0:
-	                if (!(sortedList.length === 1)) {
-	                    _context.next = 5;
-	                    break;
-	                }
+	        while (1) {
+	            switch (_context.prev = _context.next) {
+	                case 0:
+	                    if (!(sortedList.length === 1)) {
+	                        _context.next = 5;
+	                        break;
+	                    }
 	
-	                _context.next = 3;
-	                return { r: sortedList, val: accessor(sortedList[sortedList.length - 1]) };
+	                    _context.next = 3;
+	                    return { r: sortedList, val: accessor(sortedList[sortedList.length - 1]) };
 	
-	            case 3:
-	                _context.next = 21;
-	                break;
-	
-	            case 5:
-	                if (!(sortedList.length > 1)) {
+	                case 3:
 	                    _context.next = 21;
 	                    break;
-	                }
 	
-	                datum = undefined, tmpVal = undefined, i = sortedList.length, val = accessor(datum = sortedList[--i]), r = [datum];
-	                // for each subsequent value, we'll yield when there is a
-	                // new tmpVal that is not equal the current val
+	                case 5:
+	                    if (!(sortedList.length > 1)) {
+	                        _context.next = 21;
+	                        break;
+	                    }
 	
-	            case 7:
-	                if (! i--) {
-	                    _context.next = 19;
+	                    datum = undefined, tmpVal = undefined, i = sortedList.length, val = accessor(datum = sortedList[--i]), r = [datum];
+	                    // for each subsequent value, we'll yield when there is a
+	                    // new tmpVal that is not equal the current val
+	
+	                case 7:
+	                    if (! i--) {
+	                        _context.next = 19;
+	                        break;
+	                    }
+	
+	                    tmpVal = accessor(sortedList[i]);
+	
+	                    if (!(val <= tmpVal && val >= tmpVal)) {
+	                        _context.next = 13;
+	                        break;
+	                    }
+	
+	                    r.unshift(sortedList[i]);
+	                    _context.next = 17;
 	                    break;
-	                }
 	
-	                tmpVal = accessor(sortedList[i]);
+	                case 13:
+	                    _context.next = 15;
+	                    return { r: r, val: val };
 	
-	                if (!(val <= tmpVal && val >= tmpVal)) {
-	                    _context.next = 13;
+	                case 15:
+	                    r = [sortedList[i]];
+	                    val = tmpVal;
+	
+	                case 17:
+	                    _context.next = 7;
 	                    break;
-	                }
 	
-	                r.unshift(sortedList[i]);
-	                _context.next = 17;
-	                break;
+	                case 19:
+	                    _context.next = 21;
+	                    return { r: r, val: val };
 	
-	            case 13:
-	                _context.next = 15;
-	                return { r: r, val: val };
-	
-	            case 15:
-	                r = [sortedList[i]];
-	                val = tmpVal;
-	
-	            case 17:
-	                _context.next = 7;
-	                break;
-	
-	            case 19:
-	                _context.next = 21;
-	                return { r: r, val: val };
-	
-	            case 21:
-	            case 'end':
-	                return _context.stop();
+	                case 21:
+	                case 'end':
+	                    return _context.stop();
+	            }
 	        }
 	    }, _marked[0], this);
 	}

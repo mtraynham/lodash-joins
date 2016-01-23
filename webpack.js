@@ -38,12 +38,7 @@ const base = {
         loaders: [{
             test: /\.js$/,
             exclude: /(node_modules|bower_components)/,
-            loader: 'babel-loader',
-            query: {
-                cacheDirectory: true,
-                presets: ['es2015'],
-                plugins: ['transform-regenerator', 'add-module-exports']
-            }
+            loader: 'babel-loader'
         }]
     },
     devtool: 'source-map'
