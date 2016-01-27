@@ -38,6 +38,7 @@
         "babel-plugin-add-module-exports": "~0.1.2",
         "babel-preset-es2015": "~6.3.13",
         "chai": "~3.4.1",
+        "chance": "~0.8.0",
         "gulp": "~3.9.0",
         "gulp-bench": "~1.1.0",
         "gulp-bump": "~1.0.0",

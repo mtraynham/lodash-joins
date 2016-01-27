@@ -1,4 +1,4 @@
-import {generateRandomObjectArray} from './random';
+import Chance from 'Chance';
 
 /**
  * Generate a join bench test.
@@ -11,16 +11,10 @@ import {generateRandomObjectArray} from './random';
  * @return {BenchmarkSuite}
  */
 export default function joinBench (name, size, hashJoin, sortedMergeJoin, nestedLoopJoin) {
-    let spec = [
-            {
-                field: 'id',
-                type: 'string',
-                domain: ['a', 'e', 'i', 'o', 'u', 'y'],
-                length: 1
-            }
-        ],
-        left = generateRandomObjectArray(spec, size),
-        right = generateRandomObjectArray(spec, size),
+    let chance = new Chance();
+    chance.mixin({'row': () => { return {'id': chance.character({pool: 'aeiouy'})}; }});
+    let left = chance.n(chance.row, size),
+        right = chance.n(chance.row, size),
         accessor = (obj) => obj.id;
     return {
         name: name,
