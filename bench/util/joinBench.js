@@ -1,4 +1,4 @@
-import Chance from 'Chance';
+import Chance from 'chance';
 
 /**
  * Generate a join bench test.
