@@ -1,7 +1,6 @@
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {Instrumenter} from 'isparta';
-import jshintStylish from 'jshint-stylish';
 import webpackStream from 'webpack-stream';
 import * as wpack from './webpack';
 
@@ -16,26 +15,25 @@ const test = () =>
     gulp.src(['test/unit/*.js'], {read: false})
         .pipe($.mocha());
 
-const bump = (type) =>
+const bump = type =>
     gulp.src([
-            './bower.json',
-            './package.json'
-        ])
-        .pipe($.bump({type: type}))
-        .pipe(gulp.dest('./'));
+        './bower.json',
+        './package.json'
+    ])
+    .pipe($.bump({type: type}))
+    .pipe(gulp.dest('./'));
 
 // Lint Task
 gulp.task('lint', () =>
     gulp.src([
-            'gulpfile.babel.js',
-            'index.js',
-            'webpack.js',
-            '{bench,lib,test}/**/*.js'
-        ])
-        .pipe($.jscs())
-        .pipe($.jscs.reporter())
-        .pipe($.jshint())
-        .pipe($.jshint.reporter(jshintStylish)));
+        'gulpfile.babel.js',
+        'index.js',
+        'webpack.js',
+        '{bench,lib,test}/**/*.js'
+    ])
+    .pipe($.eslint())
+    .pipe($.eslint.format())
+    .pipe($.eslint.failAfterError()));
 
 // Build Task
 gulp.task('build', ['lint'],

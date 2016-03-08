@@ -8,14 +8,14 @@ import Chance from 'chance';
  * @param  {Function} hashJoin
  * @param  {Function} sortedMergeJoin
  * @param  {Function} nestedLoopJoin
- * @return {BenchmarkSuite}
+ * @return {Benchmark.Suite}
  */
 export default function joinBench (name, size, hashJoin, sortedMergeJoin, nestedLoopJoin) {
     let chance = new Chance();
-    chance.mixin({'row': () => { return {'id': chance.character({pool: 'aeiouy'})}; }});
+    chance.mixin({row: () => ({id: chance.character({pool: 'aeiouy'})})});
     let left = chance.n(chance.row, size),
         right = chance.n(chance.row, size),
-        accessor = (obj) => obj.id;
+        accessor = obj => obj.id;
     return {
         name: name,
         tests: {

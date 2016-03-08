@@ -23,7 +23,7 @@ describe('Hash Joins', () => {
             {id: 'f', right: 5},
             {id: 'g', right: 6}
         ],
-        accessor = (obj) => obj.id;
+        accessor = obj => obj.id;
     describe('#hashFullOuterJoin()', () => {
         let expectedA = [
                 {id: 'a', right: 0},

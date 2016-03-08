@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "amd": true,
+        "es6": true,
+        "mocha": true
+    },
+    "extends": "google",
+    "rules": {
+        "max-len": [2, 140],
+        "indent": [2, 4, {"SwitchCase": 1}],
+        "one-var": 0,
+        "space-before-function-paren": [2, "always"],
+        "valid-jsdoc": [2, {
+            "requireParamDescription": false,
+            "requireReturnDescription": false
+        }]
+    }
+}

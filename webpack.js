@@ -3,10 +3,10 @@ import isArray from 'lodash/isArray';
 import merge from 'lodash/merge';
 import template from 'lodash/template';
 import {readFileSync} from 'fs';
-import {sep} from 'path';
+import {join, sep} from 'path';
 import {optimize, BannerPlugin} from 'webpack';
 
-const banner = template(readFileSync(__dirname + '/LICENSE_BANNER', 'utf8'))({
+const banner = template(readFileSync(join(__dirname, 'LICENSE_BANNER'), 'utf8'))({
     pkg: pkg,
     date: new Date()
 });
@@ -71,4 +71,4 @@ export const test = merge({}, base, {
     output: {
         filename: 'test.js'
     }
-}, (a, b) => isArray(a) ? a.concat(b) : void 0);
+}, (a, b) => isArray(a) ? a.concat(b) : undefined);

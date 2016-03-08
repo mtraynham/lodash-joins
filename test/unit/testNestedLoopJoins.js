@@ -23,7 +23,7 @@ describe('Nested Loop Joins', () => {
             {id: 'f', right: 5},
             {id: 'g', right: 6}
         ],
-        accessor = (obj) => obj.id;
+        accessor = obj => obj.id;
     describe('#nestedLoopFullOuterJoin()', () => {
         let expectedA = [
                 {id: 'c', left: 0, right: 2},
