@@ -7,7 +7,7 @@ import {join, sep} from 'path';
 import {optimize, BannerPlugin} from 'webpack';
 
 const banner = template(readFileSync(join(__dirname, 'LICENSE_BANNER'), 'utf8'))({
-    pkg: pkg,
+    pkg,
     date: new Date()
 });
 
@@ -17,7 +17,7 @@ const base = {
         // import merge from 'lodash/merge'; -> _.merge
         (context, request, callback) => {
             if (/^lodash/.test(request)) {
-                let paths = request.split(sep);
+                const paths = request.split(sep);
                 return callback(null, {
                     root: ['_'].concat(paths.length > 1 ? [paths[paths.length - 1]] : []),
                     commonJs: request,
@@ -26,7 +26,7 @@ const base = {
                     toJSON: () => request // Fixes the source map output (sort of)
                 });
             }
-            callback();
+            return callback();
         }
     ],
     output: {

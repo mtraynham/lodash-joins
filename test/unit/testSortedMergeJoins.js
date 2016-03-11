@@ -9,7 +9,7 @@ import sortedMergeRightOuterJoin from '../../lib/sortedMerge/sortedMergeRightOut
 import sortedMergeRightSemiJoin from '../../lib/sortedMerge/sortedMergeRightSemiJoin';
 
 describe('Sorted Merge Joins', () => {
-    let left = [
+    const left = [
             {id: 'c', left: 0},
             {id: 'c', left: 1},
             {id: 'e', left: 2}
@@ -25,7 +25,7 @@ describe('Sorted Merge Joins', () => {
         ],
         accessor = obj => obj.id;
     describe('#sortedMergeFullOuterJoin()', () => {
-        let expectedA = [
+        const expectedA = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
                 {id: 'c', left: 0, right: 2},
@@ -64,7 +64,7 @@ describe('Sorted Merge Joins', () => {
             assert.lengthOf(resultC, 0));
     });
     describe('#sortedMergeInnerJoin()', () => {
-        let expectedA = [
+        const expectedA = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
                 {id: 'c', left: 1, right: 2},
@@ -91,7 +91,7 @@ describe('Sorted Merge Joins', () => {
             assert.lengthOf(resultC, 0));
     });
     describe('#sortedMergeLeftAntiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'e', left: 2}
             ],
             result = sortedMergeLeftAntiJoin(left, accessor, right, accessor),
@@ -104,7 +104,7 @@ describe('Sorted Merge Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#sortedMergeLeftOuterJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
                 {id: 'c', left: 1, right: 2},
@@ -121,7 +121,7 @@ describe('Sorted Merge Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#sortedMergeLeftSemiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'c', left: 0},
                 {id: 'c', left: 1}
             ],
@@ -135,7 +135,7 @@ describe('Sorted Merge Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#sortedMergeRightAntiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
                 {id: 'd', right: 4},
@@ -154,7 +154,7 @@ describe('Sorted Merge Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#sortedMergeRightOuterJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
                 {id: 'c', right: 2, left: 0},
@@ -177,7 +177,7 @@ describe('Sorted Merge Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#sortedMergeRightSemiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'c', right: 2},
                 {id: 'c', right: 3}
             ],

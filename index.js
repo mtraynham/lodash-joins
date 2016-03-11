@@ -1,10 +1,10 @@
 import {runInContext} from 'lodash';
 import joinWrapper from './lib/joinWrapper';
 
-let _ = runInContext();
+const _ = runInContext();
 
 import cartesianProduct from './lib/cartesianProduct';
-_.mixin({cartesianProduct: cartesianProduct});
+_.mixin({cartesianProduct});
 
 import hashFullOuterJoin from './lib/hash/hashFullOuterJoin';
 _.mixin({hashFullOuterJoin: joinWrapper(hashFullOuterJoin)});

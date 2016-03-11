@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v2.0.1 - Tue Mar 08 2016 11:16:26 GMT-0500 (EST)
+ *  lodash-joins - v2.0.1 - Thu Mar 10 2016 21:32:56 GMT-0500 (EST)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2016 Matt Traynham <skitch920@gmail.com>
  *
@@ -454,10 +454,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return a.concat(b);
 	    }
-	    var seen = {},
-	        index = void 0,
-	        result = void 0,
-	        value = void 0;
+	    var seen = {};
+	    var index = undefined,
+	        result = undefined,
+	        value = undefined;
 	    if (a.length < b.length) {
 	        index = (0, _groupBy2.default)(a, aAccessor);
 	        result = (0, _reduceRight2.default)(b, function (previous, bDatum) {
@@ -570,12 +570,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return [];
 	    }
-	    var index = void 0,
-	        value = void 0;
+	    var index = undefined,
+	        value = undefined;
 	    if (a.length < b.length) {
 	        index = (0, _groupBy2.default)(a, aAccessor);
 	        return (0, _reduceRight2.default)(b, function (previous, bDatum) {
-	            if ((0, _has2.default)(index, value = bAccessor(bDatum))) {
+	            value = bAccessor(bDatum);
+	            if ((0, _has2.default)(index, value)) {
 	                return (0, _map2.default)(index[value], function (aDatum) {
 	                    return (0, _assign2.default)({}, aDatum, bDatum);
 	                }).concat(previous);
@@ -585,7 +586,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    index = (0, _groupBy2.default)(b, bAccessor);
 	    return (0, _reduceRight2.default)(a, function (previous, aDatum) {
-	        if ((0, _has2.default)(index, value = aAccessor(aDatum))) {
+	        value = aAccessor(aDatum);
+	        if ((0, _has2.default)(index, value)) {
 	            return (0, _map2.default)(index[value], function (bDatum) {
 	                return (0, _assign2.default)({}, aDatum, bDatum);
 	            }).concat(previous);
@@ -655,8 +657,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return a;
 	    }
-	    var index = void 0,
-	        value = void 0;
+	    var index = undefined,
+	        value = undefined;
 	    if (a.length < b.length) {
 	        var _ret = function () {
 	            var seen = {};
@@ -680,7 +682,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    index = (0, _groupBy2.default)(b, bAccessor);
 	    return (0, _reduceRight2.default)(a, function (previous, datum) {
-	        if ((0, _has2.default)(index, value = aAccessor(datum))) {
+	        value = aAccessor(datum);
+	        if ((0, _has2.default)(index, value)) {
 	            return (0, _map2.default)(index[value], function (oDatum) {
 	                return (0, _assign2.default)({}, datum, oDatum);
 	            }).concat(previous);
@@ -912,12 +915,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return a.concat(b);
 	    }
-	    a = (0, _sortBy2.default)(a, aAccessor);
-	    b = (0, _sortBy2.default)(b, bAccessor);
+	    var aSorted = (0, _sortBy2.default)(a, aAccessor),
+	        bSorted = (0, _sortBy2.default)(b, bAccessor),
+	        aGenerator = (0, _yieldRightSubList2.default)(aSorted, aAccessor),
+	        bGenerator = (0, _yieldRightSubList2.default)(bSorted, bAccessor);
 	    var r = [],
-	        aGenerator = (0, _yieldRightSubList2.default)(a, aAccessor),
 	        aDatums = aGenerator.next().value,
-	        bGenerator = (0, _yieldRightSubList2.default)(b, bAccessor),
 	        bDatums = bGenerator.next().value;
 	    while (aDatums && bDatums) {
 	        if (aDatums.val > bDatums.val) {
@@ -1017,7 +1020,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @return {undefined}
 	 */
 	function yieldRightSubList(sortedList, accessor) {
-	    var datum, tmpVal, i, val, r;
+	    var i, r, val, tmpVal;
 	    return regeneratorRuntime.wrap(function yieldRightSubList$(_context) {
 	        while (1) {
 	            switch (_context.prev = _context.next) {
@@ -1040,7 +1043,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        break;
 	                    }
 	
-	                    datum = void 0, tmpVal = void 0, i = sortedList.length, val = accessor(datum = sortedList[--i]), r = [datum];
+	                    i = sortedList.length, r = [sortedList[--i]], val = accessor(r[0]);
 	                    // for each subsequent value, we'll yield when there is a
 	                    // new tmpVal that is not equal the current val
 	
@@ -1884,12 +1887,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return [];
 	    }
-	    a = (0, _sortBy2.default)(a, aAccessor);
-	    b = (0, _sortBy2.default)(b, bAccessor);
+	    var aSorted = (0, _sortBy2.default)(a, aAccessor),
+	        bSorted = (0, _sortBy2.default)(b, bAccessor),
+	        aGenerator = (0, _yieldRightSubList2.default)(aSorted, aAccessor),
+	        bGenerator = (0, _yieldRightSubList2.default)(bSorted, bAccessor);
 	    var r = [],
-	        aGenerator = (0, _yieldRightSubList2.default)(a, aAccessor),
 	        aDatums = aGenerator.next().value,
-	        bGenerator = (0, _yieldRightSubList2.default)(b, bAccessor),
 	        bDatums = bGenerator.next().value;
 	    while (aDatums && bDatums) {
 	        if (aDatums.val > bDatums.val) {
@@ -1943,12 +1946,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return a;
 	    }
-	    a = (0, _sortBy2.default)(a, aAccessor);
-	    b = (0, _sortBy2.default)(b, bAccessor);
+	    var aSorted = (0, _sortBy2.default)(a, aAccessor),
+	        bSorted = (0, _sortBy2.default)(b, bAccessor),
+	        aGenerator = (0, _yieldRightSubList2.default)(aSorted, aAccessor),
+	        bGenerator = (0, _yieldRightSubList2.default)(bSorted, bAccessor);
 	    var r = [],
-	        aGenerator = (0, _yieldRightSubList2.default)(a, aAccessor),
 	        aDatums = aGenerator.next().value,
-	        bGenerator = (0, _yieldRightSubList2.default)(b, bAccessor),
 	        bDatums = bGenerator.next().value;
 	    while (aDatums && bDatums) {
 	        if (aDatums.val > bDatums.val) {
@@ -1985,9 +1988,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _sortBy2 = _interopRequireDefault(_sortBy);
 	
-	var _undefined = __webpack_require__(34);
+	var _isUndefined = __webpack_require__(34);
 	
-	var _undefined2 = _interopRequireDefault(_undefined);
+	var _isUndefined2 = _interopRequireDefault(_isUndefined);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -2003,21 +2006,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return [];
 	    }
-	    a = (0, _sortBy2.default)(a, aAccessor);
-	    b = (0, _sortBy2.default)(b, bAccessor);
-	    var r = [],
-	        aDatum = a.pop(),
-	        bDatum = b.pop(),
+	    var aSorted = (0, _sortBy2.default)(a, aAccessor),
+	        bSorted = (0, _sortBy2.default)(b, bAccessor),
+	        r = [];
+	    var aDatum = aSorted.pop(),
+	        bDatum = bSorted.pop(),
 	        aVal = aAccessor(aDatum),
 	        bVal = bAccessor(bDatum);
 	    while (aDatum && bDatum) {
 	        if (aVal > bVal) {
-	            aVal = (0, _undefined2.default)(aDatum = a.pop(), aAccessor);
+	            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
 	        } else if (aVal < bVal) {
-	            bVal = (0, _undefined2.default)(bDatum = b.pop(), bAccessor);
+	            bVal = (0, _isUndefined2.default)(bDatum = bSorted.pop(), bAccessor);
 	        } else {
 	            r.unshift(aDatum);
-	            aVal = (0, _undefined2.default)(aDatum = a.pop(), aAccessor);
+	            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
 	        }
 	    }
 	    return r;
@@ -2073,9 +2076,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _sortBy2 = _interopRequireDefault(_sortBy);
 	
-	var _undefined = __webpack_require__(34);
+	var _isUndefined = __webpack_require__(34);
 	
-	var _undefined2 = _interopRequireDefault(_undefined);
+	var _isUndefined2 = _interopRequireDefault(_isUndefined);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -2091,27 +2094,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return a;
 	    }
-	    a = (0, _sortBy2.default)(a, aAccessor);
-	    b = (0, _sortBy2.default)(b, bAccessor);
-	    var r = [],
-	        aDatum = a.pop(),
-	        bDatum = b.pop(),
+	    var aSorted = (0, _sortBy2.default)(a, aAccessor),
+	        bSorted = (0, _sortBy2.default)(b, bAccessor),
+	        r = [];
+	    var aDatum = aSorted.pop(),
+	        bDatum = bSorted.pop(),
 	        aVal = aAccessor(aDatum),
 	        bVal = bAccessor(bDatum);
 	    while (aDatum && bDatum) {
 	        if (aVal > bVal) {
 	            r.unshift(aDatum);
-	            aVal = (0, _undefined2.default)(aDatum = a.pop(), aAccessor);
+	            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
 	        } else if (aVal < bVal) {
-	            bVal = (0, _undefined2.default)(bDatum = b.pop(), bAccessor);
+	            bVal = (0, _isUndefined2.default)(bDatum = bSorted.pop(), bAccessor);
 	        } else {
-	            aVal = (0, _undefined2.default)(aDatum = a.pop(), aAccessor);
+	            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
 	        }
 	    }
 	    if (aDatum) {
 	        r.unshift(aDatum);
 	    }
-	    return a.concat(r);
+	    return aSorted.concat(r);
 	}
 	module.exports = exports['default'];
 
@@ -2246,15 +2249,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return a.concat(b);
 	    }
-	    var value = void 0,
-	        otherValue = void 0,
-	        seen = {},
-	        tmpLength = void 0;
+	    var seen = {};
+	    var value = undefined,
+	        otherValue = undefined,
+	        tmpLength = undefined,
+	        output = undefined;
 	    if (a.length < b.length) {
 	        return (0, _reduceRight2.default)(a, function (previous, aDatum) {
 	            value = aAccessor(aDatum);
 	            tmpLength = previous.length;
-	            previous = (0, _reduceRight2.default)(b, function (oPrevious, bDatum, bIndex) {
+	            output = (0, _reduceRight2.default)(b, function (oPrevious, bDatum, bIndex) {
 	                otherValue = bAccessor(bDatum);
 	                if (value <= otherValue && value >= otherValue) {
 	                    seen[bIndex] = true;
@@ -2262,10 +2266,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                return oPrevious;
 	            }, []).concat(previous);
-	            if (tmpLength === previous.length) {
-	                previous.unshift(aDatum);
+	            if (tmpLength === output.length) {
+	                output.unshift(aDatum);
 	            }
-	            return previous;
+	            return output;
 	        }, []).concat((0, _filter2.default)(b, function (bDatum, bIndex) {
 	            return !(0, _has2.default)(seen, bIndex);
 	        }));
@@ -2273,7 +2277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return (0, _reduceRight2.default)(b, function (previous, bDatum) {
 	        value = bAccessor(bDatum);
 	        tmpLength = previous.length;
-	        previous = (0, _reduceRight2.default)(a, function (oPrevious, aDatum, aIndex) {
+	        output = (0, _reduceRight2.default)(a, function (oPrevious, aDatum, aIndex) {
 	            otherValue = aAccessor(aDatum);
 	            if (value <= otherValue && value >= otherValue) {
 	                seen[aIndex] = true;
@@ -2281,10 +2285,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            return oPrevious;
 	        }, []).concat(previous);
-	        if (tmpLength === previous.length) {
-	            previous.unshift(bDatum);
+	        if (tmpLength === output.length) {
+	            output.unshift(bDatum);
 	        }
-	        return previous;
+	        return output;
 	    }, []).concat((0, _filter2.default)(a, function (aDatum, aIndex) {
 	        return !(0, _has2.default)(seen, aIndex);
 	    }));
@@ -2324,13 +2328,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return [];
 	    }
-	    var value = void 0,
-	        otherValue = void 0;
 	    if (a.length < b.length) {
 	        return (0, _reduceRight2.default)(a, function (previous, aDatum) {
-	            value = aAccessor(aDatum);
+	            var value = aAccessor(aDatum);
 	            return (0, _reduceRight2.default)(b, function (oPrevious, bDatum) {
-	                otherValue = bAccessor(bDatum);
+	                var otherValue = bAccessor(bDatum);
 	                if (value <= otherValue && value >= otherValue) {
 	                    oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
 	                }
@@ -2339,9 +2341,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }, []);
 	    }
 	    return (0, _reduceRight2.default)(b, function (previous, bDatum) {
-	        value = bAccessor(bDatum);
+	        var value = bAccessor(bDatum);
 	        return (0, _reduceRight2.default)(a, function (oPrevious, aDatum) {
-	            otherValue = aAccessor(aDatum);
+	            var otherValue = aAccessor(aDatum);
 	            if (value <= otherValue && value >= otherValue) {
 	                oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
 	            }
@@ -2360,9 +2362,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-	
 	exports.default = nestedLoopLeftOuterJoin;
 	
 	var _assign = __webpack_require__(11);
@@ -2395,37 +2394,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return a;
 	    }
-	    var value = void 0,
-	        otherValue = void 0;
 	    if (a.length < b.length) {
-	        var _ret = function () {
-	            var tmpLength = void 0;
-	            return {
-	                v: (0, _reduceRight2.default)(a, function (previous, aDatum) {
-	                    value = aAccessor(aDatum);
-	                    tmpLength = previous.length;
-	                    previous = (0, _reduceRight2.default)(b, function (oPrevious, bDatum) {
-	                        otherValue = bAccessor(bDatum);
-	                        if (value <= otherValue && value >= otherValue) {
-	                            oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
-	                        }
-	                        return oPrevious;
-	                    }, []).concat(previous);
-	                    if (tmpLength === previous.length) {
-	                        previous.unshift(aDatum);
-	                    }
-	                    return previous;
-	                }, [])
-	            };
-	        }();
-	
-	        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	        return (0, _reduceRight2.default)(a, function (previous, aDatum) {
+	            var value = aAccessor(aDatum),
+	                tmpLength = previous.length,
+	                output = (0, _reduceRight2.default)(b, function (oPrevious, bDatum) {
+	                var otherValue = bAccessor(bDatum);
+	                if (value <= otherValue && value >= otherValue) {
+	                    oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
+	                }
+	                return oPrevious;
+	            }, []).concat(previous);
+	            if (tmpLength === output.length) {
+	                output.unshift(aDatum);
+	            }
+	            return output;
+	        }, []);
 	    }
 	    var seen = {};
 	    return (0, _reduceRight2.default)(b, function (previous, bDatum) {
-	        value = bAccessor(bDatum);
+	        var value = bAccessor(bDatum);
 	        return (0, _reduceRight2.default)(a, function (oPrevious, aDatum, aIndex) {
-	            otherValue = aAccessor(aDatum);
+	            var otherValue = aAccessor(aDatum);
 	            if (value <= otherValue && value >= otherValue) {
 	                seen[aIndex] = true;
 	                oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
@@ -2471,12 +2461,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return [];
 	    }
-	    var value = void 0,
-	        otherValue = void 0;
 	    return (0, _filter2.default)(a, function (aDatum) {
-	        value = aAccessor(aDatum);
+	        var value = aAccessor(aDatum);
 	        return (0, _some2.default)(b, function (bDatum) {
-	            otherValue = bAccessor(bDatum);
+	            var otherValue = bAccessor(bDatum);
 	            return value <= otherValue && value >= otherValue;
 	        });
 	    });
@@ -2522,12 +2510,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (a.length < 1 || b.length < 1) {
 	        return a;
 	    }
-	    var value = void 0,
-	        otherValue = void 0;
 	    return (0, _filter2.default)(a, function (aDatum) {
-	        value = aAccessor(aDatum);
+	        var value = aAccessor(aDatum);
 	        return (0, _every2.default)(b, function (bDatum) {
-	            otherValue = bAccessor(bDatum);
+	            var otherValue = bAccessor(bDatum);
 	            return !(value <= otherValue && value >= otherValue);
 	        });
 	    });

@@ -9,7 +9,7 @@ import nestedLoopRightOuterJoin from '../../lib/nestedLoop/nestedLoopRightOuterJ
 import nestedLoopRightSemiJoin from '../../lib/nestedLoop/nestedLoopRightSemiJoin';
 
 describe('Nested Loop Joins', () => {
-    let left = [
+    const left = [
             {id: 'c', left: 0},
             {id: 'c', left: 1},
             {id: 'e', left: 2}
@@ -25,7 +25,7 @@ describe('Nested Loop Joins', () => {
         ],
         accessor = obj => obj.id;
     describe('#nestedLoopFullOuterJoin()', () => {
-        let expectedA = [
+        const expectedA = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
                 {id: 'c', left: 1, right: 2},
@@ -64,7 +64,7 @@ describe('Nested Loop Joins', () => {
             assert.lengthOf(resultC, 0));
     });
     describe('#nestedLoopInnerJoin()', () => {
-        let expectedA = [
+        const expectedA = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
                 {id: 'c', left: 1, right: 2},
@@ -91,7 +91,7 @@ describe('Nested Loop Joins', () => {
             assert.lengthOf(resultC, 0));
     });
     describe('#nestedLoopLeftAntiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'e', left: 2}
             ],
             result = nestedLoopLeftAntiJoin(left, accessor, right, accessor),
@@ -104,7 +104,7 @@ describe('Nested Loop Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#nestedLoopLeftOuterJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
                 {id: 'c', left: 1, right: 2},
@@ -121,7 +121,7 @@ describe('Nested Loop Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#nestedLoopLeftSemiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'c', left: 0},
                 {id: 'c', left: 1}
             ],
@@ -135,7 +135,7 @@ describe('Nested Loop Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#nestedLoopRightAntiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
                 {id: 'd', right: 4},
@@ -154,7 +154,7 @@ describe('Nested Loop Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#nestedLoopRightOuterJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'c', right: 2, left: 0},
                 {id: 'c', right: 3, left: 0},
                 {id: 'c', right: 2, left: 1},
@@ -177,7 +177,7 @@ describe('Nested Loop Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#nestedLoopRightSemiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'c', right: 2},
                 {id: 'c', right: 3}
             ],

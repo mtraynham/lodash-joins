@@ -11,13 +11,13 @@ import Chance from 'chance';
  * @return {Benchmark.Suite}
  */
 export default function joinBench (name, size, hashJoin, sortedMergeJoin, nestedLoopJoin) {
-    let chance = new Chance();
+    const chance = new Chance();
     chance.mixin({row: () => ({id: chance.character({pool: 'aeiouy'})})});
-    let left = chance.n(chance.row, size),
+    const left = chance.n(chance.row, size),
         right = chance.n(chance.row, size),
         accessor = obj => obj.id;
     return {
-        name: name,
+        name,
         tests: {
             'Hash Join': () => hashJoin(left, accessor, right, accessor),
             'Sorted Merge Join': () => sortedMergeJoin(left, accessor, right, accessor),

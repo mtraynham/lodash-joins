@@ -20,7 +20,7 @@ const bump = type =>
         './bower.json',
         './package.json'
     ])
-    .pipe($.bump({type: type}))
+    .pipe($.bump({type}))
     .pipe(gulp.dest('./'));
 
 // Lint Task

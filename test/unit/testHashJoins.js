@@ -9,7 +9,7 @@ import hashRightOuterJoin from '../../lib/hash/hashRightOuterJoin';
 import hashRightSemiJoin from '../../lib/hash/hashRightSemiJoin';
 
 describe('Hash Joins', () => {
-    let left = [
+    const left = [
             {id: 'c', left: 0},
             {id: 'c', left: 1},
             {id: 'e', left: 2}
@@ -25,7 +25,7 @@ describe('Hash Joins', () => {
         ],
         accessor = obj => obj.id;
     describe('#hashFullOuterJoin()', () => {
-        let expectedA = [
+        const expectedA = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
                 {id: 'c', left: 0, right: 2},
@@ -64,7 +64,7 @@ describe('Hash Joins', () => {
             assert.lengthOf(resultC, 0));
     });
     describe('#hashInnerJoin()', () => {
-        let expectedA = [
+        const expectedA = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 1, right: 2},
                 {id: 'c', left: 0, right: 3},
@@ -91,7 +91,7 @@ describe('Hash Joins', () => {
             assert.lengthOf(resultC, 0));
     });
     describe('#hashLeftAntiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'e', left: 2}
             ],
             result = hashLeftAntiJoin(left, accessor, right, accessor),
@@ -104,7 +104,7 @@ describe('Hash Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#hashLeftOuterJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 1, right: 2},
                 {id: 'c', left: 0, right: 3},
@@ -121,7 +121,7 @@ describe('Hash Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#hashLeftSemiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'c', left: 0},
                 {id: 'c', left: 1}
             ],
@@ -135,7 +135,7 @@ describe('Hash Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#hashRightAntiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
                 {id: 'd', right: 4},
@@ -154,7 +154,7 @@ describe('Hash Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#hashRightOuterJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
                 {id: 'c', right: 2, left: 0},
@@ -177,7 +177,7 @@ describe('Hash Joins', () => {
             assert.lengthOf(resultB, 0));
     });
     describe('#hashRightSemiJoin()', () => {
-        let expected = [
+        const expected = [
                 {id: 'c', right: 2},
                 {id: 'c', right: 3}
             ],
