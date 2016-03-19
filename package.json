@@ -32,7 +32,7 @@
         "lodash": "^4"
     },
     "devDependencies": {
-        "babel-core": "~6.6",
+        "babel-core": "~6.7",
         "babel-loader": "~6.2",
         "babel-regenerator-runtime": "~6.5",
         "babel-plugin-add-module-exports": "~0.1",
@@ -43,7 +43,7 @@
         "eslint-config-airbnb": "~6.1",
         "gulp": "~3.9",
         "gulp-bench": "~1.1",
-        "gulp-bump": "~1.0",
+        "gulp-bump": "~2.0",
         "gulp-coveralls": "~0.1",
         "gulp-eslint": "~2.0",
         "gulp-istanbul": "~0.10",
