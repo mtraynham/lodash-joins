@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v2.0.1 - Sat Mar 19 2016 09:39:58 GMT-0400 (EDT)
+ *  lodash-joins - v2.0.1 - Fri Mar 25 2016 13:14:38 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2016 Matt Traynham <skitch920@gmail.com>
  *
@@ -248,9 +248,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * @callback JoinFunction
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 
@@ -445,9 +445,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Hash full outer join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function hashFullOuterJoin(a, aAccessor, b, bAccessor) {
@@ -561,9 +561,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Hash inner join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function hashInnerJoin(a, aAccessor, b, bAccessor) {
@@ -648,9 +648,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Hash left outer join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function hashLeftOuterJoin(a, aAccessor, b, bAccessor) {
@@ -722,9 +722,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Hash left semi join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function hashLeftSemiJoin(a, aAccessor, b, bAccessor) {
@@ -772,9 +772,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Hash left anti join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function hashLeftAntiJoin(a, aAccessor, b, bAccessor) {
@@ -808,9 +808,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Hash right outer join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function hashRightOuterJoin(a, aAccessor, b, bAccessor) {
@@ -838,9 +838,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Hash right semi join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function hashRightSemiJoin(a, aAccessor, b, bAccessor) {
@@ -868,9 +868,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Hash right anti join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function hashRightAntiJoin(a, aAccessor, b, bAccessor) {
@@ -906,9 +906,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Sorted merge left outer join.  Returns a new array.
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function sortedMergeLeftOuterJoin(a, aAccessor, b, bAccessor) {
@@ -1878,9 +1878,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Sorted merge inner join.  Returns a new array.
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function sortedMergeInnerJoin(a, aAccessor, b, bAccessor) {
@@ -1937,9 +1937,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Sorted merge left outer join.  Returns a new array.
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function sortedMergeLeftOuterJoin(a, aAccessor, b, bAccessor) {
@@ -1997,9 +1997,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Sorted merge left semi join.  Returns a new array.
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function sortedMergeLeftSemiJoin(a, aAccessor, b, bAccessor) {
@@ -2085,9 +2085,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Sorted merge left semi join.  Returns a new array.
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function sortedMergeLeftAntiJoin(a, aAccessor, b, bAccessor) {
@@ -2138,9 +2138,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Sorted merge right outer join.  Returns the b-array reference.
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function sortedMergeRightOuterJoin(a, aAccessor, b, bAccessor) {
@@ -2168,9 +2168,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Sorted merge right semi join.  Returns the b-array reference.
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function sortedMergeRightSemiJoin(a, aAccessor, b, bAccessor) {
@@ -2198,9 +2198,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Sorted merge right semi join.  Returns the b-array reference.
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function sortedMergeRightAntiJoin(a, aAccessor, b, bAccessor) {
@@ -2240,9 +2240,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Nested loop left semi join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function nestedLoopFullOuterJoin(a, aAccessor, b, bAccessor) {
@@ -2319,9 +2319,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Nested loop inner join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function nestedLoopInnerJoin(a, aAccessor, b, bAccessor) {
@@ -2385,9 +2385,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Nested loop left outer join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function nestedLoopLeftOuterJoin(a, aAccessor, b, bAccessor) {
@@ -2452,9 +2452,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Nested loop left semi join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function nestedLoopLeftSemiJoin(a, aAccessor, b, bAccessor) {
@@ -2501,9 +2501,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Nested loop left anti join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function nestedLoopLeftAntiJoin(a, aAccessor, b, bAccessor) {
@@ -2546,9 +2546,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Nested loop right outer join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function nestedLoopRightOuterJoin(a, aAccessor, b, bAccessor) {
@@ -2576,9 +2576,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Nested loop right semi join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function nestedLoopRightSemiJoin(a, aAccessor, b, bAccessor) {
@@ -2606,9 +2606,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Nested loop right outer join
 	 * @param  {Array<Object>} a
-	 * @param  {Function} aAccessor
+	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
-	 * @param  {Function} bAccessor
+	 * @param  {AccessorFunction} bAccessor
 	 * @return {Array<Object>}
 	 */
 	function nestedLoopRightAntiJoin(a, aAccessor, b, bAccessor) {

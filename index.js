@@ -68,8 +68,8 @@ export default _;
 /**
  * @callback JoinFunction
  * @param  {Array<Object>} a
- * @param  {Function} aAccessor
+ * @param  {AccessorFunction} aAccessor
  * @param  {Array<Object>} b
- * @param  {Function} bAccessor
+ * @param  {AccessorFunction} bAccessor
  * @return {Array<Object>}
  */
