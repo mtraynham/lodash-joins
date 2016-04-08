@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v2.0.1 - Thu Apr 07 2016 20:13:06 GMT-0400 (EDT)
+ *  lodash-joins - v2.0.1 - Thu Apr 07 2016 20:23:13 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2016 Matt Traynham <skitch920@gmail.com>
  *
@@ -17,13 +17,13 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("lodash"), require("lodash/isString"), require("lodash/isArray"), require("lodash/property"), require("lodash/flatten"), require("lodash/map"), require("lodash/reduce"), require("lodash/assign"), require("lodash/filter"), require("lodash/groupBy"), require("lodash/has"), require("lodash/reduceRight"), require("lodash/values"), require("lodash/keyBy"), require("lodash/sortBy"), require("lodash/isUndefined"), require("lodash/some"), require("lodash/every"));
+		module.exports = factory(require("lodash"), require("lodash/flatten"), require("lodash/map"), require("lodash/reduce"), require("lodash/isString"), require("lodash/isArray"), require("lodash/property"), require("lodash/assign"), require("lodash/filter"), require("lodash/groupBy"), require("lodash/has"), require("lodash/reduceRight"), require("lodash/values"), require("lodash/keyBy"), require("lodash/sortBy"), require("lodash/isUndefined"), require("lodash/some"), require("lodash/every"));
 	else if(typeof define === 'function' && define.amd)
-		define(["lodash", "lodash/isString", "lodash/isArray", "lodash/property", "lodash/flatten", "lodash/map", "lodash/reduce", "lodash/assign", "lodash/filter", "lodash/groupBy", "lodash/has", "lodash/reduceRight", "lodash/values", "lodash/keyBy", "lodash/sortBy", "lodash/isUndefined", "lodash/some", "lodash/every"], factory);
+		define(["lodash", "lodash/flatten", "lodash/map", "lodash/reduce", "lodash/isString", "lodash/isArray", "lodash/property", "lodash/assign", "lodash/filter", "lodash/groupBy", "lodash/has", "lodash/reduceRight", "lodash/values", "lodash/keyBy", "lodash/sortBy", "lodash/isUndefined", "lodash/some", "lodash/every"], factory);
 	else if(typeof exports === 'object')
 		exports["_"] = factory(require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined));
 	else
-		root["_"] = factory(root["_"], root["_"]["isString"], root["_"]["isArray"], root["_"]["property"], root["_"]["flatten"], root["_"]["map"], root["_"]["reduce"], root["_"]["assign"], root["_"]["filter"], root["_"]["groupBy"], root["_"]["has"], root["_"]["reduceRight"], root["_"]["values"], root["_"]["keyBy"], root["_"]["sortBy"], root["_"]["isUndefined"], root["_"]["some"], root["_"]["every"]);
+		root["_"] = factory(root["_"], root["_"]["flatten"], root["_"]["map"], root["_"]["reduce"], root["_"]["isString"], root["_"]["isArray"], root["_"]["property"], root["_"]["assign"], root["_"]["filter"], root["_"]["groupBy"], root["_"]["has"], root["_"]["reduceRight"], root["_"]["values"], root["_"]["keyBy"], root["_"]["sortBy"], root["_"]["isUndefined"], root["_"]["some"], root["_"]["every"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_26__, __WEBPACK_EXTERNAL_MODULE_35__, __WEBPACK_EXTERNAL_MODULE_44__, __WEBPACK_EXTERNAL_MODULE_46__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -79,13 +79,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodash = __webpack_require__(1);
 	
-	var _joinWrapper = __webpack_require__(2);
-	
-	var _joinWrapper2 = _interopRequireDefault(_joinWrapper);
-	
-	var _cartesianProduct = __webpack_require__(6);
+	var _cartesianProduct = __webpack_require__(2);
 	
 	var _cartesianProduct2 = _interopRequireDefault(_cartesianProduct);
+	
+	var _joinWrapper = __webpack_require__(6);
+	
+	var _joinWrapper2 = _interopRequireDefault(_joinWrapper);
 	
 	var _hashFullOuterJoin = __webpack_require__(10);
 	
@@ -186,57 +186,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var _ = (0, _lodash.runInContext)();
-	
-	_.mixin({ cartesianProduct: _cartesianProduct2.default });
-	
-	_.mixin({ hashFullOuterJoin: (0, _joinWrapper2.default)(_hashFullOuterJoin2.default) });
-	
-	_.mixin({ hashInnerJoin: (0, _joinWrapper2.default)(_hashInnerJoin2.default) });
-	
-	_.mixin({ hashLeftOuterJoin: (0, _joinWrapper2.default)(_hashLeftOuterJoin2.default) });
-	
-	_.mixin({ hashLeftSemiJoin: (0, _joinWrapper2.default)(_hashLeftSemiJoin2.default) });
-	
-	_.mixin({ hashLeftAntiJoin: (0, _joinWrapper2.default)(_hashLeftAntiJoin2.default) });
-	
-	_.mixin({ hashRightOuterJoin: (0, _joinWrapper2.default)(_hashRightOuterJoin2.default) });
-	
-	_.mixin({ hashRightSemiJoin: (0, _joinWrapper2.default)(_hashRightSemiJoin2.default) });
-	
-	_.mixin({ hashRightAntiJoin: (0, _joinWrapper2.default)(_hashRightAntiJoin2.default) });
-	
-	_.mixin({ sortedMergeFullOuterJoin: (0, _joinWrapper2.default)(_sortedMergeFullOuterJoin2.default) });
-	
-	_.mixin({ sortedMergeInnerJoin: (0, _joinWrapper2.default)(_sortedMergeInnerJoin2.default) });
-	
-	_.mixin({ sortedMergeLeftOuterJoin: (0, _joinWrapper2.default)(_sortedMergeLeftOuterJoin2.default) });
-	
-	_.mixin({ sortedMergeLeftSemiJoin: (0, _joinWrapper2.default)(_sortedMergeLeftSemiJoin2.default) });
-	
-	_.mixin({ sortedMergeLeftAntiJoin: (0, _joinWrapper2.default)(_sortedMergeLeftAntiJoin2.default) });
-	
-	_.mixin({ sortedMergeRightOuterJoin: (0, _joinWrapper2.default)(_sortedMergeRightOuterJoin2.default) });
-	
-	_.mixin({ sortedMergeRightSemiJoin: (0, _joinWrapper2.default)(_sortedMergeRightSemiJoin2.default) });
-	
-	_.mixin({ sortedMergeRightAntiJoin: (0, _joinWrapper2.default)(_sortedMergeRightAntiJoin2.default) });
-	
-	_.mixin({ nestedLoopFullOuterJoin: (0, _joinWrapper2.default)(_nestedLoopFullOuterJoin2.default) });
-	
-	_.mixin({ nestedLoopInnerJoin: (0, _joinWrapper2.default)(_nestedLoopInnerJoin2.default) });
-	
-	_.mixin({ nestedLoopLeftOuterJoin: (0, _joinWrapper2.default)(_nestedLoopLeftOuterJoin2.default) });
-	
-	_.mixin({ nestedLoopLeftSemiJoin: (0, _joinWrapper2.default)(_nestedLoopLeftSemiJoin2.default) });
-	
-	_.mixin({ nestedLoopLeftAntiJoin: (0, _joinWrapper2.default)(_nestedLoopLeftAntiJoin2.default) });
-	
-	_.mixin({ nestedLoopRightOuterJoin: (0, _joinWrapper2.default)(_nestedLoopRightOuterJoin2.default) });
-	
-	_.mixin({ nestedLoopRightSemiJoin: (0, _joinWrapper2.default)(_nestedLoopRightSemiJoin2.default) });
-	
-	_.mixin({ nestedLoopRightAntiJoin: (0, _joinWrapper2.default)(_nestedLoopRightAntiJoin2.default) });
-	
+	_.mixin({
+	  cartesianProduct: _cartesianProduct2.default,
+	  hashFullOuterJoin: (0, _joinWrapper2.default)(_hashFullOuterJoin2.default),
+	  hashInnerJoin: (0, _joinWrapper2.default)(_hashInnerJoin2.default),
+	  hashLeftOuterJoin: (0, _joinWrapper2.default)(_hashLeftOuterJoin2.default),
+	  hashLeftSemiJoin: (0, _joinWrapper2.default)(_hashLeftSemiJoin2.default),
+	  hashLeftAntiJoin: (0, _joinWrapper2.default)(_hashLeftAntiJoin2.default),
+	  hashRightOuterJoin: (0, _joinWrapper2.default)(_hashRightOuterJoin2.default),
+	  hashRightSemiJoin: (0, _joinWrapper2.default)(_hashRightSemiJoin2.default),
+	  hashRightAntiJoin: (0, _joinWrapper2.default)(_hashRightAntiJoin2.default),
+	  sortedMergeFullOuterJoin: (0, _joinWrapper2.default)(_sortedMergeFullOuterJoin2.default),
+	  sortedMergeInnerJoin: (0, _joinWrapper2.default)(_sortedMergeInnerJoin2.default),
+	  sortedMergeLeftOuterJoin: (0, _joinWrapper2.default)(_sortedMergeLeftOuterJoin2.default),
+	  sortedMergeLeftSemiJoin: (0, _joinWrapper2.default)(_sortedMergeLeftSemiJoin2.default),
+	  sortedMergeLeftAntiJoin: (0, _joinWrapper2.default)(_sortedMergeLeftAntiJoin2.default),
+	  sortedMergeRightOuterJoin: (0, _joinWrapper2.default)(_sortedMergeRightOuterJoin2.default),
+	  sortedMergeRightSemiJoin: (0, _joinWrapper2.default)(_sortedMergeRightSemiJoin2.default),
+	  sortedMergeRightAntiJoin: (0, _joinWrapper2.default)(_sortedMergeRightAntiJoin2.default),
+	  nestedLoopFullOuterJoin: (0, _joinWrapper2.default)(_nestedLoopFullOuterJoin2.default),
+	  nestedLoopInnerJoin: (0, _joinWrapper2.default)(_nestedLoopInnerJoin2.default),
+	  nestedLoopLeftOuterJoin: (0, _joinWrapper2.default)(_nestedLoopLeftOuterJoin2.default),
+	  nestedLoopLeftSemiJoin: (0, _joinWrapper2.default)(_nestedLoopLeftSemiJoin2.default),
+	  nestedLoopLeftAntiJoin: (0, _joinWrapper2.default)(_nestedLoopLeftAntiJoin2.default),
+	  nestedLoopRightOuterJoin: (0, _joinWrapper2.default)(_nestedLoopRightOuterJoin2.default),
+	  nestedLoopRightSemiJoin: (0, _joinWrapper2.default)(_nestedLoopRightSemiJoin2.default),
+	  nestedLoopRightAntiJoin: (0, _joinWrapper2.default)(_nestedLoopRightAntiJoin2.default)
+	});
 	exports.default = _;
 	
 	/**
@@ -271,17 +247,80 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.default = cartesianProduct;
+	
+	var _flatten = __webpack_require__(3);
+	
+	var _flatten2 = _interopRequireDefault(_flatten);
+	
+	var _map = __webpack_require__(4);
+	
+	var _map2 = _interopRequireDefault(_map);
+	
+	var _reduce = __webpack_require__(5);
+	
+	var _reduce2 = _interopRequireDefault(_reduce);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Produce the cartesian product of multiple arrays.
+	 * @param  {Array<Array<Object>>} [arrays=[]]
+	 * @return {Array<Object>}
+	 */
+	function cartesianProduct() {
+	    for (var _len = arguments.length, arrays = Array(_len), _key = 0; _key < _len; _key++) {
+	        arrays[_key] = arguments[_key];
+	    }
+	
+	    return arrays.length ? (0, _reduce2.default)(arrays, function (a, b) {
+	        return (0, _flatten2.default)((0, _map2.default)(a, function (x) {
+	            return (0, _map2.default)(b, function (y) {
+	                return x.concat([y]);
+	            });
+	        }), true);
+	    }, [[]]) : [];
+	}
+	module.exports = exports['default'];
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	exports.default = joinWrapper;
 	
-	var _isString = __webpack_require__(3);
+	var _isString = __webpack_require__(7);
 	
 	var _isString2 = _interopRequireDefault(_isString);
 	
-	var _isArray = __webpack_require__(4);
+	var _isArray = __webpack_require__(8);
 	
 	var _isArray2 = _interopRequireDefault(_isArray);
 	
-	var _property = __webpack_require__(5);
+	var _property = __webpack_require__(9);
 	
 	var _property2 = _interopRequireDefault(_property);
 	
@@ -313,69 +352,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return joinFn(a, getAccessor(aAccessor), b, getAccessor(bAccessor));
 	    };
-	}
-	module.exports = exports['default'];
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = cartesianProduct;
-	
-	var _flatten = __webpack_require__(7);
-	
-	var _flatten2 = _interopRequireDefault(_flatten);
-	
-	var _map = __webpack_require__(8);
-	
-	var _map2 = _interopRequireDefault(_map);
-	
-	var _reduce = __webpack_require__(9);
-	
-	var _reduce2 = _interopRequireDefault(_reduce);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	/**
-	 * Produce the cartesian product of multiple arrays.
-	 * @param  {Array<Array<Object>>} [arrays=[]]
-	 * @return {Array<Object>}
-	 */
-	function cartesianProduct() {
-	    for (var _len = arguments.length, arrays = Array(_len), _key = 0; _key < _len; _key++) {
-	        arrays[_key] = arguments[_key];
-	    }
-	
-	    return arrays.length ? (0, _reduce2.default)(arrays, function (a, b) {
-	        return (0, _flatten2.default)((0, _map2.default)(a, function (x) {
-	            return (0, _map2.default)(b, function (y) {
-	                return x.concat([y]);
-	            });
-	        }), true);
-	    }, [[]]) : [];
 	}
 	module.exports = exports['default'];
 
@@ -416,7 +392,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _filter2 = _interopRequireDefault(_filter);
 	
-	var _flatten = __webpack_require__(7);
+	var _flatten = __webpack_require__(3);
 	
 	var _flatten2 = _interopRequireDefault(_flatten);
 	
@@ -428,7 +404,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _has2 = _interopRequireDefault(_has);
 	
-	var _map = __webpack_require__(8);
+	var _map = __webpack_require__(4);
 	
 	var _map2 = _interopRequireDefault(_map);
 	
@@ -548,7 +524,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _has2 = _interopRequireDefault(_has);
 	
-	var _map = __webpack_require__(8);
+	var _map = __webpack_require__(4);
 	
 	var _map2 = _interopRequireDefault(_map);
 	
@@ -619,7 +595,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _filter2 = _interopRequireDefault(_filter);
 	
-	var _flatten = __webpack_require__(7);
+	var _flatten = __webpack_require__(3);
 	
 	var _flatten2 = _interopRequireDefault(_flatten);
 	
@@ -631,7 +607,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _has2 = _interopRequireDefault(_has);
 	
-	var _map = __webpack_require__(8);
+	var _map = __webpack_require__(4);
 	
 	var _map2 = _interopRequireDefault(_map);
 	
