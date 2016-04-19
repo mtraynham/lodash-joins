@@ -78,7 +78,7 @@ gulp.task('test-browser', ['test-browser-build'], () => {
 // Benchmark Task
 gulp.task('benchmark', () =>
     gulp.src('bench/*.js', {read: false})
-        .pipe($.bench()));
+        .pipe($.benchmark()));
 
 // Bump Tasks
 gulp.task('bump:major', bump.bind(this, 'major'));
