@@ -1,4 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/mtraynham/lodash-joins.png?label=ready&title=Ready)](https://waffle.io/mtraynham/lodash-joins)
 [![Build Status](https://travis-ci.org/mtraynham/lodash-joins.svg?branch=master)](https://travis-ci.org/mtraynham/lodash-joins)
 [![Dependency Status](https://gemnasium.com/mtraynham/lodash-joins.svg)](https://gemnasium.com/mtraynham/lodash-joins)
 [![Coverage Status](https://img.shields.io/coveralls/mtraynham/lodash-joins.svg)](https://coveralls.io/r/mtraynham/lodash-joins)
