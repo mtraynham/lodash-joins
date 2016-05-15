@@ -71,4 +71,9 @@ export const test = merge({}, base, {
     output: {
         filename: 'test.js'
     }
-}, (a, b) => (isArray(a) ? a.concat(b) : undefined));
+}, (a, b) => {
+    if (isArray(a)) {
+        return a.concat(b);
+    }
+    return undefined;
+});
