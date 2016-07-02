@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v2.0.1 - Sat Jun 04 2016 10:31:51 GMT-0400 (EDT)
+ *  lodash-joins - v2.0.1 - Fri Jul 01 2016 22:30:55 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2016 Matt Traynham <skitch920@gmail.com>
  *
@@ -1024,7 +1024,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    // new tmpVal that is not equal the current val
 	
 	                case 7:
-	                    if (! i--) {
+	                    if (!i--) {
 	                        _context.next = 19;
 	                        break;
 	                    }
