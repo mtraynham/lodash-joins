@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v2.0.1 - Fri Jul 01 2016 22:30:55 GMT-0400 (EDT)
+ *  lodash-joins - v2.0.1 - Sun Jul 31 2016 14:59:56 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2016 Matt Traynham <skitch920@gmail.com>
  *
@@ -220,7 +220,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {Object}
 	 * @return {*}
 	 */
-
+	
 	/**
 	 * @callback JoinFunction
 	 * @param  {Array<Object>} a
