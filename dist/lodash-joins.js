@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v2.0.1 - Tue Aug 02 2016 11:40:17 GMT-0400 (EDT)
+ *  lodash-joins - v2.0.1 - Sun Aug 07 2016 23:09:55 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2016 Matt Traynham <skitch920@gmail.com>
  *
