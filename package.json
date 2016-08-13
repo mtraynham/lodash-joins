@@ -47,7 +47,7 @@
         "gulp": "~3.9",
         "gulp-benchmark": "~1.1",
         "gulp-bump": "~2.4",
-        "gulp-codecov": "2.0.2",
+        "gulp-codecov": "~2.0",
         "gulp-eslint": "~3.0",
         "gulp-istanbul": "~1.0",
         "gulp-livereload": "~3.8",
