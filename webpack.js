@@ -4,7 +4,7 @@ import template from 'lodash/template';
 import {readFileSync} from 'fs';
 import {join, sep} from 'path';
 import {optimize, BannerPlugin} from 'webpack';
-import pkg from './package';
+import pkg from './package.json';
 
 const banner = template(readFileSync(join(__dirname, 'LICENSE_BANNER'), 'utf8'))({
     pkg,

@@ -8,7 +8,7 @@ import Chance from 'chance';
  * @param  {Function} hashJoin
  * @param  {Function} sortedMergeJoin
  * @param  {Function} nestedLoopJoin
- * @return {Benchmark.Suite}
+ * @returns {Benchmark.Suite}
  */
 export default function joinBench (name, size, hashJoin, sortedMergeJoin, nestedLoopJoin) {
     const chance = new Chance();
