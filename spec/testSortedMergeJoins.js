@@ -1,14 +1,14 @@
 import {assert} from 'chai';
-import nestedLoopFullOuterJoin from '../../lib/nestedLoop/nestedLoopFullOuterJoin';
-import nestedLoopInnerJoin from '../../lib/nestedLoop/nestedLoopInnerJoin';
-import nestedLoopLeftAntiJoin from '../../lib/nestedLoop/nestedLoopLeftAntiJoin';
-import nestedLoopLeftOuterJoin from '../../lib/nestedLoop/nestedLoopLeftOuterJoin';
-import nestedLoopLeftSemiJoin from '../../lib/nestedLoop/nestedLoopLeftSemiJoin';
-import nestedLoopRightAntiJoin from '../../lib/nestedLoop/nestedLoopRightAntiJoin';
-import nestedLoopRightOuterJoin from '../../lib/nestedLoop/nestedLoopRightOuterJoin';
-import nestedLoopRightSemiJoin from '../../lib/nestedLoop/nestedLoopRightSemiJoin';
+import sortedMergeFullOuterJoin from '../lib/sortedMerge/sortedMergeFullOuterJoin';
+import sortedMergeInnerJoin from '../lib/sortedMerge/sortedMergeInnerJoin';
+import sortedMergeLeftAntiJoin from '../lib/sortedMerge/sortedMergeLeftAntiJoin';
+import sortedMergeLeftOuterJoin from '../lib/sortedMerge/sortedMergeLeftOuterJoin';
+import sortedMergeLeftSemiJoin from '../lib/sortedMerge/sortedMergeLeftSemiJoin';
+import sortedMergeRightAntiJoin from '../lib/sortedMerge/sortedMergeRightAntiJoin';
+import sortedMergeRightOuterJoin from '../lib/sortedMerge/sortedMergeRightOuterJoin';
+import sortedMergeRightSemiJoin from '../lib/sortedMerge/sortedMergeRightSemiJoin';
 
-describe('Nested Loop Joins', () => {
+describe('Sorted Merge Joins', () => {
     const left = [
             {id: 'c', left: 0},
             {id: 'c', left: 1},
@@ -24,34 +24,34 @@ describe('Nested Loop Joins', () => {
             {id: 'g', right: 6}
         ],
         accessor = obj => obj.id;
-    describe('#nestedLoopFullOuterJoin()', () => {
+    describe('#sortedMergeFullOuterJoin()', () => {
         const expectedA = [
+                {id: 'a', right: 0},
+                {id: 'b', right: 1},
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
                 {id: 'c', left: 1, right: 2},
                 {id: 'c', left: 1, right: 3},
-                {id: 'e', left: 2},
-                {id: 'a', right: 0},
-                {id: 'b', right: 1},
                 {id: 'd', right: 4},
+                {id: 'e', left: 2},
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
             expectedB = [
-                {id: 'c', right: 2, left: 0},
-                {id: 'c', right: 3, left: 0},
-                {id: 'c', right: 2, left: 1},
-                {id: 'c', right: 3, left: 1},
-                {id: 'e', left: 2},
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
+                {id: 'c', right: 2, left: 0},
+                {id: 'c', right: 2, left: 1},
+                {id: 'c', right: 3, left: 0},
+                {id: 'c', right: 3, left: 1},
                 {id: 'd', right: 4},
+                {id: 'e', left: 2},
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            resultA = nestedLoopFullOuterJoin(left, accessor, right, accessor),
-            resultB = nestedLoopFullOuterJoin(right, accessor, left, accessor),
-            resultC = nestedLoopFullOuterJoin([], accessor, [], accessor);
+            resultA = sortedMergeFullOuterJoin(left, accessor, right, accessor),
+            resultB = sortedMergeFullOuterJoin(right, accessor, left, accessor),
+            resultC = sortedMergeFullOuterJoin([], accessor, [], accessor);
         it('should return 10 rows if parent is left', () =>
             assert.lengthOf(resultA, 10));
         it('should match the expected output if parent is left', () =>
@@ -63,7 +63,7 @@ describe('Nested Loop Joins', () => {
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultC, 0));
     });
-    describe('#nestedLoopInnerJoin()', () => {
+    describe('#sortedMergeInnerJoin()', () => {
         const expectedA = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
@@ -72,13 +72,13 @@ describe('Nested Loop Joins', () => {
             ],
             expectedB = [
                 {id: 'c', right: 2, left: 0},
-                {id: 'c', right: 3, left: 0},
                 {id: 'c', right: 2, left: 1},
+                {id: 'c', right: 3, left: 0},
                 {id: 'c', right: 3, left: 1}
             ],
-            resultA = nestedLoopInnerJoin(left, accessor, right, accessor),
-            resultB = nestedLoopInnerJoin(right, accessor, left, accessor),
-            resultC = nestedLoopInnerJoin([], accessor, right, accessor);
+            resultA = sortedMergeInnerJoin(left, accessor, right, accessor),
+            resultB = sortedMergeInnerJoin(right, accessor, left, accessor),
+            resultC = sortedMergeInnerJoin([], accessor, right, accessor);
         it('should return 5 rows if parent is left', () =>
             assert.lengthOf(resultA, 4));
         it('should match the expected output if parent is left', () =>
@@ -90,12 +90,12 @@ describe('Nested Loop Joins', () => {
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultC, 0));
     });
-    describe('#nestedLoopLeftAntiJoin()', () => {
+    describe('#sortedMergeLeftAntiJoin()', () => {
         const expected = [
                 {id: 'e', left: 2}
             ],
-            result = nestedLoopLeftAntiJoin(left, accessor, right, accessor),
-            resultB = nestedLoopLeftAntiJoin([], accessor, right, accessor);
+            result = sortedMergeLeftAntiJoin(left, accessor, right, accessor),
+            resultB = sortedMergeLeftAntiJoin([], accessor, right, accessor);
         it('should return 1 rows', () =>
             assert.lengthOf(result, 1));
         it('should match the expected output', () =>
@@ -103,7 +103,7 @@ describe('Nested Loop Joins', () => {
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
-    describe('#nestedLoopLeftOuterJoin()', () => {
+    describe('#sortedMergeLeftOuterJoin()', () => {
         const expected = [
                 {id: 'c', left: 0, right: 2},
                 {id: 'c', left: 0, right: 3},
@@ -111,8 +111,8 @@ describe('Nested Loop Joins', () => {
                 {id: 'c', left: 1, right: 3},
                 {id: 'e', left: 2}
             ],
-            result = nestedLoopLeftOuterJoin(left, accessor, right, accessor),
-            resultB = nestedLoopLeftOuterJoin([], accessor, right, accessor);
+            result = sortedMergeLeftOuterJoin(left, accessor, right, accessor),
+            resultB = sortedMergeLeftOuterJoin([], accessor, right, accessor);
         it('should return 5 rows', () =>
             assert.lengthOf(result, 5));
         it('should match the expected output', () =>
@@ -120,13 +120,13 @@ describe('Nested Loop Joins', () => {
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
-    describe('#nestedLoopLeftSemiJoin()', () => {
+    describe('#sortedMergeLeftSemiJoin()', () => {
         const expected = [
                 {id: 'c', left: 0},
                 {id: 'c', left: 1}
             ],
-            result = nestedLoopLeftSemiJoin(left, accessor, right, accessor),
-            resultB = nestedLoopLeftSemiJoin([], accessor, right, accessor);
+            result = sortedMergeLeftSemiJoin(left, accessor, right, accessor),
+            resultB = sortedMergeLeftSemiJoin([], accessor, right, accessor);
         it('should return 2 rows', () =>
             assert.lengthOf(result, 2));
         it('should match the expected output', () =>
@@ -134,7 +134,7 @@ describe('Nested Loop Joins', () => {
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
-    describe('#nestedLoopRightAntiJoin()', () => {
+    describe('#sortedMergeRightAntiJoin()', () => {
         const expected = [
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
@@ -142,53 +142,53 @@ describe('Nested Loop Joins', () => {
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            result = nestedLoopRightAntiJoin(left, accessor, right, accessor),
-            resultB = nestedLoopRightAntiJoin(left, accessor, [], accessor);
+            result = sortedMergeRightAntiJoin(left, accessor, right, accessor),
+            resultB = sortedMergeRightAntiJoin(left, accessor, [], accessor);
         it('should return 5 rows', () =>
             assert.lengthOf(result, 5));
         it('should match the expected output', () =>
             assert.deepEqual(result, expected));
         it('should match the left anti join with right as the parent', () =>
-            assert.deepEqual(nestedLoopLeftAntiJoin(right, accessor, left, accessor), result));
+            assert.deepEqual(sortedMergeLeftAntiJoin(right, accessor, left, accessor), result));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
-    describe('#nestedLoopRightOuterJoin()', () => {
+    describe('#sortedMergeRightOuterJoin()', () => {
         const expected = [
-                {id: 'c', right: 2, left: 0},
-                {id: 'c', right: 3, left: 0},
-                {id: 'c', right: 2, left: 1},
-                {id: 'c', right: 3, left: 1},
                 {id: 'a', right: 0},
                 {id: 'b', right: 1},
+                {id: 'c', right: 2, left: 0},
+                {id: 'c', right: 2, left: 1},
+                {id: 'c', right: 3, left: 0},
+                {id: 'c', right: 3, left: 1},
                 {id: 'd', right: 4},
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            result = nestedLoopRightOuterJoin(left, accessor, right, accessor),
-            resultB = nestedLoopRightOuterJoin(left, accessor, [], accessor);
+            result = sortedMergeRightOuterJoin(left, accessor, right, accessor),
+            resultB = sortedMergeRightOuterJoin(left, accessor, [], accessor);
         it('should return 9 rows', () =>
             assert.lengthOf(result, 9));
         it('should match the expected output', () =>
             assert.deepEqual(result, expected));
         it('should match the left outer join with right as the parent', () =>
-            assert.deepEqual(nestedLoopLeftOuterJoin(right, accessor, left, accessor), result));
+            assert.deepEqual(sortedMergeLeftOuterJoin(right, accessor, left, accessor), result));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });
-    describe('#nestedLoopRightSemiJoin()', () => {
+    describe('#sortedMergeRightSemiJoin()', () => {
         const expected = [
                 {id: 'c', right: 2},
                 {id: 'c', right: 3}
             ],
-            result = nestedLoopRightSemiJoin(left, accessor, right, accessor),
-            resultB = nestedLoopRightSemiJoin(left, accessor, [], accessor);
+            result = sortedMergeRightSemiJoin(left, accessor, right, accessor),
+            resultB = sortedMergeRightSemiJoin(left, accessor, [], accessor);
         it('should return 2 rows', () =>
             assert.lengthOf(result, 2));
         it('should match the expected output', () =>
             assert.deepEqual(result, expected));
         it('should match the left semi join with right as the parent', () =>
-            assert.deepEqual(nestedLoopLeftSemiJoin(right, accessor, left, accessor), result));
+            assert.deepEqual(sortedMergeLeftSemiJoin(right, accessor, left, accessor), result));
         it('should return empty results for empty input', () =>
             assert.lengthOf(resultB, 0));
     });

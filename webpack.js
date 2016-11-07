@@ -1,9 +1,10 @@
-import isArray from 'lodash/isArray';
 import merge from 'lodash/merge';
 import template from 'lodash/template';
 import {readFileSync} from 'fs';
-import {join, sep} from 'path';
-import {optimize, BannerPlugin} from 'webpack';
+import {join, resolve, sep} from 'path';
+import BannerPlugin from 'webpack/lib/BannerPlugin';
+import UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import pkg from './package.json';
 
 const banner = template(readFileSync(join(__dirname, 'LICENSE_BANNER'), 'utf8'))({
@@ -11,7 +12,8 @@ const banner = template(readFileSync(join(__dirname, 'LICENSE_BANNER'), 'utf8'))
     date: new Date()
 });
 
-const base = {
+export const build = {
+    entry: './index.js',
     externals: [
         // handle splitting modern lodash paths:
         // import merge from 'lodash/merge'; -> _.merge
@@ -30,50 +32,57 @@ const base = {
         }
     ],
     output: {
+        filename: 'lodash-joins.js',
+        library: '_',
         libraryTarget: 'umd',
         devtoolModuleFilenameTemplate: 'webpack:///lodash-joins/[resource-path]'
     },
+    devtool: 'source-map',
+    plugins: [
+        new BannerPlugin(banner, {raw: true})
+    ],
     module: {
         preLoaders: [{test: /\.js$/, loader: 'source-map-loader'}],
-        loaders: [{
-            test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: 'babel-loader'
-        }]
-    },
-    devtool: 'source-map'
+        loaders: [
+            {test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel-loader'}
+        ]
+    }
 };
 
-export const build = merge({}, base, {
-    entry: './index.js',
+export const uglify = merge({}, build, {
     output: {
-        filename: 'lodash-joins.js',
-        library: '_'
+        filename: 'lodash-joins.min.js'
     },
     plugins: [
+        new UglifyJsPlugin(),
         new BannerPlugin(banner, {raw: true})
     ]
 });
 
-export const uglify = merge({}, base, {
-    entry: './index.js',
+export const karma = merge({}, build, {
+    devtool: 'inline-source-map',
     output: {
-        filename: 'lodash-joins.min.js',
-        library: '_'
-    },
-    plugins: [
-        new optimize.UglifyJsPlugin(),
-        new BannerPlugin(banner, {raw: true})
-    ]
+        library: null
+    }
 });
 
-export const test = merge({}, base, {
+
+export const debug = merge({}, build, {
+    cache: true,
+    debug: true,
+    devtool: 'inline-sourcemap',
+    entry: './debug/index.js',
     output: {
-        filename: 'test.js'
-    }
-}, (a, b) => {
-    if (isArray(a)) {
-        return a.concat(b);
-    }
-    return undefined;
+        path: resolve('./test/'),
+        publicPath: 'test/',
+        pathinfo: true,
+        library: undefined,
+        libraryTarget: undefined
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            port: 3000,
+            template: resolve('./debug/index.ejs')
+        })
+    ]
 });

@@ -1,19 +1,27 @@
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
-import {Instrumenter} from 'isparta';
+import open from 'open';
+import webpack from 'webpack';
 import webpackStream from 'webpack-stream';
-import * as wpack from './webpack';
+import WebpackDevServer from 'webpack-dev-server';
+import {Server} from 'karma';
+import * as webpackConfig from './webpack';
 
 const $ = gulpLoadPlugins();
 
-const webpack = (src, opts, dest) =>
+const wpack = (src, opts, dest) =>
     gulp.src(src)
         .pipe(webpackStream(opts))
         .pipe(gulp.dest(dest));
 
-const test = () =>
-    gulp.src(['test/unit/*.js'], {read: false})
-        .pipe($.mocha());
+const karma = (done, options = {}) => {
+    const server = new Server(Object.assign({configFile: `${__dirname}/karma.conf.js`}, options));
+    // TODO Circumvent 30 second wait
+    // https://github.com/karma-runner/karma/issues/1788
+    server.on('run_complete', (browsers, results) =>
+        done(results.error ? 'There are test failures' : null));
+    server.start();
+};
 
 const bump = type =>
     gulp.src(['./bower.json', './package.json'])
@@ -22,50 +30,61 @@ const bump = type =>
 
 // Lint Task
 gulp.task('lint', () =>
-    gulp.src(['gulpfile.babel.js', 'index.js', 'webpack.js', '{bench,lib,test}/**/*.js'])
+    gulp.src(['gulpfile.babel.js', 'index.js', 'webpack.js', '{lib,spec}/**/*.js'])
         .pipe($.eslint())
         .pipe($.eslint.format())
         .pipe($.eslint.failAfterError()));
 
 // Build Task
 gulp.task('build', ['lint'],
-    webpack.bind(this, 'index.js', wpack.build, 'dist/'));
+    wpack.bind(this, 'index.js', webpackConfig.build, 'dist/'));
 
 // Uglify Task
 gulp.task('uglify', ['lint'],
-    webpack.bind(this, 'index.js', wpack.uglify, 'dist/'));
+    wpack.bind(this, 'index.js', webpackConfig.uglify, 'dist/'));
 
-// Test Task
-gulp.task('test', ['lint'],
-    test.bind(this));
+// Mocha Task
+gulp.task('mocha', ['lint'], () =>
+    gulp.src(['spec/*.js'], {read: false})
+        .pipe($.mocha()));
+
+// Karma Task
+gulp.task('karma', ['lint'], done =>
+    karma(done));
+
+// Karma Debug Task
+gulp.task('karma-debug', ['lint'], done =>
+    karma(done, {
+        autoWatch: true,
+        singleRun: false,
+        browsers: ['Chrome']
+    }));
 
 // Coverage Task
-gulp.task('coverage', ['lint'], () =>
-    gulp.src(['lib/**/*.js'])
-        .pipe($.istanbul({instrumenter: Instrumenter}))
-        .pipe($.istanbul.hookRequire())
-        .on('finish', () =>
-            test()
-                .pipe($.istanbul.writeReports()) // Creating the reports after tests runned
-                .on('end', () =>
-                    gulp.src('coverage/lcov.info')
-                        .pipe($.codecov({token: '855f4b40-9674-40cc-b852-e186c12a7f1d'})))));
-
-// Browser Test Tasks
-gulp.task('test-browser-build', ['lint'], () =>
-    webpack(['test/**/*.js'], wpack.test, './.tmp')
-        .pipe($.livereload()));
-
-gulp.task('test-browser', ['test-browser-build'], () => {
-    $.livereload.listen({
-        port: 35729,
-        host: 'localhost',
-        start: true
+gulp.task('coverage', ['lint'], (done) => {
+    process.env.NODE_ENV = 'coverage'; // Triggers babel-plugin-istanbul
+    return karma(done, {
+        reporters: ['mocha', 'coverage']
     });
-    gulp.src('test/runner.html')
-        .pipe($.open());
-    gulp.watch('{lib,test}/**/*.js', ['test-browser-build']);
 });
+
+// Coveralls Task
+gulp.task('codecov', ['coverage'], () =>
+    gulp.src('coverage/lcov.info')
+        .pipe($.codecov({token: '855f4b40-9674-40cc-b852-e186c12a7f1d'})));
+
+// Server Task
+gulp.task('server', () =>
+    new WebpackDevServer(webpack(webpackConfig.debug), {
+        publicPath: `/${webpackConfig.debug.output.publicPath}`,
+        stats: {colors: true},
+        historyApiFallback: {index: `/${webpackConfig.debug.output.publicPath}`}
+    }).listen(3000, 'localhost', (err) => {
+        if (err) {
+            throw new $.util.PluginError('webpack-dev-server', err);
+        }
+        open(`http://localhost:3000/webpack-dev-server/${webpackConfig.debug.output.publicPath}`);
+    }));
 
 // Benchmark Task
 gulp.task('benchmark', () =>
