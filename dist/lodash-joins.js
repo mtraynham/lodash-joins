@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v2.0.1 - Mon Sep 12 2016 17:44:28 GMT-0400 (EDT)
+ *  lodash-joins - v2.0.1 - Sun Nov 06 2016 22:28:32 GMT-0500 (EST)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2016 Matt Traynham <skitch920@gmail.com>
  *
@@ -266,7 +266,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Produce the cartesian product of multiple arrays.
 	 * @param  {Array<Array<Object>>} [arrays=[]]
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function cartesianProduct() {
 	    for (var _len = arguments.length, arrays = Array(_len), _key = 0; _key < _len; _key++) {
@@ -329,7 +329,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Get an accessor function from an object.  If it's a string or an array, use _.property.
 	 * @param {*} obj
-	 * @return {AccessorFunction}
+	 * @returns {AccessorFunction}
 	 */
 	function getAccessor(obj) {
 	    return (0, _isString2.default)(obj) || (0, _isArray2.default)(obj) ? (0, _property2.default)(obj) : obj;
@@ -338,12 +338,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Wrap a join function to process inputs in a more succinct manner.
 	 * @param {JoinFunction} joinFn
-	 * @return {JoinFunction}
+	 * @returns {JoinFunction}
 	 */
 	function joinWrapper(joinFn) {
 	    return function (a, aAccessor) {
-	        var b = arguments.length <= 2 || arguments[2] === undefined ? a : arguments[2];
-	        var bAccessor = arguments.length <= 3 || arguments[3] === undefined ? aAccessor : arguments[3];
+	        var b = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : a;
+	        var bAccessor = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : aAccessor;
 	
 	        if (!a) {
 	            throw new Error('Missing required left array');
@@ -424,7 +424,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function hashFullOuterJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -540,7 +540,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function hashInnerJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -583,7 +583,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 	
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
 	exports.default = hashLeftOuterJoin;
 	
@@ -627,7 +627,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function hashLeftOuterJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -701,7 +701,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function hashLeftSemiJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -751,7 +751,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function hashLeftAntiJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -787,7 +787,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function hashRightOuterJoin(a, aAccessor, b, bAccessor) {
 	  return (0, _hashLeftOuterJoin2.default)(b, bAccessor, a, aAccessor);
@@ -817,7 +817,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function hashRightSemiJoin(a, aAccessor, b, bAccessor) {
 	  return (0, _hashLeftSemiJoin2.default)(b, bAccessor, a, aAccessor);
@@ -847,7 +847,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function hashRightAntiJoin(a, aAccessor, b, bAccessor) {
 	  return (0, _hashLeftAntiJoin2.default)(b, bAccessor, a, aAccessor);
@@ -885,7 +885,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function sortedMergeLeftOuterJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -993,7 +993,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {Array<Object>} sortedList
 	 * @param  {AccessorFunction} accessor
 	 * @yield  {SubList}
-	 * @return {undefined}
+	 * @returns {undefined}
 	 */
 	function yieldRightSubList(sortedList, accessor) {
 	    var i, r, val, tmpVal;
@@ -1946,7 +1946,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function sortedMergeInnerJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -2005,7 +2005,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function sortedMergeLeftOuterJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -2065,7 +2065,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function sortedMergeLeftSemiJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -2113,7 +2113,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Given an object, execute a function if that object is defined.
 	 * @param {*} obj
 	 * @param {Function} fn
-	 * @return {*}
+	 * @returns {*}
 	 */
 	function undef(obj, fn) {
 	  return (0, _isUndefined2.default)(obj) ? obj : fn(obj);
@@ -2153,7 +2153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function sortedMergeLeftAntiJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -2206,7 +2206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function sortedMergeRightOuterJoin(a, aAccessor, b, bAccessor) {
 	  return (0, _sortedMergeLeftOuterJoin2.default)(b, bAccessor, a, aAccessor);
@@ -2236,7 +2236,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function sortedMergeRightSemiJoin(a, aAccessor, b, bAccessor) {
 	  return (0, _sortedMergeLeftSemiJoin2.default)(b, bAccessor, a, aAccessor);
@@ -2266,7 +2266,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function sortedMergeRightAntiJoin(a, aAccessor, b, bAccessor) {
 	  return (0, _sortedMergeLeftAntiJoin2.default)(b, bAccessor, a, aAccessor);
@@ -2308,7 +2308,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function nestedLoopFullOuterJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -2387,7 +2387,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function nestedLoopInnerJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -2453,7 +2453,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function nestedLoopLeftOuterJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -2520,7 +2520,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function nestedLoopLeftSemiJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -2569,7 +2569,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function nestedLoopLeftAntiJoin(a, aAccessor, b, bAccessor) {
 	    if (a.length < 1 || b.length < 1) {
@@ -2614,7 +2614,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function nestedLoopRightOuterJoin(a, aAccessor, b, bAccessor) {
 	  return (0, _nestedLoopLeftOuterJoin2.default)(b, bAccessor, a, aAccessor);
@@ -2644,7 +2644,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function nestedLoopRightSemiJoin(a, aAccessor, b, bAccessor) {
 	  return (0, _nestedLoopLeftSemiJoin2.default)(b, bAccessor, a, aAccessor);
@@ -2674,7 +2674,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {AccessorFunction} aAccessor
 	 * @param  {Array<Object>} b
 	 * @param  {AccessorFunction} bAccessor
-	 * @return {Array<Object>}
+	 * @returns {Array<Object>}
 	 */
 	function nestedLoopRightAntiJoin(a, aAccessor, b, bAccessor) {
 	  return (0, _nestedLoopLeftAntiJoin2.default)(b, bAccessor, a, aAccessor);
