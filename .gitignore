@@ -3,4 +3,3 @@ bower_components
 coverage
 node_modules
 *.iml
-yarn.lock

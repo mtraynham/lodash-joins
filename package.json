@@ -32,7 +32,7 @@
         "lodash": "^4"
     },
     "devDependencies": {
-        "babel-core": "~6.18",
+        "babel-core": "~6.21",
         "babel-loader": "~6.2",
         "babel-regenerator-runtime": "~6.5",
         "babel-plugin-add-module-exports": "~0.2",
@@ -40,7 +40,7 @@
         "babel-preset-es2015": "~6.18",
         "chai": "~3.5",
         "chance": "~1.0",
-        "eslint": "~3.11",
+        "eslint": "~3.12",
         "eslint-config-airbnb": "~13.0",
         "eslint-loader": "~1.6",
         "eslint-plugin-import": "~2.2",
