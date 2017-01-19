@@ -26,3 +26,4 @@ console.log(results);
 results = _.nestedLoopLeftOuterJoin(left, accessor, right, accessor);
 console.log(results);
 
+export default _;

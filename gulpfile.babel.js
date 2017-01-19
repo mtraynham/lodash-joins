@@ -11,7 +11,7 @@ const $ = gulpLoadPlugins();
 
 const wpack = (src, opts, dest) =>
     gulp.src(src)
-        .pipe(webpackStream(opts))
+        .pipe(webpackStream(opts, webpack))
         .pipe(gulp.dest(dest));
 
 const karma = (done, options = {}) => {

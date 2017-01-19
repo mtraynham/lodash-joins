@@ -70,8 +70,8 @@
         "open": "~0.0",
         "phantomjs-polyfill": "~0.0",
         "source-map-loader": "~0.1",
-        "webpack": "~1.14",
+        "webpack": "beta",
         "webpack-stream": "~3.2",
-        "webpack-dev-server": "~1.16"
+        "webpack-dev-server": "beta"
     }
 }
