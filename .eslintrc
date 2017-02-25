@@ -1,10 +1,11 @@
 {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
     "env": {
         "browser": true,
-        "mocha": true,
+        "jasmine": true,
         "node": true
     },
-    "extends": "airbnb",
     "rules": {
         "comma-dangle": [2, "never"],
         "func-names": 0,

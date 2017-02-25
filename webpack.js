@@ -1,12 +1,13 @@
-import merge from 'lodash/merge';
 import template from 'lodash/template';
 import {readFileSync} from 'fs';
 import {join, resolve, sep} from 'path';
+import {strategy} from 'webpack-merge';
 import BannerPlugin from 'webpack/lib/BannerPlugin';
-import LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin';
 import UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import pkg from './package.json';
+
+const merge = strategy(({plugins: 'replace'}));
 
 const banner = template(readFileSync(join(__dirname, 'LICENSE_BANNER'), 'utf8'))({
     pkg,
@@ -15,7 +16,9 @@ const banner = template(readFileSync(join(__dirname, 'LICENSE_BANNER'), 'utf8'))
 
 export const build = {
     devtool: 'source-map',
-    entry: resolve('./index.js'),
+    entry: {
+        [pkg.name]: resolve('./index.js')
+    },
     externals: [
         // handle splitting modern lodash paths:
         // import merge from 'lodash/merge'; -> _.merge
@@ -34,11 +37,11 @@ export const build = {
         }
     ],
     output: {
-        filename: 'lodash-joins.js',
+        filename: '[name].js',
         // Re-export as lodash mixin (_)
         library: '_',
         libraryTarget: 'umd',
-        devtoolModuleFilenameTemplate: 'webpack:///lodash-joins/[resource-path]'
+        devtoolModuleFilenameTemplate: `webpack:///${pkg.name}/[resource-path]`
     },
     plugins: [
         new BannerPlugin({banner, raw: true})
@@ -54,10 +57,10 @@ export const build = {
 
 export const uglify = merge({}, build, {
     output: {
-        filename: 'lodash-joins.min.js'
+        filename: '[name].min.js'
     },
     plugins: [
-        new UglifyJsPlugin(),
+        new UglifyJsPlugin({sourceMap: true}),
         new BannerPlugin({banner, raw: true})
     ]
 });
@@ -73,15 +76,11 @@ export const karma = merge({}, build, {
 
 export const debug = merge({}, build, {
     cache: true,
-    devtool: 'inline-sourcemap',
-    entry: resolve('./debug/index.js'),
-    output: {
-        path: resolve('./test/'),
-        publicPath: 'test/',
-        pathinfo: true
+    devtool: 'inline-source-map',
+    entry: {
+        [pkg.name]: resolve('./debug/index.js')
     },
     plugins: [
-        new LoaderOptionsPlugin({debug: true}),
         new HtmlWebpackPlugin({
             port: 3000,
             template: resolve('./debug/index.ejs')

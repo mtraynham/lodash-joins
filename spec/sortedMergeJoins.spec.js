@@ -1,4 +1,3 @@
-import {assert} from 'chai';
 import sortedMergeFullOuterJoin from '../lib/sortedMerge/sortedMergeFullOuterJoin';
 import sortedMergeInnerJoin from '../lib/sortedMerge/sortedMergeInnerJoin';
 import sortedMergeLeftAntiJoin from '../lib/sortedMerge/sortedMergeLeftAntiJoin';
@@ -53,15 +52,15 @@ describe('Sorted Merge Joins', () => {
             resultB = sortedMergeFullOuterJoin(right, accessor, left, accessor),
             resultC = sortedMergeFullOuterJoin([], accessor, [], accessor);
         it('should return 10 rows if parent is left', () =>
-            assert.lengthOf(resultA, 10));
+            expect(resultA.length).toBe(10));
         it('should match the expected output if parent is left', () =>
-            assert.deepEqual(resultA, expectedA));
+            expect(resultA).toEqual(expectedA));
         it('should return 8 rows if parent is right', () =>
-            assert.lengthOf(resultB, 10));
+            expect(resultB.length).toBe(10));
         it('should match the expected output if parent is right', () =>
-            assert.deepEqual(resultB, expectedB));
+            expect(resultB).toEqual(expectedB));
         it('should return empty results for empty input', () =>
-            assert.lengthOf(resultC, 0));
+            expect(resultC.length).toBe(0));
     });
     describe('#sortedMergeInnerJoin()', () => {
         const expectedA = [
@@ -80,15 +79,15 @@ describe('Sorted Merge Joins', () => {
             resultB = sortedMergeInnerJoin(right, accessor, left, accessor),
             resultC = sortedMergeInnerJoin([], accessor, right, accessor);
         it('should return 5 rows if parent is left', () =>
-            assert.lengthOf(resultA, 4));
+            expect(resultA.length).toBe(4));
         it('should match the expected output if parent is left', () =>
-            assert.deepEqual(resultA, expectedA));
+            expect(resultA).toEqual(expectedA));
         it('should return 5 rows if parent is right', () =>
-            assert.lengthOf(resultB, 4));
+            expect(resultB.length).toBe(4));
         it('should match the expected output if parent is right', () =>
-            assert.deepEqual(resultB, expectedB));
+            expect(resultB).toEqual(expectedB));
         it('should return empty results for empty input', () =>
-            assert.lengthOf(resultC, 0));
+            expect(resultC.length).toBe(0));
     });
     describe('#sortedMergeLeftAntiJoin()', () => {
         const expected = [
@@ -97,11 +96,11 @@ describe('Sorted Merge Joins', () => {
             result = sortedMergeLeftAntiJoin(left, accessor, right, accessor),
             resultB = sortedMergeLeftAntiJoin([], accessor, right, accessor);
         it('should return 1 rows', () =>
-            assert.lengthOf(result, 1));
+            expect(result.length).toBe(1));
         it('should match the expected output', () =>
-            assert.deepEqual(result, expected));
+            expect(result).toEqual(expected));
         it('should return empty results for empty input', () =>
-            assert.lengthOf(resultB, 0));
+            expect(resultB.length).toBe(0));
     });
     describe('#sortedMergeLeftOuterJoin()', () => {
         const expected = [
@@ -114,11 +113,11 @@ describe('Sorted Merge Joins', () => {
             result = sortedMergeLeftOuterJoin(left, accessor, right, accessor),
             resultB = sortedMergeLeftOuterJoin([], accessor, right, accessor);
         it('should return 5 rows', () =>
-            assert.lengthOf(result, 5));
+            expect(result.length).toBe(5));
         it('should match the expected output', () =>
-            assert.deepEqual(result, expected));
+            expect(result).toEqual(expected));
         it('should return empty results for empty input', () =>
-            assert.lengthOf(resultB, 0));
+            expect(resultB.length).toBe(0));
     });
     describe('#sortedMergeLeftSemiJoin()', () => {
         const expected = [
@@ -128,11 +127,11 @@ describe('Sorted Merge Joins', () => {
             result = sortedMergeLeftSemiJoin(left, accessor, right, accessor),
             resultB = sortedMergeLeftSemiJoin([], accessor, right, accessor);
         it('should return 2 rows', () =>
-            assert.lengthOf(result, 2));
+            expect(result.length).toBe(2));
         it('should match the expected output', () =>
-            assert.deepEqual(result, expected));
+            expect(result).toEqual(expected));
         it('should return empty results for empty input', () =>
-            assert.lengthOf(resultB, 0));
+            expect(resultB.length).toBe(0));
     });
     describe('#sortedMergeRightAntiJoin()', () => {
         const expected = [
@@ -145,13 +144,13 @@ describe('Sorted Merge Joins', () => {
             result = sortedMergeRightAntiJoin(left, accessor, right, accessor),
             resultB = sortedMergeRightAntiJoin(left, accessor, [], accessor);
         it('should return 5 rows', () =>
-            assert.lengthOf(result, 5));
+            expect(result.length).toBe(5));
         it('should match the expected output', () =>
-            assert.deepEqual(result, expected));
+            expect(result).toEqual(expected));
         it('should match the left anti join with right as the parent', () =>
-            assert.deepEqual(sortedMergeLeftAntiJoin(right, accessor, left, accessor), result));
+            expect(sortedMergeLeftAntiJoin(right, accessor, left, accessor)).toEqual(result));
         it('should return empty results for empty input', () =>
-            assert.lengthOf(resultB, 0));
+            expect(resultB.length).toBe(0));
     });
     describe('#sortedMergeRightOuterJoin()', () => {
         const expected = [
@@ -168,13 +167,13 @@ describe('Sorted Merge Joins', () => {
             result = sortedMergeRightOuterJoin(left, accessor, right, accessor),
             resultB = sortedMergeRightOuterJoin(left, accessor, [], accessor);
         it('should return 9 rows', () =>
-            assert.lengthOf(result, 9));
+            expect(result.length).toBe(9));
         it('should match the expected output', () =>
-            assert.deepEqual(result, expected));
+            expect(result).toEqual(expected));
         it('should match the left outer join with right as the parent', () =>
-            assert.deepEqual(sortedMergeLeftOuterJoin(right, accessor, left, accessor), result));
+            expect(sortedMergeLeftOuterJoin(right, accessor, left, accessor)).toEqual(result));
         it('should return empty results for empty input', () =>
-            assert.lengthOf(resultB, 0));
+            expect(resultB.length).toBe(0));
     });
     describe('#sortedMergeRightSemiJoin()', () => {
         const expected = [
@@ -184,12 +183,12 @@ describe('Sorted Merge Joins', () => {
             result = sortedMergeRightSemiJoin(left, accessor, right, accessor),
             resultB = sortedMergeRightSemiJoin(left, accessor, [], accessor);
         it('should return 2 rows', () =>
-            assert.lengthOf(result, 2));
+            expect(result.length).toBe(2));
         it('should match the expected output', () =>
-            assert.deepEqual(result, expected));
+            expect(result).toEqual(expected));
         it('should match the left semi join with right as the parent', () =>
-            assert.deepEqual(sortedMergeLeftSemiJoin(right, accessor, left, accessor), result));
+            expect(sortedMergeLeftSemiJoin(right, accessor, left, accessor)).toEqual(result));
         it('should return empty results for empty input', () =>
-            assert.lengthOf(resultB, 0));
+            expect(resultB.length).toBe(0));
     });
 });

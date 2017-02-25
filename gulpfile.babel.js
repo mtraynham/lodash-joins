@@ -8,20 +8,38 @@ import {Server} from 'karma';
 import * as webpackConfig from './webpack';
 
 const $ = gulpLoadPlugins();
+const debugHost = '0.0.0.0';
+const debugPort = 3000;
+const debugPath = '';
 
-const wpack = (src, opts, dest) =>
+/**
+ * Run a webpack build
+ * @param {String} src
+ * @param {Object} opts
+ * @param {String} dest
+ * @returns {void}
+ */
+const webpackBuild = (src, opts, dest) =>
     gulp.src(src)
         .pipe(webpackStream(opts, webpack))
         .pipe(gulp.dest(dest));
 
-const karma = (done, options = {}) => {
+/**
+ * Run karma
+ * @param {Object} options
+ * @param {Function} [done]
+ * @returns {void}
+ */
+function karma (options, done) {
     const server = new Server(Object.assign({configFile: `${__dirname}/karma.conf.js`}, options));
-    // TODO Circumvent 30 second wait
+    // TODO Upstream: Circumvent 30 second wait
     // https://github.com/karma-runner/karma/issues/1788
-    server.on('run_complete', (browsers, results) =>
-        done(results.error ? 'There are test failures' : null));
-    server.start();
-};
+    if (done) {
+        server.on('run_complete', (browsers, results) =>
+            done(results.error ? 'There are test failures' : null));
+    }
+    return server.start();
+}
 
 const bump = type =>
     gulp.src(['./bower.json', './package.json'])
@@ -37,53 +55,59 @@ gulp.task('lint', () =>
 
 // Build Task
 gulp.task('build', ['lint'],
-    wpack.bind(this, 'index.js', webpackConfig.build, 'dist/'));
+    webpackBuild.bind(this, 'index.js', webpackConfig.build, 'dist/'));
 
 // Uglify Task
 gulp.task('uglify', ['lint'],
-    wpack.bind(this, 'index.js', webpackConfig.uglify, 'dist/'));
+    webpackBuild.bind(this, 'index.js', webpackConfig.uglify, 'dist/'));
 
-// Mocha Task
-gulp.task('mocha', ['lint'], () =>
-    gulp.src(['spec/*.js'], {read: false})
-        .pipe($.mocha()));
+// Jasmine Task
+gulp.task('jasmine', ['lint'], () =>
+    gulp.src(['spec/*.spec.js'])
+        .pipe($.jasmine()));
 
 // Karma Task
-gulp.task('karma', ['lint'], done =>
-    karma(done));
+gulp.task('karma', ['lint'],
+    karma.bind(this, {}));
 
 // Karma Debug Task
-gulp.task('karma-debug', ['lint'], done =>
-    karma(done, {
+gulp.task('karma-debug', ['lint'],
+    karma.bind(this, {
+        reporters: ['spec', 'kjhtml'],
         autoWatch: true,
-        singleRun: false,
-        browsers: ['Chrome']
-    }));
+        singleRun: false
+    }, null));
 
-// Coverage Task
-gulp.task('coverage', ['lint'], (done) => {
+// Karma Coverage Task
+gulp.task('karma-coverage', ['lint'], (done) => {
     process.env.NODE_ENV = 'coverage'; // Triggers babel-plugin-istanbul
-    return karma(done, {
-        reporters: ['mocha', 'coverage']
-    });
+    return karma({
+        reporters: ['spec', 'coverage'],
+        coverageReporter: {
+            dir: './coverage',
+            reporters: [
+                {type: 'text'},
+                {type: 'html', subdir: 'html'},
+                {type: 'lcovonly', subdir: '.'}
+            ]
+        }
+    }, done);
 });
 
 // Coveralls Task
-gulp.task('codecov', ['coverage'], () =>
+gulp.task('codecov', ['karma-coverage'], () =>
     gulp.src('coverage/lcov.info')
         .pipe($.codecov({token: '855f4b40-9674-40cc-b852-e186c12a7f1d'})));
 
 // Server Task
 gulp.task('server', () =>
     new WebpackDevServer(webpack(webpackConfig.debug), {
-        publicPath: `/${webpackConfig.debug.output.publicPath}`,
-        stats: {colors: true},
-        historyApiFallback: {index: `/${webpackConfig.debug.output.publicPath}`}
-    }).listen(3000, 'localhost', (err) => {
-        if (err) {
-            throw new $.util.PluginError('webpack-dev-server', err);
+        stats: {colors: true}
+    }).listen(debugPort, debugHost, (error) => {
+        if (error) {
+            throw new $.util.PluginError('webpack-dev-server', error);
         }
-        open(`http://localhost:3000/webpack-dev-server/${webpackConfig.debug.output.publicPath}`);
+        open(`http://${debugHost}:${debugPort}/webpack-dev-server/${debugPath}`);
     }));
 
 // Benchmark Task
