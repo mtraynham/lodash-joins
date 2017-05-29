@@ -48,9 +48,9 @@ export const build = {
     ],
     module: {
         rules: [
-            {test: /\.js$/, enforce: 'pre', loader: 'source-map-loader'},
-            {test: /\.js$/, exclude: /node_modules/, enforce: 'pre', loader: 'eslint-loader'},
-            {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
+            {test: /\.js$/, enforce: 'pre', use: 'source-map-loader'},
+            {test: /\.js$/, exclude: /node_modules/, enforce: 'pre', use: 'eslint-loader'},
+            {test: /\.js$/, exclude: /node_modules/, use: 'babel-loader'}
         ]
     }
 };
