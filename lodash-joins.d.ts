@@ -33,7 +33,7 @@ interface IAccessor<TObject, TValueOf extends Object> extends Function {
 interface ICartesianProduct extends Function {
     (
         ...arrays: any[][]
-    ): any[]
+    ): any[][]
 }
 
 interface SelfJoin extends Function {
