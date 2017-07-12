@@ -1,5 +1,5 @@
 /*!
- *  lodash-joins - v2.0.2 - Mon May 29 2017 07:38:40 GMT-0400 (EDT)
+ *  lodash-joins - v2.0.2 - Wed Jul 12 2017 11:32:00 GMT-0400 (EDT)
  *  https://github.com/mtraynham/lodash-joins.git
  *  Copyright 2014-2017 Matt Traynham <skitch920@gmail.com>
  *
@@ -17,14 +17,14 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("lodash/filter"), require("lodash/assign"), require("lodash/has"), require("lodash/reduceRight"), require("lodash/sortBy"), require("lodash/map"), require("lodash/flatten"), require("lodash/groupBy"), require("lodash/keyBy"), require("lodash/values"), require("lodash"), require("lodash/every"), require("lodash/isArray"), require("lodash/isString"), require("lodash/isUndefined"), require("lodash/property"), require("lodash/reduce"), require("lodash/some"));
+		module.exports = factory(require("lodash/filter"), require("lodash/assign"), require("lodash/has"), require("lodash/reduceRight"), require("lodash/sortBy"), require("lodash/map"), require("lodash/flatten"), require("lodash/groupBy"), require("lodash/values"), require("lodash/keyBy"), require("lodash"), require("lodash/reduce"), require("lodash/isString"), require("lodash/isArray"), require("lodash/property"), require("lodash/isUndefined"), require("lodash/some"), require("lodash/every"));
 	else if(typeof define === 'function' && define.amd)
-		define(["lodash/filter", "lodash/assign", "lodash/has", "lodash/reduceRight", "lodash/sortBy", "lodash/map", "lodash/flatten", "lodash/groupBy", "lodash/keyBy", "lodash/values", "lodash", "lodash/every", "lodash/isArray", "lodash/isString", "lodash/isUndefined", "lodash/property", "lodash/reduce", "lodash/some"], factory);
+		define(["lodash/filter", "lodash/assign", "lodash/has", "lodash/reduceRight", "lodash/sortBy", "lodash/map", "lodash/flatten", "lodash/groupBy", "lodash/values", "lodash/keyBy", "lodash", "lodash/reduce", "lodash/isString", "lodash/isArray", "lodash/property", "lodash/isUndefined", "lodash/some", "lodash/every"], factory);
 	else if(typeof exports === 'object')
-		exports["_"] = factory(require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined), require(undefined));
+		exports["_"] = factory(require("lodash/filter"), require("lodash/assign"), require("lodash/has"), require("lodash/reduceRight"), require("lodash/sortBy"), require("lodash/map"), require("lodash/flatten"), require("lodash/groupBy"), require("lodash/values"), require("lodash/keyBy"), require("lodash"), require("lodash/reduce"), require("lodash/isString"), require("lodash/isArray"), require("lodash/property"), require("lodash/isUndefined"), require("lodash/some"), require("lodash/every"));
 	else
-		root["_"] = factory(root["_"]["filter"], root["_"]["assign"], root["_"]["has"], root["_"]["reduceRight"], root["_"]["sortBy"], root["_"]["map"], root["_"]["flatten"], root["_"]["groupBy"], root["_"]["keyBy"], root["_"]["values"], root["_"], root["_"]["every"], root["_"]["isArray"], root["_"]["isString"], root["_"]["isUndefined"], root["_"]["property"], root["_"]["reduce"], root["_"]["some"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_39__, __WEBPACK_EXTERNAL_MODULE_44__, __WEBPACK_EXTERNAL_MODULE_45__, __WEBPACK_EXTERNAL_MODULE_46__, __WEBPACK_EXTERNAL_MODULE_47__, __WEBPACK_EXTERNAL_MODULE_48__, __WEBPACK_EXTERNAL_MODULE_49__, __WEBPACK_EXTERNAL_MODULE_50__) {
+		root["_"] = factory(root["_"]["filter"], root["_"]["assign"], root["_"]["has"], root["_"]["reduceRight"], root["_"]["sortBy"], root["_"]["map"], root["_"]["flatten"], root["_"]["groupBy"], root["_"]["values"], root["_"]["keyBy"], root["_"], root["_"]["reduce"], root["_"]["isString"], root["_"]["isArray"], root["_"]["property"], root["_"]["isUndefined"], root["_"]["some"], root["_"]["every"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_25__, __WEBPACK_EXTERNAL_MODULE_27__, __WEBPACK_EXTERNAL_MODULE_28__, __WEBPACK_EXTERNAL_MODULE_29__, __WEBPACK_EXTERNAL_MODULE_40__, __WEBPACK_EXTERNAL_MODULE_46__, __WEBPACK_EXTERNAL_MODULE_47__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -60,9 +60,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -90,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 40);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -131,6 +128,18 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -168,7 +177,7 @@ function mergeLists(aDatumsR, bDatumsR) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -179,7 +188,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = yieldRightSubList;
 
-__webpack_require__(41);
+__webpack_require__(36);
 
 var _marked = [yieldRightSubList].map(regeneratorRuntime.mark);
 
@@ -268,61 +277,10 @@ function yieldRightSubList(sortedList, accessor) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
-
-/***/ }),
 /* 10 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = hashLeftAntiJoin;
-
-var _filter = __webpack_require__(0);
-
-var _filter2 = _interopRequireDefault(_filter);
-
-var _has = __webpack_require__(2);
-
-var _has2 = _interopRequireDefault(_has);
-
-var _keyBy = __webpack_require__(20);
-
-var _keyBy2 = _interopRequireDefault(_keyBy);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Hash left anti join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function hashLeftAntiJoin(a, aAccessor, b, bAccessor) {
-    if (a.length < 1 || b.length < 1) {
-        return a;
-    }
-    var index = (0, _keyBy2.default)(b, bAccessor);
-    return (0, _filter2.default)(a, function (aDatum) {
-        return !(0, _has2.default)(index, aAccessor(aDatum));
-    });
-}
-module.exports = exports['default'];
+module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
 
 /***/ }),
 /* 11 */
@@ -344,11 +302,11 @@ var _filter = __webpack_require__(0);
 
 var _filter2 = _interopRequireDefault(_filter);
 
-var _flatten = __webpack_require__(8);
+var _flatten = __webpack_require__(6);
 
 var _flatten2 = _interopRequireDefault(_flatten);
 
-var _groupBy = __webpack_require__(9);
+var _groupBy = __webpack_require__(7);
 
 var _groupBy2 = _interopRequireDefault(_groupBy);
 
@@ -364,7 +322,7 @@ var _reduceRight = __webpack_require__(3);
 
 var _reduceRight2 = _interopRequireDefault(_reduceRight);
 
-var _values = __webpack_require__(21);
+var _values = __webpack_require__(10);
 
 var _values2 = _interopRequireDefault(_values);
 
@@ -433,7 +391,7 @@ var _has = __webpack_require__(2);
 
 var _has2 = _interopRequireDefault(_has);
 
-var _keyBy = __webpack_require__(20);
+var _keyBy = __webpack_require__(13);
 
 var _keyBy2 = _interopRequireDefault(_keyBy);
 
@@ -460,6 +418,12 @@ module.exports = exports['default'];
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -468,42 +432,250 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = nestedLoopLeftAntiJoin;
-
-var _every = __webpack_require__(44);
-
-var _every2 = _interopRequireDefault(_every);
+exports.default = hashLeftAntiJoin;
 
 var _filter = __webpack_require__(0);
 
 var _filter2 = _interopRequireDefault(_filter);
 
+var _has = __webpack_require__(2);
+
+var _has2 = _interopRequireDefault(_has);
+
+var _keyBy = __webpack_require__(13);
+
+var _keyBy2 = _interopRequireDefault(_keyBy);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Nested loop left anti join
+ * Hash left anti join
  * @param  {Array<Object>} a
  * @param  {AccessorFunction} aAccessor
  * @param  {Array<Object>} b
  * @param  {AccessorFunction} bAccessor
  * @returns {Array<Object>}
  */
-function nestedLoopLeftAntiJoin(a, aAccessor, b, bAccessor) {
+function hashLeftAntiJoin(a, aAccessor, b, bAccessor) {
     if (a.length < 1 || b.length < 1) {
         return a;
     }
+    var index = (0, _keyBy2.default)(b, bAccessor);
     return (0, _filter2.default)(a, function (aDatum) {
-        var value = aAccessor(aDatum);
-        return (0, _every2.default)(b, function (bDatum) {
-            var otherValue = bAccessor(bDatum);
-            return !(value <= otherValue && value >= otherValue);
-        });
+        return !(0, _has2.default)(index, aAccessor(aDatum));
     });
 }
 module.exports = exports['default'];
 
 /***/ }),
-/* 14 */
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = sortedMergeLeftOuterJoin;
+
+var _sortBy = __webpack_require__(4);
+
+var _sortBy2 = _interopRequireDefault(_sortBy);
+
+var _mergeLists = __webpack_require__(8);
+
+var _mergeLists2 = _interopRequireDefault(_mergeLists);
+
+var _yieldRightSubList = __webpack_require__(9);
+
+var _yieldRightSubList2 = _interopRequireDefault(_yieldRightSubList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Sorted merge left outer join.  Returns a new array.
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function sortedMergeLeftOuterJoin(a, aAccessor, b, bAccessor) {
+    if (a.length < 1 || b.length < 1) {
+        return a;
+    }
+    var aSorted = (0, _sortBy2.default)(a, aAccessor),
+        bSorted = (0, _sortBy2.default)(b, bAccessor),
+        aGenerator = (0, _yieldRightSubList2.default)(aSorted, aAccessor),
+        bGenerator = (0, _yieldRightSubList2.default)(bSorted, bAccessor);
+    var r = [],
+        aDatums = aGenerator.next().value,
+        bDatums = bGenerator.next().value;
+    while (aDatums && bDatums) {
+        if (aDatums.val > bDatums.val) {
+            r = aDatums.r.concat(r);
+            aDatums = aGenerator.next().value;
+        } else if (aDatums.val < bDatums.val) {
+            bDatums = bGenerator.next().value;
+        } else {
+            r = (0, _mergeLists2.default)(aDatums.r, bDatums.r).concat(r);
+            aDatums = aGenerator.next().value;
+            bDatums = bGenerator.next().value;
+        }
+    }
+    while (aDatums) {
+        r = aDatums.r.concat(r);
+        aDatums = aGenerator.next().value;
+    }
+    return r;
+}
+module.exports = exports['default'];
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = sortedMergeLeftSemiJoin;
+
+var _sortBy = __webpack_require__(4);
+
+var _sortBy2 = _interopRequireDefault(_sortBy);
+
+var _isUndefined = __webpack_require__(17);
+
+var _isUndefined2 = _interopRequireDefault(_isUndefined);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Sorted merge left semi join.  Returns a new array.
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function sortedMergeLeftSemiJoin(a, aAccessor, b, bAccessor) {
+    if (a.length < 1 || b.length < 1) {
+        return [];
+    }
+    var aSorted = (0, _sortBy2.default)(a, aAccessor),
+        bSorted = (0, _sortBy2.default)(b, bAccessor),
+        r = [];
+    var aDatum = aSorted.pop(),
+        bDatum = bSorted.pop(),
+        aVal = aAccessor(aDatum),
+        bVal = bAccessor(bDatum);
+    while (aDatum && bDatum) {
+        if (aVal > bVal) {
+            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
+        } else if (aVal < bVal) {
+            bVal = (0, _isUndefined2.default)(bDatum = bSorted.pop(), bAccessor);
+        } else {
+            r.unshift(aDatum);
+            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
+        }
+    }
+    return r;
+}
+module.exports = exports['default'];
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undef;
+
+var _isUndefined = __webpack_require__(40);
+
+var _isUndefined2 = _interopRequireDefault(_isUndefined);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Given an object, execute a function if that object is defined.
+ * @param {*} obj
+ * @param {Function} fn
+ * @returns {*}
+ */
+function undef(obj, fn) {
+  return (0, _isUndefined2.default)(obj) ? obj : fn(obj);
+}
+module.exports = exports['default'];
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = sortedMergeLeftAntiJoin;
+
+var _sortBy = __webpack_require__(4);
+
+var _sortBy2 = _interopRequireDefault(_sortBy);
+
+var _isUndefined = __webpack_require__(17);
+
+var _isUndefined2 = _interopRequireDefault(_isUndefined);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Sorted merge left semi join.  Returns a new array.
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function sortedMergeLeftAntiJoin(a, aAccessor, b, bAccessor) {
+    if (a.length < 1 || b.length < 1) {
+        return a;
+    }
+    var aSorted = (0, _sortBy2.default)(a, aAccessor),
+        bSorted = (0, _sortBy2.default)(b, bAccessor),
+        r = [];
+    var aDatum = aSorted.pop(),
+        bDatum = bSorted.pop(),
+        aVal = aAccessor(aDatum),
+        bVal = bAccessor(bDatum);
+    while (aDatum && bDatum) {
+        if (aVal > bVal) {
+            r.unshift(aDatum);
+            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
+        } else if (aVal < bVal) {
+            bVal = (0, _isUndefined2.default)(bDatum = bSorted.pop(), bAccessor);
+        } else {
+            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
+        }
+    }
+    if (aDatum) {
+        r.unshift(aDatum);
+    }
+    return aSorted.concat(r);
+}
+module.exports = exports['default'];
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -579,7 +751,7 @@ function nestedLoopLeftOuterJoin(a, aAccessor, b, bAccessor) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 15 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -594,7 +766,7 @@ var _filter = __webpack_require__(0);
 
 var _filter2 = _interopRequireDefault(_filter);
 
-var _some = __webpack_require__(50);
+var _some = __webpack_require__(46);
 
 var _some2 = _interopRequireDefault(_some);
 
@@ -623,7 +795,7 @@ function nestedLoopLeftSemiJoin(a, aAccessor, b, bAccessor) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 16 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -632,176 +804,42 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = sortedMergeLeftAntiJoin;
+exports.default = nestedLoopLeftAntiJoin;
 
-var _sortBy = __webpack_require__(4);
+var _every = __webpack_require__(47);
 
-var _sortBy2 = _interopRequireDefault(_sortBy);
+var _every2 = _interopRequireDefault(_every);
 
-var _isUndefined = __webpack_require__(19);
+var _filter = __webpack_require__(0);
 
-var _isUndefined2 = _interopRequireDefault(_isUndefined);
+var _filter2 = _interopRequireDefault(_filter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Sorted merge left semi join.  Returns a new array.
+ * Nested loop left anti join
  * @param  {Array<Object>} a
  * @param  {AccessorFunction} aAccessor
  * @param  {Array<Object>} b
  * @param  {AccessorFunction} bAccessor
  * @returns {Array<Object>}
  */
-function sortedMergeLeftAntiJoin(a, aAccessor, b, bAccessor) {
+function nestedLoopLeftAntiJoin(a, aAccessor, b, bAccessor) {
     if (a.length < 1 || b.length < 1) {
         return a;
     }
-    var aSorted = (0, _sortBy2.default)(a, aAccessor),
-        bSorted = (0, _sortBy2.default)(b, bAccessor),
-        r = [];
-    var aDatum = aSorted.pop(),
-        bDatum = bSorted.pop(),
-        aVal = aAccessor(aDatum),
-        bVal = bAccessor(bDatum);
-    while (aDatum && bDatum) {
-        if (aVal > bVal) {
-            r.unshift(aDatum);
-            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
-        } else if (aVal < bVal) {
-            bVal = (0, _isUndefined2.default)(bDatum = bSorted.pop(), bAccessor);
-        } else {
-            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
-        }
-    }
-    if (aDatum) {
-        r.unshift(aDatum);
-    }
-    return aSorted.concat(r);
+    return (0, _filter2.default)(a, function (aDatum) {
+        var value = aAccessor(aDatum);
+        return (0, _every2.default)(b, function (bDatum) {
+            var otherValue = bAccessor(bDatum);
+            return !(value <= otherValue && value >= otherValue);
+        });
+    });
 }
 module.exports = exports['default'];
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = sortedMergeLeftOuterJoin;
-
-var _sortBy = __webpack_require__(4);
-
-var _sortBy2 = _interopRequireDefault(_sortBy);
-
-var _mergeLists = __webpack_require__(6);
-
-var _mergeLists2 = _interopRequireDefault(_mergeLists);
-
-var _yieldRightSubList = __webpack_require__(7);
-
-var _yieldRightSubList2 = _interopRequireDefault(_yieldRightSubList);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Sorted merge left outer join.  Returns a new array.
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function sortedMergeLeftOuterJoin(a, aAccessor, b, bAccessor) {
-    if (a.length < 1 || b.length < 1) {
-        return a;
-    }
-    var aSorted = (0, _sortBy2.default)(a, aAccessor),
-        bSorted = (0, _sortBy2.default)(b, bAccessor),
-        aGenerator = (0, _yieldRightSubList2.default)(aSorted, aAccessor),
-        bGenerator = (0, _yieldRightSubList2.default)(bSorted, bAccessor);
-    var r = [],
-        aDatums = aGenerator.next().value,
-        bDatums = bGenerator.next().value;
-    while (aDatums && bDatums) {
-        if (aDatums.val > bDatums.val) {
-            r = aDatums.r.concat(r);
-            aDatums = aGenerator.next().value;
-        } else if (aDatums.val < bDatums.val) {
-            bDatums = bGenerator.next().value;
-        } else {
-            r = (0, _mergeLists2.default)(aDatums.r, bDatums.r).concat(r);
-            aDatums = aGenerator.next().value;
-            bDatums = bGenerator.next().value;
-        }
-    }
-    while (aDatums) {
-        r = aDatums.r.concat(r);
-        aDatums = aGenerator.next().value;
-    }
-    return r;
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = sortedMergeLeftSemiJoin;
-
-var _sortBy = __webpack_require__(4);
-
-var _sortBy2 = _interopRequireDefault(_sortBy);
-
-var _isUndefined = __webpack_require__(19);
-
-var _isUndefined2 = _interopRequireDefault(_isUndefined);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Sorted merge left semi join.  Returns a new array.
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function sortedMergeLeftSemiJoin(a, aAccessor, b, bAccessor) {
-    if (a.length < 1 || b.length < 1) {
-        return [];
-    }
-    var aSorted = (0, _sortBy2.default)(a, aAccessor),
-        bSorted = (0, _sortBy2.default)(b, bAccessor),
-        r = [];
-    var aDatum = aSorted.pop(),
-        bDatum = bSorted.pop(),
-        aVal = aAccessor(aDatum),
-        bVal = bAccessor(bDatum);
-    while (aDatum && bDatum) {
-        if (aVal > bVal) {
-            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
-        } else if (aVal < bVal) {
-            bVal = (0, _isUndefined2.default)(bDatum = bSorted.pop(), bAccessor);
-        } else {
-            r.unshift(aDatum);
-            aVal = (0, _isUndefined2.default)(aDatum = aSorted.pop(), aAccessor);
-        }
-    }
-    return r;
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -810,39 +848,170 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undef;
 
-var _isUndefined = __webpack_require__(47);
+var _lodash = __webpack_require__(23);
 
-var _isUndefined2 = _interopRequireDefault(_isUndefined);
+var _cartesianProduct = __webpack_require__(24);
+
+var _cartesianProduct2 = _interopRequireDefault(_cartesianProduct);
+
+var _joinWrapper = __webpack_require__(26);
+
+var _joinWrapper2 = _interopRequireDefault(_joinWrapper);
+
+var _hashFullOuterJoin = __webpack_require__(30);
+
+var _hashFullOuterJoin2 = _interopRequireDefault(_hashFullOuterJoin);
+
+var _hashInnerJoin = __webpack_require__(31);
+
+var _hashInnerJoin2 = _interopRequireDefault(_hashInnerJoin);
+
+var _hashLeftOuterJoin = __webpack_require__(11);
+
+var _hashLeftOuterJoin2 = _interopRequireDefault(_hashLeftOuterJoin);
+
+var _hashLeftSemiJoin = __webpack_require__(12);
+
+var _hashLeftSemiJoin2 = _interopRequireDefault(_hashLeftSemiJoin);
+
+var _hashLeftAntiJoin = __webpack_require__(14);
+
+var _hashLeftAntiJoin2 = _interopRequireDefault(_hashLeftAntiJoin);
+
+var _hashRightOuterJoin = __webpack_require__(32);
+
+var _hashRightOuterJoin2 = _interopRequireDefault(_hashRightOuterJoin);
+
+var _hashRightSemiJoin = __webpack_require__(33);
+
+var _hashRightSemiJoin2 = _interopRequireDefault(_hashRightSemiJoin);
+
+var _hashRightAntiJoin = __webpack_require__(34);
+
+var _hashRightAntiJoin2 = _interopRequireDefault(_hashRightAntiJoin);
+
+var _sortedMergeFullOuterJoin = __webpack_require__(35);
+
+var _sortedMergeFullOuterJoin2 = _interopRequireDefault(_sortedMergeFullOuterJoin);
+
+var _sortedMergeInnerJoin = __webpack_require__(39);
+
+var _sortedMergeInnerJoin2 = _interopRequireDefault(_sortedMergeInnerJoin);
+
+var _sortedMergeLeftOuterJoin = __webpack_require__(15);
+
+var _sortedMergeLeftOuterJoin2 = _interopRequireDefault(_sortedMergeLeftOuterJoin);
+
+var _sortedMergeLeftSemiJoin = __webpack_require__(16);
+
+var _sortedMergeLeftSemiJoin2 = _interopRequireDefault(_sortedMergeLeftSemiJoin);
+
+var _sortedMergeLeftAntiJoin = __webpack_require__(18);
+
+var _sortedMergeLeftAntiJoin2 = _interopRequireDefault(_sortedMergeLeftAntiJoin);
+
+var _sortedMergeRightOuterJoin = __webpack_require__(41);
+
+var _sortedMergeRightOuterJoin2 = _interopRequireDefault(_sortedMergeRightOuterJoin);
+
+var _sortedMergeRightSemiJoin = __webpack_require__(42);
+
+var _sortedMergeRightSemiJoin2 = _interopRequireDefault(_sortedMergeRightSemiJoin);
+
+var _sortedMergeRightAntiJoin = __webpack_require__(43);
+
+var _sortedMergeRightAntiJoin2 = _interopRequireDefault(_sortedMergeRightAntiJoin);
+
+var _nestedLoopFullOuterJoin = __webpack_require__(44);
+
+var _nestedLoopFullOuterJoin2 = _interopRequireDefault(_nestedLoopFullOuterJoin);
+
+var _nestedLoopInnerJoin = __webpack_require__(45);
+
+var _nestedLoopInnerJoin2 = _interopRequireDefault(_nestedLoopInnerJoin);
+
+var _nestedLoopLeftOuterJoin = __webpack_require__(19);
+
+var _nestedLoopLeftOuterJoin2 = _interopRequireDefault(_nestedLoopLeftOuterJoin);
+
+var _nestedLoopLeftSemiJoin = __webpack_require__(20);
+
+var _nestedLoopLeftSemiJoin2 = _interopRequireDefault(_nestedLoopLeftSemiJoin);
+
+var _nestedLoopLeftAntiJoin = __webpack_require__(21);
+
+var _nestedLoopLeftAntiJoin2 = _interopRequireDefault(_nestedLoopLeftAntiJoin);
+
+var _nestedLoopRightOuterJoin = __webpack_require__(48);
+
+var _nestedLoopRightOuterJoin2 = _interopRequireDefault(_nestedLoopRightOuterJoin);
+
+var _nestedLoopRightSemiJoin = __webpack_require__(49);
+
+var _nestedLoopRightSemiJoin2 = _interopRequireDefault(_nestedLoopRightSemiJoin);
+
+var _nestedLoopRightAntiJoin = __webpack_require__(50);
+
+var _nestedLoopRightAntiJoin2 = _interopRequireDefault(_nestedLoopRightAntiJoin);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var _ = (0, _lodash.runInContext)();
+_.mixin({
+  cartesianProduct: _cartesianProduct2.default,
+  hashFullOuterJoin: (0, _joinWrapper2.default)(_hashFullOuterJoin2.default),
+  hashInnerJoin: (0, _joinWrapper2.default)(_hashInnerJoin2.default),
+  hashLeftOuterJoin: (0, _joinWrapper2.default)(_hashLeftOuterJoin2.default),
+  hashLeftSemiJoin: (0, _joinWrapper2.default)(_hashLeftSemiJoin2.default),
+  hashLeftAntiJoin: (0, _joinWrapper2.default)(_hashLeftAntiJoin2.default),
+  hashRightOuterJoin: (0, _joinWrapper2.default)(_hashRightOuterJoin2.default),
+  hashRightSemiJoin: (0, _joinWrapper2.default)(_hashRightSemiJoin2.default),
+  hashRightAntiJoin: (0, _joinWrapper2.default)(_hashRightAntiJoin2.default),
+  sortedMergeFullOuterJoin: (0, _joinWrapper2.default)(_sortedMergeFullOuterJoin2.default),
+  sortedMergeInnerJoin: (0, _joinWrapper2.default)(_sortedMergeInnerJoin2.default),
+  sortedMergeLeftOuterJoin: (0, _joinWrapper2.default)(_sortedMergeLeftOuterJoin2.default),
+  sortedMergeLeftSemiJoin: (0, _joinWrapper2.default)(_sortedMergeLeftSemiJoin2.default),
+  sortedMergeLeftAntiJoin: (0, _joinWrapper2.default)(_sortedMergeLeftAntiJoin2.default),
+  sortedMergeRightOuterJoin: (0, _joinWrapper2.default)(_sortedMergeRightOuterJoin2.default),
+  sortedMergeRightSemiJoin: (0, _joinWrapper2.default)(_sortedMergeRightSemiJoin2.default),
+  sortedMergeRightAntiJoin: (0, _joinWrapper2.default)(_sortedMergeRightAntiJoin2.default),
+  nestedLoopFullOuterJoin: (0, _joinWrapper2.default)(_nestedLoopFullOuterJoin2.default),
+  nestedLoopInnerJoin: (0, _joinWrapper2.default)(_nestedLoopInnerJoin2.default),
+  nestedLoopLeftOuterJoin: (0, _joinWrapper2.default)(_nestedLoopLeftOuterJoin2.default),
+  nestedLoopLeftSemiJoin: (0, _joinWrapper2.default)(_nestedLoopLeftSemiJoin2.default),
+  nestedLoopLeftAntiJoin: (0, _joinWrapper2.default)(_nestedLoopLeftAntiJoin2.default),
+  nestedLoopRightOuterJoin: (0, _joinWrapper2.default)(_nestedLoopRightOuterJoin2.default),
+  nestedLoopRightSemiJoin: (0, _joinWrapper2.default)(_nestedLoopRightSemiJoin2.default),
+  nestedLoopRightAntiJoin: (0, _joinWrapper2.default)(_nestedLoopRightAntiJoin2.default)
+});
+exports.default = _;
+
 /**
- * Given an object, execute a function if that object is defined.
- * @param {*} obj
- * @param {Function} fn
- * @returns {*}
+ * @callback AccessorFunction
+ * @param  {Object}
+ * @return {*}
  */
-function undef(obj, fn) {
-  return (0, _isUndefined2.default)(obj) ? obj : fn(obj);
-}
+
+/**
+ * @callback JoinFunction
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @return {Array<Object>}
+ */
+
 module.exports = exports['default'];
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_20__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_23__;
 
 /***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_21__;
-
-/***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -853,7 +1022,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = cartesianProduct;
 
-var _flatten = __webpack_require__(8);
+var _flatten = __webpack_require__(6);
 
 var _flatten2 = _interopRequireDefault(_flatten);
 
@@ -861,7 +1030,7 @@ var _map = __webpack_require__(5);
 
 var _map2 = _interopRequireDefault(_map);
 
-var _reduce = __webpack_require__(49);
+var _reduce = __webpack_require__(25);
 
 var _reduce2 = _interopRequireDefault(_reduce);
 
@@ -888,7 +1057,86 @@ function cartesianProduct() {
 module.exports = exports['default'];
 
 /***/ }),
-/* 23 */
+/* 25 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_25__;
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = joinWrapper;
+
+var _isString = __webpack_require__(27);
+
+var _isString2 = _interopRequireDefault(_isString);
+
+var _isArray = __webpack_require__(28);
+
+var _isArray2 = _interopRequireDefault(_isArray);
+
+var _property = __webpack_require__(29);
+
+var _property2 = _interopRequireDefault(_property);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Get an accessor function from an object.  If it's a string or an array, use _.property.
+ * @param {*} obj
+ * @returns {AccessorFunction}
+ */
+function getAccessor(obj) {
+    return (0, _isString2.default)(obj) || (0, _isArray2.default)(obj) ? (0, _property2.default)(obj) : obj;
+}
+
+/**
+ * Wrap a join function to process inputs in a more succinct manner.
+ * @param {JoinFunction} joinFn
+ * @returns {JoinFunction}
+ */
+function joinWrapper(joinFn) {
+    return function (a, aAccessor) {
+        var b = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : a;
+        var bAccessor = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : aAccessor;
+
+        if (!a) {
+            throw new Error('Missing required left array');
+        } else if (!aAccessor) {
+            throw new Error('Missing required left accessor');
+        }
+        return joinFn(a, getAccessor(aAccessor), b, getAccessor(bAccessor));
+    };
+}
+module.exports = exports['default'];
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_27__;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_28__;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_29__;
+
+/***/ }),
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -907,11 +1155,11 @@ var _filter = __webpack_require__(0);
 
 var _filter2 = _interopRequireDefault(_filter);
 
-var _flatten = __webpack_require__(8);
+var _flatten = __webpack_require__(6);
 
 var _flatten2 = _interopRequireDefault(_flatten);
 
-var _groupBy = __webpack_require__(9);
+var _groupBy = __webpack_require__(7);
 
 var _groupBy2 = _interopRequireDefault(_groupBy);
 
@@ -927,7 +1175,7 @@ var _reduceRight = __webpack_require__(3);
 
 var _reduceRight2 = _interopRequireDefault(_reduceRight);
 
-var _values = __webpack_require__(21);
+var _values = __webpack_require__(10);
 
 var _values2 = _interopRequireDefault(_values);
 
@@ -981,7 +1229,7 @@ function hashFullOuterJoin(a, aAccessor, b, bAccessor) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 24 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -996,7 +1244,7 @@ var _assign = __webpack_require__(1);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _groupBy = __webpack_require__(9);
+var _groupBy = __webpack_require__(7);
 
 var _groupBy2 = _interopRequireDefault(_groupBy);
 
@@ -1054,38 +1302,7 @@ function hashInnerJoin(a, aAccessor, b, bAccessor) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = hashRightAntiJoin;
-
-var _hashLeftAntiJoin = __webpack_require__(10);
-
-var _hashLeftAntiJoin2 = _interopRequireDefault(_hashLeftAntiJoin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Hash right anti join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function hashRightAntiJoin(a, aAccessor, b, bAccessor) {
-  return (0, _hashLeftAntiJoin2.default)(b, bAccessor, a, aAccessor);
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 26 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1116,7 +1333,7 @@ function hashRightOuterJoin(a, aAccessor, b, bAccessor) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 27 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1147,302 +1364,38 @@ function hashRightSemiJoin(a, aAccessor, b, bAccessor) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = joinWrapper;
-
-var _isString = __webpack_require__(46);
-
-var _isString2 = _interopRequireDefault(_isString);
-
-var _isArray = __webpack_require__(45);
-
-var _isArray2 = _interopRequireDefault(_isArray);
-
-var _property = __webpack_require__(48);
-
-var _property2 = _interopRequireDefault(_property);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Get an accessor function from an object.  If it's a string or an array, use _.property.
- * @param {*} obj
- * @returns {AccessorFunction}
- */
-function getAccessor(obj) {
-    return (0, _isString2.default)(obj) || (0, _isArray2.default)(obj) ? (0, _property2.default)(obj) : obj;
-}
-
-/**
- * Wrap a join function to process inputs in a more succinct manner.
- * @param {JoinFunction} joinFn
- * @returns {JoinFunction}
- */
-function joinWrapper(joinFn) {
-    return function (a, aAccessor) {
-        var b = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : a;
-        var bAccessor = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : aAccessor;
-
-        if (!a) {
-            throw new Error('Missing required left array');
-        } else if (!aAccessor) {
-            throw new Error('Missing required left accessor');
-        }
-        return joinFn(a, getAccessor(aAccessor), b, getAccessor(bAccessor));
-    };
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = nestedLoopFullOuterJoin;
-
-var _assign = __webpack_require__(1);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _filter = __webpack_require__(0);
-
-var _filter2 = _interopRequireDefault(_filter);
-
-var _has = __webpack_require__(2);
-
-var _has2 = _interopRequireDefault(_has);
-
-var _reduceRight = __webpack_require__(3);
-
-var _reduceRight2 = _interopRequireDefault(_reduceRight);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Nested loop left semi join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function nestedLoopFullOuterJoin(a, aAccessor, b, bAccessor) {
-    if (a.length < 1 || b.length < 1) {
-        return a.concat(b);
-    }
-    var seen = {};
-    var value = void 0,
-        otherValue = void 0,
-        tmpLength = void 0,
-        output = void 0;
-    if (a.length < b.length) {
-        return (0, _reduceRight2.default)(a, function (previous, aDatum) {
-            value = aAccessor(aDatum);
-            tmpLength = previous.length;
-            output = (0, _reduceRight2.default)(b, function (oPrevious, bDatum, bIndex) {
-                otherValue = bAccessor(bDatum);
-                if (value <= otherValue && value >= otherValue) {
-                    seen[bIndex] = true;
-                    oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
-                }
-                return oPrevious;
-            }, []).concat(previous);
-            if (tmpLength === output.length) {
-                output.unshift(aDatum);
-            }
-            return output;
-        }, []).concat((0, _filter2.default)(b, function (bDatum, bIndex) {
-            return !(0, _has2.default)(seen, bIndex);
-        }));
-    }
-    return (0, _reduceRight2.default)(b, function (previous, bDatum) {
-        value = bAccessor(bDatum);
-        tmpLength = previous.length;
-        output = (0, _reduceRight2.default)(a, function (oPrevious, aDatum, aIndex) {
-            otherValue = aAccessor(aDatum);
-            if (value <= otherValue && value >= otherValue) {
-                seen[aIndex] = true;
-                oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
-            }
-            return oPrevious;
-        }, []).concat(previous);
-        if (tmpLength === output.length) {
-            output.unshift(bDatum);
-        }
-        return output;
-    }, []).concat((0, _filter2.default)(a, function (aDatum, aIndex) {
-        return !(0, _has2.default)(seen, aIndex);
-    }));
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = nestedLoopInnerJoin;
-
-var _assign = __webpack_require__(1);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _reduceRight = __webpack_require__(3);
-
-var _reduceRight2 = _interopRequireDefault(_reduceRight);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Nested loop inner join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function nestedLoopInnerJoin(a, aAccessor, b, bAccessor) {
-    if (a.length < 1 || b.length < 1) {
-        return [];
-    }
-    if (a.length < b.length) {
-        return (0, _reduceRight2.default)(a, function (previous, aDatum) {
-            var value = aAccessor(aDatum);
-            return (0, _reduceRight2.default)(b, function (oPrevious, bDatum) {
-                var otherValue = bAccessor(bDatum);
-                if (value <= otherValue && value >= otherValue) {
-                    oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
-                }
-                return oPrevious;
-            }, []).concat(previous);
-        }, []);
-    }
-    return (0, _reduceRight2.default)(b, function (previous, bDatum) {
-        var value = bAccessor(bDatum);
-        return (0, _reduceRight2.default)(a, function (oPrevious, aDatum) {
-            var otherValue = aAccessor(aDatum);
-            if (value <= otherValue && value >= otherValue) {
-                oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
-            }
-            return oPrevious;
-        }, []).concat(previous);
-    }, []);
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = nestedLoopRightAntiJoin;
-
-var _nestedLoopLeftAntiJoin = __webpack_require__(13);
-
-var _nestedLoopLeftAntiJoin2 = _interopRequireDefault(_nestedLoopLeftAntiJoin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Nested loop right outer join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function nestedLoopRightAntiJoin(a, aAccessor, b, bAccessor) {
-  return (0, _nestedLoopLeftAntiJoin2.default)(b, bAccessor, a, aAccessor);
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = nestedLoopRightOuterJoin;
-
-var _nestedLoopLeftOuterJoin = __webpack_require__(14);
-
-var _nestedLoopLeftOuterJoin2 = _interopRequireDefault(_nestedLoopLeftOuterJoin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Nested loop right outer join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function nestedLoopRightOuterJoin(a, aAccessor, b, bAccessor) {
-  return (0, _nestedLoopLeftOuterJoin2.default)(b, bAccessor, a, aAccessor);
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = nestedLoopRightSemiJoin;
-
-var _nestedLoopLeftSemiJoin = __webpack_require__(15);
-
-var _nestedLoopLeftSemiJoin2 = _interopRequireDefault(_nestedLoopLeftSemiJoin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Nested loop right semi join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function nestedLoopRightSemiJoin(a, aAccessor, b, bAccessor) {
-  return (0, _nestedLoopLeftSemiJoin2.default)(b, bAccessor, a, aAccessor);
-}
-module.exports = exports['default'];
-
-/***/ }),
 /* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = hashRightAntiJoin;
+
+var _hashLeftAntiJoin = __webpack_require__(14);
+
+var _hashLeftAntiJoin2 = _interopRequireDefault(_hashLeftAntiJoin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Hash right anti join
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function hashRightAntiJoin(a, aAccessor, b, bAccessor) {
+  return (0, _hashLeftAntiJoin2.default)(b, bAccessor, a, aAccessor);
+}
+module.exports = exports['default'];
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1457,11 +1410,11 @@ var _sortBy = __webpack_require__(4);
 
 var _sortBy2 = _interopRequireDefault(_sortBy);
 
-var _mergeLists = __webpack_require__(6);
+var _mergeLists = __webpack_require__(8);
 
 var _mergeLists2 = _interopRequireDefault(_mergeLists);
 
-var _yieldRightSubList = __webpack_require__(7);
+var _yieldRightSubList = __webpack_require__(9);
 
 var _yieldRightSubList2 = _interopRequireDefault(_yieldRightSubList);
 
@@ -1512,332 +1465,7 @@ function sortedMergeLeftOuterJoin(a, aAccessor, b, bAccessor) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = sortedMergeInnerJoin;
-
-var _sortBy = __webpack_require__(4);
-
-var _sortBy2 = _interopRequireDefault(_sortBy);
-
-var _mergeLists = __webpack_require__(6);
-
-var _mergeLists2 = _interopRequireDefault(_mergeLists);
-
-var _yieldRightSubList = __webpack_require__(7);
-
-var _yieldRightSubList2 = _interopRequireDefault(_yieldRightSubList);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Sorted merge inner join.  Returns a new array.
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function sortedMergeInnerJoin(a, aAccessor, b, bAccessor) {
-    if (a.length < 1 || b.length < 1) {
-        return [];
-    }
-    var aSorted = (0, _sortBy2.default)(a, aAccessor),
-        bSorted = (0, _sortBy2.default)(b, bAccessor),
-        aGenerator = (0, _yieldRightSubList2.default)(aSorted, aAccessor),
-        bGenerator = (0, _yieldRightSubList2.default)(bSorted, bAccessor);
-    var r = [],
-        aDatums = aGenerator.next().value,
-        bDatums = bGenerator.next().value;
-    while (aDatums && bDatums) {
-        if (aDatums.val > bDatums.val) {
-            aDatums = aGenerator.next().value;
-        } else if (aDatums.val < bDatums.val) {
-            bDatums = bGenerator.next().value;
-        } else {
-            r = (0, _mergeLists2.default)(aDatums.r, bDatums.r).concat(r);
-            aDatums = aGenerator.next().value;
-            bDatums = bGenerator.next().value;
-        }
-    }
-    return r;
-}
-module.exports = exports['default'];
-
-/***/ }),
 /* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = sortedMergeRightAntiJoin;
-
-var _sortedMergeLeftAntiJoin = __webpack_require__(16);
-
-var _sortedMergeLeftAntiJoin2 = _interopRequireDefault(_sortedMergeLeftAntiJoin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Sorted merge right semi join.  Returns the b-array reference.
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function sortedMergeRightAntiJoin(a, aAccessor, b, bAccessor) {
-  return (0, _sortedMergeLeftAntiJoin2.default)(b, bAccessor, a, aAccessor);
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = sortedMergeRightOuterJoin;
-
-var _sortedMergeLeftOuterJoin = __webpack_require__(17);
-
-var _sortedMergeLeftOuterJoin2 = _interopRequireDefault(_sortedMergeLeftOuterJoin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Sorted merge right outer join.  Returns the b-array reference.
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function sortedMergeRightOuterJoin(a, aAccessor, b, bAccessor) {
-  return (0, _sortedMergeLeftOuterJoin2.default)(b, bAccessor, a, aAccessor);
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = sortedMergeRightSemiJoin;
-
-var _sortedMergeLeftSemiJoin = __webpack_require__(18);
-
-var _sortedMergeLeftSemiJoin2 = _interopRequireDefault(_sortedMergeLeftSemiJoin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Sorted merge right semi join.  Returns the b-array reference.
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
- */
-function sortedMergeRightSemiJoin(a, aAccessor, b, bAccessor) {
-  return (0, _sortedMergeLeftSemiJoin2.default)(b, bAccessor, a, aAccessor);
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_39__;
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _lodash = __webpack_require__(39);
-
-var _cartesianProduct = __webpack_require__(22);
-
-var _cartesianProduct2 = _interopRequireDefault(_cartesianProduct);
-
-var _joinWrapper = __webpack_require__(28);
-
-var _joinWrapper2 = _interopRequireDefault(_joinWrapper);
-
-var _hashFullOuterJoin = __webpack_require__(23);
-
-var _hashFullOuterJoin2 = _interopRequireDefault(_hashFullOuterJoin);
-
-var _hashInnerJoin = __webpack_require__(24);
-
-var _hashInnerJoin2 = _interopRequireDefault(_hashInnerJoin);
-
-var _hashLeftOuterJoin = __webpack_require__(11);
-
-var _hashLeftOuterJoin2 = _interopRequireDefault(_hashLeftOuterJoin);
-
-var _hashLeftSemiJoin = __webpack_require__(12);
-
-var _hashLeftSemiJoin2 = _interopRequireDefault(_hashLeftSemiJoin);
-
-var _hashLeftAntiJoin = __webpack_require__(10);
-
-var _hashLeftAntiJoin2 = _interopRequireDefault(_hashLeftAntiJoin);
-
-var _hashRightOuterJoin = __webpack_require__(26);
-
-var _hashRightOuterJoin2 = _interopRequireDefault(_hashRightOuterJoin);
-
-var _hashRightSemiJoin = __webpack_require__(27);
-
-var _hashRightSemiJoin2 = _interopRequireDefault(_hashRightSemiJoin);
-
-var _hashRightAntiJoin = __webpack_require__(25);
-
-var _hashRightAntiJoin2 = _interopRequireDefault(_hashRightAntiJoin);
-
-var _sortedMergeFullOuterJoin = __webpack_require__(34);
-
-var _sortedMergeFullOuterJoin2 = _interopRequireDefault(_sortedMergeFullOuterJoin);
-
-var _sortedMergeInnerJoin = __webpack_require__(35);
-
-var _sortedMergeInnerJoin2 = _interopRequireDefault(_sortedMergeInnerJoin);
-
-var _sortedMergeLeftOuterJoin = __webpack_require__(17);
-
-var _sortedMergeLeftOuterJoin2 = _interopRequireDefault(_sortedMergeLeftOuterJoin);
-
-var _sortedMergeLeftSemiJoin = __webpack_require__(18);
-
-var _sortedMergeLeftSemiJoin2 = _interopRequireDefault(_sortedMergeLeftSemiJoin);
-
-var _sortedMergeLeftAntiJoin = __webpack_require__(16);
-
-var _sortedMergeLeftAntiJoin2 = _interopRequireDefault(_sortedMergeLeftAntiJoin);
-
-var _sortedMergeRightOuterJoin = __webpack_require__(37);
-
-var _sortedMergeRightOuterJoin2 = _interopRequireDefault(_sortedMergeRightOuterJoin);
-
-var _sortedMergeRightSemiJoin = __webpack_require__(38);
-
-var _sortedMergeRightSemiJoin2 = _interopRequireDefault(_sortedMergeRightSemiJoin);
-
-var _sortedMergeRightAntiJoin = __webpack_require__(36);
-
-var _sortedMergeRightAntiJoin2 = _interopRequireDefault(_sortedMergeRightAntiJoin);
-
-var _nestedLoopFullOuterJoin = __webpack_require__(29);
-
-var _nestedLoopFullOuterJoin2 = _interopRequireDefault(_nestedLoopFullOuterJoin);
-
-var _nestedLoopInnerJoin = __webpack_require__(30);
-
-var _nestedLoopInnerJoin2 = _interopRequireDefault(_nestedLoopInnerJoin);
-
-var _nestedLoopLeftOuterJoin = __webpack_require__(14);
-
-var _nestedLoopLeftOuterJoin2 = _interopRequireDefault(_nestedLoopLeftOuterJoin);
-
-var _nestedLoopLeftSemiJoin = __webpack_require__(15);
-
-var _nestedLoopLeftSemiJoin2 = _interopRequireDefault(_nestedLoopLeftSemiJoin);
-
-var _nestedLoopLeftAntiJoin = __webpack_require__(13);
-
-var _nestedLoopLeftAntiJoin2 = _interopRequireDefault(_nestedLoopLeftAntiJoin);
-
-var _nestedLoopRightOuterJoin = __webpack_require__(32);
-
-var _nestedLoopRightOuterJoin2 = _interopRequireDefault(_nestedLoopRightOuterJoin);
-
-var _nestedLoopRightSemiJoin = __webpack_require__(33);
-
-var _nestedLoopRightSemiJoin2 = _interopRequireDefault(_nestedLoopRightSemiJoin);
-
-var _nestedLoopRightAntiJoin = __webpack_require__(31);
-
-var _nestedLoopRightAntiJoin2 = _interopRequireDefault(_nestedLoopRightAntiJoin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _ = (0, _lodash.runInContext)();
-_.mixin({
-  cartesianProduct: _cartesianProduct2.default,
-  hashFullOuterJoin: (0, _joinWrapper2.default)(_hashFullOuterJoin2.default),
-  hashInnerJoin: (0, _joinWrapper2.default)(_hashInnerJoin2.default),
-  hashLeftOuterJoin: (0, _joinWrapper2.default)(_hashLeftOuterJoin2.default),
-  hashLeftSemiJoin: (0, _joinWrapper2.default)(_hashLeftSemiJoin2.default),
-  hashLeftAntiJoin: (0, _joinWrapper2.default)(_hashLeftAntiJoin2.default),
-  hashRightOuterJoin: (0, _joinWrapper2.default)(_hashRightOuterJoin2.default),
-  hashRightSemiJoin: (0, _joinWrapper2.default)(_hashRightSemiJoin2.default),
-  hashRightAntiJoin: (0, _joinWrapper2.default)(_hashRightAntiJoin2.default),
-  sortedMergeFullOuterJoin: (0, _joinWrapper2.default)(_sortedMergeFullOuterJoin2.default),
-  sortedMergeInnerJoin: (0, _joinWrapper2.default)(_sortedMergeInnerJoin2.default),
-  sortedMergeLeftOuterJoin: (0, _joinWrapper2.default)(_sortedMergeLeftOuterJoin2.default),
-  sortedMergeLeftSemiJoin: (0, _joinWrapper2.default)(_sortedMergeLeftSemiJoin2.default),
-  sortedMergeLeftAntiJoin: (0, _joinWrapper2.default)(_sortedMergeLeftAntiJoin2.default),
-  sortedMergeRightOuterJoin: (0, _joinWrapper2.default)(_sortedMergeRightOuterJoin2.default),
-  sortedMergeRightSemiJoin: (0, _joinWrapper2.default)(_sortedMergeRightSemiJoin2.default),
-  sortedMergeRightAntiJoin: (0, _joinWrapper2.default)(_sortedMergeRightAntiJoin2.default),
-  nestedLoopFullOuterJoin: (0, _joinWrapper2.default)(_nestedLoopFullOuterJoin2.default),
-  nestedLoopInnerJoin: (0, _joinWrapper2.default)(_nestedLoopInnerJoin2.default),
-  nestedLoopLeftOuterJoin: (0, _joinWrapper2.default)(_nestedLoopLeftOuterJoin2.default),
-  nestedLoopLeftSemiJoin: (0, _joinWrapper2.default)(_nestedLoopLeftSemiJoin2.default),
-  nestedLoopLeftAntiJoin: (0, _joinWrapper2.default)(_nestedLoopLeftAntiJoin2.default),
-  nestedLoopRightOuterJoin: (0, _joinWrapper2.default)(_nestedLoopRightOuterJoin2.default),
-  nestedLoopRightSemiJoin: (0, _joinWrapper2.default)(_nestedLoopRightSemiJoin2.default),
-  nestedLoopRightAntiJoin: (0, _joinWrapper2.default)(_nestedLoopRightAntiJoin2.default)
-});
-exports.default = _;
-
-/**
- * @callback AccessorFunction
- * @param  {Object}
- * @return {*}
- */
-
-/**
- * @callback JoinFunction
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @return {Array<Object>}
- */
-
-module.exports = exports['default'];
-
-/***/ }),
-/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {/**
@@ -2498,10 +2126,37 @@ module.exports = exports['default'];
   typeof self === "object" ? self : this
 );
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43), __webpack_require__(42)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37), __webpack_require__(38)))
 
 /***/ }),
-/* 42 */
+/* 37 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 38 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -2691,43 +2346,310 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 43 */
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = sortedMergeInnerJoin;
+
+var _sortBy = __webpack_require__(4);
+
+var _sortBy2 = _interopRequireDefault(_sortBy);
+
+var _mergeLists = __webpack_require__(8);
+
+var _mergeLists2 = _interopRequireDefault(_mergeLists);
+
+var _yieldRightSubList = __webpack_require__(9);
+
+var _yieldRightSubList2 = _interopRequireDefault(_yieldRightSubList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Sorted merge inner join.  Returns a new array.
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function sortedMergeInnerJoin(a, aAccessor, b, bAccessor) {
+    if (a.length < 1 || b.length < 1) {
+        return [];
+    }
+    var aSorted = (0, _sortBy2.default)(a, aAccessor),
+        bSorted = (0, _sortBy2.default)(b, bAccessor),
+        aGenerator = (0, _yieldRightSubList2.default)(aSorted, aAccessor),
+        bGenerator = (0, _yieldRightSubList2.default)(bSorted, bAccessor);
+    var r = [],
+        aDatums = aGenerator.next().value,
+        bDatums = bGenerator.next().value;
+    while (aDatums && bDatums) {
+        if (aDatums.val > bDatums.val) {
+            aDatums = aGenerator.next().value;
+        } else if (aDatums.val < bDatums.val) {
+            bDatums = bGenerator.next().value;
+        } else {
+            r = (0, _mergeLists2.default)(aDatums.r, bDatums.r).concat(r);
+            aDatums = aGenerator.next().value;
+            bDatums = bGenerator.next().value;
+        }
+    }
+    return r;
+}
+module.exports = exports['default'];
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports) {
 
-var g;
+module.exports = __WEBPACK_EXTERNAL_MODULE_40__;
 
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
 
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = sortedMergeRightOuterJoin;
+
+var _sortedMergeLeftOuterJoin = __webpack_require__(15);
+
+var _sortedMergeLeftOuterJoin2 = _interopRequireDefault(_sortedMergeLeftOuterJoin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Sorted merge right outer join.  Returns the b-array reference.
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function sortedMergeRightOuterJoin(a, aAccessor, b, bAccessor) {
+  return (0, _sortedMergeLeftOuterJoin2.default)(b, bAccessor, a, aAccessor);
 }
+module.exports = exports['default'];
 
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = g;
+"use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = sortedMergeRightSemiJoin;
+
+var _sortedMergeLeftSemiJoin = __webpack_require__(16);
+
+var _sortedMergeLeftSemiJoin2 = _interopRequireDefault(_sortedMergeLeftSemiJoin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Sorted merge right semi join.  Returns the b-array reference.
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function sortedMergeRightSemiJoin(a, aAccessor, b, bAccessor) {
+  return (0, _sortedMergeLeftSemiJoin2.default)(b, bAccessor, a, aAccessor);
+}
+module.exports = exports['default'];
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = sortedMergeRightAntiJoin;
+
+var _sortedMergeLeftAntiJoin = __webpack_require__(18);
+
+var _sortedMergeLeftAntiJoin2 = _interopRequireDefault(_sortedMergeLeftAntiJoin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Sorted merge right semi join.  Returns the b-array reference.
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function sortedMergeRightAntiJoin(a, aAccessor, b, bAccessor) {
+  return (0, _sortedMergeLeftAntiJoin2.default)(b, bAccessor, a, aAccessor);
+}
+module.exports = exports['default'];
 
 /***/ }),
 /* 44 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_44__;
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = nestedLoopFullOuterJoin;
+
+var _assign = __webpack_require__(1);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _filter = __webpack_require__(0);
+
+var _filter2 = _interopRequireDefault(_filter);
+
+var _has = __webpack_require__(2);
+
+var _has2 = _interopRequireDefault(_has);
+
+var _reduceRight = __webpack_require__(3);
+
+var _reduceRight2 = _interopRequireDefault(_reduceRight);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Nested loop left semi join
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function nestedLoopFullOuterJoin(a, aAccessor, b, bAccessor) {
+    if (a.length < 1 || b.length < 1) {
+        return a.concat(b);
+    }
+    var seen = {};
+    var value = void 0,
+        otherValue = void 0,
+        tmpLength = void 0,
+        output = void 0;
+    if (a.length < b.length) {
+        return (0, _reduceRight2.default)(a, function (previous, aDatum) {
+            value = aAccessor(aDatum);
+            tmpLength = previous.length;
+            output = (0, _reduceRight2.default)(b, function (oPrevious, bDatum, bIndex) {
+                otherValue = bAccessor(bDatum);
+                if (value <= otherValue && value >= otherValue) {
+                    seen[bIndex] = true;
+                    oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
+                }
+                return oPrevious;
+            }, []).concat(previous);
+            if (tmpLength === output.length) {
+                output.unshift(aDatum);
+            }
+            return output;
+        }, []).concat((0, _filter2.default)(b, function (bDatum, bIndex) {
+            return !(0, _has2.default)(seen, bIndex);
+        }));
+    }
+    return (0, _reduceRight2.default)(b, function (previous, bDatum) {
+        value = bAccessor(bDatum);
+        tmpLength = previous.length;
+        output = (0, _reduceRight2.default)(a, function (oPrevious, aDatum, aIndex) {
+            otherValue = aAccessor(aDatum);
+            if (value <= otherValue && value >= otherValue) {
+                seen[aIndex] = true;
+                oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
+            }
+            return oPrevious;
+        }, []).concat(previous);
+        if (tmpLength === output.length) {
+            output.unshift(bDatum);
+        }
+        return output;
+    }, []).concat((0, _filter2.default)(a, function (aDatum, aIndex) {
+        return !(0, _has2.default)(seen, aIndex);
+    }));
+}
+module.exports = exports['default'];
 
 /***/ }),
 /* 45 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_45__;
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = nestedLoopInnerJoin;
+
+var _assign = __webpack_require__(1);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _reduceRight = __webpack_require__(3);
+
+var _reduceRight2 = _interopRequireDefault(_reduceRight);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Nested loop inner join
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function nestedLoopInnerJoin(a, aAccessor, b, bAccessor) {
+    if (a.length < 1 || b.length < 1) {
+        return [];
+    }
+    if (a.length < b.length) {
+        return (0, _reduceRight2.default)(a, function (previous, aDatum) {
+            var value = aAccessor(aDatum);
+            return (0, _reduceRight2.default)(b, function (oPrevious, bDatum) {
+                var otherValue = bAccessor(bDatum);
+                if (value <= otherValue && value >= otherValue) {
+                    oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
+                }
+                return oPrevious;
+            }, []).concat(previous);
+        }, []);
+    }
+    return (0, _reduceRight2.default)(b, function (previous, bDatum) {
+        var value = bAccessor(bDatum);
+        return (0, _reduceRight2.default)(a, function (oPrevious, aDatum) {
+            var otherValue = aAccessor(aDatum);
+            if (value <= otherValue && value >= otherValue) {
+                oPrevious.unshift((0, _assign2.default)({}, aDatum, bDatum));
+            }
+            return oPrevious;
+        }, []).concat(previous);
+    }, []);
+}
+module.exports = exports['default'];
 
 /***/ }),
 /* 46 */
@@ -2743,21 +2665,96 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_47__;
 
 /***/ }),
 /* 48 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_48__;
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = nestedLoopRightOuterJoin;
+
+var _nestedLoopLeftOuterJoin = __webpack_require__(19);
+
+var _nestedLoopLeftOuterJoin2 = _interopRequireDefault(_nestedLoopLeftOuterJoin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Nested loop right outer join
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function nestedLoopRightOuterJoin(a, aAccessor, b, bAccessor) {
+  return (0, _nestedLoopLeftOuterJoin2.default)(b, bAccessor, a, aAccessor);
+}
+module.exports = exports['default'];
 
 /***/ }),
 /* 49 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_49__;
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = nestedLoopRightSemiJoin;
+
+var _nestedLoopLeftSemiJoin = __webpack_require__(20);
+
+var _nestedLoopLeftSemiJoin2 = _interopRequireDefault(_nestedLoopLeftSemiJoin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Nested loop right semi join
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function nestedLoopRightSemiJoin(a, aAccessor, b, bAccessor) {
+  return (0, _nestedLoopLeftSemiJoin2.default)(b, bAccessor, a, aAccessor);
+}
+module.exports = exports['default'];
 
 /***/ }),
 /* 50 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_50__;
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = nestedLoopRightAntiJoin;
+
+var _nestedLoopLeftAntiJoin = __webpack_require__(21);
+
+var _nestedLoopLeftAntiJoin2 = _interopRequireDefault(_nestedLoopLeftAntiJoin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Nested loop right outer join
+ * @param  {Array<Object>} a
+ * @param  {AccessorFunction} aAccessor
+ * @param  {Array<Object>} b
+ * @param  {AccessorFunction} bAccessor
+ * @returns {Array<Object>}
+ */
+function nestedLoopRightAntiJoin(a, aAccessor, b, bAccessor) {
+  return (0, _nestedLoopLeftAntiJoin2.default)(b, bAccessor, a, aAccessor);
+}
+module.exports = exports['default'];
 
 /***/ })
 /******/ ]);

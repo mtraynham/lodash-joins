@@ -27,7 +27,7 @@ export const build = {
                 const paths = request.split(sep);
                 return callback(null, {
                     root: ['_'].concat(paths.length > 1 ? [paths[paths.length - 1]] : []),
-                    commonJs: request,
+                    commonjs: request,
                     commonjs2: request,
                     amd: request,
                     toJSON: () => request // Fixes the source map output (sort of)
