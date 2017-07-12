@@ -1,4 +1,4 @@
-import {karma} from './webpack';
+import {karma} from './webpack.config';
 
 export default function (config) {
     config.set({

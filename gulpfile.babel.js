@@ -5,7 +5,7 @@ import webpack from 'webpack';
 import webpackStream from 'webpack-stream';
 import WebpackDevServer from 'webpack-dev-server';
 import {Server} from 'karma';
-import * as webpackConfig from './webpack';
+import * as webpackConfig from './webpack.config';
 
 const $ = gulpLoadPlugins();
 const debugHost = '0.0.0.0';
