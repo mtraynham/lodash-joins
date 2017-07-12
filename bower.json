@@ -25,6 +25,7 @@
     "ignore": [
         "*",
         "!dist/*",
+        "!lodash-joins.d.ts",
         "!LICENSE",
         "!README.md"
     ],
