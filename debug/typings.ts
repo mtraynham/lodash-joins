@@ -16,6 +16,12 @@ const b: Student[] = [{name: 'eric', login: new Date()}, {name: 'margaret', logi
 const c: Person[] = _.hashFullOuterJoin(a, (item: Person) => item.name, a);
 const d: (Person | Student | Person & Student)[] = _.hashFullOuterJoin(a, (item: Person | Student) => item.name, b);
 const e: (Person | Student | Person & Student)[] = _.hashFullOuterJoin(a, (item: Person) => item.name, b, (item: Student) => item.name);
+const bb: {left: Person, right: Student}[] = _.hashFullOuterJoin(
+    a,
+    (item: Person) => item.name,
+    b,
+    (item: Student) => item.name,
+    (left: Person, right: Student): {left: Person, right: Student} => ({left, right}));
 
 const f: Person[] = _.hashInnerJoin(a, (item: Person) => item.name, a);
 const h: (Person & Student)[] = _.hashInnerJoin(a, (item: Person | Student) => item.name, b);

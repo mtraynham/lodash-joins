@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import sortedMergeFullOuterJoin from '../lib/sortedMerge/sortedMergeFullOuterJoin';
 import sortedMergeInnerJoin from '../lib/sortedMerge/sortedMergeInnerJoin';
 import sortedMergeLeftAntiJoin from '../lib/sortedMerge/sortedMergeLeftAntiJoin';
@@ -22,7 +23,8 @@ describe('Sorted Merge Joins', () => {
             {id: 'f', right: 5},
             {id: 'g', right: 6}
         ],
-        accessor = obj => obj.id;
+        accessor = obj => obj.id,
+        merger = (l, r) => assign({}, l, r);
     describe('#sortedMergeFullOuterJoin()', () => {
         const expectedA = [
                 {id: 'a', right: 0},
@@ -48,9 +50,9 @@ describe('Sorted Merge Joins', () => {
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            resultA = sortedMergeFullOuterJoin(left, accessor, right, accessor),
-            resultB = sortedMergeFullOuterJoin(right, accessor, left, accessor),
-            resultC = sortedMergeFullOuterJoin([], accessor, [], accessor);
+            resultA = sortedMergeFullOuterJoin(left, accessor, right, accessor, merger),
+            resultB = sortedMergeFullOuterJoin(right, accessor, left, accessor, merger),
+            resultC = sortedMergeFullOuterJoin([], accessor, [], accessor, merger);
         it('should return 10 rows if parent is left', () =>
             expect(resultA.length).toBe(10));
         it('should match the expected output if parent is left', () =>
@@ -75,9 +77,9 @@ describe('Sorted Merge Joins', () => {
                 {id: 'c', right: 3, left: 0},
                 {id: 'c', right: 3, left: 1}
             ],
-            resultA = sortedMergeInnerJoin(left, accessor, right, accessor),
-            resultB = sortedMergeInnerJoin(right, accessor, left, accessor),
-            resultC = sortedMergeInnerJoin([], accessor, right, accessor);
+            resultA = sortedMergeInnerJoin(left, accessor, right, accessor, merger),
+            resultB = sortedMergeInnerJoin(right, accessor, left, accessor, merger),
+            resultC = sortedMergeInnerJoin([], accessor, right, accessor, merger);
         it('should return 5 rows if parent is left', () =>
             expect(resultA.length).toBe(4));
         it('should match the expected output if parent is left', () =>
@@ -110,8 +112,8 @@ describe('Sorted Merge Joins', () => {
                 {id: 'c', left: 1, right: 3},
                 {id: 'e', left: 2}
             ],
-            result = sortedMergeLeftOuterJoin(left, accessor, right, accessor),
-            resultB = sortedMergeLeftOuterJoin([], accessor, right, accessor);
+            result = sortedMergeLeftOuterJoin(left, accessor, right, accessor, merger),
+            resultB = sortedMergeLeftOuterJoin([], accessor, right, accessor, merger);
         it('should return 5 rows', () =>
             expect(result.length).toBe(5));
         it('should match the expected output', () =>
@@ -164,14 +166,14 @@ describe('Sorted Merge Joins', () => {
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            result = sortedMergeRightOuterJoin(left, accessor, right, accessor),
-            resultB = sortedMergeRightOuterJoin(left, accessor, [], accessor);
+            result = sortedMergeRightOuterJoin(left, accessor, right, accessor, merger),
+            resultB = sortedMergeRightOuterJoin(left, accessor, [], accessor, merger);
         it('should return 9 rows', () =>
             expect(result.length).toBe(9));
         it('should match the expected output', () =>
             expect(result).toEqual(expected));
         it('should match the left outer join with right as the parent', () =>
-            expect(sortedMergeLeftOuterJoin(right, accessor, left, accessor)).toEqual(result));
+            expect(sortedMergeLeftOuterJoin(right, accessor, left, accessor, merger)).toEqual(result));
         it('should return empty results for empty input', () =>
             expect(resultB.length).toBe(0));
     });
