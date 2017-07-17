@@ -63,6 +63,13 @@ export default _;
  */
 
 /**
+ * @callback MergerFunction
+ * @param  {Object}
+ * @param  {Object}
+ * @return {*}
+ */
+
+/**
  * @callback JoinFunction
  * @param  {Array<Object>} a
  * @param  {AccessorFunction} aAccessor

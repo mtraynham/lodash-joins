@@ -30,6 +30,10 @@ interface IAccessor<TObject, TValueOf extends Object> extends Function {
     (a: TObject): TValueOf
 }
 
+interface IMerger<TLeft, TRight, TMergeResult> extends Function {
+    (left: TLeft, right: TRight): TMergeResult;
+}
+
 interface ICartesianProduct extends Function {
     (
         ...arrays: any[][]
@@ -56,6 +60,14 @@ interface IOuterJoin extends SelfJoin {
         right: TRight[],
         rightAccessor: IAccessor<TRight, TValueOf>
     ): (TLeft | TRight | TLeft & TRight)[];
+
+    <TLeft, TRight, TValueOf, TMergeResult>(
+        left: TLeft[],
+        leftAccessor: IAccessor<TLeft, TValueOf>,
+        right: TRight[],
+        rightAccessor: IAccessor<TRight, TValueOf>,
+        merger: IMerger<TLeft, TRight, TMergeResult>
+    ): TMergeResult[];
 }
 
 interface IInnerJoin extends SelfJoin {
@@ -71,6 +83,14 @@ interface IInnerJoin extends SelfJoin {
         right: TRight[],
         rightAccessor: IAccessor<TRight, TValueOf>
     ): (TLeft & TRight)[];
+
+    <TLeft, TRight, TValueOf, TMergeResult>(
+        left: TLeft[],
+        leftAccessor: IAccessor<TLeft, TValueOf>,
+        right: TRight[],
+        rightAccessor: IAccessor<TRight, TValueOf>,
+        merger: IMerger<TLeft, TRight, TMergeResult>
+    ): TMergeResult[];
 }
 
 interface IMergeLeftJoin extends SelfJoin {
@@ -86,6 +106,14 @@ interface IMergeLeftJoin extends SelfJoin {
         right: TRight[],
         rightAccessor: IAccessor<TRight, TValueOf>
     ): (TLeft | TLeft & TRight)[];
+
+    <TLeft, TRight, TValueOf, TMergeResult>(
+        left: TLeft[],
+        leftAccessor: IAccessor<TLeft, TValueOf>,
+        right: TRight[],
+        rightAccessor: IAccessor<TRight, TValueOf>,
+        merger: IMerger<TLeft, TRight, TMergeResult>
+    ): TMergeResult[];
 }
 
 interface IMergeRightJoin extends SelfJoin {
@@ -101,6 +129,14 @@ interface IMergeRightJoin extends SelfJoin {
         right: TRight[],
         rightAccessor: IAccessor<TRight, TValueOf>
     ): (TRight | TLeft & TRight)[];
+
+    <TLeft, TRight, TValueOf, TMergeResult>(
+        left: TLeft[],
+        leftAccessor: IAccessor<TLeft, TValueOf>,
+        right: TRight[],
+        rightAccessor: IAccessor<TRight, TValueOf>,
+        merger: IMerger<TLeft, TRight, TMergeResult>
+    ): TMergeResult[];
 }
 
 interface INonMergeLeftJoin extends SelfJoin {

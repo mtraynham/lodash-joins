@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import nestedLoopFullOuterJoin from '../lib/nestedLoop/nestedLoopFullOuterJoin';
 import nestedLoopInnerJoin from '../lib/nestedLoop/nestedLoopInnerJoin';
 import nestedLoopLeftAntiJoin from '../lib/nestedLoop/nestedLoopLeftAntiJoin';
@@ -22,7 +23,8 @@ describe('Nested Loop Joins', () => {
             {id: 'f', right: 5},
             {id: 'g', right: 6}
         ],
-        accessor = obj => obj.id;
+        accessor = obj => obj.id,
+        merger = (l, r) => assign({}, l, r);
     describe('#nestedLoopFullOuterJoin()', () => {
         const expectedA = [
                 {id: 'c', left: 0, right: 2},
@@ -48,9 +50,9 @@ describe('Nested Loop Joins', () => {
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            resultA = nestedLoopFullOuterJoin(left, accessor, right, accessor),
-            resultB = nestedLoopFullOuterJoin(right, accessor, left, accessor),
-            resultC = nestedLoopFullOuterJoin([], accessor, [], accessor);
+            resultA = nestedLoopFullOuterJoin(left, accessor, right, accessor, merger),
+            resultB = nestedLoopFullOuterJoin(right, accessor, left, accessor, merger),
+            resultC = nestedLoopFullOuterJoin([], accessor, [], accessor, merger);
         it('should return 10 rows if parent is left', () =>
             expect(resultA.length).toBe(10));
         it('should match the expected output if parent is left', () =>
@@ -75,9 +77,9 @@ describe('Nested Loop Joins', () => {
                 {id: 'c', right: 2, left: 1},
                 {id: 'c', right: 3, left: 1}
             ],
-            resultA = nestedLoopInnerJoin(left, accessor, right, accessor),
-            resultB = nestedLoopInnerJoin(right, accessor, left, accessor),
-            resultC = nestedLoopInnerJoin([], accessor, right, accessor);
+            resultA = nestedLoopInnerJoin(left, accessor, right, accessor, merger),
+            resultB = nestedLoopInnerJoin(right, accessor, left, accessor, merger),
+            resultC = nestedLoopInnerJoin([], accessor, right, accessor, merger);
         it('should return 5 rows if parent is left', () =>
             expect(resultA.length).toBe(4));
         it('should match the expected output if parent is left', () =>
@@ -110,8 +112,8 @@ describe('Nested Loop Joins', () => {
                 {id: 'c', left: 1, right: 3},
                 {id: 'e', left: 2}
             ],
-            result = nestedLoopLeftOuterJoin(left, accessor, right, accessor),
-            resultB = nestedLoopLeftOuterJoin([], accessor, right, accessor);
+            result = nestedLoopLeftOuterJoin(left, accessor, right, accessor, merger),
+            resultB = nestedLoopLeftOuterJoin([], accessor, right, accessor, merger);
         it('should return 5 rows', () =>
             expect(result.length).toBe(5));
         it('should match the expected output', () =>
@@ -164,14 +166,14 @@ describe('Nested Loop Joins', () => {
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            result = nestedLoopRightOuterJoin(left, accessor, right, accessor),
-            resultB = nestedLoopRightOuterJoin(left, accessor, [], accessor);
+            result = nestedLoopRightOuterJoin(left, accessor, right, accessor, merger),
+            resultB = nestedLoopRightOuterJoin(left, accessor, [], accessor, merger);
         it('should return 9 rows', () =>
             expect(result.length).toBe(9));
         it('should match the expected output', () =>
             expect(result).toEqual(expected));
         it('should match the left outer join with right as the parent', () =>
-            expect(nestedLoopLeftOuterJoin(right, accessor, left, accessor)).toEqual(result));
+            expect(nestedLoopLeftOuterJoin(right, accessor, left, accessor, merger)).toEqual(result));
         it('should return empty results for empty input', () =>
             expect(resultB.length).toBe(0));
     });

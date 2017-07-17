@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import hashFullOuterJoin from '../lib/hash/hashFullOuterJoin';
 import hashInnerJoin from '../lib/hash/hashInnerJoin';
 import hashLeftAntiJoin from '../lib/hash/hashLeftAntiJoin';
@@ -22,7 +23,8 @@ describe('Hash Joins', () => {
             {id: 'f', right: 5},
             {id: 'g', right: 6}
         ],
-        accessor = obj => obj.id;
+        accessor = obj => obj.id,
+        merger = (l, r) => assign({}, l, r);
     describe('#hashFullOuterJoin()', () => {
         const expectedA = [
                 {id: 'a', right: 0},
@@ -48,9 +50,9 @@ describe('Hash Joins', () => {
                 {id: 'g', right: 6},
                 {id: 'e', left: 2}
             ],
-            resultA = hashFullOuterJoin(left, accessor, right, accessor),
-            resultB = hashFullOuterJoin(right, accessor, left, accessor),
-            resultC = hashFullOuterJoin([], accessor, [], accessor);
+            resultA = hashFullOuterJoin(left, accessor, right, accessor, merger),
+            resultB = hashFullOuterJoin(right, accessor, left, accessor, merger),
+            resultC = hashFullOuterJoin([], accessor, [], accessor, merger);
         it('should return 10 rows if parent is left', () =>
             expect(resultA.length).toBe(10));
         it('should match the expected output if parent is left', () =>
@@ -75,9 +77,9 @@ describe('Hash Joins', () => {
                 {id: 'c', right: 3, left: 0},
                 {id: 'c', right: 3, left: 1}
             ],
-            resultA = hashInnerJoin(left, accessor, right, accessor),
-            resultB = hashInnerJoin(right, accessor, left, accessor),
-            resultC = hashInnerJoin([], accessor, right, accessor);
+            resultA = hashInnerJoin(left, accessor, right, accessor, merger),
+            resultB = hashInnerJoin(right, accessor, left, accessor, merger),
+            resultC = hashInnerJoin([], accessor, right, accessor, merger);
         it('should return 5 rows if parent is left', () =>
             expect(resultA.length).toBe(4));
         it('should match the expected output if parent is left', () =>
@@ -110,8 +112,8 @@ describe('Hash Joins', () => {
                 {id: 'c', left: 1, right: 3},
                 {id: 'e', left: 2}
             ],
-            result = hashLeftOuterJoin(left, accessor, right, accessor),
-            resultB = hashLeftOuterJoin([], accessor, right, accessor);
+            result = hashLeftOuterJoin(left, accessor, right, accessor, merger),
+            resultB = hashLeftOuterJoin([], accessor, right, accessor, merger);
         it('should return 5 rows', () =>
             expect(result.length).toBe(5));
         it('should match the expected output', () =>
@@ -164,14 +166,14 @@ describe('Hash Joins', () => {
                 {id: 'f', right: 5},
                 {id: 'g', right: 6}
             ],
-            result = hashRightOuterJoin(left, accessor, right, accessor),
-            resultB = hashRightOuterJoin(left, accessor, [], accessor);
+            result = hashRightOuterJoin(left, accessor, right, accessor, merger),
+            resultB = hashRightOuterJoin(left, accessor, [], accessor, merger);
         it('should return 9 rows', () =>
             expect(result.length).toBe(9));
         it('should match the expected output', () =>
             expect(result).toEqual(expected));
         it('should match the left outer join with right as the parent', () =>
-            expect(hashLeftOuterJoin(right, accessor, left, accessor)).toEqual(result));
+            expect(hashLeftOuterJoin(right, accessor, left, accessor, merger)).toEqual(result));
         it('should return empty results for empty input', () =>
             expect(resultB.length).toBe(0));
     });
