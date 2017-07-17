@@ -41,11 +41,13 @@ Limit and offset can be accomplished using [```Array.slice```](https://developer
 ### Description
 These functions only work on arrays of objects (comparable to database rows).  Key comparisons are coercive, so Dates should work as well.
 
-All joined rows are generated from LoDash's [```assign```](http://lodash.com/docs#assign) function, to avoid changing the original object reference:
+For merge-type joins, a merger function may be provided to customize the output array.  By default, all joined rows are generated from 
+LoDash's [```assign```](http://lodash.com/docs#assign) function:
 
     _.assign({}, leftRow, rightRow);
-
-Otherwise the row is the same reference from the initial array.
+    
+A merger function takes both the left and right record and provides a new output record.  The left or right record may be
+`null` in cases like outer joins which do not have matching row keys. 
 
 Order of the output is indeterminate.
 
@@ -67,7 +69,7 @@ Order of the output is indeterminate.
 ### Usage
 Each join function accepts two arrays and two accessor functions for each array that will act as the pluck function for key comparison.
 
-    _.joinFunction(leftArray, leftKeyAccessor, rightArray, rightKeyAccessor);
+    _.joinFunction(leftArray, leftKeyAccessor, rightArray, rightKeyAccessor, merger);
 
 ### Available Functions
 * _.hashFullOuterJoin
