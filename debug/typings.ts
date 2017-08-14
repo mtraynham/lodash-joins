@@ -1,4 +1,4 @@
-import _ from 'lodash-joins';
+import * as _ from 'lodash-joins';
 
 interface Person {
     name: string;
