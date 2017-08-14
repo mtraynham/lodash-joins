@@ -37,6 +37,34 @@ declare namespace _ {
         sortedMergeRightSemiJoin: INonMergeRightJoin;
     }
 
+    /**
+     * An accessor is a function that returns a coercive value from an item.  Coercive
+     * items include:
+     *  - Primitives (boolean, number, string)
+     *  - Dates
+     *  - Objects that implement .valueOf()
+     *  - Arrays of the previous 3
+     *
+     * Key comparisons within the library are performed using the following trick:
+     *
+     *    const equals = a <= b & a >= b;
+     *
+     * This is done because == and === are either not coercive or type converting:
+     * @example
+     *    var x = ['a', 'b'];
+     *    var y = ['a', 'c'];
+     *    var z = ['a', 'b'];
+     *    x == z // false
+     *    x === z // false
+     *    x <= z && x >= z // true (converts to String)
+     *    x <= y && x >= y //false
+     *
+     *    x = new Date();
+     *    y = new Date(x.getTime());
+     *    x == y // false
+     *    x === y // false
+     *    x <= y && x >= y // true (converts to Integer)
+     */
     export interface IAccessor<TObject, TValueOf extends Object> extends Function {
         (a: TObject): TValueOf
     }
