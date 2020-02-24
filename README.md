@@ -1,8 +1,5 @@
 [![Build Status](https://travis-ci.org/mtraynham/lodash-joins.svg?branch=master)](https://travis-ci.org/mtraynham/lodash-joins)
-[![Dependency Status](https://gemnasium.com/mtraynham/lodash-joins.svg)](https://gemnasium.com/mtraynham/lodash-joins)
 [![codecov](https://codecov.io/gh/mtraynham/lodash-joins/branch/master/graph/badge.svg)](https://codecov.io/gh/mtraynham/lodash-joins)
-[![Code Climate](https://codeclimate.com/github/mtraynham/lodash-joins/badges/gpa.svg)](https://codeclimate.com/github/mtraynham/lodash-joins)
-[![built with gulp](https://camo.githubusercontent.com/2a01d8fcbdfc09eb24d02c6655c897f0ab9ca69a/687474703a2f2f696d672e736869656c64732e696f2f62616467652f6275696c74253230776974682d67756c702e6a732d7265642e737667)](http://gulpjs.com)
 [![Join the chat at https://gitter.im/mtraynham/lodash-joins](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mtraynham/lodash-joins?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # lodash-joins
@@ -16,7 +13,7 @@
     - [Usage](#usage)
     - [Available Functions](#available-functions)
         - [Example](#example)
-    - [ES6 Note](#es6-note)
+    - [ES6 Note](#babel-note)
 - [Testing](#testing)
     - [Latest Benchmarks](#latest-benchmarks)
         - [Full Outer Joins](#full-outer-joins)
@@ -142,10 +139,9 @@ Each join function accepts two arrays and two accessor functions for each array 
       { id: 'f', right: 5 },
       { id: 'g', right: 6 } ]
 
-### ES6 Note
-In a recent push to get things ready for *tomorrow*, this library is now written using ES6.  The `main` file for both
-bower and npm point to a [Webpack](http://webpack.github.io/) build that includes the necessary
-[babel-regenerator-runtime](https://github.com/facebook/regenerator/blob/master/runtime.js) functions to properly execute the script.
+### Babel Note
+The `main` file for npm point to a [Webpack](http://webpack.github.io/) build that includes the necessary
+[babel-regenerator-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime) functions to properly execute the script.
 The npm module still includes the `index.js` file and `lib` directory to require the functions independently, but you
 are on your own to install `babel` as well and invoke the runtime beforehand.
 
@@ -153,14 +149,14 @@ A simple way to do this is:
 ```
 $ npm install --save babel
 $ node
-> require('babel/runtime');
+> require('@babel/runtime');
 > var hashLeftOuterJoin = require('lodash-joins/lib/hash/hashLeftOuterJoin');
 ```
 
 It's likely better to just use the library as intended.  :smile:
 
 ## Testing
-Tested using [Mocha](http://mochajs.org/) with ES6.  See the ```/test``` directory.  There is also a browser test invoked through
+Tested using [Jasmine](https://jasmine.github.io/) and [Karma](https://karma-runner.github.io/latest/index.html).  See the ```/spec``` directory.  There is also a browser test invoked through
 Webpack and Mocha.
 
 ### Latest Benchmarks

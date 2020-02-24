@@ -1,5 +1,4 @@
-.tmp
-bower_components
 coverage
+dist
 node_modules
 *.iml
