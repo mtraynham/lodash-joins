@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/mtraynham/lodash-joins.svg?branch=master)](https://travis-ci.org/mtraynham/lodash-joins)
-[![codecov](https://codecov.io/gh/mtraynham/lodash-joins/branch/master/graph/badge.svg)](https://codecov.io/gh/mtraynham/lodash-joins)
 [![Join the chat at https://gitter.im/mtraynham/lodash-joins](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mtraynham/lodash-joins?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # lodash-joins

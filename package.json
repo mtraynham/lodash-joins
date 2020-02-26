@@ -29,11 +29,13 @@
     "main": "dist/lodash-joins.js",
     "scripts": {
         "build": "webpack --config-name dist",
+        "lint": "eslint .",
         "test:browser": "karma start",
         "test:browser:debug": "karma start --single-run=false --browsers Chrome --reporters kjhtml",
         "test:node": "jasmine --require=@babel/register --require=ts-node/register spec/*.spec.js",
         "test": "npm run test:browser && npm run test:node",
-        "debug": "webpack-dev-server --open --config-name debug"
+        "debug": "webpack-dev-server --open --config-name debug",
+        "prepublishOnly": "npm run test && npm run build"
     },
     "dependencies": {
         "@babel/runtime": "^7.8.4",
@@ -62,6 +64,7 @@
         "clean-webpack-plugin": "~3.0",
         "eslint": "~6.8",
         "eslint-plugin-import": "~2.20",
+        "eslint-plugin-jasmine": "~4.1",
         "fork-ts-checker-webpack-plugin": "~4.0",
         "html-webpack-plugin": "~3.2",
         "import": "~0.0",
