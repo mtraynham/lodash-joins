@@ -1,5 +1,10 @@
 import Chance from 'chance';
-import _ from '../index';
+import assign from 'lodash/assign';
+import {
+    hashLeftOuterJoin,
+    sortedMergeFullOuterJoin,
+    nestedLoopLeftOuterJoin
+} from '../index';
 
 // Test Data
 const chance = new Chance();
@@ -18,12 +23,11 @@ chance.mixin({row: () => ({
 const left = chance.n(chance.row, 100);
 const right = chance.n(chance.row, 100);
 const accessor = d => d.age;
+const merger = (a, b) => assign({}, a, b);
 
-let results = _.hashLeftOuterJoin(left, accessor, right, accessor);
+let results = hashLeftOuterJoin(left, accessor, right, accessor, merger);
 console.log(results);
-results = _.sortedMergeFullOuterJoin(left, accessor, right, accessor);
+results = sortedMergeFullOuterJoin(left, accessor, right, accessor, merger);
 console.log(results);
-results = _.nestedLoopLeftOuterJoin(left, accessor, right, accessor);
+results = nestedLoopLeftOuterJoin(left, accessor, right, accessor, merger);
 console.log(results);
-
-export default _;

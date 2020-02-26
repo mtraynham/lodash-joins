@@ -12,8 +12,7 @@ export default function cartesianProduct (...arrays) {
         reduce(arrays, (a, b) =>
             flatten(map(a, x =>
                 map(b, y =>
-                    x.concat([y]))),
-            true),
+                    x.concat([y])))),
         [[]]) :
         [];
 }

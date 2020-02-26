@@ -69,7 +69,7 @@ export default [
         mode: 'production',
         devtool: 'source-map',
         entry: {
-            [pkg.name]: resolve(__dirname, './index.js')
+            [pkg.name]: resolve(__dirname, './index.ts')
         }
     },
     {

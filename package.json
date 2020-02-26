@@ -1,7 +1,6 @@
 {
     "name": "lodash-joins",
-    "description": "SQL-like joins using Lo-Dash",
-    "typings": "./lodash-joins.d.ts",
+    "description": "SQL-like joins for JS",
     "version": "3.0.0-beta.3",
     "author": {
         "name": "Matt Traynham",
@@ -20,19 +19,18 @@
     },
     "files": [
         "index.js",
-        "lodash-joins.d.ts",
         "LICENSE",
         "README.md",
         "dist/",
-        "src/"
+        "lib/"
     ],
     "main": "dist/lodash-joins.js",
     "scripts": {
         "build": "webpack --config-name dist",
-        "lint": "eslint .",
+        "lint": "eslint bench/**/*.ts debug/**/*.ts lib/**/*.ts karma.conf.ts webpack.config.ts",
         "test:browser": "karma start",
         "test:browser:debug": "karma start --single-run=false --browsers Chrome --reporters kjhtml",
-        "test:node": "jasmine --require=@babel/register --require=ts-node/register spec/*.spec.js",
+        "test:node": "jasmine --require=@babel/register --require=ts-node/register lib/**/*.spec.ts",
         "test": "npm run test:browser && npm run test:node",
         "debug": "webpack-dev-server --open --config-name debug",
         "prepublishOnly": "npm run test && npm run build"

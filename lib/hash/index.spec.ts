@@ -1,12 +1,12 @@
 import assign from 'lodash/assign';
-import hashFullOuterJoin from '../lib/hash/hashFullOuterJoin';
-import hashInnerJoin from '../lib/hash/hashInnerJoin';
-import hashLeftAntiJoin from '../lib/hash/hashLeftAntiJoin';
-import hashLeftOuterJoin from '../lib/hash/hashLeftOuterJoin';
-import hashLeftSemiJoin from '../lib/hash/hashLeftSemiJoin';
-import hashRightAntiJoin from '../lib/hash/hashRightAntiJoin';
-import hashRightOuterJoin from '../lib/hash/hashRightOuterJoin';
-import hashRightSemiJoin from '../lib/hash/hashRightSemiJoin';
+import hashFullOuterJoin from './hashFullOuterJoin';
+import hashInnerJoin from './hashInnerJoin';
+import hashLeftAntiJoin from './hashLeftAntiJoin';
+import hashLeftOuterJoin from './hashLeftOuterJoin';
+import hashLeftSemiJoin from './hashLeftSemiJoin';
+import hashRightAntiJoin from './hashRightAntiJoin';
+import hashRightOuterJoin from './hashRightOuterJoin';
+import hashRightSemiJoin from './hashRightSemiJoin';
 
 describe('Hash Joins', () => {
     const left = [
