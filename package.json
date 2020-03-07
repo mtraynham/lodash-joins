@@ -38,7 +38,7 @@
         "prepublishOnly": "npm run test && npm run build"
     },
     "dependencies": {
-        "@babel/runtime": "^7.8.4",
+        "@babel/runtime": "^7.8.7",
         "lodash": "^4"
     },
     "devDependencies": {
@@ -56,8 +56,8 @@
         "@types/webpack": "~4.41",
         "@types/webpack-dev-server": "~3.10",
         "@types/webpack-env": "~1.15",
-        "@typescript-eslint/eslint-plugin": "~2.21",
-        "@typescript-eslint/parser": "~2.21",
+        "@typescript-eslint/eslint-plugin": "~2.22",
+        "@typescript-eslint/parser": "~2.22",
         "babel-loader": "~8.0",
         "babel-plugin-add-module-exports": "~1.0",
         "chance": "~1.1",
@@ -83,7 +83,7 @@
         "ts-loader": "~6.2",
         "ts-node": "~8.6",
         "typescript": "~3.8",
-        "webpack": "~4.41",
+        "webpack": "~4.42",
         "webpack-cli": "~3.3",
         "webpack-dev-server": "~3.10"
     }
