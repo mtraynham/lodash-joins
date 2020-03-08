@@ -1,9 +1,10 @@
 import isUndefined from './isUndefined';
 import mergeLists from './mergeLists';
-import yieldRightSubList from './yieldRightSubList';
+import yieldRightSubList, {Sublist} from './yieldRightSubList';
 
 export {
     isUndefined,
     mergeLists,
-    yieldRightSubList
+    yieldRightSubList,
+    Sublist
 }

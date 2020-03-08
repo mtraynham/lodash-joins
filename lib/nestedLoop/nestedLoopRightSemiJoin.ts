@@ -1,13 +1,15 @@
 import nestedLoopLeftSemiJoin from './nestedLoopLeftSemiJoin';
 
+import {Accessor} from '../typings';
+
 /**
  * Nested loop right semi join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
  */
-export default function nestedLoopRightSemiJoin (a, aAccessor, b, bAccessor) {
+export default function nestedLoopRightSemiJoin<LeftRow, RightRow, Key>(
+    a: LeftRow[],
+    aAccessor: Accessor<LeftRow, Key>,
+    b: RightRow[],
+    bAccessor: Accessor<RightRow, Key>
+): RightRow[] {
     return nestedLoopLeftSemiJoin(b, bAccessor, a, aAccessor);
 }

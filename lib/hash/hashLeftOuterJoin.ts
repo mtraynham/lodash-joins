@@ -6,39 +6,50 @@ import map from 'lodash/map';
 import reduceRight from 'lodash/reduceRight';
 import values from 'lodash/values';
 
+import {Accessor, Merger} from '../typings';
+import {toStringAccessor} from './util';
+
 /**
  * Hash left outer join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @param  {MergerFunction} merger
- * @returns {Array<Object>}
  */
-export default function hashLeftOuterJoin (a, aAccessor, b, bAccessor, merger) {
+export default function hashLeftOuterJoin<LeftRow, RightRow, Key, MergeResult>(
+    a: LeftRow[],
+    aAccessor: Accessor<LeftRow, Key>,
+    b: RightRow[],
+    bAccessor: Accessor<RightRow, Key>,
+    merger: Merger<LeftRow, RightRow | undefined, MergeResult>
+): MergeResult[] {
     if (a.length < 1 || b.length < 1) {
-        return a;
+        return map(a, (a: LeftRow) => merger(a, undefined));
     }
-    let index,
-        value;
+    const leftAccessor: Accessor<LeftRow, string> = toStringAccessor(aAccessor),
+        rightAccessor: Accessor<RightRow, string> = toStringAccessor(bAccessor);
+    let index: {[key: string]: (LeftRow | RightRow)[]},
+        key: string;
     if (a.length < b.length) {
-        const seen = {};
-        index = groupBy(a, aAccessor);
-        return reduceRight(b, (previous, datum) => {
-            seen[value = bAccessor(datum)] = true;
-            if (has(index, value)) {
-                return map(index[value], oDatum => merger(oDatum, datum)).concat(previous);
+        const seen: {[key: string]: boolean} = {};
+        index = groupBy(a, leftAccessor);
+        return reduceRight(b, (previous: MergeResult[], bDatum: RightRow) => {
+            seen[key = rightAccessor(bDatum)] = true;
+            if (has(index, key)) {
+                return map(index[key], (aDatum: LeftRow) => merger(aDatum, bDatum)).concat(previous);
             }
             return previous;
-        }, []).concat(map(flatten(values(filter(index, (val, key) => !has(seen, key)))), aDatum => merger(aDatum, null)));
+        }, []).concat(
+            map(
+                flatten(values(filter(
+                    index,
+                    (val: (LeftRow | RightRow)[], key: string) =>
+                        !has(seen, key)))),
+                (aDatum: LeftRow) => merger(aDatum, undefined)));
     }
-    index = groupBy(b, bAccessor);
-    return reduceRight(a, (previous, datum) => {
-        value = aAccessor(datum);
-        if (has(index, value)) {
-            return map(index[value], oDatum => merger(datum, oDatum)).concat(previous);
+    index = groupBy(b, rightAccessor);
+    return reduceRight(a, (previous: MergeResult[], aDatum: LeftRow) => {
+        key = leftAccessor(aDatum);
+        if (has(index, key)) {
+            return map(index[key], (bDatum: RightRow) => merger(aDatum, bDatum)).concat(previous);
         }
-        previous.unshift(datum);
+        previous.unshift(merger(aDatum, undefined));
         return previous;
     }, []);
 }

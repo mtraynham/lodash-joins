@@ -1,14 +1,16 @@
 import sortedMergeLeftOuterJoin from './sortedMergeLeftOuterJoin';
 
+import {Accessor, Merger} from '../typings';
+
 /**
  * Sorted merge right outer join.  Returns the b-array reference.
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @param  {MergerFunction} merger
- * @returns {Array<Object>}
  */
-export default function sortedMergeRightOuterJoin (a, aAccessor, b, bAccessor, merger) {
+export default function sortedMergeRightOuterJoin<LeftRow, RightRow, Key, MergeResult>(
+    a: LeftRow[],
+    aAccessor: Accessor<LeftRow, Key>,
+    b: RightRow[],
+    bAccessor: Accessor<RightRow, Key>,
+    merger: Merger<RightRow, LeftRow, MergeResult>
+): MergeResult[] {
     return sortedMergeLeftOuterJoin(b, bAccessor, a, aAccessor, merger);
 }

@@ -3,36 +3,41 @@ import has from 'lodash/has';
 import map from 'lodash/map';
 import reduceRight from 'lodash/reduceRight';
 
+import {Accessor, Merger} from '../typings';
+import {toStringAccessor} from './util';
+
 /**
  * Hash inner join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @param  {MergerFunction} merger
- * @returns {Array<Object>}
  */
-export default function hashInnerJoin (a, aAccessor, b, bAccessor, merger) {
+export default function hashInnerJoin<LeftRow, RightRow, Key, MergeResult>(
+    a: LeftRow[],
+    aAccessor: Accessor<LeftRow, Key>,
+    b: RightRow[],
+    bAccessor: Accessor<RightRow, Key>,
+    merger: Merger<LeftRow, RightRow, MergeResult>
+): MergeResult[] {
     if (a.length < 1 || b.length < 1) {
         return [];
     }
-    let index,
-        value;
+    const leftAccessor: Accessor<LeftRow, string> = toStringAccessor(aAccessor),
+        rightAccessor: Accessor<RightRow, string> = toStringAccessor(bAccessor);
+    let index: {[key: string]: (LeftRow | RightRow)[]},
+        key: string;
     if (a.length < b.length) {
-        index = groupBy(a, aAccessor);
-        return reduceRight(b, (previous, bDatum) => {
-            value = bAccessor(bDatum);
-            if (has(index, value)) {
-                return map(index[value], aDatum => merger(aDatum, bDatum)).concat(previous);
+        index = groupBy(a, leftAccessor);
+        return reduceRight(b, (previous: MergeResult[], bDatum: RightRow) => {
+            key = rightAccessor(bDatum);
+            if (has(index, key)) {
+                return map(index[key], (aDatum: LeftRow) => merger(aDatum, bDatum)).concat(previous);
             }
             return previous;
         }, []);
     }
-    index = groupBy(b, bAccessor);
-    return reduceRight(a, (previous, aDatum) => {
-        value = aAccessor(aDatum);
-        if (has(index, value)) {
-            return map(index[value], bDatum => merger(aDatum, bDatum)).concat(previous);
+    index = groupBy(b, rightAccessor);
+    return reduceRight(a, (previous: MergeResult[], aDatum: LeftRow) => {
+        key = leftAccessor(aDatum);
+        if (has(index, key)) {
+            return map(index[key], (bDatum: RightRow) => merger(aDatum, bDatum)).concat(previous);
         }
         return previous;
     }, []);

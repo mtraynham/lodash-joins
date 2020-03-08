@@ -1,37 +1,39 @@
 import sortBy from 'lodash/sortBy';
-import isUndefined from './internal/isUndefined';
+
+import {Accessor} from '../typings';
+import {isUndefined} from './util';
 
 /**
  * Sorted merge left semi join.  Returns a new array.
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
  */
-export default function sortedMergeLeftAntiJoin (a, aAccessor, b, bAccessor) {
+export default function sortedMergeLeftAntiJoin<LeftRow, RightRow, Key>(
+    a: LeftRow[],
+    aAccessor: Accessor<LeftRow, Key>,
+    b: RightRow[],
+    bAccessor: Accessor<RightRow, Key>
+): LeftRow[] {
     if (a.length < 1 || b.length < 1) {
         return a;
     }
-    const aSorted = sortBy(a, aAccessor),
-        bSorted = sortBy(b, bAccessor),
-        r = [];
-    let aDatum = aSorted.pop(),
-        bDatum = bSorted.pop(),
-        aVal = aAccessor(aDatum),
-        bVal = bAccessor(bDatum);
+    const aSorted: LeftRow[] = sortBy(a, aAccessor),
+        bSorted: RightRow[] = sortBy(b, bAccessor),
+        rows: LeftRow[] = [];
+    let aDatum: LeftRow = aSorted.pop(),
+        bDatum: RightRow = bSorted.pop(),
+        aKey: Key = aAccessor(aDatum),
+        bKey: Key = bAccessor(bDatum);
     while (aDatum && bDatum) {
-        if (aVal > bVal) {
-            r.unshift(aDatum);
-            aVal = isUndefined(aDatum = aSorted.pop(), aAccessor);
-        } else if (aVal < bVal) {
-            bVal = isUndefined(bDatum = bSorted.pop(), bAccessor);
+        if (aKey > bKey) {
+            rows.unshift(aDatum);
+            aKey = isUndefined(aDatum = aSorted.pop(), aAccessor);
+        } else if (aKey < bKey) {
+            bKey = isUndefined(bDatum = bSorted.pop(), bAccessor);
         } else {
-            aVal = isUndefined(aDatum = aSorted.pop(), aAccessor);
+            aKey = isUndefined(aDatum = aSorted.pop(), aAccessor);
         }
     }
     if (aDatum) {
-        r.unshift(aDatum);
+        rows.unshift(aDatum);
     }
-    return aSorted.concat(r);
+    return aSorted.concat(rows);
 }

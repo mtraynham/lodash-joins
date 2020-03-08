@@ -1,13 +1,15 @@
 import nestedLoopLeftAntiJoin from './nestedLoopLeftAntiJoin';
 
+import {Accessor} from '../typings';
+
 /**
  * Nested loop right outer join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
  */
-export default function nestedLoopRightAntiJoin (a, aAccessor, b, bAccessor) {
+export default function nestedLoopRightAntiJoin<LeftRow, RightRow, Key>(
+    a: LeftRow[],
+    aAccessor: Accessor<LeftRow, Key>,
+    b: RightRow[],
+    bAccessor: Accessor<RightRow, Key>
+): RightRow[] {
     return nestedLoopLeftAntiJoin(b, bAccessor, a, aAccessor);
 }

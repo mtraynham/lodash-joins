@@ -1,14 +1,16 @@
 import hashLeftOuterJoin from './hashLeftOuterJoin';
 
+import {Accessor, Merger} from '../typings';
+
 /**
  * Hash right outer join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @param  {MergerFunction} merger
- * @returns {Array<Object>}
  */
-export default function hashRightOuterJoin (a, aAccessor, b, bAccessor, merger) {
+export default function hashRightOuterJoin<LeftRow, RightRow, Key, MergeResult>(
+    a: LeftRow[],
+    aAccessor: Accessor<LeftRow, Key>,
+    b: RightRow[],
+    bAccessor: Accessor<RightRow, Key>,
+    merger: Merger<RightRow, LeftRow, MergeResult>
+): MergeResult[] {
     return hashLeftOuterJoin(b, bAccessor, a, aAccessor, merger);
 }

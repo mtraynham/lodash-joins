@@ -1,13 +1,15 @@
 import sortedMergeLeftAntiJoin from './sortedMergeLeftAntiJoin';
 
+import {Accessor} from '../typings';
+
 /**
  * Sorted merge right semi join.  Returns the b-array reference.
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
  */
-export default function sortedMergeRightAntiJoin (a, aAccessor, b, bAccessor) {
+export default function sortedMergeRightAntiJoin<LeftRow, RightRow, Key>(
+    a: LeftRow[],
+    aAccessor: Accessor<LeftRow, Key>,
+    b: RightRow[],
+    bAccessor: Accessor<RightRow, Key>
+): RightRow[] {
     return sortedMergeLeftAntiJoin(b, bAccessor, a, aAccessor);
 }

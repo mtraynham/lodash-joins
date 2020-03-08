@@ -1,23 +1,27 @@
 import every from 'lodash/every';
 import filter from 'lodash/filter';
 
+import {Accessor} from '../typings';
+
 /**
  * Nested loop left anti join
- * @param  {Array<Object>} a
- * @param  {AccessorFunction} aAccessor
- * @param  {Array<Object>} b
- * @param  {AccessorFunction} bAccessor
- * @returns {Array<Object>}
  */
-export default function nestedLoopLeftAntiJoin (a, aAccessor, b, bAccessor) {
+export default function nestedLoopLeftAntiJoin<LeftRow, RightRow, Key>(
+    a: LeftRow[],
+    aAccessor: Accessor<LeftRow, Key>,
+    b: RightRow[],
+    bAccessor: Accessor<RightRow, Key>
+): LeftRow[] {
     if (a.length < 1 || b.length < 1) {
         return a;
     }
-    return filter(a, (aDatum) => {
-        const value = aAccessor(aDatum);
-        return every(b, (bDatum) => {
-            const otherValue = bAccessor(bDatum);
-            return !(value <= otherValue && value >= otherValue);
+    let key: Key,
+        otherKey: Key;
+    return filter(a, (aDatum: LeftRow) => {
+        key = aAccessor(aDatum);
+        return every(b, (bDatum: RightRow) => {
+            otherKey = bAccessor(bDatum);
+            return !(key <= otherKey && key >= otherKey);
         });
     });
 }

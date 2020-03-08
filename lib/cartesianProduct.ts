@@ -7,7 +7,8 @@ import reduce from 'lodash/reduce';
  * @param  {Array<Array<Object>>} [arrays=[]]
  * @returns {Array<Object>}
  */
-export default function cartesianProduct (...arrays) {
+/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/consistent-type-assertions */
+export default function cartesianProduct(...arrays: any[][]): any[][] {
     return arrays.length ?
         reduce(arrays, (a, b) =>
             flatten(map(a, x =>
@@ -16,3 +17,4 @@ export default function cartesianProduct (...arrays) {
         [[]]) :
         [];
 }
+/* eslint-enable @typescript-eslint/no-explicit-any,@typescript-eslint/consistent-type-assertions */
