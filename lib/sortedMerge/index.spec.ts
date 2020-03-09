@@ -52,7 +52,10 @@ describe('Sorted Merge Joins', () => {
             ],
             resultA = sortedMergeFullOuterJoin(left, accessor, right, accessor, merger),
             resultB = sortedMergeFullOuterJoin(right, accessor, left, accessor, merger),
-            resultC = sortedMergeFullOuterJoin([], accessor, [], accessor, merger);
+            resultC = sortedMergeFullOuterJoin([], accessor, [], accessor, merger),
+            resultD = sortedMergeFullOuterJoin(left, accessor, [], accessor, merger),
+            resultE = sortedMergeFullOuterJoin([], accessor, right, accessor, merger),
+            resultF = sortedMergeFullOuterJoin([left[0]], accessor, [right[0]], accessor, merger);
         it('should return 10 rows if parent is left', () =>
             expect(resultA.length).toBe(10));
         it('should match the expected output if parent is left', () =>
@@ -63,6 +66,12 @@ describe('Sorted Merge Joins', () => {
             expect(resultB).toEqual(expectedB));
         it('should return empty results for empty input', () =>
             expect(resultC.length).toBe(0));
+        it('should return just the left side if empty right side', () =>
+            expect(resultD.length).toBe(left.length));
+        it('should return just the right side if empty left side', () =>
+            expect(resultE.length).toBe(right.length));
+        it('should yield just 2 results', () =>
+            expect(resultF.length).toBe(2));
     });
     describe('#sortedMergeInnerJoin()', () => {
         const expectedA = [
@@ -113,13 +122,16 @@ describe('Sorted Merge Joins', () => {
                 {id: 'e', left: 2}
             ],
             result = sortedMergeLeftOuterJoin(left, accessor, right, accessor, merger),
-            resultB = sortedMergeLeftOuterJoin([], accessor, right, accessor, merger);
+            resultB = sortedMergeLeftOuterJoin([], accessor, right, accessor, merger),
+            resultC = sortedMergeLeftOuterJoin(left, accessor, [], accessor, merger);
         it('should return 5 rows', () =>
             expect(result.length).toBe(5));
         it('should match the expected output', () =>
             expect(result).toEqual(expected));
         it('should return empty results for empty input', () =>
             expect(resultB.length).toBe(0));
+        it('should return just the left side if empty right side', () =>
+            expect(resultC.length).toBe(left.length));
     });
     describe('#sortedMergeLeftSemiJoin()', () => {
         const expected = [

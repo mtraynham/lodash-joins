@@ -52,7 +52,9 @@ describe('Hash Joins', () => {
             ],
             resultA = hashFullOuterJoin(left, accessor, right, accessor, merger),
             resultB = hashFullOuterJoin(right, accessor, left, accessor, merger),
-            resultC = hashFullOuterJoin([], accessor, [], accessor, merger);
+            resultC = hashFullOuterJoin([], accessor, [], accessor, merger),
+            resultD = hashFullOuterJoin(left, accessor, [], accessor, merger),
+            resultE = hashFullOuterJoin([], accessor, right, accessor, merger);
         it('should return 10 rows if parent is left', () =>
             expect(resultA.length).toBe(10));
         it('should match the expected output if parent is left', () =>
@@ -63,6 +65,10 @@ describe('Hash Joins', () => {
             expect(resultB).toEqual(expectedB));
         it('should return empty results for empty input', () =>
             expect(resultC.length).toBe(0));
+        it('should return just the left side if empty right side', () =>
+            expect(resultD.length).toBe(left.length));
+        it('should return just the right side if empty left side', () =>
+            expect(resultE.length).toBe(right.length));
     });
     describe('#hashInnerJoin()', () => {
         const expectedA = [
@@ -113,13 +119,16 @@ describe('Hash Joins', () => {
                 {id: 'e', left: 2}
             ],
             result = hashLeftOuterJoin(left, accessor, right, accessor, merger),
-            resultB = hashLeftOuterJoin([], accessor, right, accessor, merger);
+            resultB = hashLeftOuterJoin([], accessor, right, accessor, merger),
+            resultC = hashLeftOuterJoin(left, accessor, [], accessor, merger);
         it('should return 5 rows', () =>
             expect(result.length).toBe(5));
         it('should match the expected output', () =>
             expect(result).toEqual(expected));
         it('should return empty results for empty input', () =>
             expect(resultB.length).toBe(0));
+        it('should return just the left side if empty right side', () =>
+            expect(resultC.length).toBe(left.length));
     });
     describe('#hashLeftSemiJoin()', () => {
         const expected = [
