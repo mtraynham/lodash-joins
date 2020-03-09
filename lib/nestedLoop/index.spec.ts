@@ -7,24 +7,31 @@ import nestedLoopLeftSemiJoin from './nestedLoopLeftSemiJoin';
 import nestedLoopRightAntiJoin from './nestedLoopRightAntiJoin';
 import nestedLoopRightOuterJoin from './nestedLoopRightOuterJoin';
 import nestedLoopRightSemiJoin from './nestedLoopRightSemiJoin';
+import {Accessor, Merger} from '../typings';
+
+interface Row {
+    id: string;
+    left?: number;
+    right?: number;
+}
 
 describe('Nested Loop Joins', () => {
-    const left = [
-            {id: 'c', left: 0},
-            {id: 'c', left: 1},
-            {id: 'e', left: 2}
-        ],
-        right = [
-            {id: 'a', right: 0},
-            {id: 'b', right: 1},
-            {id: 'c', right: 2},
-            {id: 'c', right: 3},
-            {id: 'd', right: 4},
-            {id: 'f', right: 5},
-            {id: 'g', right: 6}
-        ],
-        accessor = obj => obj.id,
-        merger = (l, r) => assign({}, l, r);
+    const left: Row[] = [
+        {id: 'c', left: 0},
+        {id: 'c', left: 1},
+        {id: 'e', left: 2}
+    ];
+    const right: Row[] = [
+        {id: 'a', right: 0},
+        {id: 'b', right: 1},
+        {id: 'c', right: 2},
+        {id: 'c', right: 3},
+        {id: 'd', right: 4},
+        {id: 'f', right: 5},
+        {id: 'g', right: 6}
+    ];
+    const accessor: Accessor<Row, string> = (obj: Row): string => obj.id;
+    const merger: Merger<Row, Row, Row> = (l: Row, r: Row): Row => assign({}, l, r);
     describe('#nestedLoopFullOuterJoin()', () => {
         const expectedA = [
                 {id: 'c', left: 0, right: 2},

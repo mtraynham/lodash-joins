@@ -6,8 +6,24 @@ import {
     nestedLoopLeftOuterJoin
 } from '../index';
 
+interface Row {
+    date: Date;
+    vowels: string;
+    county: string;
+    age: number;
+    bool: boolean;
+    float: number;
+    integer: number;
+    positiveInteger: number;
+    string: string;
+}
+
+interface ChanceExtended extends Chance.Chance {
+    row(): Row;
+}
+
 // Test Data
-const chance = new Chance();
+const chance: ChanceExtended = new Chance() as ChanceExtended;
 chance.mixin({row: () => ({
     date: chance.date({year: 2016}),
     vowels: chance.character({pool: 'aeiouy'}),
@@ -20,12 +36,12 @@ chance.mixin({row: () => ({
     string: chance.string({length: 4})
 })});
 
-const left = chance.n(chance.row, 100);
-const right = chance.n(chance.row, 100);
-const accessor = d => d.age;
-const merger = (a, b) => assign({}, a, b);
+const left: Row[] = chance.n(chance.row, 100);
+const right: Row[] = chance.n(chance.row, 100);
+const accessor = (d: Row): number => d.age;
+const merger = (a: Row, b: Row): Row => assign({}, a, b);
 
-let results = hashLeftOuterJoin(left, accessor, right, accessor, merger);
+let results: Row[] = hashLeftOuterJoin(left, accessor, right, accessor, merger);
 console.log(results);
 results = sortedMergeFullOuterJoin(left, accessor, right, accessor, merger);
 console.log(results);
