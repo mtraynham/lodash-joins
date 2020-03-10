@@ -34,21 +34,16 @@
         "lint": "eslint benchmark/**/*.ts debug/**/*.ts lib/**/*.ts karma.conf.ts webpack.config.ts",
         "test:browser": "karma start",
         "test:browser:debug": "karma start --single-run=false --browsers Chrome --reporters kjhtml",
-        "test:node": "jasmine --require=@babel/register --require=ts-node/register lib/**/*.spec.ts",
+        "test:node": "jasmine --require=ts-node/register lib/**/*.spec.ts",
         "test": "npm run test:browser && npm run test:node",
-        "benchmark": "node --require=@babel/register --require=ts-node/register benchmark/joins.ts",
+        "benchmark": "node --require=ts-node/register benchmark/joins.ts",
         "debug": "webpack-dev-server --open --config-name debug",
-        "prepublishOnly": "npm run test && npm run build"
+        "prepublishOnly": "npm run lint && npm run test && npm run build"
     },
     "dependencies": {
-        "@babel/runtime": "^7.8.7",
         "lodash": "^4"
     },
     "devDependencies": {
-        "@babel/core": "~7.8",
-        "@babel/plugin-transform-runtime": "~7.8",
-        "@babel/preset-env": "~7.8",
-        "@babel/register": "~7.8",
         "@types/benchmark": "~1.0",
         "@types/chance": "~1.0",
         "@types/html-webpack-plugin": "~3.2",
@@ -62,8 +57,6 @@
         "@types/webpack-env": "~1.15",
         "@typescript-eslint/eslint-plugin": "~2.23",
         "@typescript-eslint/parser": "~2.23",
-        "babel-loader": "~8.0",
-        "babel-plugin-add-module-exports": "~1.0",
         "benchmark": "~2.1",
         "chance": "~1.1",
         "clean-webpack-plugin": "~3.0",
