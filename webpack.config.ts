@@ -32,7 +32,7 @@ const baseConfiguration: Partial<Configuration> = {
     },
     plugins: [
         new BannerPlugin({banner, raw: true}),
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: []}),
         new ForkTsCheckerWebpackPlugin({eslint: true})
     ],
     externals: [
@@ -55,7 +55,6 @@ const baseConfiguration: Partial<Configuration> = {
     ],
     output: {
         filename: '[name].js',
-        library: '_', // Re-export as lodash mixin (_)
         libraryTarget: 'umd',
         devtoolModuleFilenameTemplate: `webpack:///${pkg.name}/[resource-path]`,
         globalObject: 'this'
@@ -65,11 +64,24 @@ const baseConfiguration: Partial<Configuration> = {
 export default [
     {
         ...baseConfiguration,
-        name: 'dist',
+        name: 'dist-joins',
         mode: 'production',
         devtool: 'source-map',
         entry: {
-            [pkg.name]: resolve(__dirname, './index.ts')
+            joins: resolve(__dirname, './index.ts')
+        }
+    },
+    {
+        ...baseConfiguration,
+        name: 'dist-lodash-joins',
+        mode: 'production',
+        devtool: 'source-map',
+        entry: {
+            [pkg.name]: resolve(__dirname, './index.lodash.ts')
+        },
+        output: {
+            ...baseConfiguration.output,
+            library: '_', // Re-export as lodash mixin (_)
         }
     },
     {

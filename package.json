@@ -25,8 +25,12 @@
         "lib/"
     ],
     "main": "dist/lodash-joins.js",
+    "types": "index.lodash.d.ts",
+    "type": "module",
     "scripts": {
-        "build": "webpack --config-name dist",
+        "build:joins": "webpack --config-name dist-joins",
+        "build:lodash-joins": "webpack --config-name dist-lodash-joins",
+        "build": "npm run build:joins && npm run build:lodash-joins",
         "lint": "eslint benchmark/**/*.ts debug/**/*.ts lib/**/*.ts karma.conf.ts webpack.config.ts",
         "test:browser": "karma start",
         "test:browser:debug": "karma start --single-run=false --browsers Chrome --reporters kjhtml",
