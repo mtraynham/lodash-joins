@@ -1,4 +1,4 @@
-![Node.js CI](https://github.com/mtraynham/lodash-joins/workflows/Node.js%20CI/badge.svg)
+![Node.js CI](https://github.com/mtraynham/lodash-joins/workflows/test/badge.svg)
 [![Join the chat at https://gitter.im/mtraynham/lodash-joins](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mtraynham/lodash-joins?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # lodash-joins
