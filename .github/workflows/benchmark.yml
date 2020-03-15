@@ -1,7 +1,7 @@
 name: benchmark
 on:
   schedule:
-  - cron:  '* * * * 1'
+  - cron:  '0 0 * * 1'
 jobs:
   build:
     runs-on: ubuntu-latest
