@@ -1,7 +1,7 @@
 {
     "name": "lodash-joins",
     "description": "SQL-like joins for JS",
-    "version": "3.0.0-beta.3",
+    "version": "3.0.0",
     "author": {
         "name": "Matt Traynham",
         "email": "skitch920@gmail.com"
