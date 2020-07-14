@@ -23,7 +23,7 @@
         "README.md",
         "dist/",
         "lib/",
-        "index.lodash.d.ts
+        "index.lodash.d.ts"
     ],
     "main": "dist/lodash-joins.js",
     "types": "index.lodash.d.ts",
