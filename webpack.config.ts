@@ -28,7 +28,7 @@ const baseConfiguration: Partial<Configuration> = {
     plugins: [
         new BannerPlugin({banner, raw: true}),
         new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: []}),
-        new ForkTsCheckerWebpackPlugin({eslint: true})
+        new ForkTsCheckerWebpackPlugin({eslint: {files: './{lib,benchmark,debug}/**/*.{ts,tsx,js,jsx}'}})
     ],
     externals: [
         // handle splitting modern lodash paths:
