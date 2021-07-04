@@ -2,7 +2,6 @@ import template from 'lodash/template';
 import {readFileSync} from 'fs';
 import {join, resolve, sep} from 'path';
 import {BannerPlugin, Configuration} from 'webpack';
-import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
@@ -27,14 +26,13 @@ const baseConfiguration: Partial<Configuration> = {
     },
     plugins: [
         new BannerPlugin({banner, raw: true}),
-        new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: []}),
         new ForkTsCheckerWebpackPlugin({eslint: {files: './{lib,benchmark,debug}/**/*.{ts,tsx,js,jsx}'}})
     ],
     externals: [
         // handle splitting modern lodash paths:
         // import merge from 'lodash/merge'; -> _.merge
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (context: any, request: any, callback: (error: any, result: any) => void): any => {
+        ({request}, callback: (error: any, result: any) => void): any => {
             if (/^lodash/.test(request)) {
                 const paths = request.split(sep);
                 return callback(null, {
