@@ -105,7 +105,7 @@ declare namespace _ {
             leftAccessor: IAccessor<TLeft, TValueOf>,
             right: TRight[],
             rightAccessor: IAccessor<TRight, TValueOf>,
-            merger: IMerger<TLeft, TRight, TMergeResult>
+            merger: IMerger<TLeft | undefined, TRight | undefined, TMergeResult>
         ): TMergeResult[];
     }
 
@@ -151,7 +151,7 @@ declare namespace _ {
             leftAccessor: IAccessor<TLeft, TValueOf>,
             right: TRight[],
             rightAccessor: IAccessor<TRight, TValueOf>,
-            merger: IMerger<TLeft, TRight, TMergeResult>
+            merger: IMerger<TLeft, TRight | undefined, TMergeResult>
         ): TMergeResult[];
     }
 
@@ -174,7 +174,7 @@ declare namespace _ {
             leftAccessor: IAccessor<TLeft, TValueOf>,
             right: TRight[],
             rightAccessor: IAccessor<TRight, TValueOf>,
-            merger: IMerger<TLeft, TRight, TMergeResult>
+            merger: IMerger<TLeft | undefined, TRight, TMergeResult>
         ): TMergeResult[];
     }
 
