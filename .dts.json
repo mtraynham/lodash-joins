@@ -1,0 +1,25 @@
+{
+    "compilationOptions": {
+        "preferredConfigPath": "./tsconfig.dts.json"
+    },
+    "entries": [
+        {
+            "filePath": "./index.ts",
+            "outFile": "./dist/joins.d.ts",
+            "output": {
+                "inlineDeclareGlobals": false,
+                "sortNodes": true,
+                "umdModuleName": "joins"
+            }
+        },
+        {
+            "filePath": "./index.lodash.ts",
+            "outFile": "./dist/lodash-joins.d.ts",
+            "output": {
+                "inlineDeclareGlobals": false,
+                "sortNodes": true,
+                "umdModuleName": "_"
+            }
+        }
+    ]
+}
