@@ -6,7 +6,7 @@ import {Accessor} from '../typings';
 /**
  * Nested loop left semi join
  */
-export default function hashLeftSemiJoin<LeftRow, RightRow, Key>(
+export default function nestedLoopLeftSemiJoin<LeftRow, RightRow, Key>(
     a: LeftRow[],
     aAccessor: Accessor<LeftRow, Key>,
     b: RightRow[],
