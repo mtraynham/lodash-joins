@@ -18,11 +18,12 @@
         "url": "https://github.com/mtraynham/lodash-joins.git"
     },
     "files": [
-        "index.js",
         "LICENSE",
         "README.md",
         "dist/",
         "lib/",
+        "index.ts",
+        "index.lodash.ts",
         "index.lodash.d.ts"
     ],
     "main": "dist/lodash-joins.js",

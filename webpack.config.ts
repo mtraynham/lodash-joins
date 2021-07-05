@@ -74,7 +74,11 @@ export default [
         },
         output: {
             ...baseConfiguration.output,
-            library: '_', // Re-export as lodash mixin (_)
+            library: {
+                name: '_', // Re-export as lodash mixin (_)
+                type: 'umd',
+                export: 'default',
+            }
         }
     },
     {
