@@ -98,6 +98,10 @@ export default [
                     options: {esModules: true}
                 }
             ]
+        },
+        output: {
+            ...baseConfiguration.output,
+            globalObject: 'self'  // https://github.com/ryanclark/karma-webpack/issues/497
         }
     },
     {
@@ -106,7 +110,7 @@ export default [
         mode: 'development',
         devtool: 'inline-source-map',
         entry: {
-            [pkg.name]: resolve(__dirname, './debug/index.js')
+            [pkg.name]: resolve(__dirname, './debug/index.ts')
         },
         plugins: [
             ...baseConfiguration.plugins,
