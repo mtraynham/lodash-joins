@@ -2,7 +2,6 @@ import template from 'lodash/template';
 import {readFileSync} from 'fs';
 import {join, resolve, sep} from 'path';
 import {BannerPlugin, Configuration} from 'webpack';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const pkg: {name: string} = JSON.parse(readFileSync(join(__dirname, 'package.json'), 'utf8'));
@@ -25,8 +24,7 @@ const baseConfiguration: Partial<Configuration> = {
         extensions: ['.ts', '.js'],
     },
     plugins: [
-        new BannerPlugin({banner, raw: true}),
-        new ForkTsCheckerWebpackPlugin({eslint: {files: './{lib,benchmark,debug}/**/*.{ts,tsx,js,jsx}'}})
+        new BannerPlugin({banner, raw: true})
     ],
     externals: [
         // handle splitting modern lodash paths:
