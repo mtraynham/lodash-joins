@@ -91,7 +91,7 @@ export default [
                 {
                     test: /\.(js|ts)$/,
                     exclude: /(node_modules|\.spec\.(js|ts)$)/,
-                    loader: 'istanbul-instrumenter-loader',
+                    loader: '@jsdevtools/coverage-istanbul-loader',
                     enforce: 'post',
                     options: {esModules: true}
                 }
