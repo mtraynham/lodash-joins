@@ -1,5 +1,4 @@
 ![Node.js CI](https://github.com/mtraynham/lodash-joins/workflows/test/badge.svg)
-[![Join the chat at https://gitter.im/mtraynham/lodash-joins](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mtraynham/lodash-joins?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # lodash-joins
 
@@ -12,7 +11,6 @@
     - [Usage](#usage)
     - [Available Functions](#available-functions)
         - [Example](#example)
-    - [ES6 Note](#babel-note)
 - [Testing](#testing)
     - [Latest Benchmarks](#latest-benchmarks)
         - [Full Outer Joins](#full-outer-joins)
@@ -88,7 +86,7 @@ Each join function accepts two arrays and two accessor functions for each array 
 * _.sortedMergeRightSemiJoin
 
 #### Example:
-    > var _ = require('index.js');
+    > var _ = require('lodash-joins');
     > var left = [
     ...       {id: 'c', left: 0},
     ...       {id: 'c', left: 1},
@@ -138,134 +136,115 @@ Each join function accepts two arrays and two accessor functions for each array 
       { id: 'f', right: 5 },
       { id: 'g', right: 6 } ]
 
-### Babel Note
-The `main` file for npm point to a [Webpack](http://webpack.github.io/) build that includes the necessary
-[babel-regenerator-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime) functions to properly execute the script.
-The npm module still includes the `index.js` file and `lib` directory to require the functions independently, but you
-are on your own to install `babel` as well and invoke the runtime beforehand.
-
-A simple way to do this is:
-```
-$ npm install --save babel
-$ node
-> require('@babel/runtime');
-> var hashLeftOuterJoin = require('lodash-joins/lib/hash/hashLeftOuterJoin');
-```
-
-It's likely better to just use the library as intended.  :smile:
-
 ## Testing
 Tested using [Jasmine](https://jasmine.github.io/) and [Karma](https://karma-runner.github.io/latest/index.html).  See the ```/spec``` directory.  There is also a browser test invoked through
 Webpack and Mocha.
 
 ### Latest Benchmarks
 Typically for the Inner & Outer joins, with larger arrays stick with the Sorted Merge, then Hash, then Nested.  With the
-Anti & Semi joins, Nested can out perform when there is a small cardinality of keys, but Hash may be more efficient
+Anti & Semi joins, Nested can outperform when there is a small cardinality of keys, but Hash may be more efficient
 since only one of the Arrays needs to be hashed.
-
-Tests were run using Node v16.15.1
 
 Each suite performs three joins on randomly generated arrays with string keys.  The sizes 'Large', 'Medium' and 'Small'
 correlate to the size of the join arrays being used, i.e. 1000, 100, 10 respectively.
 
 #### Full Outer Joins
 Running suite Full Outer Joins Large...
-Hash Join x 5.45 ops/sec ±2.85% (18 runs sampled)
-Sorted Merge Join x 21.05 ops/sec ±3.92% (40 runs sampled)
-Nested Loop Join x 4.54 ops/sec ±4.48% (16 runs sampled)
-Fastest is Sorted Merge Join
+- Hash Join x 5.45 ops/sec ±2.85% (18 runs sampled)
+- Sorted Merge Join x 21.05 ops/sec ±3.92% (40 runs sampled)
+- Nested Loop Join x 4.54 ops/sec ±4.48% (16 runs sampled)
+- Fastest is Sorted Merge Join
 
 Running suite Full Outer Joins Medium...
-Hash Join x 3,841 ops/sec ±1.15% (92 runs sampled)
-Sorted Merge Join x 3,192 ops/sec ±0.61% (96 runs sampled)
-Nested Loop Join x 2,295 ops/sec ±1.82% (90 runs sampled)
-Fastest is Hash Join
+- Hash Join x 3,841 ops/sec ±1.15% (92 runs sampled)
+- Sorted Merge Join x 3,192 ops/sec ±0.61% (96 runs sampled)
+- Nested Loop Join x 2,295 ops/sec ±1.82% (90 runs sampled)
+- Fastest is Hash Join
 
 Running suite Full Outer Joins Small...
-Hash Join x 130,893 ops/sec ±1.41% (96 runs sampled)
-Sorted Merge Join x 98,704 ops/sec ±1.66% (92 runs sampled)
-Nested Loop Join x 136,792 ops/sec ±0.65% (95 runs sampled)
-Fastest is Nested Loop Join
+- Hash Join x 130,893 ops/sec ±1.41% (96 runs sampled)
+- Sorted Merge Join x 98,704 ops/sec ±1.66% (92 runs sampled)
+- Nested Loop Join x 136,792 ops/sec ±0.65% (95 runs sampled)
+- Fastest is Nested Loop Join
 
 #### Inner Joins
 Running suite Inner Joins Large...
-Hash Join x 4.63 ops/sec ±9.42% (16 runs sampled)
-Sorted Merge Join x 15.29 ops/sec ±6.01% (43 runs sampled)
-Nested Loop Join x 4.41 ops/sec ±5.68% (16 runs sampled)
-Fastest is Sorted Merge Join
+- Hash Join x 4.63 ops/sec ±9.42% (16 runs sampled)
+- Sorted Merge Join x 15.29 ops/sec ±6.01% (43 runs sampled)
+- Nested Loop Join x 4.41 ops/sec ±5.68% (16 runs sampled)
+- Fastest is Sorted Merge Join
 
 Running suite Inner Joins Medium...
-Hash Join x 3,970 ops/sec ±0.30% (97 runs sampled)
-Sorted Merge Join x 3,086 ops/sec ±0.78% (96 runs sampled)
-Nested Loop Join x 2,452 ops/sec ±1.26% (95 runs sampled)
-Fastest is Hash Join
+- Hash Join x 3,970 ops/sec ±0.30% (97 runs sampled)
+- Sorted Merge Join x 3,086 ops/sec ±0.78% (96 runs sampled)
+- Nested Loop Join x 2,452 ops/sec ±1.26% (95 runs sampled)
+- Fastest is Hash Join
 
 Running suite Inner Joins Small...
-Hash Join x 255,618 ops/sec ±0.45% (94 runs sampled)
-Sorted Merge Join x 142,653 ops/sec ±0.54% (92 runs sampled)
-Nested Loop Join x 232,739 ops/sec ±0.59% (97 runs sampled)
-Fastest is Hash Join
+- Hash Join x 255,618 ops/sec ±0.45% (94 runs sampled)
+- Sorted Merge Join x 142,653 ops/sec ±0.54% (92 runs sampled)
+- Nested Loop Join x 232,739 ops/sec ±0.59% (97 runs sampled)
+- Fastest is Hash Join
 
 #### Left Anti Joins
 Running suite Left Anti Joins Large...
-Hash Join x 15,104 ops/sec ±1.18% (97 runs sampled)
-Sorted Merge Join x 2,755 ops/sec ±0.27% (99 runs sampled)
-Nested Loop Join x 18,295 ops/sec ±1.84% (89 runs sampled)
-Fastest is Nested Loop Join
+- Hash Join x 15,104 ops/sec ±1.18% (97 runs sampled)
+- Sorted Merge Join x 2,755 ops/sec ±0.27% (99 runs sampled)
+- Nested Loop Join x 18,295 ops/sec ±1.84% (89 runs sampled)
+- Fastest is Nested Loop Join
 
 Running suite Left Anti Joins Medium...
-Hash Join x 147,805 ops/sec ±1.86% (88 runs sampled)
-Sorted Merge Join x 33,078 ops/sec ±0.87% (96 runs sampled)
-Nested Loop Join x 250,000 ops/sec ±0.83% (94 runs sampled)
-Fastest is Nested Loop Join
+- Hash Join x 147,805 ops/sec ±1.86% (88 runs sampled)
+- Sorted Merge Join x 33,078 ops/sec ±0.87% (96 runs sampled)
+- Nested Loop Join x 250,000 ops/sec ±0.83% (94 runs sampled)
+- Fastest is Nested Loop Join
 
 Running suite Left Anti Joins Small...
-Hash Join x 1,421,230 ops/sec ±1.02% (96 runs sampled)
-Sorted Merge Join x 468,908 ops/sec ±0.45% (99 runs sampled)
-Nested Loop Join x 2,111,985 ops/sec ±1.77% (92 runs sampled)
-Fastest is Nested Loop Join
+- Hash Join x 1,421,230 ops/sec ±1.02% (96 runs sampled)
+- Sorted Merge Join x 468,908 ops/sec ±0.45% (99 runs sampled)
+- Nested Loop Join x 2,111,985 ops/sec ±1.77% (92 runs sampled)
+- Fastest is Nested Loop Join
 
 ### Left Outer Joins
 Running suite Left Outer Joins Large...
-Hash Join x 4.92 ops/sec ±4.17% (17 runs sampled)
-Sorted Merge Join x 17.43 ops/sec ±4.73% (49 runs sampled)
-Nested Loop Join x 4.26 ops/sec ±5.10% (15 runs sampled)
-Fastest is Sorted Merge Join
+- Hash Join x 4.92 ops/sec ±4.17% (17 runs sampled)
+- Sorted Merge Join x 17.43 ops/sec ±4.73% (49 runs sampled)
+- Nested Loop Join x 4.26 ops/sec ±5.10% (15 runs sampled)
+- Fastest is Sorted Merge Join
 
 Running suite Left Outer Joins Medium...
-Hash Join x 3,854 ops/sec ±2.16% (88 runs sampled)
-Sorted Merge Join x 3,108 ops/sec ±0.58% (97 runs sampled)
-Nested Loop Join x 2,339 ops/sec ±0.98% (96 runs sampled)
-Fastest is Hash Join
+- Hash Join x 3,854 ops/sec ±2.16% (88 runs sampled)
+- Sorted Merge Join x 3,108 ops/sec ±0.58% (97 runs sampled)
+- Nested Loop Join x 2,339 ops/sec ±0.98% (96 runs sampled)
+- Fastest is Hash Join
 
 Running suite Left Outer Joins Small...
-Hash Join x 200,502 ops/sec ±1.04% (96 runs sampled)
-Sorted Merge Join x 119,723 ops/sec ±0.44% (95 runs sampled)
-Nested Loop Join x 165,741 ops/sec ±0.34% (93 runs sampled)
-Fastest is Hash Join
+- Hash Join x 200,502 ops/sec ±1.04% (96 runs sampled)
+- Sorted Merge Join x 119,723 ops/sec ±0.44% (95 runs sampled)
+- Nested Loop Join x 165,741 ops/sec ±0.34% (93 runs sampled)
+- Fastest is Hash Join
 
 #### Left Semi Joins
 Running suite Left Semi Joins Large...
-Hash Join x 13,379 ops/sec ±1.92% (89 runs sampled)
-Sorted Merge Join x 2,414 ops/sec ±1.10% (94 runs sampled)
-Nested Loop Join x 22,084 ops/sec ±1.26% (93 runs sampled)
-Fastest is Nested Loop Join
+- Hash Join x 13,379 ops/sec ±1.92% (89 runs sampled)
+- Sorted Merge Join x 2,414 ops/sec ±1.10% (94 runs sampled)
+- Nested Loop Join x 22,084 ops/sec ±1.26% (93 runs sampled)
+- Fastest is Nested Loop Join
 
 Running suite Left Semi Joins Medium...
-Hash Join x 147,064 ops/sec ±0.47% (95 runs sampled)
-Sorted Merge Join x 31,176 ops/sec ±0.60% (95 runs sampled)
-Nested Loop Join x 99,841 ops/sec ±2.38% (90 runs sampled)
-Fastest is Hash Join
+- Hash Join x 147,064 ops/sec ±0.47% (95 runs sampled)
+- Sorted Merge Join x 31,176 ops/sec ±0.60% (95 runs sampled)
+- Nested Loop Join x 99,841 ops/sec ±2.38% (90 runs sampled)
+- Fastest is Hash Join
 
 Running suite Left Semi Joins Small...
-Hash Join x 1,301,283 ops/sec ±1.51% (94 runs sampled)
-Sorted Merge Join x 409,401 ops/sec ±0.26% (96 runs sampled)
-Nested Loop Join x 1,749,187 ops/sec ±0.92% (95 runs sampled)
-Fastest is Nested Loop Join
+- Hash Join x 1,301,283 ops/sec ±1.51% (94 runs sampled)
+- Sorted Merge Join x 409,401 ops/sec ±0.26% (96 runs sampled)
+- Nested Loop Join x 1,749,187 ops/sec ±0.92% (95 runs sampled)
+- Fastest is Nested Loop Join
 
 
 ## Future
-------
 * Support for smart picking join implementations
 * Rework Hash join object comparisons
 * More tests!
