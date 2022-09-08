@@ -49,8 +49,8 @@ Order of the output is indeterminate.
 
 ## Implementations
 * [Nested Loop](http://en.wikipedia.org/wiki/Nested_loop_join)
-* [Hash](http://en.wikipedia.org/wiki/Hash_join) (Uses LoDash _.groupBy to hash, thus key comparisons are String based)
-* [Sorted Merge](http://en.wikipedia.org/wiki/Sort-merge_join)
+* [Hash](http://en.wikipedia.org/wiki/Hash_join) - Uses LoDash _.groupBy to hash, thus key comparisons are String based
+* [Sorted Merge](http://en.wikipedia.org/wiki/Sort-merge_join) -  Uses natural sort comparisons (`<`, `>`), and should expect keys of the same type (#43)
 
 ### Supported Join Types
 * [Full Outer-Joins](http://en.wikipedia.org/wiki/Join_(SQL)#Full_outer_join)
