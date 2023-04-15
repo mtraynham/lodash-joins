@@ -56,16 +56,16 @@
         "@types/karma-webpack": "~2.0",
         "@types/lodash": "^4",
         "@types/webpack-env": "~1.18",
-        "@typescript-eslint/eslint-plugin": "~5.53",
-        "@typescript-eslint/parser": "~5.53",
+        "@typescript-eslint/eslint-plugin": "~5.58",
+        "@typescript-eslint/parser": "~5.58",
         "benchmark": "~2.1",
         "chance": "~1.1",
-        "eslint": "~8.34",
+        "eslint": "~8.38",
         "eslint-plugin-import": "~2.27",
         "eslint-plugin-jasmine": "~4.1",
         "html-webpack-plugin": "~5.5",
         "import": "~0.0",
-        "jasmine": "~4.5",
+        "jasmine": "~4.6",
         "jasmine-spec-reporter": "~7.0",
         "karma": "~6.4",
         "karma-chrome-launcher": "~3.1",
@@ -78,9 +78,9 @@
         "karma-webpack": "~5.0",
         "ts-loader": "~9.4",
         "ts-node": "~10.9",
-        "typescript": "~4.9",
-        "webpack": "~5.75",
+        "typescript": "~5.0",
+        "webpack": "~5.79",
         "webpack-cli": "~5.0",
-        "webpack-dev-server": "~4.11"
+        "webpack-dev-server": "~4.13"
     }
 }
